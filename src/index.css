@@ -1,0 +1,426 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Fuzzy+Bubbles:wght@400;700&family=Source+Sans+Pro:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+}
+:root {
+  --logoColor: #0b8b3a;
+  --logoColorLight: #22c55e;
+  --navback: #dfe6d8;
+  --lightGray: #334155;
+  --ultraLightGray: #f0fdf4;
+  --letterSpace: 1px;
+  --filterText: #374151;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+button {
+  cursor: pointer;
+}
+.nav-container {
+  font-family: "Source Sans Pro", sans-serif;
+  background: var(--navback);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 3.8rem;
+}
+.nav-container div {
+  display: flex;
+}
+.nav-btn {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  color: var(--lightGray);
+}
+.nav-btn-container {
+  display: flex;
+  align-items: center;
+}
+.logo {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+}
+.logo h4 {
+  color: var(--lightGray);
+  font-size: 1.2rem;
+  margin-left: 0.4rem;
+  letter-spacing: var(--letterSpace);
+}
+.logo p {
+  color: var(--logoColorLight);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+.logo-text {
+  display: flex;
+  align-items: center;
+}
+.logo-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  border: 3.5px solid var(--logoColorLight);
+}
+.logo-icon {
+  color: var(--logoColorLight);
+  font-weight: bold;
+}
+.login-icon {
+  font-size: 1.4rem;
+  color: var(--lightGray);
+}
+.login-text {
+  margin: 0 0.4rem;
+  font-size: 1rem;
+  letter-spacing: var(--letterSpace);
+}
+.nav-login-container {
+  display: flex;
+  align-items: center;
+}
+.filter-container {
+  background: #f2f5f8;
+  height: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.filter-ett {
+  margin: 0.5rem 0.5rem;
+}
+.filter-ett h4 {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--filterText);
+}
+.filter-ett p {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 0.9rem;
+}
+.filter-container button {
+  margin: 0.5rem 0.5rem;
+  width: 6.6rem;
+  height: 2.6rem;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: bold;
+  color: white;
+  background: var(--logoColor);
+  border: none;
+  border-radius: 4px 4px;
+  letter-spacing: 0.5px;
+  font-size: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.filter-container button:hover {
+  border: 2px solid var(--logoColorLight);
+}
+.arrow-down {
+  font-size: 0.7rem;
+  line-height: 50px;
+  margin-left: 0.3rem;
+}
+.nav-menu {
+  position: fixed;
+  transform: translateX(-100%);
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  background: white;
+  width: 100%;
+  height: auto;
+  z-index: 99;
+  transition: all 0.3s linear;
+}
+.show-menu {
+  transform: translateX(0);
+}
+.divider {
+  width: 5rem;
+  margin: 0.3rem 0;
+  height: 1px;
+  background: var(--logoColorLight);
+}
+.nav-links {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+.nav-list {
+  margin: 1rem 1rem;
+  font-family: "Source Sans Pro", sans-serif;
+
+  letter-spacing: var(--letterSpace);
+}
+.navbar-con {
+  display: flex;
+  color: var(--filterText);
+  opacity: 0.7;
+}
+
+.nn {
+  display: flex;
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+
+  font-weight: 700;
+}
+.navbar-con {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+.navbar-con p {
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--logoColor);
+}
+.navbar-con h4 {
+  margin: 0.3rem 0;
+  cursor: pointer;
+}
+.navbar-con h4:hover {
+  color: var(--logoColor);
+}
+.search {
+  margin-right: 0.5rem;
+}
+.delare {
+  margin: 1rem;
+  width: 12rem;
+  height: 1px;
+  background: var(--filterText);
+  opacity: 0.2;
+}
+.close-nav-btn {
+  font-size: 1.1rem;
+  opacity: 0.7;
+  cursor: pointer;
+}
+.filter-menu-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.filter-menu-buttons button {
+  margin: 1rem 0.1rem;
+  width: 40%;
+  height: 1.8rem;
+  border: none;
+  background: var(--logoColorLight);
+  color: white;
+  letter-spacing: var(--letterSpace);
+  font-weight: 700;
+  opacity: 0.7;
+}
+.filter-menu {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  position: fixed;
+  transform: translateY(-200%);
+  width: 100%;
+  height: auto;
+  z-index: 99;
+  transition: all 0.3s linear;
+}
+.show {
+  transform: translateY(0);
+}
+.filter-menu-nav {
+  height: 3rem;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.filter-menu-nav h4 {
+  opacity: 0.8rem;
+  font-size: 1rem;
+  margin: 0 0.5rem;
+}
+.cancel-text {
+  color: var(--logoColor);
+  cursor: pointer;
+}
+.onpage-buttons {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+.not-active {
+  border-bottom: 1px solid gray;
+  width: 33.33%;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.active {
+  border-bottom: 3px solid var(--logoColor);
+  width: 33.33%;
+  color: var(--logoColor);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.onpage-buttons div {
+  display: flex;
+  justify-content: center;
+}
+.onpage-buttons span {
+  margin-left: 0.2rem;
+}
+.active h4,
+.not-active h4 {
+  margin-bottom: 0.3rem;
+  opacity: 0.7;
+}
+.alt {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.alt select,
+button {
+  margin: 1rem 0.5rem;
+  border: none;
+  border-radius: 4px 4px;
+  background: transparent;
+}
+.alt select {
+  background: white;
+  width: 70%;
+  height: 2.2rem;
+  cursor: pointer;
+  color: var(--lightGray);
+  border: 1px solid rgb(214, 209, 209);
+}
+.alt button {
+  height: 2.8rem;
+  width: 6rem;
+  color: var(--lightGray);
+  border: 1px solid rgb(214, 209, 209);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  font-weight: 700;
+  font-size: 1rem;
+  background: var(--navback);
+}
+.antal-objects {
+  margin-left: 0.5rem;
+  color: var(--lightGray);
+  font-size: 1rem;
+  font-weight: 100;
+}
+.alt button:hover {
+  background: white;
+}
+
+.addBanner-info {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 35%;
+  background: white;
+  margin-left: 0.3rem;
+  width: 11rem;
+  height: 2.8rem;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.addBanner-info h4 {
+  font-size: 0.9rem;
+}
+.addBanner-info p {
+  font-size: 0.9rem;
+}
+.bildskallvahar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.4rem;
+  width: 2.4rem;
+  border-radius: 50%;
+  border: 2px solid green;
+  margin: 0 0.2rem;
+}
+.adBanner-image-container {
+  border-radius: 6px 6px;
+  margin: 1rem auto;
+  width: 94%;
+  position: relative;
+  height: 300px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.adBanner-image-container img {
+  height: 200px;
+  width: 100%;
+}
+.construct {
+  font-size: 1.4rem;
+  color: var(--logoColor);
+}
+.map {
+  margin-right: 0.3rem;
+  font-size: 1.1rem;
+}
+.adbanner-tjanster {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  color: var(--logoColor);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.adBanner-footer h4 {
+  font-size: 0.9rem;
+  font-weight: 100;
+}
+.adbanner-logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.adbanerlogga {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--navback);
+  margin-right: 0.5rem;
+  margin-top: 0.2rem;
+  width: 5rem;
+  height: 2.2rem;
+  font-family: "Fuzzy Bubbles", cursive;
+}
