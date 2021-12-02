@@ -44,7 +44,7 @@ const OnpageFilter = () => {
             <option value="newest">Sorted by lowest price first</option>
             <option value="newest">Sorted by highest price first</option>
           </select>
-          <Link>
+          <Link to="/">
             <button>
               <BsMap className="map" />
               Map

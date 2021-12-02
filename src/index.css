@@ -5,7 +5,9 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+img {
+  background-position: cover;
+}
 body {
   font-family: "Source Sans Pro", sans-serif;
 }
@@ -149,7 +151,7 @@ button {
   position: fixed;
   background: white;
   width: 100%;
-  height: auto;
+  height: 100vh;
   z-index: 99;
   transition: all 0.3s linear;
 }
@@ -307,6 +309,7 @@ button {
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  background: white;
 }
 .alt select,
 button {
@@ -375,13 +378,15 @@ button {
 .adBanner-image-container {
   border-radius: 6px 6px;
   margin: 1rem auto;
-  width: 94%;
+  width: 95%;
   position: relative;
   height: 310px;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 .adBanner-image-container img {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
   height: 200px;
   width: 100%;
 }
@@ -423,4 +428,42 @@ button {
   width: 5rem;
   height: 2.2rem;
   font-family: "Fuzzy Bubbles", cursive;
+}
+.objects img {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  height: 180px;
+  width: 100%;
+}
+.objects-container {
+  border-radius: 6px 6px;
+  margin: 1rem auto;
+  width: 95%;
+  position: relative;
+  height: 310px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.objects {
+  position: relative;
+}
+.heart-container {
+  cursor: pointer;
+  position: absolute;
+  top: 7%;
+  right: 5%;
+  background: var(--navback);
+  color: var(--logoColor);
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 5px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  font-size: 1rem;
+}
+.heart-container:hover {
+  background: white;
 }
