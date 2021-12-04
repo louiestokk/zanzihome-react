@@ -13,7 +13,7 @@ const AdBanner = () => {
   return (
     <>
       <div className="adBanner-image-container">
-        <img src={banner} alt="hej" />
+        <img src={banner} alt="construct company" />
         <div className="addBanner-info">
           <div className="bildskallvahar">
             <MdConstruction className="construct" />
