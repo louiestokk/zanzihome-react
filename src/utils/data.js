@@ -1,4 +1,7 @@
 import { AiOutlinePhone } from "react-icons/ai";
+import { BsSquare } from "react-icons/bs";
+import { ImHome } from "react-icons/im";
+import { MdBusiness } from "react-icons/md";
 export const navlinks = [
   { id: 1, text: "Home", url: "./" },
   {
@@ -60,6 +63,7 @@ export const objects = [
     to: "Buy",
     desc: "Beach front plot",
     info: "Beach front plot in Zanzibar Pemba with palms and other trees. Here yoou can build club, restaurant and bangalow or house. Located in were popular area with lot of thigs to do",
+    icon: <BsSquare className="object-plot-icon" />,
   },
   {
     id: 5,
@@ -69,6 +73,7 @@ export const objects = [
     price: 1200,
     size: 300,
     type: "House",
+    icon: <ImHome className="object-plot-icon" />,
     to: "Rent",
     desc: "Beach front house",
     info: "Beach front house for rent in Jambiani Zanzibar with pool. 5 bedrooms, 2 living room, 3 bathrooms and a big kitchen",
@@ -78,6 +83,7 @@ export const objects = [
     date: 2112,
     url: ["./images/landpaje-1.jpg", "./images/my-2.jpg"],
     location: "Paje",
+    icon: <BsSquare className="object-plot-icon" />,
     price: 16,
     size: 1400,
     type: "Land",
@@ -96,6 +102,7 @@ export const objects = [
     location: "Paje",
     price: 13,
     size: 900,
+    icon: <BsSquare className="object-plot-icon" />,
     type: "Land",
     to: "Buy",
     desc: "5 min to the beach",
@@ -113,6 +120,7 @@ export const objects = [
     price: 125,
     size: 4900,
     type: "Land",
+    icon: <BsSquare className="object-plot-icon" />,
     to: "Buy",
     desc: "Beach side plot",
     info: "Big land in Paje Zanzibar, 1min walk to the beach and close to the main road. Close to the village located at paje beach side. Here you can build hotell or resort,  houses for business or a 2- 3 big house with pool.",
@@ -126,6 +134,7 @@ export const objects = [
     price: 8,
     size: 555,
     type: "Land",
+    icon: <BsSquare className="object-plot-icon" />,
     to: "Buy",
     desc: "5 min to the beach",
     info: "Nice plot in Paje Zanzibar and very close to the main road. The plot is 15 meter in width and 37 meter in length. Close to the village and paje beach. Here you can build 2 smaller houses for business or a bigger house with bigger garden.",
@@ -138,6 +147,7 @@ export const objects = [
     price: 7,
     size: 1040,
     type: "Land",
+    icon: <BsSquare className="object-plot-icon" />,
     to: "Buy",
     desc: "7 min to the beach",
     info: "Land in Paje Zanzibar , area name Domo kuchu juu on the way to Jambiani only 2 min with car. Perfect for a house with big garden. The plot is located on the other side of the road to the beach. 3 min in the forest with car. There is lot of houses there and some under construction",
@@ -150,6 +160,7 @@ export const objects = [
     price: 11,
     size: 2000,
     type: "Land",
+    icon: <BsSquare className="object-plot-icon" />,
     to: "Buy",
     desc: "7 min to the beach",
     info: "Big land in Paje Zanzibar, area name Domo kuchu juu on the way to Jambiani only 2 min with car. Perfect for a house with big garden. The plot is located on the other side of the road to the beach. 3 min in the forest with car. There is lot of houses there and some under construction",
@@ -162,6 +173,7 @@ export const objects = [
     price: 90,
     size: 1000,
     type: "House",
+    icon: <ImHome className="object-plot-icon" />,
     to: "Buy",
     desc: "7 min to the beach",
     info: "Big house in Zanzibar for sell with 4 bedrooms, 3 bathrooms, big kitchen and 2 living rooms. The house is built this year and modern. The house have a big garden with lot of space.",
@@ -174,6 +186,7 @@ export const objects = [
     price: 1000,
     size: 200,
     type: "House",
+    icon: <ImHome className="object-plot-icon" />,
     to: "Rent",
     desc: "3 min to the beach",
     info: "Big house in Paje Zanzibar with 3 bedrooms, 2 bathrooms, big kitchen and 1 living rooms. The house is built this year and modern. The house have a big garden with lot of space.",
@@ -188,6 +201,7 @@ export const objects = [
     type: "Land",
     to: "Buy",
     desc: "Beach front plot",
+    icon: <BsSquare className="object-plot-icon" />,
     info: "Beach front plot in Paje Zanzibar with palms and other trees. Here yoou can build club, restaurant and bangalow , barhroomhouse and hotell. Located in were popular area with lot of thigs to do",
   },
 ];
@@ -196,7 +210,7 @@ export const bannerInfo = [
   {
     company: "Tripple M Limited",
     id: 1,
-    name: "Ahmed Shawarma",
+    name: "Gerrard M",
     url: ["../../public/images//buildhousezanzibar.jpg"],
   },
 ];
