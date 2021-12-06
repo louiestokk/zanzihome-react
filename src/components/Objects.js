@@ -1,13 +1,15 @@
 import React from "react";
-import { objects } from "../utils/data";
 import { BsHeart } from "react-icons/bs";
 import { ImHome } from "react-icons/im";
+import { useGlobalContext } from "../context";
+import { Link } from "react-router-dom";
 
 const Objects = () => {
+  const { propertys } = useGlobalContext();
   return (
     <>
       <div className="objects-container">
-        {objects.map((object) => {
+        {propertys.map((object) => {
           const {
             id,
             date,
@@ -22,7 +24,7 @@ const Objects = () => {
             icon,
           } = object;
           return (
-            <div key={id} className="objects">
+            <div className="objects" key={id}>
               <img src={url[0]} alt={location} />
               <div className="heart-container">
                 <BsHeart />
@@ -51,7 +53,14 @@ const Objects = () => {
               </div>
               <div className="objects-btn-container">
                 <button type="button">Contact</button>
-                <button type="button">Read more</button>
+                <button type="button">
+                  <Link
+                    to={`/propertys/zanzibar/${id}`}
+                    className="objects-link"
+                  >
+                    Read more
+                  </Link>
+                </button>
               </div>
             </div>
           );

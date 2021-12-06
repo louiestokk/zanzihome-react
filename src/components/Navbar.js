@@ -56,12 +56,12 @@ const Navbar = () => {
           <div className="delare"></div>
           <div className="navbar-con navbar-con-ett">
             <div className="nn">
-              <h4>News </h4>
+              <h4>Guid to buy </h4>
             </div>
 
             <h4> Build house </h4>
             <h4>Guide to selling </h4>
-            <h4>Support & Contact </h4>
+            <h4 className="foreginer">Guid for foreginers </h4>
           </div>
         </div>
       </div>

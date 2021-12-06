@@ -10,8 +10,9 @@ import Rentouthousezanzibar from "./pages/rentouthousezanzibar";
 import Renthousezanzibar from "./pages/renthousezanzibar";
 import Buyhousezanzibar from "./pages/buyhousezanzibar";
 import Buylandzanzibar from "./pages/buylandzanzibar";
-import SingleObject from "./pages/SingleObject";
+import SingleObject from "./components/SingleObject";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -48,11 +49,11 @@ function App() {
         <Route path="/contact">
           <Contact />
         </Route>
-        <Route
-          path="/propertys/zanzibar/:id"
-          children={<SingleObject />}
-        ></Route>
+        <Route path="/propertys/zanzibar/:id">
+          <SingleObject />
+        </Route>
       </Switch>
+      <Footer />
     </Router>
   );
 }
