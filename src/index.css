@@ -280,13 +280,16 @@ button {
   margin-top: 1rem;
   display: flex;
   justify-content: space-evenly;
+  width: 100%;
 }
 .not-active {
   border-bottom: 1px solid gray;
   width: 33.33%;
   font-size: 0.85rem;
   cursor: pointer;
+  color: rgb(75, 73, 73);
 }
+
 .active {
   border-bottom: 3px solid var(--logoColor);
   width: 33.33%;
@@ -294,13 +297,17 @@ button {
   font-size: 0.85rem;
   cursor: pointer;
 }
-
 .onpage-buttons div {
   display: flex;
   justify-content: center;
+  font-size: 0.9rem;
+  font-weight: bold;
 }
+
 .onpage-buttons span {
   margin-left: 0.2rem;
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.5px;
 }
 .active h4,
 .not-active h4 {
@@ -615,7 +622,9 @@ button {
   display: flex;
 }
 .singel-object-container {
+  position: relative;
   margin-top: 1rem;
+  height: auto;
 }
 .objects-link {
   color: var(--logoColor);
@@ -664,15 +673,52 @@ button {
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1.1rem;
   letter-spacing: var(--letterSpace);
-  margin-left: 0.2rem;
+  margin-left: 0.3rem;
   margin-top: 0.5rem;
 }
 .singel-object-info p {
-  margin-left: 0.2rem;
+  margin-left: 0.3rem;
   letter-spacing: var(--letterSpace);
   font-size: 0.9rem;
 }
 .map-btn-singel-object {
-  color: var(--logoColor);
+  color: rgb(90, 87, 87);
   border-bottom: 1px solid var(--logoColor);
+  font-size: 0.8rem;
+}
+.singel-object-info h4 {
+  margin-left: 0.3rem;
+  letter-spacing: 2px;
+  color: var(--logoColor);
+  font-weight: 100;
+}
+.divider-singel-object {
+  margin: 0.5rem 0.3rem;
+  background: gray;
+  border: 0.5px solid rgb(167, 164, 164);
+  opacity: 0.5;
+}
+.singel-object-banner {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  color: var(--logoColor);
+  z-index: 99;
+  background: white;
+  opacity: 0.6;
+  height: 2.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.col-1 {
+  display: flex;
+}
+.ul-title li {
+  margin: 0.2rem 1rem;
+}
+.ul-besk li {
+  margin: 0.2rem 2rem;
+  font-weight: bold;
 }

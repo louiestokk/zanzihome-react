@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { navlinks } from "../utils/data";
 import { Link } from "react-router-dom";
@@ -7,10 +7,9 @@ import { FiUser } from "react-icons/fi";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { BsSearch } from "react-icons/bs";
 import { FaWindowClose } from "react-icons/fa";
-import { useGlobalContext } from "../context";
 
 const Navbar = () => {
-  const { show, setShow } = useGlobalContext();
+  const [show, setShow] = useState(false);
   return (
     <>
       <div className={`${show ? "nav-menu show-menu" : "nav-menu"}`}>
@@ -20,7 +19,11 @@ const Navbar = () => {
           </li>
           {navlinks.map((link) => {
             return (
-              <li key={link.id} className="nav-list">
+              <li
+                key={link.id}
+                className="nav-list"
+                onClick={() => setShow(!show)}
+              >
                 <Link to={link.url} className="nav-links">
                   {link.text}
                   {link.icon && link.icon}

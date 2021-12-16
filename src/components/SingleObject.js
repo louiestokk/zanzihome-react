@@ -6,6 +6,7 @@ import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { BsHeart } from "react-icons/bs";
 import { BsMap } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import Bid from "./Bid";
 
 const SingleObject = () => {
   const { propertys, setPropertys, index, setIndex } = useGlobalContext();
@@ -33,9 +34,14 @@ const SingleObject = () => {
           desc,
           icon,
           info,
+          rooms,
+          bid,
         } = object;
         return (
           <div className="singel-object-container" key={id}>
+            <div className="singel-object-banner">
+              <h5>Seller name</h5>
+            </div>
             <div className="singel-object">
               <div className="single-object-img-container">
                 <img src={`../.${url[index]}`} />
@@ -70,10 +76,34 @@ const SingleObject = () => {
                 >
                   Se on map
                 </button>
-                <h4>{to === "Rent" ? `${price}$ / week` : `${price}.000$`}</h4>
-                <h5>Monitor final price</h5>
+                <h4 className="singel-object-price">
+                  {to === "Rent" ? `${price}$ / week` : `${price}.000$`}
+                </h4>
               </div>
-              <div className="singel-object-fact"></div>
+              <Bid bid={(bid, id, propertys)} />
+              <div className="divider-singel-object"></div>
+              <div className="singel-object-fact">
+                <div className="col-1">
+                  <div>
+                    <ul className="ul-title">
+                      <li>Housing Type</li>
+                      <li>Size</li>
+                      <li>{rooms && "Rooms"}</li>
+                      <li>Price</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <ul className="ul-besk">
+                      <li>{type}</li>
+                      <li>{size} sq.m</li>
+                      <li>{rooms || ""}</li>
+                      <li>
+                        {to === "Rent" ? `${price}$ / week` : `${price}$`}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="singel-object-contact"></div>
           </div>

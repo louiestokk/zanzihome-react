@@ -3,8 +3,7 @@ import { FaArrowDown } from "react-icons/fa";
 import { useGlobalContext } from "../context";
 
 const Filter = () => {
-  const { showFilter, setShowFilter } = useGlobalContext();
-
+  const [showFilter, setShowFilter] = useState(false);
   return (
     <>
       <div className="filter-container">

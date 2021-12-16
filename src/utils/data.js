@@ -7,7 +7,7 @@ export const navlinks = [
   {
     id: 2,
     text: "Find Property",
-    url: "../../public/images/propertyzanzibar",
+    url: "/propertyzanzibar",
   },
   {
     id: 3,
@@ -61,6 +61,7 @@ export const objects = [
     size: 1200,
     type: "Land",
     to: "Buy",
+    bid: [250000],
     desc: "Beach front plot",
     info: "Beach front plot in Zanzibar Pemba with palms and other trees. Here yoou can build club, restaurant and bangalow or house. Located in were popular area with lot of thigs to do",
     icon: <BsSquare className="object-plot-icon" />,
@@ -68,6 +69,7 @@ export const objects = [
   {
     id: 5,
     date: 2111,
+    bid: "rentout",
     url: ["./images/beachhousezanzibar.jpg"],
     location: "Jambiani",
     price: 1200,
@@ -75,6 +77,7 @@ export const objects = [
     type: "House",
     icon: <ImHome className="object-plot-icon" />,
     to: "Rent",
+    rooms: 4,
     desc: "Beach front house",
     info: "Beach front house for rent in Jambiani Zanzibar with pool. 5 bedrooms, 2 living room, 3 bathrooms and a big kitchen",
   },
@@ -86,6 +89,7 @@ export const objects = [
     icon: <BsSquare className="object-plot-icon" />,
     price: 16,
     size: 1400,
+    bid: [13000],
     type: "Land",
     to: "Buy",
     desc: "5 min to the beach",
@@ -188,6 +192,7 @@ export const objects = [
     type: "House",
     icon: <ImHome className="object-plot-icon" />,
     to: "Rent",
+    rooms: 3,
     desc: "3 min to the beach",
     info: "Big house in Paje Zanzibar with 3 bedrooms, 2 bathrooms, big kitchen and 1 living rooms. The house is built this year and modern. The house have a big garden with lot of space.",
   },

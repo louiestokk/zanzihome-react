@@ -1,48 +1,50 @@
-import React from "react";
-import { act } from "react-dom/cjs/react-dom-test-utils.production.min";
+import React, { useState, useContext, useEffect } from "react";
 import { useGlobalContext } from "../context";
 import { objects } from "../utils/data";
-import { BsMap } from "react-icons/bs";
+import OnpageSelect from "./OnpageSelect";
 import { Link } from "react-router-dom";
+import { BsMap } from "react-icons/bs";
+
 const OnpageFilter = () => {
-  const { active, setActive } = useGlobalContext();
+  const { active, forSale, forRent, forBusiness, filterItems } =
+    useGlobalContext();
+  const numItems = (string) => {
+    const forsale = objects.filter((el) => el.to === "Buy").length;
+    return objects.filter((el) => el.to === string).length;
+  };
 
   return (
     <div className="onpage-filter">
       <div className="onpage-buttons">
         <div
           className={active ? "active" : "not-active"}
-          data-id="1"
-          onClick={() => setActive(!active)}
+          data-id="Buy"
+          onClick={forSale}
         >
-          <h4>For sale</h4>
-          <span>10</span>
+          <span>Sale {numItems("Buy")}</span>
         </div>
         <div
           className={active === false ? "active" : "not-active"}
-          data-id="2"
-          onClick={() => setActive(false)}
+          data-id="Rent"
+          onClick={forRent}
         >
-          <h4>For rental </h4>
-          <span> 10</span>
+          <span>Rental {numItems("Rent")}</span>
         </div>
         <div
           className={active === null ? "active" : "not-active"}
-          data-id="3"
-          onClick={() => setActive(null)}
+          data-id="Business"
+          onClick={forBusiness}
         >
-          <h4>Business</h4>
-          <span>10</span>
+          <span>Business {numItems("Business")}</span>
         </div>
       </div>
-
       <div className="onpage-select-div">
         <div className="alt">
-          <select name="alt">
+          <select name="alt" onClick={(e) => filterItems(e.target.value)}>
             <option value="newest">Sorted by newest first</option>
-            <option value="newest">Sorted by oldest first</option>
-            <option value="newest">Sorted by lowest price first</option>
-            <option value="newest">Sorted by highest price first</option>
+            <option value="oldest">Sorted by oldest first</option>
+            <option value="lowprice">Sorted by lowest price first</option>
+            <option value="highprices">Sorted by highest price first</option>
           </select>
           <Link to="/">
             <button>
