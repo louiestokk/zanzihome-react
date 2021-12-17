@@ -28,22 +28,7 @@ const AppProvider = ({ children }) => {
     setPropertys(objectsBusiness);
     setActive(null);
   };
-  const newOb = objects.sort((a, b) => b.date - a.date);
-  const oldOb = objects.sort((a, b) => a.date - b.date);
-  const filterItems = (value) => {
-    if (value === "oldest") {
-      const oldOb = propertys.sort((a, b) => b.date - a.date);
-      setPropertys(oldOb);
-    }
-    if (value === "oldest") {
-      const newOb = propertys.sort((a, b) => a.date - b.date);
-      setPropertys(newOb);
-    }
-    if (value === "lowprice") {
-      const lowOb = propertys.sort((a, b) => a.price - b.price);
-      setPropertys((oldLow) => lowOb);
-    }
-  };
+
   useEffect(() => {
     setPropertys(objects);
   }, [objects]);
@@ -59,7 +44,6 @@ const AppProvider = ({ children }) => {
         forSale,
         forRent,
         forBusiness,
-        filterItems,
       }}
     >
       {children}

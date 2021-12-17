@@ -6,8 +6,7 @@ import { Link } from "react-router-dom";
 import { BsMap } from "react-icons/bs";
 
 const OnpageFilter = () => {
-  const { active, forSale, forRent, forBusiness, filterItems } =
-    useGlobalContext();
+  const { active, forSale, forRent, forBusiness } = useGlobalContext();
   const numItems = (string) => {
     const forsale = objects.filter((el) => el.to === "Buy").length;
     return objects.filter((el) => el.to === string).length;
@@ -40,7 +39,7 @@ const OnpageFilter = () => {
       </div>
       <div className="onpage-select-div">
         <div className="alt">
-          <select name="alt" onClick={(e) => filterItems(e.target.value)}>
+          <select name="alt">
             <option value="newest">Sorted by newest first</option>
             <option value="oldest">Sorted by oldest first</option>
             <option value="lowprice">Sorted by lowest price first</option>

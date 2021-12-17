@@ -73,15 +73,17 @@ const Navbar = () => {
           <div className="nav-btn" onClick={() => setShow(!show)}>
             <FaBars />
           </div>
-          <div className="logo">
-            <div className="logo-circle">
-              <ImHome className="logo-icon" />
+          <Link to="/">
+            <div className="logo">
+              <div className="logo-circle">
+                <ImHome className="logo-icon" />
+              </div>
+              <div className="logo-text">
+                <h4>ZanziHom</h4>
+                <p>e</p>
+              </div>
             </div>
-            <div className="logo-text">
-              <h4>ZanziHom</h4>
-              <p>e</p>
-            </div>
-          </div>
+          </Link>
         </div>
 
         <div className="nav-login-container">

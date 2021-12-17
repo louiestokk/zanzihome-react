@@ -7,6 +7,9 @@ import { BsHeart } from "react-icons/bs";
 import { BsMap } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import Bid from "./Bid";
+import SingelObjectInfo from "./SingelObjectInfo";
+import AdBanner from "./AdBanner";
+import Brokers from "./Brokers";
 
 const SingleObject = () => {
   const { propertys, setPropertys, index, setIndex } = useGlobalContext();
@@ -36,15 +39,22 @@ const SingleObject = () => {
           info,
           rooms,
           bid,
+          contact,
+          agency,
+          number,
+          logo,
         } = object;
         return (
           <div className="singel-object-container" key={id}>
             <div className="singel-object-banner">
-              <h5>Seller name</h5>
+              <h5>{agency}</h5>
             </div>
             <div className="singel-object">
               <div className="single-object-img-container">
-                <img src={`../.${url[index]}`} />
+                <img
+                  src={`../.${url[index]}`}
+                  style={{ backgroundPosition: "cover", maxHeight: "500px" }}
+                />
                 {index > 0 && (
                   <button type="button" className="singel-img-left-arr">
                     <MdOutlineArrowBackIosNew />
@@ -80,32 +90,51 @@ const SingleObject = () => {
                   {to === "Rent" ? `${price}$ / week` : `${price}.000$`}
                 </h4>
               </div>
-              <Bid bid={(bid, id, propertys)} />
+              <div className="bid-div">{bid && <Bid bid={bid} />}</div>
+
               <div className="divider-singel-object"></div>
-              <div className="singel-object-fact">
-                <div className="col-1">
-                  <div>
-                    <ul className="ul-title">
-                      <li>Housing Type</li>
-                      <li>Size</li>
-                      <li>{rooms && "Rooms"}</li>
-                      <li>Price</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <ul className="ul-besk">
-                      <li>{type}</li>
-                      <li>{size} sq.m</li>
-                      <li>{rooms || ""}</li>
-                      <li>
-                        {to === "Rent" ? `${price}$ / week` : `${price}$`}
-                      </li>
-                    </ul>
+              <div className="jjj">
+                <div className="singel-object-fact">
+                  <div className="col-1">
+                    <div>
+                      <ul className="ul-title">
+                        <li>Housing Type</li>
+                        <li>Size</li>
+                        <li>{rooms && "Rooms"}</li>
+                        <li>Price</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <ul className="ul-besk">
+                        <li>{type}</li>
+                        <li>{size} sq.m</li>
+                        <li>{rooms || ""}</li>
+                        <li>
+                          {to === "Rent" ? `${price}$ / week` : `${price}.000$`}
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
+                <SingelObjectInfo info={info} />
               </div>
             </div>
-            <div className="singel-object-contact"></div>
+            <div className="divider-singel-object"></div>
+            <div className="singel-banner">
+              <AdBanner />
+            </div>
+            <div className="broker-contact-div">
+              <Brokers
+                contact={contact}
+                agency={agency}
+                number={number}
+                logo={logo}
+              />
+            </div>
+
+            <h5 className="sameoffice">For sale from the same office</h5>
+            <div className="divider-singel-object"></div>
+            <div className="brokers-divider"></div>
           </div>
         );
       })}
