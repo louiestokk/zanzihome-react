@@ -4,8 +4,9 @@ import { objects } from "../utils/data";
 import OnpageSelect from "./OnpageSelect";
 import { Link } from "react-router-dom";
 import { BsMap } from "react-icons/bs";
+import MapComp from "./Map";
 
-const OnpageFilter = () => {
+const OnpageFilter = ({ size, setSize }) => {
   const { active, forSale, forRent, forBusiness } = useGlobalContext();
   const numItems = (string) => {
     const forsale = objects.filter((el) => el.to === "Buy").length;
@@ -37,6 +38,7 @@ const OnpageFilter = () => {
           <span>Business {numItems("Business")}</span>
         </div>
       </div>
+      <MapComp objects={objects} size={size} setSize={setSize} />
       <div className="onpage-select-div">
         <div className="alt">
           <select name="alt">

@@ -8,7 +8,7 @@ const SingelObjectInfo = ({ info }) => {
   const handleClick = () => {
     setHidden(!hidden);
     setHeight("300px");
-    setPosition("80%");
+    setPosition("82%");
   };
   return (
     <div className="singel-object-infotext" style={{ height: height }}>

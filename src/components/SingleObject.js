@@ -13,14 +13,27 @@ import Brokers from "./Brokers";
 
 const SingleObject = () => {
   const { propertys, setPropertys, index, setIndex } = useGlobalContext();
+  const [images, setImages] = useState();
   const { id } = useParams();
   const filterObject = () => {
     const newObject = propertys.filter((el) => el.id === +id);
     setPropertys(newObject);
   };
-  useEffect(() => {
-    filterObject();
-  }, [id]);
+
+  const nextImage = () => {
+    console.log(propertys.map((el) => el.url.length));
+    setIndex((old) => old + 1);
+  };
+  const prevImage = () => {
+    setIndex((old) => old - 1);
+  };
+  useEffect(
+    () => {
+      filterObject();
+    },
+    [id],
+    index
+  );
 
   return (
     <>
@@ -56,11 +69,19 @@ const SingleObject = () => {
                   style={{ backgroundPosition: "cover", maxHeight: "500px" }}
                 />
                 {index > 0 && (
-                  <button type="button" className="singel-img-left-arr">
+                  <button
+                    type="button"
+                    className="singel-img-left-arr"
+                    onClick={prevImage}
+                  >
                     <MdOutlineArrowBackIosNew />
                   </button>
                 )}
-                <button typ="button" className="singel-img-right-arr">
+                <button
+                  typ="button"
+                  className="singel-img-right-arr"
+                  onClick={nextImage}
+                >
                   <MdOutlineArrowForwardIos />
                 </button>
               </div>
@@ -69,7 +90,7 @@ const SingleObject = () => {
                   <BsHeart /> Save
                 </button>
                 <div>
-                  <button onClick={() => setIndex(1)}>
+                  <button>
                     <BsMap /> Map
                   </button>
                 </div>

@@ -280,6 +280,7 @@ button {
   margin-top: 1rem;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   width: 100%;
 }
 .not-active {
@@ -449,6 +450,8 @@ button {
   width: 100%;
 }
 .objects-container {
+  display: grid;
+  grid-template-columns: 1fr;
   border-radius: 6px 6px;
   margin: 1rem auto;
   width: 95%;
@@ -466,6 +469,9 @@ button {
   height: 310px;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.objects:hover {
+  border: 1px solid var(--logoColor);
 }
 .heart-container {
   cursor: pointer;
@@ -718,10 +724,10 @@ button {
   margin-left: 0.3rem;
 }
 .ul-title li {
-  margin: 0.2rem 0.3rem;
+  margin: 0.4rem 0.3rem;
 }
 .ul-besk li {
-  margin: 0.2rem 4rem;
+  margin: 0.4rem 4rem;
   font-weight: bold;
 }
 .bid-comp {
@@ -833,6 +839,44 @@ button {
   .singel-object-infotext {
     max-width: 300px;
   }
+  .objects-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .onpage-buttons span {
+    font-size: 1rem;
+  }
+  .map-holder {
+    display: flex;
+  }
+  .adBanner-image-container {
+    height: 260px;
+    margin-left: 1rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    margin-right: 0.5rem;
+  }
+}
+@media screen and (min-width: 700px) {
+  .adBanner-image-container {
+    width: 350px;
+  }
+}
+@media screen and (min-width: 900px) {
+  .adBanner-image-container {
+    width: 450px;
+    margin-right: 0.5rem;
+  }
+}
+@media screen and (min-width: 1100px) {
+  .objects-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (min-width: 700px) {
+    .adBanner-image-container {
+      width: 550px;
+      margin-right: 0.5rem;
+    }
+  }
 }
 .brokers-comp-div {
   margin-top: 2rem;
@@ -848,9 +892,9 @@ button {
 }
 .brokers-comp-div p {
   margin-left: 1rem;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.4rem;
   border-bottom: 1px solid gray;
-  width: 100px;
+  width: 110px;
   font-weight: bold;
   opacity: 0.6;
 }
@@ -891,7 +935,7 @@ button {
 }
 .sameoffice {
   margin-left: 1rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 100;
   border-bottom: 1px solid gray;
   width: 200px;
@@ -901,4 +945,12 @@ button {
 }
 .brokers-divider {
   height: 3rem;
+}
+.map-container {
+  height: 260px;
+  width: 96%;
+  margin: 1rem auto;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+.onpage-filter-btn {
 }

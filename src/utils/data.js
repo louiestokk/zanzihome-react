@@ -88,6 +88,7 @@ export const objects = [
     desc: "Beach front house",
     logo: "/images/tripplemlogo.png",
     info: "Beach front house for rent in Jambiani Zanzibar with pool. 5 bedrooms, 2 living room, 3 bathrooms and a big kitchen",
+    coords: [-6.3158, 39.5446],
   },
   {
     id: 6,
@@ -106,6 +107,7 @@ export const objects = [
     desc: "5 min to the beach",
     logo: "/images/tripplemlogo.png",
     info: "Big land in Paje Zanzibar and close to the main road. Close to the village and paje beach. Here you can build smaller houses for business or a big house with pool.",
+    coords: [-6.2665, 39.5338],
   },
   {
     id: 7,
