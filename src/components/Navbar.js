@@ -10,6 +10,9 @@ import { FaWindowClose } from "react-icons/fa";
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
+  const refreshPage = () => {
+    window.location.reload();
+  };
   return (
     <>
       <div className={`${show ? "nav-menu show-menu" : "nav-menu"}`}>
@@ -74,7 +77,7 @@ const Navbar = () => {
             <FaBars />
           </div>
           <Link to="/">
-            <div className="logo">
+            <div className="logo" onClick={refreshPage}>
               <div className="logo-circle">
                 <ImHome className="logo-icon" />
               </div>

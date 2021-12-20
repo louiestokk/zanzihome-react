@@ -141,9 +141,9 @@ const SingleObject = () => {
               </div>
             </div>
             <div className="divider-singel-object"></div>
-            <div className="singel-banner">
+            {/* <div className="singel-banner">
               <AdBanner />
-            </div>
+            </div> */}
             <div className="broker-contact-div">
               <Brokers
                 contact={contact}

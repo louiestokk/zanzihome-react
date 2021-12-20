@@ -76,7 +76,7 @@ export const objects = [
     agency: "Tripple M Limited",
     number: +25577777777,
     date: 2111,
-    bid: "rentout",
+    bid: "",
     url: ["./images/beachhousezanzibar.jpg"],
     location: "Jambiani",
     price: 1200,

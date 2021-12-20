@@ -9,7 +9,7 @@ import { MdConstruction } from "react-icons/md";
 import { AiOutlineCheck } from "react-icons/ai";
 const MapComp = ({ size, setSize }) => {
   const { company, name, id, url } = bannerInfo[0];
-
+  // const [plats, setPlats] = useState();
   const [plats, setPlats] = useState([]);
   const zanizbar = [-6.0084, 39.2401];
   const [namn, setName] = useState("hidden");
@@ -29,7 +29,7 @@ const MapComp = ({ size, setSize }) => {
 
   // useEffect(() => {
   //   getPosition();
-  // }, []);
+  // }, [plats]);
   // map.remove();
 
   const history = useHistory();
