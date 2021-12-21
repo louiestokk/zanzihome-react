@@ -7,7 +7,7 @@ import { BsMap } from "react-icons/bs";
 import MapComp from "./Map";
 
 const OnpageFilter = ({ size, setSize }) => {
-  const { active, forSale, forRent, forBusiness } = useGlobalContext();
+  const { active, forSale, forRent, forBusiness, show } = useGlobalContext();
   const numItems = (string) => {
     const forsale = objects.filter((el) => el.to === "Buy").length;
     return objects.filter((el) => el.to === string).length;
@@ -38,7 +38,8 @@ const OnpageFilter = ({ size, setSize }) => {
           <span>Business {numItems("Business")}</span>
         </div>
       </div>
-      <MapComp objects={objects} size={size} setSize={setSize} />
+      {!show && <MapComp objects={objects} size={size} setSize={setSize} />}
+
       <div className="onpage-select-div">
         <div className="alt">
           <select name="alt">

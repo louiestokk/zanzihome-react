@@ -13,15 +13,19 @@ const Home = () => {
   const screenWidth = window.innerWidth;
 
   useEffect(() => {
-    window.addEventListener("resize", (e) => {
+    const detectSize = window.addEventListener("resize", (e) => {
+      console.log(document.body.clientWidth);
       setSize(document.body.clientWidth);
     });
+    return () => {
+      window.removeEventListener("resize", detectSize);
+    };
   }, [size]);
   return (
     <>
       <Filter />
       <OnpageFilter size={size} setSize={setSize} />
-      {size < 700 && <AdBanner />}
+      {size < 705 && <AdBanner size={size} setSize={setSize} />}
       <Objects />
     </>
   );

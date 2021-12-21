@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BsHeart } from "react-icons/bs";
 import { ImHome } from "react-icons/im";
 import { useGlobalContext } from "../context";
 import { Link } from "react-router-dom";
-
+import { objects } from "../utils/data";
 const Objects = () => {
-  const { propertys } = useGlobalContext();
+  const { propertys, setPropertys } = useGlobalContext();
+  const change = () => {
+    setPropertys(objects);
+  };
+  useEffect(() => {
+    change();
+  }, []);
   return (
     <>
       <div className="objects-container">

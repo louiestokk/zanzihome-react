@@ -12,7 +12,8 @@ import AdBanner from "./AdBanner";
 import Brokers from "./Brokers";
 
 const SingleObject = () => {
-  const { propertys, setPropertys, index, setIndex } = useGlobalContext();
+  const { propertys, setPropertys } = useGlobalContext();
+  const [index, setIndex] = useState(0);
   const [images, setImages] = useState();
   const { id } = useParams();
   const filterObject = () => {
@@ -21,19 +22,23 @@ const SingleObject = () => {
   };
 
   const nextImage = () => {
-    console.log(propertys.map((el) => el.url.length));
-    setIndex((old) => old + 1);
+    const num = propertys.map((el) => el.url).length;
+    setIndex(index + 1);
+    if (index > num - 1) {
+      setIndex(0);
+    }
   };
   const prevImage = () => {
-    setIndex((old) => old - 1);
+    const num = propertys.map((el) => el.url).length;
+    setIndex(index - 1);
+    if (index < 0) {
+      setIndex(0);
+    }
   };
-  useEffect(
-    () => {
-      filterObject();
-    },
-    [id],
-    index
-  );
+
+  useEffect(() => {
+    filterObject();
+  }, [id]);
 
   return (
     <>
@@ -77,13 +82,15 @@ const SingleObject = () => {
                     <MdOutlineArrowBackIosNew />
                   </button>
                 )}
-                <button
-                  typ="button"
-                  className="singel-img-right-arr"
-                  onClick={nextImage}
-                >
-                  <MdOutlineArrowForwardIos />
-                </button>
+                {url.length > 1 && (
+                  <button
+                    typ="button"
+                    className="singel-img-right-arr"
+                    onClick={nextImage}
+                  >
+                    <MdOutlineArrowForwardIos />
+                  </button>
+                )}
               </div>
               <div className="singel-object-heartmap">
                 <button>

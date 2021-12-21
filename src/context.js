@@ -1,18 +1,23 @@
 import React, { useState, useContext, useEffect, useReducer } from "react";
 import { objects } from "./utils/data";
 import reducer from "./reducers/filter_reducer";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const AppContext = React.createContext();
-
 const initialState = {
   propObjects: objects,
 };
+
 const AppProvider = ({ children }) => {
+  const [myUser, setMyUser] = useState(null);
+  const { loginWithRedirect, logout, user } = useAuth0();
   const [propertys, setPropertys] = useState([]);
   const [active, setActive] = useState(true);
   const [index, setIndex] = useState(0);
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [show, setShow] = useState(false);
 
+  //
   const forSale = () => {
     const objectsForSale = objects.filter((el) => el.to === "Buy");
     setPropertys(objectsForSale);
@@ -28,10 +33,16 @@ const AppProvider = ({ children }) => {
     setPropertys(objectsBusiness);
     setActive(null);
   };
+  //
 
   useEffect(() => {
     setPropertys(objects);
   }, [objects]);
+  useEffect(() => {
+    setMyUser(user);
+  }, [user]);
+
+  //
   return (
     <AppContext.Provider
       value={{
@@ -44,6 +55,11 @@ const AppProvider = ({ children }) => {
         forSale,
         forRent,
         forBusiness,
+        show,
+        setShow,
+        loginWithRedirect,
+        logout,
+        myUser,
       }}
     >
       {children}

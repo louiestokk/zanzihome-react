@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { navlinks } from "../utils/data";
 import { Link } from "react-router-dom";
@@ -7,12 +7,18 @@ import { FiUser } from "react-icons/fi";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { BsSearch } from "react-icons/bs";
 import { FaWindowClose } from "react-icons/fa";
+import { useGlobalContext } from "../context";
+import { useUserContext } from "../user_context";
+import { MdOutlineLogout } from "react-icons/md";
 
 const Navbar = () => {
-  const [show, setShow] = useState(false);
+  const { show, setShow } = useGlobalContext();
+  const [showUser, setShowUser] = useState(false);
+  const { loginWithRedirect, myUser, logout } = useUserContext();
   const refreshPage = () => {
     window.location.reload();
   };
+
   return (
     <>
       <div className={`${show ? "nav-menu show-menu" : "nav-menu"}`}>
@@ -88,12 +94,46 @@ const Navbar = () => {
             </div>
           </Link>
         </div>
-
-        <div className="nav-login-container">
-          <FiUser className="login-icon" />
-          <h4 className="login-text">Login</h4>
-        </div>
+        {myUser ? (
+          <div className="nav-login-container">
+            <div
+              className="user-icon-container"
+              onClick={() => setShowUser(!showUser)}
+            >
+              <img src={myUser.picture} className="user-icon" alt="user-icon" />
+            </div>
+          </div>
+        ) : (
+          <div className="nav-login-container" onClick={loginWithRedirect}>
+            <FiUser className="login-icon" />
+            <h4 className="login-text">Login</h4>
+          </div>
+        )}
       </div>
+      {myUser && (
+        <div className={showUser ? "user-modal" : "hidden"}>
+          <div>
+            <img src={myUser.picture} alt="user icon" />
+            <p>{myUser.email}</p>
+          </div>
+
+          <div>
+            <FiUser className="fiUser" />
+            <Link to="/user" className="user-modal-link">
+              Your Profile
+            </Link>
+          </div>
+          <div className="user-logout">
+            <MdOutlineLogout />
+            <p
+              className="login-text"
+              onClick={() => logout({ returnTo: window.location.origin })}
+            >
+              Logout
+            </p>
+          </div>
+        </div>
+      )}
     </>
   );
 };

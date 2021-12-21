@@ -64,7 +64,7 @@ const MapComp = ({ size, setSize }) => {
           }
         })}
       </MapContainer>
-      <div className={`${size < 700 ? namn : ""}`}>
+      <div className={`${size < 705 ? namn : ""}`}>
         <div className="adBanner-image-container">
           <img src={banner} alt="construct company" />
           <div className="addBanner-info">

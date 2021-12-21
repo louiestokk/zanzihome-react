@@ -7,7 +7,7 @@ import { MdRoofing } from "react-icons/md";
 import { BsFillHouseFill } from "react-icons/bs";
 import { GiWoodBeam } from "react-icons/gi";
 import { AiOutlineCheck } from "react-icons/ai";
-const AdBanner = () => {
+const AdBanner = ({ size, setSize }) => {
   const { company, name, id, url } = bannerInfo[0];
 
   return (
@@ -36,7 +36,7 @@ const AdBanner = () => {
               <span></span>
             </div>
           </div>
-          <div className="adbanner-tjanster">
+          <div className={size < 500 ? "adbanner-tjanster" : "hidden"}>
             <div>
               <BsFillHouseFill />
               <p>House</p>
