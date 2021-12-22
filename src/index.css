@@ -1031,7 +1031,7 @@ button {
   color: var(--logoColor);
 }
 .footer-bottom-info {
-  height: 6rem;
+  height: 5.4rem;
   background: #056d2b;
 }
 .footer-links {
@@ -1061,5 +1061,5 @@ button {
 }
 .footer-bottom-info span {
   color: white;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
