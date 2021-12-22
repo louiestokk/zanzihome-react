@@ -13,6 +13,7 @@ import Buylandzanzibar from "./pages/buylandzanzibar";
 import SingleObject from "./components/SingleObject";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import MapPage from "./pages/MapPage";
 
 function App() {
   return (
@@ -48,6 +49,9 @@ function App() {
         </Route>
         <Route path="/contact">
           <Contact />
+        </Route>
+        <Route path="/map">
+          <MapPage />
         </Route>
         <Route path="/propertys/zanzibar/:id">
           <SingleObject />

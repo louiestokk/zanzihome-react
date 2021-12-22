@@ -28,6 +28,7 @@ ul {
 }
 a {
   text-decoration: none;
+  color: white;
 }
 button {
   cursor: pointer;
@@ -557,12 +558,18 @@ button {
   margin: 0.3rem 0.2rem;
 }
 .footer {
-  background: var(--logoColor);
-  height: 600px;
+  background: #013a17;
+  height: 400px;
+  display: column;
+  color: white;
+}
+.footer div {
+  width: 94%;
+  margin: 0 auto;
+}
+.footer-ul {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  text-align: center;
 }
 .form-container {
   width: 100%;
@@ -1022,4 +1029,37 @@ button {
 }
 .user-logout:hover {
   color: var(--logoColor);
+}
+.footer-bottom-info {
+  height: 6rem;
+  background: #056d2b;
+}
+.footer-links {
+  color: white;
+}
+.footer li {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  font-family: "Source Sans Pro", sans-serif;
+  width: 200px;
+  display: flex;
+
+  align-items: center;
+}
+.footer li:hover {
+  border-bottom: 1px solid white;
+}
+.insta-fot {
+  margin-right: 0.4rem;
+}
+.footer-bottom-info div {
+  display: flex;
+  justify-content: center;
+}
+.footer-bottom-info button:hover {
+  border-bottom: 1px solid white;
+}
+.footer-bottom-info span {
+  color: white;
+  font-size: 0.9rem;
 }

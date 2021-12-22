@@ -15,8 +15,8 @@ const OnpageSelect = () => {
           <option value="lowprice">Sorted by lowest price first</option>
           <option value="highprices">Sorted by highest price first</option>
         </select>
-        <Link to="/">
-          <button>
+        <Link to="/map">
+          <button type="button">
             <BsMap className="map" />
             Map
           </button>

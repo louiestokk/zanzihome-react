@@ -14,7 +14,6 @@ const Home = () => {
 
   useEffect(() => {
     const detectSize = window.addEventListener("resize", (e) => {
-      console.log(document.body.clientWidth);
       setSize(document.body.clientWidth);
     });
     return () => {
