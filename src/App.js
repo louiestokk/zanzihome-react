@@ -14,6 +14,7 @@ import SingleObject from "./components/SingleObject";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import MapPage from "./pages/MapPage";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -52,6 +53,9 @@ function App() {
         </Route>
         <Route path="/map">
           <MapPage />
+        </Route>
+        <Route path="/profile/:id">
+          <Profile />
         </Route>
         <Route path="/propertys/zanzibar/:id">
           <SingleObject />

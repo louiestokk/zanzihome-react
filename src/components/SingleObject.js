@@ -3,16 +3,17 @@ import { useParams } from "react-router-dom";
 import { useGlobalContext } from "../context";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
-import { BsHeart } from "react-icons/bs";
+import { AiFillHeart } from "react-icons/ai";
 import { BsMap } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import Bid from "./Bid";
 import SingelObjectInfo from "./SingelObjectInfo";
-import AdBanner from "./AdBanner";
 import Brokers from "./Brokers";
+import { useUserContext } from "../user_context";
 
 const SingleObject = () => {
   const { propertys, setPropertys } = useGlobalContext();
+  const { green, setGreen } = useUserContext();
   const [index, setIndex] = useState(0);
   const [images, setImages] = useState();
   const { id } = useParams();
@@ -93,8 +94,14 @@ const SingleObject = () => {
                 )}
               </div>
               <div className="singel-object-heartmap">
-                <button>
-                  <BsHeart /> Save
+                <button
+                  onClick={() => setGreen(!green)}
+                  style={{ background: `${green ? "#dfe6d8" : ""}` }}
+                >
+                  <AiFillHeart
+                    className={`${green ? "fill-hjarta" : "hjarta"}`}
+                  />
+                  {green ? "Saved" : "Save"}
                 </button>
                 <div>
                   <button>

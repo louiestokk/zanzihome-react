@@ -4,7 +4,7 @@ import { navlinks } from "../utils/data";
 import { Link } from "react-router-dom";
 import { ImHome } from "react-icons/im";
 import { FiUser } from "react-icons/fi";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { BsHeart, BsThreeDotsVertical } from "react-icons/bs";
 import { BsSearch } from "react-icons/bs";
 import { FaWindowClose } from "react-icons/fa";
 import { useGlobalContext } from "../context";
@@ -13,10 +13,10 @@ import { MdOutlineLogout } from "react-icons/md";
 
 const Navbar = () => {
   const { show, setShow } = useGlobalContext();
-  const [showUser, setShowUser] = useState(false);
-  const { loginWithRedirect, myUser, logout } = useUserContext();
+  const { showUser, setShowUser, loginWithRedirect, myUser, logout } =
+    useUserContext();
   const refreshPage = () => {
-    window.location.reload();
+    window.location.href = "/";
   };
 
   return (
@@ -111,27 +111,30 @@ const Navbar = () => {
         )}
       </div>
       {myUser && (
-        <div className={showUser ? "user-modal" : "hidden"}>
-          <div>
+        <div className={showUser ? "show-user-modal user-modal" : "user-modal"}>
+          <div className="sums">
             <img src={myUser.picture} alt="user icon" />
-            <p>{myUser.email}</p>
+            <div>
+              <span>Welcome</span>
+              <p>{myUser.email}</p>
+            </div>
           </div>
-
-          <div>
-            <FiUser className="fiUser" />
-            <Link to="/user" className="user-modal-link">
-              Your Profile
-            </Link>
-          </div>
-          <div className="user-logout">
-            <MdOutlineLogout />
-            <p
-              className="login-text"
-              onClick={() => logout({ returnTo: window.location.origin })}
+          <button type="button" onClick={() => setShowUser(!showUser)}>
+            <Link
+              to={`/profile/${myUser.nickname}`}
+              className="user-modal-link"
             >
-              Logout
-            </p>
-          </div>
+              <FiUser className="fiUser" />
+              <span> Account</span>
+            </Link>
+          </button>
+
+          <button
+            className="user-logout"
+            onClick={() => logout({ returnTo: window.location.origin })}
+          >
+            Logout
+          </button>
         </div>
       )}
     </>
