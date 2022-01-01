@@ -6,16 +6,19 @@ import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { AiFillHeart } from "react-icons/ai";
 import { BsMap } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { FiUser } from "react-icons/fi";
 import Bid from "./Bid";
 import SingelObjectInfo from "./SingelObjectInfo";
 import Brokers from "./Brokers";
 import { useUserContext } from "../user_context";
-
+export const savedItemsArray = [];
 const SingleObject = () => {
   const { propertys, setPropertys } = useGlobalContext();
-  const { green, setGreen } = useUserContext();
+  const { saved, setSaved, myUser, loginWithRedirect, arr, setArr } =
+    useUserContext();
   const [index, setIndex] = useState(0);
-  const [images, setImages] = useState();
+
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const { id } = useParams();
   const filterObject = () => {
     const newObject = propertys.filter((el) => el.id === +id);
@@ -93,15 +96,33 @@ const SingleObject = () => {
                   </button>
                 )}
               </div>
+              <div className={showLoginModal ? "not-loggedin-modal" : "hidden"}>
+                <h3>Log in to save items</h3>
+                <button
+                  className="nav-login-container"
+                  onClick={loginWithRedirect}
+                  className="inte-inloggad-btn"
+                >
+                  <FiUser />
+                  Login
+                </button>
+              </div>
               <div className="singel-object-heartmap">
                 <button
-                  onClick={() => setGreen(!green)}
-                  style={{ background: `${green ? "#dfe6d8" : ""}` }}
+                  onClick={(e) => {
+                    if (myUser) {
+                      e.currentTarget.children[0].classList.toggle(
+                        "fill-hjarta"
+                      );
+                      e.currentTarget.style.background = "#dfe6d8";
+                      setSaved(!saved);
+                      savedItemsArray.push(Number(id));
+                    }
+                  }}
+                  // style={{ background: `${green ? "#dfe6d8" : ""}` }}
                 >
-                  <AiFillHeart
-                    className={`${green ? "fill-hjarta" : "hjarta"}`}
-                  />
-                  {green ? "Saved" : "Save"}
+                  <AiFillHeart className="hjarta" />
+                  Save
                 </button>
                 <div>
                   <button>

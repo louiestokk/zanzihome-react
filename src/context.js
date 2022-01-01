@@ -11,7 +11,7 @@ const initialState = {
 const AppProvider = ({ children }) => {
   const [myUser, setMyUser] = useState(null);
   const { loginWithRedirect, logout, user } = useAuth0();
-  const [propertys, setPropertys] = useState([]);
+  const [propertys, setPropertys] = useState(objects);
   const [active, setActive] = useState(true);
   const [index, setIndex] = useState(0);
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -35,9 +35,9 @@ const AppProvider = ({ children }) => {
   };
   //
 
-  useEffect(() => {
-    setPropertys(objects);
-  }, [objects]);
+  // useEffect(() => {
+  //   setPropertys(objects);
+  // }, [objects]);
   useEffect(() => {
     setMyUser(user);
   }, [user]);

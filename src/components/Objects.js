@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { objects } from "../utils/data";
 const Objects = () => {
   const { propertys, setPropertys } = useGlobalContext();
-  const { saved, setSaved } = useUserContext();
+  const { saved, setSaved, savedItemsId } = useUserContext();
 
   const change = () => {
     setPropertys(objects);

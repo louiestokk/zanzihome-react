@@ -3,28 +3,29 @@ import { useUserContext } from "../user_context";
 import styled from "styled-components";
 import { BsHeart } from "react-icons/bs";
 import { RiAdvertisementLine } from "react-icons/ri";
-import UserActivity from "../components/UserActivity";
+import { objects } from "../utils/data";
+import { savedItemsArray } from "../components/SingleObject";
+// import { img } from "../../public/images";
 const Profile = () => {
   const { myUser, active, setActive } = useUserContext();
-
-  const { nickname, picture, name, email, sub } = myUser;
-
+  const items = objects.filter((el) => savedItemsArray.includes(el.id));
+  console.log(savedItemsArray);
   return (
     <Wrapper>
-      <h2>Welcome {nickname}</h2>
+      <h2>Welcome {myUser && myUser.nickname}</h2>
       <div
         className="divider"
         style={{ margin: "0 auto", width: "8rem" }}
       ></div>
       <div className="user-profile-info">
         <div>
-          <img src={picture} alt="user icon" />
+          <img src={myUser && myUser.picture} alt="user icon" />
         </div>
         <p>
-          Name: <span> {nickname}</span>
+          Name: <span> {myUser && myUser.nickname}</span>
         </p>
         <p>
-          Email: <span> {email}</span>
+          Email: <span> {myUser && myUser.email}</span>
         </p>
       </div>
       <article>
@@ -49,7 +50,27 @@ const Profile = () => {
           </button>
         </div>
       </article>
-      <UserActivity />
+      {items &&
+        active &&
+        items.map((el) => {
+          const { id, url, info, desc, price, location, size, to } = el;
+          const image = el.url[0].split("./")[1];
+          console.log(to);
+          return (
+            <div key={id} className="saved-item">
+              <img src={`../${image}`} alt={location} />
+              <h4>
+                {desc} {location}
+              </h4>
+              <p>{size} sq.m</p>
+              <p style={{ color: "green" }}>
+                {to === "Rent" ? `${price}$ / week` : `${price}.000$`}
+              </p>
+              <button type="button">send interest</button>
+              <button type="button">more info</button>
+            </div>
+          );
+        })}
       {/* här skall det va en section med saved items eller my ads och finns det inga return h4 no no saved items eller no ads och en knapp explore eller advertise property */}
     </Wrapper>
   );
@@ -80,8 +101,8 @@ const Wrapper = styled.section`
   }
 
   img {
-    height: 3.4rem;
-    width: 3.4rem;
+    height: 3.2rem;
+    width: 3.2rem;
     border-radius: 50%;
   }
   div p {
@@ -98,5 +119,31 @@ const Wrapper = styled.section`
   .pop-icon-user {
     margin-right: 0.3rem;
     font-size: 1.2rem;
+  }
+  .saved-item {
+    margin-bottom: 0.3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 1px solid #0b8b3a;
+    img {
+      width: 4rem;
+      height: 4rem;
+    }
+    button {
+      border: none;
+      background: #0b8b3a;
+      color: white;
+      padding: 0.1rem;
+      font-size: 0.7rem;
+    }
+    h4 {
+      font-size: 0.8rem;
+      margin-left: 0.3rem;
+    }
+    p {
+      font-size: 0.8rem;
+    }
   }
 `;

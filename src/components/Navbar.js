@@ -4,7 +4,7 @@ import { navlinks } from "../utils/data";
 import { Link } from "react-router-dom";
 import { ImHome } from "react-icons/im";
 import { FiUser } from "react-icons/fi";
-import { BsHeart, BsThreeDotsVertical } from "react-icons/bs";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import { BsSearch } from "react-icons/bs";
 import { FaWindowClose } from "react-icons/fa";
 import { useGlobalContext } from "../context";
@@ -119,7 +119,11 @@ const Navbar = () => {
               <p>{myUser.email}</p>
             </div>
           </div>
-          <button type="button" onClick={() => setShowUser(!showUser)}>
+          <button
+            type="button"
+            onClick={() => setShowUser(!showUser)}
+            className="user-account"
+          >
             <Link
               to={`/profile/${myUser.nickname}`}
               className="user-modal-link"

@@ -970,7 +970,7 @@ button {
   display: flex;
   flex-direction: column;
   width: 20rem;
-  height: 40vh;
+  height: 14rem;
   background: white;
   border-radius: 8px 8px;
   z-index: 1000;
@@ -978,6 +978,9 @@ button {
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
   transition: all 0.3s linear;
   transform: translateX(110%);
+}
+.user-account {
+  font-size: 0.9rem;
 }
 .show-user-modal {
   transform: translateX(0%);
@@ -1082,4 +1085,38 @@ button {
 }
 .pop-active {
   border-bottom: 2px solid green;
+}
+.not-loggedin-modal {
+  position: absolute;
+  z-index: 3000;
+  background: var(--navback);
+  width: 14rem;
+  height: 10rem;
+  border-radius: 5px 5px;
+  top: 25%;
+  left: 2%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  color: var(--logoColor);
+}
+.not-loggedin-modal button {
+  width: 96%;
+  border: 1px solid gray;
+  text-align: center;
+  height: 2rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  padding: 0.5rem;
+  letter-spacing: 1px;
+  background: var(--logoColor);
+  color: white;
+}
+.not-loggedin-modal button:hover {
+  background: var(--navback);
+  color: var(--logoColor);
 }

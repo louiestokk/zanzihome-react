@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import { AppProvider } from "./context";
 import { Auth0Provider } from "@auth0/auth0-react";
-import { UserProvider, userProvider } from "./user_context";
+import { UserProvider } from "./user_context";
 
 ReactDOM.render(
   <Auth0Provider

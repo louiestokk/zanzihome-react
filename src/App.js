@@ -57,9 +57,10 @@ function App() {
         <Route path="/profile/:id">
           <Profile />
         </Route>
-        <Route path="/propertys/zanzibar/:id">
-          <SingleObject />
-        </Route>
+        <Route
+          path="/propertys/zanzibar/:id"
+          children={<SingleObject />}
+        ></Route>
       </Switch>
       <Footer />
     </Router>
