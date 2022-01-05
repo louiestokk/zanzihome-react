@@ -1,15 +1,22 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useGlobalContext } from "../context";
 import { objects } from "../utils/data";
-import OnpageSelect from "./OnpageSelect";
 import { Link } from "react-router-dom";
 import { BsMap } from "react-icons/bs";
 import MapComp from "./Map";
 
 const OnpageFilter = ({ size, setSize }) => {
-  const { active, forSale, forRent, forBusiness, show } = useGlobalContext();
+  const {
+    active,
+    forSale,
+    forRent,
+    forBusiness,
+    show,
+    setPropertys,
+    handleChange,
+  } = useGlobalContext();
+
   const numItems = (string) => {
-    const forsale = objects.filter((el) => el.to === "Buy").length;
     return objects.filter((el) => el.to === string).length;
   };
 
@@ -40,9 +47,9 @@ const OnpageFilter = ({ size, setSize }) => {
       </div>
       {!show && <MapComp objects={objects} size={size} setSize={setSize} />}
 
-      <div className="onpage-select-div">
+      {/* <div className="onpage-select-div">
         <div className="alt">
-          <select name="alt">
+          <select name="alt" onClick={(e) => handleChange(e)}>
             <option value="newest">Sorted by newest first</option>
             <option value="oldest">Sorted by oldest first</option>
             <option value="lowprice">Sorted by lowest price first</option>
@@ -55,8 +62,7 @@ const OnpageFilter = ({ size, setSize }) => {
             </button>
           </Link>
         </div>
-      </div>
-      <h4 className="antal-objects">{objects.length} properties</h4>
+      </div> */}
     </div>
   );
 };

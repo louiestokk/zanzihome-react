@@ -37,7 +37,7 @@ const MapComp = ({ size, setSize }) => {
     <div className="map-holder">
       <MapContainer
         center={zanizbar}
-        zoom={8}
+        zoom={9}
         scrollWheelZoom={false}
         className="map-container"
       >
@@ -64,7 +64,7 @@ const MapComp = ({ size, setSize }) => {
           }
         })}
       </MapContainer>
-      <div className={`${size < 705 ? namn : ""}`}>
+      {/* <div className={`${size < 705 ? namn : ""}`}>
         <div className="adBanner-image-container">
           <img src={banner} alt="construct company" />
           <div className="addBanner-info">
@@ -91,7 +91,7 @@ const MapComp = ({ size, setSize }) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -6,20 +6,10 @@ import { Link } from "react-router-dom";
 import { objects } from "../utils/data";
 const Objects = () => {
   const { propertys, setPropertys } = useGlobalContext();
-  const { saved, setSaved, savedItemsId } = useUserContext();
-
-  const change = () => {
-    setPropertys(objects);
-  };
-  const setSavedLocal = (ident) => {
-    localStorage.setItem("itemid", ident);
-  };
-
-  useEffect(() => {
-    change();
-  }, []);
+  // if x && propertys ||
   return (
     <>
+      <h4 className="antal-objects">{objects.length} properties</h4>
       <div className="objects-container">
         {propertys.map((object) => {
           const {

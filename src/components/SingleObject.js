@@ -43,7 +43,7 @@ const SingleObject = () => {
   useEffect(() => {
     filterObject();
   }, [id]);
-
+  localStorage.setItem("savedobjects", JSON.stringify(savedItemsArray));
   return (
     <>
       {propertys.map((object) => {

@@ -10,6 +10,7 @@ import { FaWindowClose } from "react-icons/fa";
 import { useGlobalContext } from "../context";
 import { useUserContext } from "../user_context";
 import { MdOutlineLogout } from "react-icons/md";
+import AdsComponent from "./AdsComponent";
 
 const Navbar = () => {
   const { show, setShow } = useGlobalContext();
@@ -59,21 +60,42 @@ const Navbar = () => {
           <div className="navbar-con navbar-con-ett">
             <p>Sell property</p>
             <div className="nn">
-              <h4>Advertise property </h4>
+              <Link
+                to="/advertisepropertyzanzibar"
+                onClick={() => setShow(!show)}
+              >
+                Advertise property
+              </Link>
             </div>
 
-            <h4>Price for advertising </h4>
-            <h4>Guide to selling </h4>
+            <Link to="/priceadvertise" onClick={() => setShow(!show)}>
+              Price for advertising{" "}
+            </Link>
+            <Link to="/guid" onClick={() => setShow(!show)}>
+              Guide to sell{" "}
+            </Link>
           </div>
           <div className="delare"></div>
           <div className="navbar-con navbar-con-ett">
             <div className="nn">
-              <h4>Guid to buy </h4>
+              <Link to="/guid" onClick={() => setShow(!show)}>
+                Guid to buy{" "}
+              </Link>
             </div>
 
-            <h4> Build house </h4>
-            <h4>Guide to selling </h4>
-            <h4 className="foreginer">Guid for foreginers </h4>
+            <Link to="/buildhousezanzibar" onClick={() => setShow(!show)}>
+              {" "}
+              Build house{" "}
+            </Link>
+
+            <Link
+              className="foreginer"
+              style={{ color: "green" }}
+              to="/foreginerpropertyzanzibar"
+              onClick={() => setShow(!show)}
+            >
+              Guid for foreginers{" "}
+            </Link>
           </div>
         </div>
       </div>
@@ -87,15 +109,24 @@ const Navbar = () => {
               <div className="logo-circle">
                 <ImHome className="logo-icon" />
               </div>
-              <div className="logo-text">
-                <h4>ZanziHom</h4>
+              <div
+                className="logo-text"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <h4>ZanziHome</h4>
                 <p>e</p>
               </div>
             </div>
           </Link>
         </div>
+
         {myUser ? (
           <div className="nav-login-container">
+            <AdsComponent />
             <div
               className="user-icon-container"
               onClick={() => setShowUser(!showUser)}
@@ -104,7 +135,7 @@ const Navbar = () => {
             </div>
           </div>
         ) : (
-          <div className="nav-login-container" onClick={loginWithRedirect}>
+          <div className="nav-login-container">
             <FiUser className="login-icon" />
             <h4 className="login-text">Login</h4>
           </div>

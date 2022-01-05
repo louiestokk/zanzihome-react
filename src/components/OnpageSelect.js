@@ -5,11 +5,13 @@ import { useGlobalContext } from "../context";
 
 const OnpageSelect = () => {
   const { setPropertys, propertys } = useGlobalContext();
-
+  const handleChange = (e) => {
+    console.log(e);
+  };
   return (
     <div className="onpage-select-div">
       <div className="alt">
-        <select name="alt">
+        <select name="alt" onChange={(e) => console.log(e)}>
           <option value="newest">Sorted by newest first</option>
           <option value="oldest">Sorted by oldest first</option>
           <option value="lowprice">Sorted by lowest price first</option>

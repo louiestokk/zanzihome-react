@@ -9,36 +9,7 @@ export const navlinks = [
     text: "Find Property",
     url: "/propertyzanzibar",
   },
-  {
-    id: 3,
-    text: "Sell Property",
-    url: "/sellpropertyzanzibar",
-  },
-  {
-    id: 4,
-    text: "Rent Property",
-    url: "/rentpropertyzanzibar",
-  },
-  {
-    id: 5,
-    text: "Rent Out House",
-    url: "/rentouthousezanzibar",
-  },
-  {
-    id: 6,
-    text: "Rent House",
-    url: "/renthousezanzibar",
-  },
-  {
-    id: 7,
-    text: "Buy House",
-    url: "/buyhousezanzibar",
-  },
-  {
-    id: 8,
-    text: "Buy Land",
-    url: "/buylandzanzibar",
-  },
+
   {
     id: 9,
     text: "About Us",

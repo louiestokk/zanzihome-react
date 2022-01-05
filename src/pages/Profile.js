@@ -4,12 +4,16 @@ import styled from "styled-components";
 import { BsHeart } from "react-icons/bs";
 import { RiAdvertisementLine } from "react-icons/ri";
 import { objects } from "../utils/data";
-import { savedItemsArray } from "../components/SingleObject";
-// import { img } from "../../public/images";
+
 const Profile = () => {
   const { myUser, active, setActive } = useUserContext();
-  const items = objects.filter((el) => savedItemsArray.includes(el.id));
-  console.log(savedItemsArray);
+  const savedItemsArray = new Array(
+    JSON.parse(localStorage.getItem("savedobjects"))
+  );
+  const items = objects.filter((el) => {
+    return el.id.toString().includes(savedItemsArray);
+  });
+
   return (
     <Wrapper>
       <h2>Welcome {myUser && myUser.nickname}</h2>
@@ -55,19 +59,21 @@ const Profile = () => {
         items.map((el) => {
           const { id, url, info, desc, price, location, size, to } = el;
           const image = el.url[0].split("./")[1];
-          console.log(to);
           return (
-            <div key={id} className="saved-item">
+            <div
+              key={id}
+              className={active ? "saved-item" : "saved-item hidden"}
+            >
               <img src={`../${image}`} alt={location} />
-              <h4>
+              <h4 style={{ opacity: "0.7" }}>
                 {desc} {location}
               </h4>
-              <p>{size} sq.m</p>
+              <p style={{ color: "rgb(124, 12, 20) " }}> {size} sq.m</p>
               <p style={{ color: "green" }}>
                 {to === "Rent" ? `${price}$ / week` : `${price}.000$`}
               </p>
-              <button type="button">send interest</button>
               <button type="button">more info</button>
+              <button type="button">remove</button>
             </div>
           );
         })}
@@ -104,6 +110,7 @@ const Wrapper = styled.section`
     height: 3.2rem;
     width: 3.2rem;
     border-radius: 50%;
+    margin-bottom: 0.1rem;
   }
   div p {
     margin: 0.3rem 0;
@@ -132,10 +139,8 @@ const Wrapper = styled.section`
       height: 4rem;
     }
     button {
-      border: none;
-      background: #0b8b3a;
-      color: white;
-      padding: 0.1rem;
+      color: #0b8b3a;
+      margin: 0;
       font-size: 0.7rem;
     }
     h4 {

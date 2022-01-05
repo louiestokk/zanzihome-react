@@ -5,6 +5,7 @@ import App from "./App";
 import { AppProvider } from "./context";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { UserProvider } from "./user_context";
+import { FormProvider } from "./form_ads_context";
 
 ReactDOM.render(
   <Auth0Provider
@@ -15,7 +16,9 @@ ReactDOM.render(
   >
     <UserProvider>
       <AppProvider>
-        <App />
+        <FormProvider>
+          <App />
+        </FormProvider>
       </AppProvider>
     </UserProvider>
   </Auth0Provider>,

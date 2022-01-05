@@ -33,14 +33,13 @@ const AppProvider = ({ children }) => {
     setPropertys(objectsBusiness);
     setActive(null);
   };
-  //
 
-  // useEffect(() => {
-  //   setPropertys(objects);
-  // }, [objects]);
   useEffect(() => {
     setMyUser(user);
   }, [user]);
+  const handleChange = (e) => {
+    console.log(e.target.value);
+  };
 
   //
   return (
@@ -60,6 +59,7 @@ const AppProvider = ({ children }) => {
         loginWithRedirect,
         logout,
         myUser,
+        handleChange,
       }}
     >
       {children}

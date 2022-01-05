@@ -4,17 +4,19 @@ import Home from "./pages/Home";
 import About from "./pages/about";
 import Contact from "./pages/contact";
 import Propertyzanzibar from "./pages/propertyzanzibar";
-import Sellpropertyzanzibar from "./pages/sellpropertyzanzibar";
-import Rentpropertyzanzibar from "./pages/rentpropertyzanzibar";
-import Rentouthousezanzibar from "./pages/rentouthousezanzibar";
-import Renthousezanzibar from "./pages/renthousezanzibar";
-import Buyhousezanzibar from "./pages/buyhousezanzibar";
-import Buylandzanzibar from "./pages/buylandzanzibar";
+
 import SingleObject from "./components/SingleObject";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import MapPage from "./pages/MapPage";
 import Profile from "./pages/Profile";
+import Advertise from "./pages/Advertise";
+import Price from "./pages/Price";
+import Guid from "./pages/Guid";
+import Build from "./pages/Build";
+import Foreginer from "./pages/Foreginer";
+import FormPage from "./pages/FormPage";
+import Payment from "./components/Payment";
 
 function App() {
   return (
@@ -27,24 +29,7 @@ function App() {
         <Route path="/propertyzanzibar">
           <Propertyzanzibar />
         </Route>
-        <Route path="/sellpropertyzanzibar">
-          <Sellpropertyzanzibar />
-        </Route>
-        <Route path="/rentpropertyzanzibar">
-          <Rentpropertyzanzibar />
-        </Route>
-        <Route path="/rentouthousezanzibar">
-          <Rentouthousezanzibar />
-        </Route>
-        <Route path="/renthousezanzibar">
-          <Renthousezanzibar />
-        </Route>
-        <Route path="/buyhousezanzibar">
-          <Buyhousezanzibar />
-        </Route>
-        <Route path="/buylandzanzibar">
-          <Buylandzanzibar />
-        </Route>
+
         <Route path="/about">
           <About />
         </Route>
@@ -54,8 +39,29 @@ function App() {
         <Route path="/map">
           <MapPage />
         </Route>
+        <Route path="/advertisepropertyzanzibar">
+          <Advertise />
+        </Route>
+        <Route path="/priceadvertise">
+          <Price />
+        </Route>
+        <Route path="/guid">
+          <Guid />
+        </Route>
+        <Route path="/buildhousezanzibar">
+          <Build />
+        </Route>
+        <Route path="/foreginerpropertyzanzibar">
+          <Foreginer />
+        </Route>
+        <Route path="/newad/:user">
+          <FormPage />
+        </Route>
         <Route path="/profile/:id">
           <Profile />
+        </Route>
+        <Route path="/payment/newad">
+          <Payment />
         </Route>
         <Route
           path="/propertys/zanzibar/:id"

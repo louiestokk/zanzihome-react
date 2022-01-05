@@ -23,7 +23,14 @@ const AdBanner = ({ size, setSize }) => {
             <p>{name}</p>
           </div>
         </div>
-        <div className="adBanner-footer">
+        <div className="adbanner-logo">
+          <div>
+            <h5>
+              Reliable and cost-effective <AiOutlineCheck />
+            </h5>
+          </div>
+        </div>
+        {/* <div className="adBanner-footer">
           <div className="adbanner-logo">
             <div>
               <h4>Construction company with 15 years of experience</h4>
@@ -56,7 +63,7 @@ const AdBanner = ({ size, setSize }) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

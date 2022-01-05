@@ -24,7 +24,8 @@ const Home = () => {
     <>
       <Filter />
       <OnpageFilter size={size} setSize={setSize} />
-      {size < 705 && <AdBanner size={size} setSize={setSize} />}
+      {/* {size < 705 && <AdBanner size={size} setSize={setSize} />} */}
+
       <Objects />
     </>
   );
