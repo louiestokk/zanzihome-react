@@ -72,7 +72,6 @@ function FormComp() {
           value="Company"
           name="Company"
           id="checkad"
-          style={{ padding: "2rem" }}
           checked={!company}
           onChange={handleChange}
         />
