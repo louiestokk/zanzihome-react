@@ -39,7 +39,7 @@ function Advertise() {
                 <SiAdobepremierepro className="opop" />
               </span>
             </h4>
-            <h5>Price: $100</h5>
+            <h5>Price: $50</h5>
           </div>
           <div className="ads-package-inner">
             <p>
@@ -65,7 +65,7 @@ function Advertise() {
                 <BsPatchPlusFill className="opop" />
               </span>
             </h4>
-            <h5>Price: $50</h5>
+            <h5>Price: $30</h5>
           </div>
           <div className="ads-package-inner">
             <p>

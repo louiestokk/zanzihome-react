@@ -135,7 +135,7 @@ const Navbar = () => {
             </div>
           </div>
         ) : (
-          <div className="nav-login-container">
+          <div className="nav-login-container" onClick={loginWithRedirect}>
             <FiUser className="login-icon" />
             <h4 className="login-text">Login</h4>
           </div>

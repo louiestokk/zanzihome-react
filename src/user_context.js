@@ -1,13 +1,12 @@
-import React, { useState, useContext, useEffect, useReducer } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import userReducer from "./reducers/user_reducer";
+
 const UserContext = React.createContext();
 const initialState = {
   objectId: "",
 };
 
 const UserProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(userReducer, initialState);
   const [myUser, setMyUser] = useState(null);
   const [active, setActive] = useState(true);
   const [showUser, setShowUser] = useState(false);

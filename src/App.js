@@ -16,7 +16,6 @@ import Guid from "./pages/Guid";
 import Build from "./pages/Build";
 import Foreginer from "./pages/Foreginer";
 import FormPage from "./pages/FormPage";
-import Payment from "./components/Payment";
 
 function App() {
   return (
@@ -60,9 +59,7 @@ function App() {
         <Route path="/profile/:id">
           <Profile />
         </Route>
-        <Route path="/payment/newad">
-          <Payment />
-        </Route>
+
         <Route
           path="/propertys/zanzibar/:id"
           children={<SingleObject />}
