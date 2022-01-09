@@ -108,6 +108,9 @@ button {
   cursor: pointer;
   font-weight: bold;
 }
+.nav-login-container:hover {
+  color: var(--logoColor);
+}
 .filter-container {
   background: #f2f5f8;
   height: 4rem;
