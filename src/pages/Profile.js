@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useUserContext } from "../user_context";
+import { useGlobalContext } from "../context";
 import styled from "styled-components";
 import { BsHeart } from "react-icons/bs";
 import { RiAdvertisementLine } from "react-icons/ri";
@@ -7,13 +8,19 @@ import { objects } from "../utils/data";
 
 const Profile = () => {
   const { myUser, active, setActive } = useUserContext();
-  const savedItemsArray = new Array(
-    JSON.parse(localStorage.getItem("savedobjects"))
-  );
-  const items = objects.filter((el) => {
-    return el.id.toString().includes(savedItemsArray);
+  const savedItem = new Array(JSON.parse(localStorage.getItem("savedobjects")));
+  const current = savedItem.map((el) => {
+    return el[0];
   });
 
+  let items = objects.filter((el) => {
+    if (localStorage.getItem("savedobjects") === null) return;
+    else return el.id === savedItem;
+  });
+  const removeItem = (e) => {
+    e.currentTarget.parentElement.remove();
+  };
+  console.log(current);
   return (
     <Wrapper>
       <h2>Welcome {myUser && myUser.nickname}</h2>
@@ -73,7 +80,9 @@ const Profile = () => {
                 {to === "Rent" ? `${price}$ / week` : `${price}.000$`}
               </p>
               <button type="button">more info</button>
-              <button type="button">remove</button>
+              <button type="button" onClick={removeItem}>
+                remove
+              </button>
             </div>
           );
         })}
@@ -86,7 +95,7 @@ export default Profile;
 
 const Wrapper = styled.section`
   display: column;
-  height: 500px;
+  height: auto;
   wiidth: 100%;
 
   .user-profile-info {

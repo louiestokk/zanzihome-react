@@ -1,10 +1,14 @@
 import React from "react";
-
+import Filter from "../components/Filter";
+import OnpageFilter from "../components/OnpageFilter";
+import Objects from "../components/Objects";
 const propertyzanzibar = () => {
   return (
-    <div>
-      <h2>property zanizbar</h2>
-    </div>
+    <>
+      <Filter />
+      <OnpageFilter />
+      <Objects />
+    </>
   );
 };
 

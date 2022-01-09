@@ -10,7 +10,7 @@ const AppProvider = ({ children }) => {
   const [propertys, setPropertys] = useState(objects);
   const [active, setActive] = useState(true);
   const [index, setIndex] = useState(0);
-
+  const [savedItemsArray, setSavedItemsArray] = useState([]);
   const [show, setShow] = useState(false);
 
   //
@@ -56,6 +56,8 @@ const AppProvider = ({ children }) => {
         logout,
         myUser,
         handleChange,
+        savedItemsArray,
+        setSavedItemsArray,
       }}
     >
       {children}
