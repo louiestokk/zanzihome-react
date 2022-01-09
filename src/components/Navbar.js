@@ -84,7 +84,6 @@ const Navbar = () => {
             </div>
 
             <Link to="/buildhousezanzibar" onClick={() => setShow(!show)}>
-              {" "}
               Build house{" "}
             </Link>
 
@@ -135,10 +134,10 @@ const Navbar = () => {
             </div>
           </div>
         ) : (
-          <div className="nav-login-container" onClick={loginWithRedirect}>
+          <button className="nav-login-container" onClick={loginWithRedirect}>
             <FiUser className="login-icon" />
-            <h4 className="login-text">Login</h4>
-          </div>
+            <p className="login-text">Login</p>
+          </button>
         )}
       </div>
       {myUser && (

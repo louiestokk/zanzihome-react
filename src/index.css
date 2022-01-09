@@ -106,6 +106,7 @@ button {
   display: flex;
   align-items: center;
   cursor: pointer;
+  font-weight: bold;
 }
 .filter-container {
   background: #f2f5f8;
