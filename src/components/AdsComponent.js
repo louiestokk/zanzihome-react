@@ -6,7 +6,7 @@ function AdsComponent() {
   const { myUser } = useUserContext();
 
   return (
-    <Link to={`/newad/${myUser.email}`} className="nav-ad-btn">
+    <Link to="checkout" className="nav-ad-btn">
       <AiOutlinePlusCircle className="login-icon adsplus" />
       new ad
     </Link>

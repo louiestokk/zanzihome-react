@@ -5,22 +5,22 @@ import styled from "styled-components";
 import { BsHeart } from "react-icons/bs";
 import { RiAdvertisementLine } from "react-icons/ri";
 import { objects } from "../utils/data";
-
+import { Link } from "react-router-dom";
 const Profile = () => {
   const { myUser, active, setActive } = useUserContext();
-  const savedItem = new Array(JSON.parse(localStorage.getItem("savedobjects")));
-  const current = savedItem.map((el) => {
-    return el[0];
-  });
+  const [items, setItem] = useState([]);
 
-  let items = objects.filter((el) => {
-    if (localStorage.getItem("savedobjects") === null) return;
-    else return el.id === savedItem;
-  });
-  const removeItem = (e) => {
-    e.currentTarget.parentElement.remove();
+  // för och kunna ta bort enstaka object måste objecten vara en state array och när man tar bort filterarar man ny array utan den man targit bort genom id och setItems me nya arrayn
+  const checkLocalStor = () => {
+    const adspack = localStorage.getItem("adspack");
+    if (adspack) {
+      setItem(localStorage.getItem("adspack").split(","));
+    }
   };
-  console.log(current);
+
+  useEffect(() => {
+    checkLocalStor();
+  }, []);
   return (
     <Wrapper>
       <h2>Welcome {myUser && myUser.nickname}</h2>
@@ -61,31 +61,36 @@ const Profile = () => {
           </button>
         </div>
       </article>
-      {items &&
+      {items.length >= 1 &&
         active &&
         items.map((el) => {
-          const { id, url, info, desc, price, location, size, to } = el;
-          const image = el.url[0].split("./")[1];
+          const r = objects.filter((ob) => ob.id === +el);
           return (
-            <div
-              key={id}
-              className={active ? "saved-item" : "saved-item hidden"}
-            >
-              <img src={`../${image}`} alt={location} />
-              <h4 style={{ opacity: "0.7" }}>
-                {desc} {location}
-              </h4>
-              <p style={{ color: "rgb(124, 12, 20) " }}> {size} sq.m</p>
-              <p style={{ color: "green" }}>
-                {to === "Rent" ? `${price}$ / week` : `${price}.000$`}
-              </p>
-              <button type="button">more info</button>
-              <button type="button" onClick={removeItem}>
-                remove
-              </button>
+            <div key={el}>
+              {r.map((ob) => {
+                const image = ob.url[0].split("./")[1];
+                const { id, url, info, desc, price, location, size, to } = ob;
+                return (
+                  <div
+                    key={id}
+                    className={active ? "saved-item" : "saved-item hidden"}
+                  >
+                    <img src={`../${image}`} alt={location} />
+                    <h4 style={{ opacity: "0.7" }}>
+                      {desc} {location}
+                    </h4>
+                    <p style={{ color: "rgb(124, 12, 20) " }}> {size} sq.m</p>
+                    <p style={{ color: "green" }}>
+                      {to === "Rent" ? `${price}$ / week` : `${price}.000$`}
+                    </p>
+                    <Link to={`/propertys/zanzibar/${id}`}>more info</Link>
+                  </div>
+                );
+              })}
             </div>
           );
         })}
+
       {/* här skall det va en section med saved items eller my ads och finns det inga return h4 no no saved items eller no ads och en knapp explore eller advertise property */}
     </Wrapper>
   );
@@ -147,7 +152,8 @@ const Wrapper = styled.section`
       width: 4rem;
       height: 4rem;
     }
-    button {
+    button,
+    a {
       color: #0b8b3a;
       margin: 0;
       font-size: 0.7rem;

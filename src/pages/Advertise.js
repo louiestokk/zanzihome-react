@@ -1,5 +1,4 @@
 import React from "react";
-import LoginAdComp from "../components/LoginAdComp";
 import PageHero from "../components/PageHero";
 import { useUserContext } from "../user_context";
 import { HiArrowCircleDown } from "react-icons/hi";
@@ -12,7 +11,7 @@ import { FiRotateCw } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
 
 function Advertise() {
-  const { loginWithRedirect, myUser, logout } = useUserContext();
+  const { loginWithRedirect, myUser } = useUserContext();
   const history = useHistory();
 
   return (
@@ -31,7 +30,7 @@ function Advertise() {
       <div className="ads-prices-container">
         <h2 className="ads-prices-text-btn">Prices</h2>
         <div className="ads-package premium">
-          <div className="dagar-div">60 days</div>
+          <div className="dagar-div">Sell</div>
           <div>
             <h4>
               Premium
@@ -44,69 +43,21 @@ function Advertise() {
           <div className="ads-package-inner">
             <p>
               <BsCheck className="ads-package-inner-icon" />
-              Top 10 Rank - Page 1
-            </p>
-            <p>
-              <BsCheck className="ads-package-inner-icon" />
-              Rocket "Adons" 10 days
+              Listed for 6 months
             </p>
             <p>
               <BsCheck className="ads-package-inner-icon" />
               Premium Page
             </p>
-          </div>
-        </div>
-        <div className="ads-package plus">
-          <div className="dagar-div">45 days</div>
-          <div>
-            <h4>
-              Plus
-              <span>
-                <BsPatchPlusFill className="opop" />
-              </span>
-            </h4>
-            <h5>Price: $30</h5>
-          </div>
-          <div className="ads-package-inner">
             <p>
               <BsCheck className="ads-package-inner-icon" />
-              Top 20 Rank
-            </p>
-            <p>
-              <BsCheck className="ads-package-inner-icon" />
-              Rocket "Adons" 5 days
-            </p>
-            <p>
-              <BsCheck className="ads-package-inner-icon" />
-              Plus Page
+              Searchable for sale
             </p>
           </div>
         </div>
-        <div className="ads-package bas">
-          <div className="dagar-div">30 days</div>
-          <div>
-            <h4>
-              Base
-              <span>
-                <FaDatabase className="opop" />
-              </span>
-            </h4>
-            <h5>Price: $10</h5>
-          </div>
-          <div className="ads-package-inner">
-            <p>
-              <BsCheck className="ads-package-inner-icon" />
-              Top 30 Rank
-            </p>
 
-            <p>
-              <BsCheck className="ads-package-inner-icon" />
-              Base Page
-            </p>
-          </div>
-        </div>
         <div className="ads-package rentout">
-          <div className="dagar-div">1 year</div>
+          <div className="dagar-div">Rent out</div>
           <div>
             <h4>Rent out </h4>
             <h5>Price: $50</h5>
@@ -144,18 +95,13 @@ function Advertise() {
             <p>
               <span style={{ fontWeight: "bold" }}>Renew</span> choosen ad
             </p>
-            <span style={{ fontSize: "0.8rem" }}>
-              (Premium,Plus,Base,Rent out)
-            </span>
-            <h5> $ Price</h5>
+            <span style={{ fontSize: "0.8rem" }}></span>
+            <h5> $ 50</h5>
           </div>
         </div>
         <div className="ads-btn-container">
           {myUser ? (
-            <button
-              type="button"
-              onClick={() => history.push(`/newad/${myUser.email}`)}
-            >
+            <button type="button" onClick={() => history.push("/checkout")}>
               Create new ad
             </button>
           ) : (

@@ -68,7 +68,10 @@ const Navbar = () => {
               </Link>
             </div>
 
-            <Link to="/priceadvertise" onClick={() => setShow(!show)}>
+            <Link
+              to="/advertisepropertyzanzibar"
+              onClick={() => setShow(!show)}
+            >
               Price for advertising{" "}
             </Link>
             <Link to="/guid" onClick={() => setShow(!show)}>

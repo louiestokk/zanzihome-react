@@ -29,6 +29,11 @@ const AppProvider = ({ children }) => {
     setPropertys(objectsBusiness);
     setActive(null);
   };
+  const checkLocal = () => {
+    if (localStorage.getItem("adspack")) {
+      setSavedItemsArray(localStorage.getItem("adspack"));
+    }
+  };
 
   useEffect(() => {
     setMyUser(user);
@@ -36,6 +41,10 @@ const AppProvider = ({ children }) => {
   const handleChange = (e) => {
     console.log(e.target.value);
   };
+  useEffect(() => {
+    checkLocal();
+    localStorage.setItem("adspack", savedItemsArray);
+  });
 
   //
   return (

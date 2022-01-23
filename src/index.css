@@ -14,6 +14,16 @@ body {
   height: 100%;
   width: 100%;
 }
+.ring {
+  color: var(--logoColor);
+  border-bottom: 1px solid var(--heroTextColor);
+}
+.ring:hover {
+  color: var(--heroTextColor);
+}
+.call-main {
+  height: 1200px;
+}
 :root {
   --logoColor: #0b8b3a;
   --logoColorLight: #22c55e;
@@ -1254,9 +1264,9 @@ h5 {
 .dagar-div {
   position: absolute;
   top: -12%;
-  left: 1%;
+  left: 0%;
   background: white;
-  width: 3.8rem;
+  width: 5rem;
   text-align: center;
   color: var(--logoColor);
   font-weight: bold;
@@ -1302,7 +1312,7 @@ h5 {
 }
 .ad-form-in {
   font-family: "Roboto Condensed", sans-serif;
-  height: 1140px;
+  height: 1540px;
 }
 .ad-form-in div {
   margin-left: 1rem;
@@ -1402,4 +1412,19 @@ input[type="textarea"] {
 .lllll p {
   max-width: 80%;
   line-height: 20px;
+}
+.contact-adress {
+  background: var(--navback);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.contact-adress h4 {
+  font-size: 1.2rem;
+  color: var(--heroTextColor);
+}
+.contact-adress p {
+  margin: 0.2rem 0;
+  color: var(--heroTextColor);
 }

@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import About from "./pages/about";
 import Contact from "./pages/contact";
 import Propertyzanzibar from "./pages/propertyzanzibar";
-
+import Checkcout from "./pages/Checkcout";
 import SingleObject from "./components/SingleObject";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -15,7 +15,6 @@ import Price from "./pages/Price";
 import Guid from "./pages/Guid";
 import Build from "./pages/Build";
 import Foreginer from "./pages/Foreginer";
-import FormPage from "./pages/FormPage";
 
 function App() {
   return (
@@ -28,7 +27,6 @@ function App() {
         <Route path="/propertyzanzibar">
           <Propertyzanzibar />
         </Route>
-
         <Route path="/about">
           <About />
         </Route>
@@ -53,17 +51,16 @@ function App() {
         <Route path="/foreginerpropertyzanzibar">
           <Foreginer />
         </Route>
-        <Route path="/newad/:user">
-          <FormPage />
-        </Route>
         <Route path="/profile/:id">
           <Profile />
         </Route>
-
         <Route
           path="/propertys/zanzibar/:id"
           children={<SingleObject />}
         ></Route>
+        <Route path="/checkout">
+          <Checkcout />
+        </Route>
       </Switch>
       <Footer />
     </Router>

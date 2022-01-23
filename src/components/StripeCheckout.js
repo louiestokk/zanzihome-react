@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { formatPrice } from "../utils/helpers";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import styled from "styled-components";
-import { useFormContext } from "../form_ads_context";
+import { IoIosRocket } from "react-icons/io";
+import { FiRotateCw } from "react-icons/fi";
 import { useUserContext } from "../user_context";
+import { useFormContext } from "../form_ads_context";
 import {
   CardElement,
   useStripe,
@@ -13,17 +14,18 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { useHistory } from "react-router-dom";
-// npm run netlify
+
 const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
-const CheckoutForm = ({ price = 50 }) => {
+const CheckoutForm = () => {
   const { myUser } = useUserContext();
   const history = useHistory();
-  const { sell, amount } = useFormContext();
+  const [confirmAd, setConfirmAd] = useState(true);
+  const { price } = useFormContext();
 
   // stripe things
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
-  const [processing, setProcessing] = useState("");
+  const [proccessing, setProccessing] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState("");
 
@@ -50,9 +52,8 @@ const CheckoutForm = ({ price = 50 }) => {
     try {
       const { data } = await axios.post(
         "/.netlify/functions/create-payment-intent",
-        JSON.stringify({ amount })
+        JSON.stringify(price)
       );
-      console.log(data);
       setClientSecret(data.clientSecret);
     } catch (error) {
       console.error(error.response);
@@ -62,37 +63,99 @@ const CheckoutForm = ({ price = 50 }) => {
     createPaymentIntent();
     // eslint-disable-next-lines
   }, []);
-  const handleStripeChange = async (e) => {};
-  const handleStripeSubmit = async (e) => {};
+  const handleStripeSubmit = async (ev) => {
+    ev.preventDefault();
+    setProccessing(true);
+    const payload = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: elements.getElement(CardElement),
+      },
+    });
+    if (payload.error) {
+      setError(`Payment failed ${payload.error.message}`);
+      setProccessing(false);
+    } else {
+      setError(null);
+      setProccessing(false);
+      setSucceeded(true);
+      setTimeout(() => {
+        history.push("/");
+      }, 9000);
+    }
+  };
+  useEffect(() => {
+    setTimeout(() => {
+      setConfirmAd(false);
+    }, 10000);
+  }, []);
+  const handleStripeChange = async (event) => {
+    setDisabled(event.empty);
+    setError(event.error ? event.error.message : "");
+  };
   return (
-    <div style={{ margin: "2rem 1rem" }}>
-      {/* hello from stripe check out {price ? (!sell ? 50 : price) : price} */}
-      <form id="payment-form" onSubmit={handleStripeSubmit}>
+    <div style={{ margin: "1rem auto", textAlign: "center", height: "540px" }}>
+      {confirmAd && (
+        <di style={{ margin: "1rem auto", color: "green" }} v>
+          <h3>Thank you for advertising. We have received your ad.</h3>
+          <h4>We will review the ad and publish it within 24 hours</h4>
+        </di>
+      )}
+      {succeeded ? (
+        <article>
+          <h4>Thank you</h4>
+          <h4>Your paymennt was successful!</h4>
+          <h4>Redirecting to home page shortly</h4>
+        </article>
+      ) : (
+        <article
+          style={{
+            marginBottom: "1rem",
+            marginLeft: "1rem",
+            marginTop: "2rem",
+          }}
+        >
+          <h5>Hello {myUser && myUser.nickname}</h5>
+        </article>
+      )}
+
+      {/* jobba med denna form och betalning och innan man betalar så skall man
+          kunna lägga till dom 2 olika adons byt renew mot något annat båda kan
+          använda rent7sell sen att man kan maila bilder och läggs in kod i
+          mailet automatskt kopplat till användaren och annanonsen , sen små fix§
+          och appen kan gå live */}
+
+      <form style={{ margin: "1rem auto" }} onSubmit={handleStripeSubmit}>
+        <h5>{`Price: ${price}`}</h5>
         <CardElement
           id="card-element"
           options={cardStyle}
           onChange={handleStripeChange}
         />
-        <button disabled={processing || disabled || succeeded} id="submit">
+        <button disabled={proccessing || succeeded || disabled} id="submit">
           <span id="button-text">
-            {processing ? <div className="spinner" id="spinner"></div> : "Pay"}
+            {proccessing ? <div className="spinner" id="spinner"></div> : "Pay"}
           </span>
         </button>
-        {/* show errors when processesing */}
         {error && (
           <div className="card-error" role="alert">
             {error}
           </div>
         )}
-        {/* show succes message */}
         <p className={succeeded ? "result-message" : "result-message hidden"}>
-          Payment succeeded 👍
+          Payment succeeded, see the result in your.
+          <a
+            href={`https://dashboard.stripe.com/test/payments`}
+            style={{ margin: "0 0.2rem" }}
+          >
+            Stripe dashboard
+          </a>
+          Redirecting home shortly
         </p>
       </form>
     </div>
   );
 };
-const Payment = ({ price }) => {
+const StripeCheckout = () => {
   const random = Math.floor(Math.random() * 10000000);
   const [showText, setShowtext] = useState(true);
   const pack = localStorage.getItem("adspack");
@@ -108,72 +171,11 @@ const Payment = ({ price }) => {
     hidetext();
   }, []);
   return (
-    <>
-      <section
-        style={{
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            textAlign: "center",
-            margin: "1rem 0",
-          }}
-        >
-          {showText && (
-            <h4
-              style={{
-                maxWidth: "80%",
-                color: "green",
-              }}
-            >
-              Thank you! We have recived your ad content!
-            </h4>
-          )}
-        </div>
-        <div
-          style={{
-            marginLeft: "1rem",
-            marginBottom: "2rem",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <a
-            href={`mailto:adcontent@zanzihome.com?subject=NEW_AD_ID:${random}&body=Attach%20the%20images here`}
-            target="_blank"
-            style={{
-              color: "green",
-              border: "1px solid green",
-              padding: "0.3rem",
-              borderRadius: "4px 4px",
-              width: "7rem",
-              textAlign: "center",
-            }}
-          >
-            send images
-          </a>
-          <p
-            style={{
-              marginLeft: "1rem",
-              maxWidth: "250px",
-              color: "red",
-              fontSize: "0.8rem",
-            }}
-          >
-            * press the button and attach your images and send
-          </p>
-        </div>
-      </section>
-      <Wrapper className="stripe-container">
-        <Elements stripe={promise}>
-          <CheckoutForm price={price} />
-        </Elements>
-      </Wrapper>
-    </>
+    <Wrapper className="stripe-container">
+      <Elements stripe={promise}>
+        <CheckoutForm />
+      </Elements>
+    </Wrapper>
   );
 };
 
@@ -317,4 +319,4 @@ const Wrapper = styled.section`
     }
   }
 `;
-export default Payment;
+export default StripeCheckout;

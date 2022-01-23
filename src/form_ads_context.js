@@ -1,23 +1,13 @@
 import React, { useState, useContext, useEffect, useReducer } from "react";
 import reducer from "../src/reducers/form_reducer";
-const getLocalstorage = () => {
-  let price = localStorage.getItem("adspack");
-  if (price) {
-    return localStorage.getItem("adspack").split("-")[1];
-  } else {
-    return [];
-  }
-};
-const initialState = {
-  amount: getLocalstorage(),
-};
+
 const FormContext = React.createContext();
 
 const FormProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
   const [company, setCompany] = useState(true);
   const [sell, setSell] = useState(true);
-  const [price, setPrice] = useState();
+  const [price, setPrice] = useState(50);
+  const [activeStep, setActiveStep] = useState(0);
 
   const packageChange = (e) => {
     localStorage.setItem("adspack", e.target.value);
@@ -31,9 +21,7 @@ const FormProvider = ({ children }) => {
     if (e.currentTarget.name === "Sell") setSell(!sell);
     if (e.currentTarget.name === "Rent") setSell(false);
   };
-  const handlePrice = (price) => {
-    dispatch({ type: "SET_PRICE", payload: price });
-  };
+
   return (
     <FormContext.Provider
       value={{
@@ -45,8 +33,8 @@ const FormProvider = ({ children }) => {
         packageChange,
         price,
         setPrice,
-        ...state,
-        handlePrice,
+        activeStep,
+        setActiveStep,
       }}
     >
       {children}

@@ -11,11 +11,11 @@ import Bid from "./Bid";
 import SingelObjectInfo from "./SingelObjectInfo";
 import Brokers from "./Brokers";
 import { useUserContext } from "../user_context";
-export const savedItemsArray = [];
+const items = [];
 const SingleObject = () => {
-  const { propertys, setPropertys } = useGlobalContext();
-  const { saved, setSaved, myUser, loginWithRedirect, arr, setArr } =
-    useUserContext();
+  const { propertys, setPropertys, savedItemsArray, setSavedItemsArray } =
+    useGlobalContext();
+  const { saved, setSaved, myUser, loginWithRedirect } = useUserContext();
   const [index, setIndex] = useState(0);
 
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -43,7 +43,7 @@ const SingleObject = () => {
   useEffect(() => {
     filterObject();
   }, [id]);
-  localStorage.setItem("savedobjects", JSON.stringify(savedItemsArray));
+
   return (
     <>
       {propertys.map((object) => {
@@ -116,7 +116,10 @@ const SingleObject = () => {
                       );
                       e.currentTarget.style.background = "#dfe6d8";
                       setSaved(!saved);
-                      savedItemsArray.push(Number(id));
+                      items.push(Number(id));
+                      setSavedItemsArray(items);
+                    } else {
+                      e.currentTarget.textContent = "You have to login to save";
                     }
                   }}
                   // style={{ background: `${green ? "#dfe6d8" : ""}` }}
