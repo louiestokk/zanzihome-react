@@ -3,6 +3,7 @@ import { useFormContext } from "../form_ads_context";
 import { RiAdvertisementFill } from "react-icons/ri";
 import emailjs from "@emailjs/browser";
 import { BsFillCameraFill } from "react-icons/bs";
+import { BsFillPlusSquareFill } from "react-icons/bs";
 import { init } from "@emailjs/browser";
 init("user_a9rRSeZcRVhTLpSYxEfo8");
 const AdsForm = ({ setActiveStep, setAmount }) => {
@@ -29,8 +30,6 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
             setLoading(false);
             setSended(true);
             setActiveStep((old) => old + 1);
-            // här skall du ge kunden pop up att vi mottagit annonsen och att den skall granskas och publiceras inom 24h
-            // göm sen form och visa betal
           }
         },
         (error) => {
@@ -229,12 +228,21 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
         </div>
 
         <div style={{ marginLeft: "1rem", height: "360px", marginTop: "4rem" }}>
-          <div>
-            <h5>Images</h5>
-            <div>
+          <h5>Images</h5>
+          <div style={{ display: "flex" }}>
+            <div className="up-image">
               <BsFillCameraFill />
-              <input type="file" />
+              <input
+                type="file"
+                style={{
+                  fontSize: "0.8rem",
+                  marginLeft: "1rem",
+                }}
+              />
             </div>
+            <button className="new-img-btn">
+              <BsFillPlusSquareFill />
+            </button>
           </div>
           <div className="form-ad-btn-cont-sub">
             <div>

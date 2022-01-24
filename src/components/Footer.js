@@ -33,7 +33,7 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link to="/banneradvertiseproperty" className="footer-links">
+              <Link to="/contact" className="footer-links">
                 Banner Advertising
               </Link>
             </li>
@@ -74,7 +74,7 @@ const Footer = () => {
             <Link to="/">Payments</Link>
           </button>
           <button type="button" className="footer-info-bottom-btn">
-            <Link to="/">Prices</Link>
+            <Link to="/advertisepropertyzanzibar">Prices</Link>
           </button>
         </div>
         <div>

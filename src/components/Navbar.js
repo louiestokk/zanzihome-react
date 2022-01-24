@@ -38,68 +38,10 @@ const Navbar = () => {
                   {link.text}
                   {link.icon && link.icon}
                 </Link>
-                <div className="divider"></div>
               </li>
             );
           })}
         </ul>
-
-        <div className="navmenu-info">
-          <div className="navbar-con navbar-con-ett">
-            <p>Search property</p>
-            <div className="nn">
-              <BsSearch className="search" />
-              <h4>New search</h4>
-            </div>
-            <div className="nn">
-              <BsThreeDotsVertical className="search" />
-              <p>All propertys</p>
-            </div>
-          </div>
-          <div className="delare"></div>
-          <div className="navbar-con navbar-con-ett">
-            <p>Sell property</p>
-            <div className="nn">
-              <Link
-                to="/advertisepropertyzanzibar"
-                onClick={() => setShow(!show)}
-              >
-                Advertise property
-              </Link>
-            </div>
-
-            <Link
-              to="/advertisepropertyzanzibar"
-              onClick={() => setShow(!show)}
-            >
-              Price for advertising{" "}
-            </Link>
-            <Link to="/guid" onClick={() => setShow(!show)}>
-              Guide to sell{" "}
-            </Link>
-          </div>
-          <div className="delare"></div>
-          <div className="navbar-con navbar-con-ett">
-            <div className="nn">
-              <Link to="/guid" onClick={() => setShow(!show)}>
-                Guid to buy{" "}
-              </Link>
-            </div>
-
-            <Link to="/buildhousezanzibar" onClick={() => setShow(!show)}>
-              Build house{" "}
-            </Link>
-
-            <Link
-              className="foreginer"
-              style={{ color: "green" }}
-              to="/foreginerpropertyzanzibar"
-              onClick={() => setShow(!show)}
-            >
-              Guid for foreginers{" "}
-            </Link>
-          </div>
-        </div>
       </div>
       <div className="nav-container">
         <div className="nav-btn-container">

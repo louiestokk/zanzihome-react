@@ -9,6 +9,11 @@ export const navlinks = [
     text: "Find Property",
     url: "/propertyzanzibar",
   },
+  {
+    id: 3,
+    text: "Advertise Property",
+    url: "/advertisepropertyzanzibar",
+  },
 
   {
     id: 9,
