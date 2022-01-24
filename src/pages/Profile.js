@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useUserContext } from "../user_context";
-import { useGlobalContext } from "../context";
+
 import styled from "styled-components";
 import { BsHeart } from "react-icons/bs";
 import { RiAdvertisementLine } from "react-icons/ri";
@@ -9,18 +9,17 @@ import { Link } from "react-router-dom";
 const Profile = () => {
   const { myUser, active, setActive } = useUserContext();
   const [items, setItem] = useState([]);
-
-  // här skall du du se om det finns getItem('zanzihomeAdId') i localstorage och finns det så visa den under my ads och du måste skapa annonsen kunden skicka och ge den samma id och när sidan laddar så ligger annonsen uppe bland de andra annonserna  plus att kunden kan ha den i sina ads  i account
-  const checkLocalStor = () => {
-    const adspack = localStorage.getItem("adspack");
-    if (adspack) {
-      setItem(localStorage.getItem("adspack").split(","));
-    }
-  };
+  const [myAdsId, setMyAdsId] = useState([]);
 
   useEffect(() => {
-    checkLocalStor();
+    if (localStorage.getItem("zanzihomeAdId")) {
+      setMyAdsId([localStorage.getItem("zanzihomeAdId")]);
+    }
+    if (localStorage.getItem("zanzihomeSaved")) {
+      setItem([localStorage.getItem("zanzihomeSaved")]);
+    }
   }, []);
+
   return (
     <Wrapper>
       <h2>Welcome {myUser && myUser.nickname}</h2>
@@ -93,7 +92,51 @@ const Profile = () => {
           );
         })}
 
-      {/* här skall det va en section med saved items eller my ads och finns det inga return h4 no no saved items eller no ads och en knapp explore eller advertise property */}
+      {myAdsId.length >= 1 &&
+        !active &&
+        objects
+          .filter((el) => el.id === +myAdsId[0])
+          .map((ad) => {
+            return (
+              <div
+                key={ad.id}
+                style={{
+                  boxShadow:
+                    "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+                  border: "1px solid green",
+                  width: "100%",
+                  height: "180px",
+                  alignItems: "center",
+                  display: "flex",
+
+                  justifyContent: "space-evenly",
+                }}
+              >
+                {ad.active === true && <p style={{ color: "green" }}>Active</p>}
+                <span style={{ fontSize: "0.8rem" }}>Published: {ad.date}</span>
+                <p>{ad.desc}</p>
+                <p>{ad.size}sq.m</p>
+                <p>
+                  {ad.to === "Rent"
+                    ? `${ad.price}$ / week`
+                    : `${ad.price}.000$`}
+                </p>
+                <Link
+                  to={`/propertys/zanzibar/${ad.id}`}
+                  style={{
+                    color: "white",
+                    border: "1px solid green",
+                    width: "100px",
+                    textAlign: "center",
+                    borderRadius: "5px 5px",
+                    background: "green",
+                  }}
+                >
+                  more info
+                </Link>
+              </div>
+            );
+          })}
     </Wrapper>
   );
 };

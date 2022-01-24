@@ -5,7 +5,7 @@ import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { AiFillHeart } from "react-icons/ai";
 import { BsMap } from "react-icons/bs";
-import { Link } from "react-router-dom";
+
 import { FiUser } from "react-icons/fi";
 import Bid from "./Bid";
 import SingelObjectInfo from "./SingelObjectInfo";
@@ -14,10 +14,9 @@ import emailjs from "@emailjs/browser";
 import { useUserContext } from "../user_context";
 import { init } from "@emailjs/browser";
 init("user_a9rRSeZcRVhTLpSYxEfo8");
-const items = [];
+
 const SingleObject = () => {
-  const { propertys, setPropertys, savedItemsArray, setSavedItemsArray } =
-    useGlobalContext();
+  const { propertys, setPropertys } = useGlobalContext();
   const { saved, setSaved, myUser, loginWithRedirect } = useUserContext();
   const [index, setIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
@@ -146,8 +145,8 @@ const SingleObject = () => {
                       );
                       e.currentTarget.style.background = "#dfe6d8";
                       setSaved(!saved);
-                      items.push(Number(id));
-                      setSavedItemsArray(items);
+
+                      localStorage.setItem("zanzihomeSaved", id);
                     } else {
                       e.currentTarget.textContent = "You have to login to save";
                     }
@@ -217,13 +216,17 @@ const SingleObject = () => {
                     ref={form}
                     onSubmit={sendEmail}
                   >
-                    <div>
+                    <div style={{ display: "none" }}>
                       <label htmlFor="id">Object:</label>
                       <input type="text" name="id" value={`${randomId}${id}`} />
                     </div>
                     <div>
                       <label htmlFor="name">Name: </label>
                       <input name="name" type="text" required />
+                    </div>
+                    <div>
+                      <label htmlFor="email">Email: </label>
+                      <input name="email" type="email" required />
                     </div>
                     <div>
                       <label htmlFor="phone">Phone: </label>

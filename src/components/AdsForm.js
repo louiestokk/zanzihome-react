@@ -167,7 +167,7 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
             <input
               type="text"
               name="Area"
-              value="Paje"
+              value="Michamvi"
               placeholder="ex: Jambiani"
               required
             />
@@ -199,7 +199,7 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
             <input
               type="text"
               name="Title"
-              value="House for sale in paje on beach side"
+              value="Big Beach Plot Michamvi"
               placeholder="ex: House for sale in Paje close by beach"
               required
             />
@@ -213,18 +213,12 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
               required
               rows="12"
               cols="60"
-              value="Nice house at the beach"
+              value="Beach plot in Michamvi 7500sq.m 80mx80m."
             />
           </div>
           <div className="form-control">
             <label htmlFor="Price">Price USD $</label>
-            <input
-              type="text"
-              name="Price"
-              placeholder="ex: $10.000"
-              value="$100.000"
-              required
-            />
+            <input type="text" name="Price" value="$550.000" required />
           </div>
 
           <div className="form-control">

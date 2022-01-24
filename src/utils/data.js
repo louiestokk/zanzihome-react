@@ -29,6 +29,25 @@ export const navlinks = [
 ];
 export const objects = [
   {
+    id: 46848,
+    date: 20220124,
+    url: ["./images/michamvi.jpg"],
+    location: "Michamvi",
+    price: 550,
+    size: 7500,
+    type: "Land",
+    to: "Buy",
+    bid: [515],
+    desc: "Big Beach Plot Michamvi",
+    info: "Beach front plot in Michamvi Michamvi with palms and other trees. Here yoou can build club, restaurant , hotell or houses. Located in were popular area. Very popular island among turist and the island have lot of activities.",
+    icon: <BsSquare className="object-plot-icon" />,
+    contact: "Gerrard Mzee",
+    agency: "Tripple M Limited",
+    number: +25577777777,
+    logo: "/images/tripplemlogo.png",
+    active: true,
+  },
+  {
     id: 4,
     date: 2111,
     url: ["./images/plotzanzibar.jpg"],
