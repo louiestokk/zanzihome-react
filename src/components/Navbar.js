@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FaBars } from "react-icons/fa";
 import { navlinks } from "../utils/data";
 import { Link } from "react-router-dom";
 import { ImHome } from "react-icons/im";
 import { FiUser } from "react-icons/fi";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { BsSearch } from "react-icons/bs";
+
 import { FaWindowClose } from "react-icons/fa";
 import { useGlobalContext } from "../context";
 import { useUserContext } from "../user_context";
-import { MdOutlineLogout } from "react-icons/md";
-import AdsComponent from "./AdsComponent";
 
 const Navbar = () => {
   const { show, setShow } = useGlobalContext();
@@ -70,7 +67,6 @@ const Navbar = () => {
 
         {myUser ? (
           <div className="nav-login-container">
-            <AdsComponent />
             <div
               className="user-icon-container"
               onClick={() => setShowUser(!showUser)}

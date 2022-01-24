@@ -28,16 +28,18 @@ const Profile = () => {
         className="divider"
         style={{ margin: "0 auto", width: "8rem" }}
       ></div>
-      <div className="user-profile-info">
+      <div className="user-profile-info" style={{ height: "200px" }}>
         <div>
           <img src={myUser && myUser.picture} alt="user icon" />
         </div>
-        <p>
-          Name: <span> {myUser && myUser.nickname}</span>
-        </p>
-        <p>
-          Email: <span> {myUser && myUser.email}</span>
-        </p>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <p>
+            Name: <span> {myUser && myUser.nickname}</span>
+          </p>
+          <p>
+            Email: <span> {myUser && myUser.email}</span>
+          </p>
+        </div>
       </div>
       <article>
         <h2>Your activity</h2>

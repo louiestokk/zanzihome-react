@@ -879,6 +879,12 @@ button {
     margin-right: 0.5rem;
   }
 }
+@media screen and (max-width: 500px) {
+  .user-profile-info {
+    display: flex;
+    flex-direction: column;
+  }
+}
 @media screen and (min-width: 705px) {
   .adBanner-image-container {
     width: 350px;
