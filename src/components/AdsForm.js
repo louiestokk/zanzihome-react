@@ -250,9 +250,6 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
                 }}
               />
             </div>
-            <button className="new-img-btn">
-              <BsFillPlusSquareFill />
-            </button>
           </div>
           <div className="form-ad-btn-cont-sub">
             <div>

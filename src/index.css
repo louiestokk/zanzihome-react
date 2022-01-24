@@ -1474,7 +1474,7 @@ input[type="textarea"] {
   justify-content: center;
   align-items: center;
   border: 1px solid rgb(177, 175, 175);
-  width: 220px;
+  width: 280px;
   height: 4rem;
   border-radius: 5px 5px;
 }
@@ -1482,8 +1482,8 @@ input[type="textarea"] {
   background: var(--logoColorLight);
   color: white;
   font-weight: bold;
-  width: 2rem;
-  height: 2rem;
+  width: 1.4rem;
+  height: 1.4rem;
   font-size: 1.2rem;
   cursor: pointer;
   display: flex;
