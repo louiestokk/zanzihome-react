@@ -55,6 +55,7 @@ const CheckoutForm = () => {
         JSON.stringify(price)
       );
       setClientSecret(data.clientSecret);
+      console.log(data.clientSecret);
     } catch (error) {
       console.error(error.response);
     }
@@ -95,10 +96,9 @@ const CheckoutForm = () => {
   return (
     <div style={{ margin: "1rem auto", textAlign: "center", height: "540px" }}>
       {confirmAd && (
-        <di style={{ margin: "1rem auto", color: "green" }} v>
-          <h3>Thank you for advertising. We have received your ad.</h3>
-          <h4>We will review the ad and publish it within 24 hours</h4>
-        </di>
+        <div style={{ margin: "1rem auto", color: "green", maxWidth: "300px" }}>
+          <h4>Thank you for advertising. We have received your ad.</h4>
+        </div>
       )}
       {succeeded ? (
         <article>
@@ -195,7 +195,7 @@ const Wrapper = styled.section`
     padding: 12px;
     border: 1px solid rgba(50, 50, 93, 0.1);
     max-height: 44px;
-    font-size: 16px;
+    font-size: 12px;
     width: 100%;
     background: white;
     box-sizing: border-box;

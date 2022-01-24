@@ -100,8 +100,9 @@ export default Profile;
 
 const Wrapper = styled.section`
   display: column;
-  height: auto;
-  wiidth: 100%;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 3rem;
 
   .user-profile-info {
     display: flex;

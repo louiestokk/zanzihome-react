@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useFormContext } from "../form_ads_context";
 import { RiAdvertisementFill } from "react-icons/ri";
 import emailjs from "@emailjs/browser";
 import { BsFillCameraFill } from "react-icons/bs";
 import { BsFillPlusSquareFill } from "react-icons/bs";
+import { useHistory } from "react-router-dom";
 import { init } from "@emailjs/browser";
 init("user_a9rRSeZcRVhTLpSYxEfo8");
 const AdsForm = ({ setActiveStep, setAmount }) => {
@@ -12,7 +13,7 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
   const [sended, setSended] = useState(false);
   const form = useRef();
   const { company, sell, handleChange, price, setPrice } = useFormContext();
-
+  const history = useHistory();
   const sendEmail = (e) => {
     setLoading(true);
     e.preventDefault();
@@ -48,7 +49,11 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
         <div className="step-container">
           <div className="form-header">
             <h1>Place ad on Zanzihome</h1>
-            <button type="button" className="cancel-form-btn">
+            <button
+              type="button"
+              className="cancel-form-btn"
+              onClick={() => history.push("/")}
+            >
               Cancel
             </button>
           </div>
