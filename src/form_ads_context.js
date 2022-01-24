@@ -7,6 +7,7 @@ const FormProvider = ({ children }) => {
   const [sell, setSell] = useState(true);
   const [price, setPrice] = useState(50);
   const [activeStep, setActiveStep] = useState(0);
+  const [adId, setAdId] = useState(Math.floor(Math.random() * 1000000));
 
   const packageChange = (e) => {
     localStorage.setItem("adspack", e.target.value);
@@ -34,6 +35,8 @@ const FormProvider = ({ children }) => {
         setPrice,
         activeStep,
         setActiveStep,
+        adId,
+        setAdId,
       }}
     >
       {children}

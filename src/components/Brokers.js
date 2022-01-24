@@ -2,6 +2,9 @@ import React from "react";
 import { AiOutlinePhone } from "react-icons/ai";
 import { AiOutlineMail } from "react-icons/ai";
 const Brokers = ({ agency, number, contact, logo }) => {
+  const handleClick = (e) => {
+    e.currentTarget.innerHTML = `+${number}`;
+  };
   return (
     <>
       <div className="brokers-comp-div">
@@ -16,10 +19,13 @@ const Brokers = ({ agency, number, contact, logo }) => {
         </div>
       </div>
       <div className="bbb">
-        <button type="button">
+        <button type="button" onClick={handleClick}>
           <AiOutlinePhone className="icon-broker" /> Show number
         </button>
-        <button type="button">
+        <button
+          type="button"
+          onClick={(e) => (e.currentTarget.innerHTML = "contact@3m.com")}
+        >
           <AiOutlineMail className="icon-broker" /> Show e-mail
         </button>
       </div>

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 // top: 28%;
-const SingelObjectInfo = ({ info }) => {
+const SingelObjectInfo = ({ info, showModal, setShowModal, recivied }) => {
   const [height, setHeight] = useState("150px");
   const [hidden, setHidden] = useState(false);
   const [position, setPosition] = useState("28%");
+
   const handleClick = () => {
     setHidden(!hidden);
     setHeight("300px");
@@ -28,8 +29,12 @@ const SingelObjectInfo = ({ info }) => {
         >
           <MdKeyboardArrowDown /> Show full description
         </button>
-        <button type="button" className="soitbt-2">
-          Submit interest now
+        <button
+          type="button"
+          className="soitbt-2"
+          onClick={() => setShowModal(!showModal)}
+        >
+          {recivied ? "Thank your for the interest!" : "  Submit interest now"}
         </button>
       </div>
     </div>

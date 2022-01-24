@@ -797,7 +797,7 @@ button {
   font-weight: 100;
   max-width: 90%;
   overflow: hidden;
-  height: 150px;
+  height: 250px;
   transition: all 0.3s linear;
 }
 .singel-object-infotext span {
@@ -836,7 +836,35 @@ button {
 .hidden {
   display: none;
 }
-
+.interest-root {
+  position: absolute;
+  background: var(--navback);
+  height: 300px;
+  width: 96%;
+  border-radius: 5px 5px;
+  margin: 2rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  border: 1px solid rgb(223, 219, 219);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+.interest-root div {
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.interest-root input {
+  width: 10rem;
+}
+.interest-root textarea {
+  width: 20rem;
+  border-radius: 5px 5px;
+  border: 1px solid rgb(209, 206, 206);
+}
 @media screen and (min-width: 500px) {
   .singel-object-container {
     max-width: 700px;
@@ -848,6 +876,7 @@ button {
   }
   .jjj {
     display: flex;
+    position: relative;
   }
   .bid-div {
     max-width: 60%;
@@ -1001,7 +1030,7 @@ button {
   display: flex;
   flex-direction: column;
   width: 20rem;
-  height: 14rem;
+  height: 18rem;
   background: white;
   border-radius: 8px 8px;
   z-index: 1000;
@@ -1440,9 +1469,10 @@ input[type="textarea"] {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid rgb(177, 175, 175);
   width: 220px;
   height: 4rem;
+  border-radius: 5px 5px;
 }
 .new-img-btn {
   background: var(--logoColorLight);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useGlobalContext } from "../context";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
@@ -10,16 +10,23 @@ import { FiUser } from "react-icons/fi";
 import Bid from "./Bid";
 import SingelObjectInfo from "./SingelObjectInfo";
 import Brokers from "./Brokers";
+import emailjs from "@emailjs/browser";
 import { useUserContext } from "../user_context";
+import { init } from "@emailjs/browser";
+init("user_a9rRSeZcRVhTLpSYxEfo8");
 const items = [];
 const SingleObject = () => {
   const { propertys, setPropertys, savedItemsArray, setSavedItemsArray } =
     useGlobalContext();
   const { saved, setSaved, myUser, loginWithRedirect } = useUserContext();
   const [index, setIndex] = useState(0);
-
+  const [showModal, setShowModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [randomId, setRandomId] = useState(Math.floor(Math.random() * 1000000));
+  const [sending, setSending] = useState(false);
+  const [recivied, setRecivied] = useState(false);
   const { id } = useParams();
+  const form = useRef();
   const filterObject = () => {
     const newObject = propertys.filter((el) => el.id === +id);
     setPropertys(newObject);
@@ -38,6 +45,29 @@ const SingleObject = () => {
     if (index < 0) {
       setIndex(0);
     }
+  };
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setSending(true);
+    emailjs
+      .sendForm(
+        "service_9wx2s0e",
+        "template_9kq3rcn",
+        form.current,
+        process.env.REACT_APP_EMAILJ_USER_ID
+      )
+      .then(
+        (result) => {
+          if (result.text === "OK") {
+            setSending(false);
+            setShowModal(false);
+            setRecivied(true);
+          }
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
 
   useEffect(() => {
@@ -175,7 +205,66 @@ const SingleObject = () => {
                     </div>
                   </div>
                 </div>
-                <SingelObjectInfo info={info} />
+                <SingelObjectInfo
+                  info={info}
+                  showModal={showModal}
+                  setShowModal={setShowModal}
+                  recivied={recivied}
+                />
+                {showModal && (
+                  <form
+                    className="interest-root"
+                    ref={form}
+                    onSubmit={sendEmail}
+                  >
+                    <div>
+                      <label htmlFor="id">Object:</label>
+                      <input type="text" name="id" value={`${randomId}${id}`} />
+                    </div>
+                    <div>
+                      <label htmlFor="name">Name: </label>
+                      <input name="name" type="text" required />
+                    </div>
+                    <div>
+                      <label htmlFor="phone">Phone: </label>
+                      <input name="phone" type="text" required />
+                    </div>
+                    <div>
+                      <label htmlFor="commentInterest">Decsribe</label>
+                      <textarea
+                        name="commentInterest"
+                        cols={20}
+                        rows={4}
+                        required
+                      ></textarea>
+                    </div>
+                    <div>
+                      <button
+                        type="button"
+                        className="soitbt-2"
+                        style={{
+                          padding: "0.3rem",
+                          cursor: "pointer",
+                          width: "5rem",
+                        }}
+                        onClick={() => setShowModal(false)}
+                      >
+                        Close
+                      </button>
+                      <button
+                        type="submit"
+                        className="soitbt-1"
+                        style={{
+                          padding: "0.3rem",
+                          cursor: "pointer",
+                          width: "5rem",
+                        }}
+                      >
+                        {sending ? "...sending" : "Send"}
+                      </button>
+                    </div>
+                  </form>
+                )}
               </div>
             </div>
             <div className="divider-singel-object"></div>
@@ -191,7 +280,7 @@ const SingleObject = () => {
               />
             </div>
 
-            <h5 className="sameoffice">For sale from the same office</h5>
+            {/* <h5 className="sameoffice">For sale from the same office</h5> */}
             <div className="divider-singel-object"></div>
             <div className="brokers-divider"></div>
           </div>

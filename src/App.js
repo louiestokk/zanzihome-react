@@ -54,13 +54,13 @@ function App() {
         <Route path="/profile/:id">
           <Profile />
         </Route>
+        <Route path="/checkout">
+          <Checkcout />
+        </Route>
         <Route
           path="/propertys/zanzibar/:id"
           children={<SingleObject />}
         ></Route>
-        <Route path="/checkout">
-          <Checkcout />
-        </Route>
       </Switch>
       <Footer />
     </Router>

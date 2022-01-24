@@ -12,9 +12,11 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
   const [loading, setLoading] = useState(false);
   const [sended, setSended] = useState(false);
   const form = useRef();
-  const { company, sell, handleChange, price, setPrice } = useFormContext();
+  const { company, sell, handleChange, price, setPrice, adId, setAdId } =
+    useFormContext();
   const history = useHistory();
   const sendEmail = (e) => {
+    localStorage.setItem("zanzihomeAdId", adId);
     setLoading(true);
     e.preventDefault();
 
@@ -122,7 +124,6 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
 
             <label htmlFor="Rent">Rent out $50 1 year</label>
           </div>
-
           <h5>Adons</h5>
           <div
             className="form-div form-company"
@@ -206,6 +207,7 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
           <div className="form-control">
             <label htmlFor="Text">Text / Info</label>
             <textarea
+              style={{ borderradius: "5px 5px" }}
               type="text"
               name="Text"
               required
@@ -222,6 +224,15 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
               placeholder="ex: $10.000"
               value="$100.000"
               required
+            />
+          </div>
+
+          <div className="form-control">
+            <input
+              type="text"
+              name="adId"
+              value={adId}
+              style={{ display: "none" }}
             />
           </div>
           {!company && (

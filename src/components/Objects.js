@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { ImHome } from "react-icons/im";
 import { useGlobalContext } from "../context";
-import { useUserContext } from "../user_context";
 import { Link } from "react-router-dom";
 import { objects } from "../utils/data";
 const Objects = () => {
   const { propertys, setPropertys } = useGlobalContext();
   // if x && propertys ||
+  useEffect(() => {
+    setPropertys(objects);
+  }, []);
   return (
     <>
       <h4 className="antal-objects">{objects.length} properties</h4>
@@ -25,6 +27,7 @@ const Objects = () => {
             info,
             icon,
           } = object;
+
           return (
             <div className="objects" key={id}>
               <img src={url[0]} alt={location} />

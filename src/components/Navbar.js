@@ -4,6 +4,7 @@ import { navlinks } from "../utils/data";
 import { Link } from "react-router-dom";
 import { ImHome } from "react-icons/im";
 import { FiUser } from "react-icons/fi";
+import { RiAdvertisementLine } from "react-icons/ri";
 
 import { FaWindowClose } from "react-icons/fa";
 import { useGlobalContext } from "../context";
@@ -98,12 +99,24 @@ const Navbar = () => {
             <Link
               to={`/profile/${myUser.nickname}`}
               className="user-modal-link"
+              onClick={() => setShowUser(false)}
             >
               <FiUser className="fiUser" />
               <span> Account</span>
             </Link>
           </button>
-
+          <Link
+            to="/checkout"
+            className="user-modal-link"
+            style={{ display: "flex", alignItems: "center" }}
+            onClick={() => setShowUser(false)}
+          >
+            <RiAdvertisementLine
+              className="fiUser"
+              style={{ marginRight: "0.2rem" }}
+            />
+            <span>Advertise</span>
+          </Link>
           <button
             className="user-logout"
             onClick={() => logout({ returnTo: window.location.origin })}

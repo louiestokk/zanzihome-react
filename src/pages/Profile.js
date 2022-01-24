@@ -10,7 +10,7 @@ const Profile = () => {
   const { myUser, active, setActive } = useUserContext();
   const [items, setItem] = useState([]);
 
-  // för och kunna ta bort enstaka object måste objecten vara en state array och när man tar bort filterarar man ny array utan den man targit bort genom id och setItems me nya arrayn
+  // här skall du du se om det finns getItem('zanzihomeAdId') i localstorage och finns det så visa den under my ads och du måste skapa annonsen kunden skicka och ge den samma id och när sidan laddar så ligger annonsen uppe bland de andra annonserna  plus att kunden kan ha den i sina ads  i account
   const checkLocalStor = () => {
     const adspack = localStorage.getItem("adspack");
     if (adspack) {
