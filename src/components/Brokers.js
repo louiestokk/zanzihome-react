@@ -24,7 +24,7 @@ const Brokers = ({ agency, number, contact, logo }) => {
         </button>
         <button
           type="button"
-          onClick={(e) => (e.currentTarget.innerHTML = "contact@3m.com")}
+          onClick={(e) => (e.currentTarget.innerHTML = "contact@3m.tz")}
         >
           <AiOutlineMail className="icon-broker" /> Show e-mail
         </button>

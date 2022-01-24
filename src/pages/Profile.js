@@ -67,7 +67,7 @@ const Profile = () => {
         items.map((el) => {
           const r = objects.filter((ob) => ob.id === +el);
           return (
-            <div key={el}>
+            <div key={el.id} style={{ height: "100%" }}>
               {r.map((ob) => {
                 const image = ob.url[0].split("./")[1];
                 const { id, desc, price, location, size, to } = ob;
@@ -80,11 +80,20 @@ const Profile = () => {
                     <h4 style={{ opacity: "0.7" }}>
                       {desc} {location}
                     </h4>
-                    <p style={{ color: "rgb(124, 12, 20) " }}> {size} sq.m</p>
+
                     <p style={{ color: "green" }}>
                       {to === "Rent" ? `${price}$ / week` : `${price}.000$`}
                     </p>
-                    <Link to={`/propertys/zanzibar/${id}`}>more info</Link>
+                    <Link
+                      to={`/propertys/zanzibar/${id}`}
+                      style={{
+                        padding: "0.2rem",
+                        border: "1px solid green",
+                        borderRadius: "5px 5px",
+                      }}
+                    >
+                      more info
+                    </Link>
                   </div>
                 );
               })}
@@ -98,43 +107,36 @@ const Profile = () => {
           .filter((el) => el.id === +myAdsId[0])
           .map((ad) => {
             return (
-              <div
-                key={ad.id}
-                style={{
-                  boxShadow:
-                    "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
-                  border: "1px solid green",
-                  width: "100%",
-                  height: "180px",
-                  alignItems: "center",
-                  display: "flex",
-
-                  justifyContent: "space-evenly",
-                }}
-              >
-                {ad.active === true && <p style={{ color: "green" }}>Active</p>}
-                <span style={{ fontSize: "0.8rem" }}>Published: {ad.date}</span>
-                <p>{ad.desc}</p>
-                <p>{ad.size}sq.m</p>
-                <p>
-                  {ad.to === "Rent"
-                    ? `${ad.price}$ / week`
-                    : `${ad.price}.000$`}
-                </p>
-                <Link
-                  to={`/propertys/zanzibar/${ad.id}`}
-                  style={{
-                    color: "white",
-                    border: "1px solid green",
-                    width: "100px",
-                    textAlign: "center",
-                    borderRadius: "5px 5px",
-                    background: "green",
-                  }}
-                >
-                  more info
-                </Link>
-              </div>
+              <section className="saved-section">
+                <div key={ad.id} className="savedss">
+                  {ad.active === true && (
+                    <p style={{ color: "green" }}>Active</p>
+                  )}
+                  <span style={{ fontSize: "0.8rem" }}>
+                    Published: {ad.date}
+                  </span>
+                  <p>{ad.desc}</p>
+                  <p>{ad.size}sq.m</p>
+                  <p>
+                    {ad.to === "Rent"
+                      ? `${ad.price}$ / week`
+                      : `${ad.price}.000$`}
+                  </p>
+                  <Link
+                    to={`/propertys/zanzibar/${ad.id}`}
+                    style={{
+                      color: "white",
+                      border: "1px solid green",
+                      width: "100px",
+                      textAlign: "center",
+                      borderRadius: "5px 5px",
+                      background: "green",
+                    }}
+                  >
+                    more info
+                  </Link>
+                </div>
+              </section>
             );
           })}
     </Wrapper>
@@ -188,12 +190,12 @@ const Wrapper = styled.section`
     font-size: 1.2rem;
   }
   .saved-item {
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    border-bottom: 1px solid #0b8b3a;
+
     img {
       width: 4rem;
       height: 4rem;

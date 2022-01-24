@@ -4,7 +4,6 @@ import { useGlobalContext } from "../context";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { AiFillHeart } from "react-icons/ai";
-import { BsMap } from "react-icons/bs";
 
 import { FiUser } from "react-icons/fi";
 import Bid from "./Bid";
@@ -97,9 +96,6 @@ const SingleObject = () => {
         } = object;
         return (
           <div className="singel-object-container" key={id}>
-            <div className="singel-object-banner">
-              <h5>{agency}</h5>
-            </div>
             <div className="singel-object">
               <div className="single-object-img-container">
                 <img
@@ -156,11 +152,6 @@ const SingleObject = () => {
                   <AiFillHeart className="hjarta" />
                   Save
                 </button>
-                <div>
-                  <button>
-                    <BsMap /> Map
-                  </button>
-                </div>
               </div>
               <div className="singel-object-info">
                 <h2>

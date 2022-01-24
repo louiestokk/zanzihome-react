@@ -91,7 +91,7 @@ const CheckoutForm = () => {
     setError(event.error ? event.error.message : "");
   };
   return (
-    <div style={{ margin: "1rem auto", textAlign: "center", height: "540px" }}>
+    <div style={{ margin: "1rem auto", textAlign: "center", height: "400px" }}>
       {confirmAd && (
         <div style={{ margin: "1rem auto", color: "green", maxWidth: "300px" }}>
           <h4>Thank you for advertising. We have received your ad.</h4>
@@ -124,7 +124,10 @@ const CheckoutForm = () => {
       <form style={{ margin: "1rem auto" }} onSubmit={handleStripeSubmit}>
         <h5>{`Price: ${price}`}</h5>
         <p style={{ fontSize: "0.9rem", color: "green" }}>
-          Test card: 4242 4242 4242 4242 04/24 44444{" "}
+          Test card: 4242 4242 4242 4242
+        </p>
+        <p style={{ fontSize: "0.9rem", color: "green" }}>
+          <p style={{ fontSize: "0.9rem", color: "green" }}>04/24 44444</p>
         </p>
         <CardElement
           id="card-element"
@@ -177,7 +180,7 @@ const StripeCheckout = () => {
 
 const Wrapper = styled.section`
   form {
-    width: 50vw;
+    width: 100vw;
     align-self: center;
     box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
       0px 2px 5px 0px rgba(50, 50, 93, 0.1),
