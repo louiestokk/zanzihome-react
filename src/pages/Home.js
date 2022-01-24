@@ -4,7 +4,6 @@ import Propertyzanzibar from "./propertyzanzibar";
 const Home = () => {
   const { query, handleChange, handleSubmit } = useGlobalContext();
   const [size, setSize] = useState(window.innerWidth);
-  const screenWidth = window.innerWidth;
 
   useEffect(() => {
     const detectSize = window.addEventListener("resize", (e) => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import StripeCheckout from "../components/StripeCheckout";
 import AdsForm from "../components/AdsForm";

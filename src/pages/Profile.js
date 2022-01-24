@@ -70,7 +70,7 @@ const Profile = () => {
             <div key={el}>
               {r.map((ob) => {
                 const image = ob.url[0].split("./")[1];
-                const { id, url, info, desc, price, location, size, to } = ob;
+                const { id, desc, price, location, size, to } = ob;
                 return (
                   <div
                     key={id}

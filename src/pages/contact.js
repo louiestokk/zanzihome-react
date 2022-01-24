@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import PageHero from "../components/PageHero";
 import { HiArrowCircleDown } from "react-icons/hi";
 import { Link } from "react-router-dom";

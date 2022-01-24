@@ -3,8 +3,7 @@ import PageHero from "../components/PageHero";
 import { useUserContext } from "../user_context";
 import { HiArrowCircleDown } from "react-icons/hi";
 import { SiAdobepremierepro } from "react-icons/si";
-import { BsPatchPlusFill } from "react-icons/bs";
-import { FaDatabase } from "react-icons/fa";
+
 import { BsCheck } from "react-icons/bs";
 import { IoIosRocket } from "react-icons/io";
 import { FiRotateCw } from "react-icons/fi";

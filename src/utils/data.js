@@ -1,7 +1,7 @@
 import { AiOutlinePhone } from "react-icons/ai";
 import { BsSquare } from "react-icons/bs";
 import { ImHome } from "react-icons/im";
-import { MdBusiness } from "react-icons/md";
+
 export const navlinks = [
   { id: 1, text: "Home", url: "./" },
   {
@@ -46,6 +46,7 @@ export const objects = [
     number: +25577777777,
     logo: "/images/tripplemlogo.png",
     active: true,
+    coords: [-6.1448, 39.4948],
   },
   {
     id: 4,
@@ -64,6 +65,7 @@ export const objects = [
     agency: "Tripple M Limited",
     number: +25577777777,
     logo: "/images/tripplemlogo.png",
+    coords: [-5.0979, 39.7756],
   },
   {
     id: 5,

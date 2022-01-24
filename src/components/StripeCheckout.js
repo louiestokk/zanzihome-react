@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import styled from "styled-components";
-import { IoIosRocket } from "react-icons/io";
-import { FiRotateCw } from "react-icons/fi";
 import { useUserContext } from "../user_context";
 import { useFormContext } from "../form_ads_context";
 import {
@@ -159,11 +156,7 @@ const CheckoutForm = () => {
   );
 };
 const StripeCheckout = () => {
-  const random = Math.floor(Math.random() * 10000000);
   const [showText, setShowtext] = useState(true);
-  const pack = localStorage.getItem("adspack");
-
-  // använd pack från localstorage men bara if eller && om pack är defined för om det är undefined sett pris 50
 
   const hidetext = () => {
     setTimeout(() => {
