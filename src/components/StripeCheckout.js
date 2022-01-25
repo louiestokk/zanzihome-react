@@ -124,12 +124,7 @@ const CheckoutForm = () => {
 
       <form onSubmit={handleStripeSubmit} style={{ width: "100%" }}>
         <h5>{`Price: ${price}`}</h5>
-        <p style={{ fontSize: "0.9rem", color: "green" }}>
-          Test card: 4242 4242 4242 4242
-        </p>
-        <p style={{ fontSize: "0.9rem", color: "green" }}>
-          <p style={{ fontSize: "0.9rem", color: "green" }}>04/24 44444</p>
-        </p>
+
         <CardElement
           id="card-element"
           options={cardStyle}
