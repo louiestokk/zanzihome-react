@@ -12,7 +12,7 @@ exports.handler = async function (event, context) {
     const amount = JSON.parse(event.body);
     try {
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: Number(amount) * 100,
+        amount: Number(amount),
         currency: "usd",
       });
       return {
