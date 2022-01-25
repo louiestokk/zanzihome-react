@@ -15,7 +15,7 @@ import Price from "./pages/Price";
 import Guid from "./pages/Guid";
 import Build from "./pages/Build";
 import Foreginer from "./pages/Foreginer";
-
+import ErrorPage from "./pages/ErrorPage";
 function App() {
   return (
     <Router>
@@ -61,6 +61,9 @@ function App() {
           path="/propertys/zanzibar/:id"
           children={<SingleObject />}
         ></Route>
+        <Route path="*">
+          <ErrorPage />
+        </Route>
       </Switch>
       <Footer />
     </Router>

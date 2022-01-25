@@ -11,7 +11,8 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { useHistory } from "react-router-dom";
-
+//  username UID:  PK50165_13f9999571fb
+// password HhSB9JCaQBa14ish
 const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 const CheckoutForm = () => {
   const { myUser } = useUserContext();
@@ -121,7 +122,7 @@ const CheckoutForm = () => {
           mailet automatskt kopplat till användaren och annanonsen , sen små fix§
           och appen kan gå live */}
 
-      <form style={{ margin: "1rem auto" }} onSubmit={handleStripeSubmit}>
+      <form onSubmit={handleStripeSubmit} style={{ width: "100%" }}>
         <h5>{`Price: ${price}`}</h5>
         <p style={{ fontSize: "0.9rem", color: "green" }}>
           Test card: 4242 4242 4242 4242
@@ -179,6 +180,7 @@ const StripeCheckout = () => {
 };
 
 const Wrapper = styled.section`
+  width: 100;
   form {
     width: 100vw;
     align-self: center;
@@ -193,8 +195,8 @@ const Wrapper = styled.section`
     margin-bottom: 6px;
     padding: 12px;
     border: 1px solid rgba(50, 50, 93, 0.1);
-    max-height: 44px;
-    font-size: 12px;
+    height: 44px;
+    font-size: 6px;
     width: 100%;
     background: white;
     box-sizing: border-box;

@@ -81,21 +81,23 @@ function Advertise() {
           <div className="adons-container">
             <IoIosRocket style={{ fontSize: "1.4rem", color: "green" }} />
             <p>
-              <span style={{ fontWeight: "bold" }}>Rocket</span> Top 5 Rank
+              <span style={{ fontWeight: "bold" }}>Rocket</span> Top 3 Rank
             </p>
-            <span style={{ fontSize: "0.8rem" }}> (30 days)</span>
+            <span style={{ fontSize: "0.8rem" }}> (60 days)</span>
             <div>
-              <h5>$50</h5>
+              <h5>$100</h5>
             </div>
           </div>
 
           <div className="adons-container">
-            <FiRotateCw style={{ fontSize: "1.4rem", color: "green" }} />
+            <IoIosRocket style={{ fontSize: "1.4rem", color: "green" }} />
             <p>
-              <span style={{ fontWeight: "bold" }}>Renew</span> choosen ad
+              <span style={{ fontWeight: "bold" }}>Rocket</span> Top 10 Rank
             </p>
-            <span style={{ fontSize: "0.8rem" }}></span>
-            <h5> $ 50</h5>
+            <span style={{ fontSize: "0.8rem" }}> (60 days)</span>
+            <div>
+              <h5>$50</h5>
+            </div>
           </div>
         </div>
         <div className="ads-btn-container">

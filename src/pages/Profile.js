@@ -192,7 +192,7 @@ const Wrapper = styled.section`
   .saved-item {
     margin-bottom: 0.5rem;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
 
