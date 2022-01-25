@@ -84,20 +84,15 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
           </div>
           <div className="form-control">
             <label htmlFor="Name">{!company ? "Company name" : "Name"}</label>
-            <input type="text" name="Name" required value={"Louie"} />
+            <input type="text" name="Name" required />
           </div>
           <div className="form-control">
             <label htmlFor="Email">E-mail</label>
-            <input
-              type="email"
-              name="Email"
-              value={"louiestokk@gmail.com"}
-              required
-            />
+            <input type="email" name="Email" required />
           </div>
           <div className="form-control">
             <label htmlFor="Phone">Phone</label>
-            <input type="text" name="Phone" value={"0317539060"} required />
+            <input type="text" name="Phone" required />
           </div>
           <h5>Ad</h5>
           <div
@@ -167,7 +162,6 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
             <input
               type="text"
               name="Area"
-              value="Michamvi"
               placeholder="ex: Jambiani"
               required
             />
@@ -177,7 +171,6 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
             <input
               type="text"
               name="Adress"
-              value="Summer beach Paje"
               placeholder="ex: exampleroad 22"
               required
             />
@@ -199,7 +192,6 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
             <input
               type="text"
               name="Title"
-              value="Big Beach Plot Michamvi"
               placeholder="ex: House for sale in Paje close by beach"
               required
             />
@@ -213,12 +205,11 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
               required
               rows="12"
               cols="60"
-              value="Beach plot in Michamvi 7500sq.m 80mx80m."
             />
           </div>
           <div className="form-control">
             <label htmlFor="Price">Price USD $</label>
-            <input type="text" name="Price" value="$550.000" required />
+            <input type="text" name="Price" required />
           </div>
 
           <div className="form-control">
