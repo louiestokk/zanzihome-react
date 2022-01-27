@@ -1,44 +1,147 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
-import background from "../utils/filterBackground.jpg";
-import { useGlobalContext } from "../context";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { BsFillHouseDoorFill } from "react-icons/bs";
+import { MdApartment } from "react-icons/md";
+import { MdOutlineHouseSiding } from "react-icons/md";
+import { GiIsland } from "react-icons/gi";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import { MdKeyboardArrowUp } from "react-icons/md";
 import { objects } from "../utils/data";
 import styled from "styled-components";
+import { useGlobalContext } from "../context";
 const Filter = () => {
-  const [showFilter, setShowFilter] = useState(false);
-  const handleClick = (e) => {};
+  const { setPropertys, propertys } = useGlobalContext();
+  const [showList, setShowList] = useState(false);
+  const [rental, setRental] = useState(false);
+  const [size, setSize] = useState(0);
+  const [extendFilter, setExtendFilter] = useState(false);
+  const [active, setActive] = useState(true);
+  const [alertmsg, setAlertMsg] = useState(false);
+  const handleClick = (e) => {
+    if (e.currentTarget.className === "loc-btn") {
+      const newitems = objects.filter(
+        (el) => el.location === e.currentTarget.textContent
+      );
+      setPropertys(newitems);
+    }
+    if (e.currentTarget.className === "btn") {
+      const newitems = objects.filter(
+        (el) => el.type === e.currentTarget.textContent
+      );
+      if (newitems.length === 0) {
+        setAlertMsg(!alertmsg);
+      }
+      setPropertys(newitems);
+    }
+    setTimeout(() => {
+      setAlertMsg(false);
+    }, 5000);
+    if (e.currentTarget.className === "btn") {
+      const newitem = objects.filter(
+        (el) => el.type === e.currentTarget.textContent
+      );
+      setPropertys(newitem);
+    }
+  };
+
+  // filter all selectors with that have onclick and use the event target to filter
+
+  const handleChange = (e) => {};
+
   return (
-    <Wrapper className="filter-filter-holder">
+    <Wrapper
+      className="filter-filter-holder"
+      style={{ height: extendFilter && "680px" }}
+    >
       <article className="buttons">
-        <button type="button" className="button">
+        <button
+          type="button"
+          className={active ? "button active" : "button"}
+          onClick={() => setActive(true)}
+        >
           Sale
         </button>
-        <button type="button" className="button">
+        <button
+          type="button"
+          className={!active ? "button active" : "button"}
+          onClick={() => setActive(false)}
+        >
           Rental
         </button>
       </article>
-      <div className="holder">
-        <article className="filter">
-          <div
-            style={{
-              display: "flex",
-              width: "100%",
-              alignItems: "center",
-            }}
-          >
-            <h4>Area</h4>
+      <div className="holder" style={{ height: extendFilter && "520px" }}>
+        <article className="filter" style={{ marginBottom: "1rem" }}>
+          {!alertmsg ? (
             <div
               style={{
                 display: "flex",
+                width: "100%",
                 alignItems: "center",
-                marginLeft: "1rem",
               }}
             >
-              <FaBars />
-              <p>Select from list</p>
+              <h4 style={{ marginLeft: "0.5rem" }}>Area</h4>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginLeft: "1rem",
+                }}
+              >
+                <FaBars
+                  style={{ color: "#0369A1", cursor: "pointer" }}
+                  onClick={() => setShowList(!showList)}
+                />
+                <p style={{ marginLeft: "0.2rem", fontSize: "0.8rem" }}>
+                  Select from list
+                </p>
+              </div>
             </div>
-          </div>
+          ) : (
+            <p
+              style={{ textAlign: "center", color: "red", fontSize: "0.9rem" }}
+            >
+              Sorry no objects for the moment for this search citeria. Please
+              other serach criteria.
+            </p>
+          )}
+          {showList && (
+            <div
+              style={{
+                background: "white",
+                height: "1rem",
+                width: "100%",
+                fontSize: "0.9rem",
+                marginBottom: "1.5rem",
+                flexWrap: "wrap",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              {Array.from(new Set(objects.map((el) => el.location))).map(
+                (el) => {
+                  return (
+                    <button
+                      type="button"
+                      className="loc-btn"
+                      key={el}
+                      onClick={handleClick}
+                    >
+                      {el}
+                    </button>
+                  );
+                }
+              )}
+              <button
+                type="button"
+                className="loc-btn"
+                onClick={() => setPropertys(objects)}
+              >
+                All
+              </button>
+            </div>
+          )}
           <div style={{ position: "relative" }} className="filter">
             <div
               style={{
@@ -52,48 +155,158 @@ const Filter = () => {
               }}
             >
               <BiSearch style={{ marginRight: "1rem" }} />
-              <p
-                style={{
-                  fontSize: "1rem",
-                  color: "gray",
-                  letterSpacing: "1px",
-                  opacity: "0.7",
-                }}
-              >
-                Write area or address
-              </p>
             </div>
 
-            <input type="text" />
+            <input type="text" placeholder="Write adress or are" />
           </div>
         </article>
-        <article className="filter">
-          {Array.from(new Set(objects.map((el) => el.type))).map(
-            (object, ind) => {
-              return (
-                <buttont
-                  key={ind}
-                  type="button"
-                  id={object.typ}
-                  onClick={handleClick}
-                >
-                  {object}
-                </buttont>
-              );
-            }
-          )}
+        <article
+          className="filter"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
+        >
+          <button
+            className="btn"
+            type="button"
+            onClick={() => setPropertys(objects)}
+          >
+            <BsThreeDotsVertical />
+            <span style={{ fontSize: "0.85rem" }}>All types</span>
+          </button>
+          <button className="btn" type="button" onClick={handleClick}>
+            <BsFillHouseDoorFill
+              style={{ color: "#0b8b3a", marginLeft: "0.25rem" }}
+            />
+            <span style={{ fontSize: "0.85rem", marginLeft: "0.25rem" }}>
+              House
+            </span>
+          </button>
+          <button className="btn" type="button" onClick={handleClick}>
+            <MdApartment
+              style={{
+                color: "#0369A1",
+                fontSize: "1.2rem",
+                marginLeft: "0.25rem",
+              }}
+            />
+            <span style={{ fontSize: "0.85rem" }}>Apartment</span>
+          </button>
+          <button className="btn" type="button" onClick={handleClick}>
+            <MdOutlineHouseSiding
+              style={{
+                color: "#15803D",
+                fontSize: "1.4rem",
+                marginLeft: "0.25rem",
+              }}
+            />
+            <span style={{ fontSize: "0.85rem" }}>Bangalow</span>
+          </button>
+          <button className="btn" type="button" onClick={handleClick}>
+            <GiIsland
+              style={{
+                color: "#65A30D",
+                fontSize: "1.6rem",
+                marginLeft: "0.4rem",
+              }}
+            />
+            <span style={{ fontSize: "0.85rem", marginLeft: "0.3rem" }}>
+              Land
+            </span>
+          </button>
         </article>
+        {extendFilter && (
+          <article className="filters">
+            <div className="choice">
+              <label htmlFor="size">Minimum size sq.m</label>
+              <select name="size" value={size} onChange={handleChange}>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="300">300</option>
+                <option value="1000">1000</option>
+                <option value="2000">2000</option>
+                <option value="3000">30000</option>
+                <option value="10000">10.000</option>
+              </select>
+            </div>
+            <div className="choice">
+              <label htmlFor="min">Maximum price $</label>
+              <select name="size" value={size} onChange={handleChange}>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="300">300</option>
+                <option value="1000">1000</option>
+                <option value="2000">2000</option>
+                <option value="3000">30000</option>
+                <option value="10000">10.000</option>
+                <option value="50000">50.000</option>
+                <option value="100000">100.000</option>
+              </select>
+            </div>
+          </article>
+        )}
+
+        {extendFilter && (
+          <div className="query">
+            <label htmlFor="query" style={{ marginLeft: "0.5rem" }}>
+              Query
+            </label>
+            <input
+              type="text"
+              placeholder="Beach, city, balkony etc"
+              style={{ width: "70%", margin: "1rem 0rem", textAlign: "center" }}
+            />
+          </div>
+        )}
+        <p
+          className="extend"
+          style={{
+            textAlign: "center",
+            fontSize: "0.9rem",
+            color: "#0369A1",
+            cursor: "pointer",
+            margin: "0.3rem 0",
+          }}
+          onClick={() => setExtendFilter(!extendFilter)}
+        >
+          {!extendFilter && (
+            <>
+              Extend filter
+              <MdKeyboardArrowDown />
+            </>
+          )}
+          {extendFilter && (
+            <>
+              Reduce filter <MdKeyboardArrowUp />
+            </>
+          )}
+        </p>
+        <button type="button" className="submit">
+          {rental ? "Find property for rent" : "Find properties for sale"}
+        </button>
+        <div className={showList ? "selectlist " : "selectlist "}>
+          provar vara
+        </div>
       </div>
     </Wrapper>
   );
 };
+
 export default Filter;
 const Wrapper = styled.section`
-  height: 460px;
+  height: 510px;
   width: 100%;
+  transition: all 0.4s linear;
   .button {
-    width: 8rem;
     height: 3rem;
+    width: 8rem;
     color: #0b8b3a;
     font-weight: bold;
     background: white;
@@ -101,19 +314,93 @@ const Wrapper = styled.section`
     margin-top: 2rem;
     margin-bottom: 0rem;
     border: none;
+    opacity: 0.82;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   }
   .holder {
     background: white;
-    height: 320px;
-    width: 85%;
+    height: 380px;
+    width: 600px;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    border-radius: 5px 5px;
+    border: none;
+    overflow: hidden;
+    transition: all 0.4s linear;
   }
   .filter {
-    margin: 1rem 1rem;
+    margin: 1rem 0.2rem;
+    width: 100%;
   }
   input {
-    width: 100%;
     height: 3rem;
+    width: 94%;
+    border: 2px solid #0b8b3a;
+    text-align: center;
+  }
+  .btn {
+    background: #f3f4f6;
+    height: 2.4rem;
+    width: 8rem;
+    margin: 0.3rem 0.3rem;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+  }
+  .submit {
+    width: 96%;
+    background: #0b8b3a;
+    height: 3rem;
+    color: white;
+    box-shadow: none;
+    opacity: 0.9;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+  }
+  .choice {
+    display: flex;
+    flex-direction: column;
+  }
+  .filters {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  select {
+    width: 140px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    background: #f3f4f6;
+    margin-bottom: 0.5rem;
+  }
+  label {
+    font-size: 0.9rem;
+  }
+  .query {
+    display: flex;
+    align-items: center;
+  }
+  .active {
+    background: #0b8b3a;
+    color: white;
+    opacity: 1;
+  }
+  .loc-btn {
+    margin-bottom: 1rem;
+    color: #0369a1;
+    cursor: pointer;
+  }
+  .loc-btn:hover {
+    border-bottom: 1px solid #0369a1;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .holder {
+      width: 96vw;
+    }
+  }
+  @media only screen and (min-width: 600px) {
+    select {
+      width: 220px;
+    }
   }
 `;
