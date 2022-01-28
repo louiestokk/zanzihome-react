@@ -16,18 +16,24 @@ const Filter = () => {
   const [showList, setShowList] = useState(false);
   const [rental, setRental] = useState(false);
   const [size, setSize] = useState(0);
+  const [price, setprice] = useState(0);
   const [extendFilter, setExtendFilter] = useState(false);
   const [active, setActive] = useState(true);
   const [alertmsg, setAlertMsg] = useState(false);
+  const [adressQuery, setAdressQuery] = useState();
+  const [query, setQuery] = useState();
+  const defaultSize = 20;
+  const defaultprice = 20;
   const handleClick = (e) => {
     if (e.currentTarget.className === "loc-btn") {
-      const newitems = objects.filter(
+      const newitems = propertys.filter(
         (el) => el.location === e.currentTarget.textContent
       );
+
       setPropertys(newitems);
     }
     if (e.currentTarget.className === "btn") {
-      const newitems = objects.filter(
+      const newitems = propertys.filter(
         (el) => el.type === e.currentTarget.textContent
       );
       if (newitems.length === 0) {
@@ -38,17 +44,48 @@ const Filter = () => {
     setTimeout(() => {
       setAlertMsg(false);
     }, 5000);
-    if (e.currentTarget.className === "btn") {
-      const newitem = objects.filter(
-        (el) => el.type === e.currentTarget.textContent
-      );
-      setPropertys(newitem);
+    if (e.currentTarget.className === "button") {
+      setActive(!active);
     }
   };
 
-  // filter all selectors with that have onclick and use the event target to filter
+  const handleSubmit = () => {
+    // if (adressQuery) {
+    //   const newItems = objects.filter(
+    //     (el) =>
+    //       el.location ===
+    //       adressQuery.charAt(0).toUpperCase() + adressQuery.slice(1)
+    //   );
+    //   setPropertys(newItems);
+    // }
+    if (query) {
+      const newitems = propertys.filter((el) => el.query.includes(query));
+      setPropertys(newitems);
+    }
+  };
 
-  const handleChange = (e) => {};
+  const handleChange = (e) => {
+    if ((e.currentTarget.className = "querys area")) {
+      const query =
+        e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
+      const newitems = objects.filter((el) => el.location === query);
+      setPropertys(newitems);
+    }
+  };
+  const handleSizePrice = (e) => {
+    if (e.currentTarget.name === "size") {
+      const newitems = propertys.filter(
+        (el) => +el.size >= Number(e.currentTarget.value)
+      );
+      setPropertys(newitems);
+    }
+    if (e.currentTarget.name === "price") {
+      const newitems = propertys.filter(
+        (el) => el.price * 1000 <= +e.currentTarget.value
+      );
+      setPropertys(newitems);
+    }
+  };
 
   return (
     <Wrapper
@@ -59,14 +96,20 @@ const Filter = () => {
         <button
           type="button"
           className={active ? "button active" : "button"}
-          onClick={() => setActive(true)}
+          onClick={() => {
+            setActive(!active);
+            setPropertys(objects.filter((el) => el.to === "Buy"));
+          }}
         >
           Sale
         </button>
         <button
           type="button"
           className={!active ? "button active" : "button"}
-          onClick={() => setActive(false)}
+          onClick={() => {
+            setActive(!active);
+            setPropertys(objects.filter((el) => el.to === "Rent"));
+          }}
         >
           Rental
         </button>
@@ -151,13 +194,19 @@ const Filter = () => {
                 fontSize: "1.3rem",
                 color: "gray",
                 display: "flex",
+
                 alignItems: "center",
               }}
             >
               <BiSearch style={{ marginRight: "1rem" }} />
             </div>
 
-            <input type="text" placeholder="Write adress or are" />
+            <input
+              type="text"
+              placeholder="Search area"
+              onChange={handleChange}
+              className="querys area"
+            />
           </div>
         </article>
         <article
@@ -222,7 +271,7 @@ const Filter = () => {
           <article className="filters">
             <div className="choice">
               <label htmlFor="size">Minimum size sq.m</label>
-              <select name="size" value={size} onChange={handleChange}>
+              <select name="size" value={size} onChange={handleSizePrice}>
                 <option value="20">20</option>
                 <option value="50">50</option>
                 <option value="100">100</option>
@@ -236,7 +285,7 @@ const Filter = () => {
             </div>
             <div className="choice">
               <label htmlFor="min">Maximum price $</label>
-              <select name="size" value={size} onChange={handleChange}>
+              <select name="price" value={price} onChange={handleSizePrice}>
                 <option value="20">20</option>
                 <option value="50">50</option>
                 <option value="100">100</option>
@@ -248,6 +297,7 @@ const Filter = () => {
                 <option value="10000">10.000</option>
                 <option value="50000">50.000</option>
                 <option value="100000">100.000</option>
+                <option value="1000000">1.000 000</option>
               </select>
             </div>
           </article>
@@ -260,8 +310,15 @@ const Filter = () => {
             </label>
             <input
               type="text"
-              placeholder="Beach, city, balkony etc"
-              style={{ width: "70%", margin: "1rem 0rem", textAlign: "center" }}
+              placeholder="Beach, parking etc"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              style={{
+                width: "70%",
+                margin: "1rem 0rem",
+                textAlign: "center",
+                textTransform: "lowercase",
+              }}
             />
           </div>
         )}
@@ -288,12 +345,41 @@ const Filter = () => {
             </>
           )}
         </p>
-        <button type="button" className="submit">
+
+        <button type="button" className="submit" onClick={handleSubmit}>
           {rental ? "Find property for rent" : "Find properties for sale"}
         </button>
-        <div className={showList ? "selectlist " : "selectlist "}>
-          provar vara
-        </div>
+        {propertys.length === 0 && (
+          <div
+            style={{
+              display: "flex",
+              margin: "0 auto",
+              justifyContent: "center",
+            }}
+          >
+            <p
+              style={{
+                textAlign: "center",
+                color: "red",
+                fontSize: "0.8rem",
+                margin: "0 0",
+              }}
+            >
+              No result match you search citeria. Clear filter and start over
+            </p>
+            <button
+              onClick={() => setPropertys(objects)}
+              style={{
+                margin: "0 0.5rem",
+                border: "1px solid red",
+                padding: "0.1rem",
+                color: "red",
+              }}
+            >
+              clear filter
+            </button>
+          </div>
+        )}
       </div>
     </Wrapper>
   );
@@ -384,6 +470,10 @@ const Wrapper = styled.section`
     color: white;
     opacity: 1;
   }
+  .area {
+    text-transform: capitalized;
+  }
+
   .loc-btn {
     margin-bottom: 1rem;
     color: #0369a1;

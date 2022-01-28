@@ -48,7 +48,9 @@ const Objects = () => {
                   {icon} {desc}
                 </p>
                 <div className="objects-footer">
-                  <span>{price}.000$</span>
+                  <span>
+                    {to === "Rent" ? `$${price}/week` : `$${price}.000`}
+                  </span>
                   <span>{size}sqm</span>
                   <span>{type}</span>
                 </div>

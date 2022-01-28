@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "../context";
 import Propertyzanzibar from "./propertyzanzibar";
-
+import AdBanner from "../components/AdBanner";
 import image from "../utils/zanzibarisland.jpg";
 const Home = () => {
   const { query, handleChange, handleSubmit } = useGlobalContext();
@@ -17,9 +17,7 @@ const Home = () => {
   }, [size]);
   return (
     <div>
-      {/* <div className="hembanner-banner">
-        <img src={image} />
-      </div> */}
+      {/* <AdBanner /> */}
       <Propertyzanzibar />
     </div>
   );
