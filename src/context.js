@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { objects } from "./utils/data";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import axios from "axios";
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
@@ -36,7 +36,17 @@ const AppProvider = ({ children }) => {
   const handleChange = (e) => {
     console.log(e.target.value);
   };
-
+  const fetchFromserver = async () => {
+    try {
+      const { data } = await axios("http://localhost:3000/objects");
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchFromserver();
+  }, []);
   //
   return (
     <AppContext.Provider

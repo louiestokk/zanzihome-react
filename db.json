@@ -1,0 +1,30 @@
+{
+  "objects": [
+    {
+      "id": 3,
+      "contact": "Gerrard Mzee",
+      "agency": "Tripple M Limited",
+      "number": "+255 799 912 498",
+      "date": 2110,
+      "url": ["./images/object-3.jpg"],
+      "location": "Paje",
+      "price": 130,
+      "size": 2500,
+      "type": "Land",
+      "logo": "/images/tripplemlogo.png",
+      "to": "Buy",
+      "desc": "Beach front plot",
+      "info": "Beach front plot in Paje Zanzibar with palms and other trees. Here yoou can build club, restaurant and bangalow , barhroomhouse and hotell. Located in were popular area with lot of thigs to do",
+      "query": [
+        "shopping,restaurants",
+        "supermarket",
+        "pharmacy",
+        "hospital",
+        "forest"
+      ]
+    }
+  ],
+
+  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
+  "profile": { "name": "typicode" }
+}
