@@ -36,17 +36,14 @@ const AppProvider = ({ children }) => {
   const handleChange = (e) => {
     console.log(e.target.value);
   };
-  const fetchFromserver = async () => {
-    try {
-      const { data } = await axios("http://localhost:3000/objects");
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    fetchFromserver();
-  }, []);
+  // const fetchFromserver = async () => {
+  //   try {
+  //     const { data } = await axios("http://localhost:3000/objects");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   //
   return (
     <AppContext.Provider
