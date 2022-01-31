@@ -143,10 +143,15 @@ const Filter = () => {
             </div>
           ) : (
             <p
-              style={{ textAlign: "center", color: "red", fontSize: "0.9rem" }}
+              style={{
+                margin: "0 auto",
+                color: "red",
+                fontSize: "0.8rem",
+                maxWidth: "300px",
+              }}
             >
               Sorry no objects for the moment for this search citeria. Please
-              other serach criteria.
+              try another search criteria.
             </p>
           )}
           {showList && (
@@ -361,7 +366,7 @@ const Filter = () => {
               style={{
                 textAlign: "center",
                 color: "red",
-                fontSize: "0.8rem",
+                fontSize: "0.75rem",
                 margin: "0 0",
               }}
             >
