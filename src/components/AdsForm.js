@@ -1,20 +1,22 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useFormContext } from "../form_ads_context";
 import { RiAdvertisementFill } from "react-icons/ri";
 import emailjs from "@emailjs/browser";
 import { BsFillCameraFill } from "react-icons/bs";
-import { BsFillPlusSquareFill } from "react-icons/bs";
 import { useHistory } from "react-router-dom";
+
 import { init } from "@emailjs/browser";
 init("user_a9rRSeZcRVhTLpSYxEfo8");
 const AdsForm = ({ setActiveStep, setAmount }) => {
   const [accept, setAccept] = useState(true);
   const [loading, setLoading] = useState(false);
   const [sended, setSended] = useState(false);
+  const [firebaseData, setFirebaseData] = useState([]);
   const form = useRef();
+  const history = useHistory();
   const { company, sell, handleChange, price, setPrice, adId, setAdId } =
     useFormContext();
-  const history = useHistory();
+
   const sendEmail = (e) => {
     localStorage.setItem("zanzihomeAdId", adId);
     setLoading(true);
