@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { ImHome } from "react-icons/im";
+import { BsSquare } from "react-icons/bs";
 import { useGlobalContext } from "../context";
 import { Link } from "react-router-dom";
 import { objects } from "../utils/data";
@@ -45,7 +46,14 @@ const Objects = () => {
                   </div>
                 </div>
                 <p>
-                  {icon} {desc}
+                  {type === "House" ? (
+                    <ImHome style={{ color: "#22c55e" }} />
+                  ) : (
+                    <BsSquare
+                      style={{ color: "#22c55e", background: "#22c55e" }}
+                    />
+                  )}{" "}
+                  {desc}
                 </p>
                 <div className="objects-footer">
                   <span>
