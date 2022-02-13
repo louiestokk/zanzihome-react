@@ -3,16 +3,12 @@ import { ImHome } from "react-icons/im";
 import { BsSquare } from "react-icons/bs";
 import { useGlobalContext } from "../context";
 import { Link } from "react-router-dom";
-import { objects } from "../utils/data";
+
 const Objects = () => {
   const { propertys, setPropertys } = useGlobalContext();
-  // if x && propertys ||
-  useEffect(() => {
-    setPropertys(objects);
-  }, []);
   return (
     <>
-      <h4 className="antal-objects">{objects.length} properties</h4>
+      <h4 className="antal-objects">{propertys.length} properties</h4>
       <div className="objects-container">
         {propertys.map((object) => {
           const {
@@ -31,7 +27,10 @@ const Objects = () => {
 
           return (
             <div className="objects" key={id}>
-              <img src={url[0]} alt={location} />
+              <img
+                src={url.includes("firebase") ? url[1] : url[0]}
+                alt={location}
+              />
               <div className="objects-footer-first">
                 <div className="objects-logo">
                   <h3 className="object-location-text">{location}</h3>

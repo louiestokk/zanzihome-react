@@ -6,7 +6,7 @@ import { Paper, Stepper, Step, StepLabel } from "@material-ui/core";
 import { useFormContext } from "../form_ads_context";
 const steps = ["Ads content", "Payment"];
 
-const Checkcout = () => {
+const Checkcout = ({ logedinUser }) => {
   const { activeStep, setActiveStep } = useFormContext();
   return (
     <Wrapper>
@@ -22,7 +22,12 @@ const Checkcout = () => {
         </Stepper>
       </Paper>
       {activeStep === 0 && <AdsForm setActiveStep={setActiveStep} />}
-      {activeStep === 1 && <StripeCheckout setActiveStep={setActiveStep} />}
+      {activeStep === 1 && (
+        <StripeCheckout
+          setActiveStep={setActiveStep}
+          logedinUser={logedinUser}
+        />
+      )}
     </Wrapper>
   );
 };

@@ -14,7 +14,7 @@ import { useUserContext } from "../user_context";
 import { init } from "@emailjs/browser";
 init("user_a9rRSeZcRVhTLpSYxEfo8");
 
-const SingleObject = () => {
+const SingleObject = ({ logedinUser, signIn }) => {
   const { propertys, setPropertys } = useGlobalContext();
   const { saved, setSaved, myUser, loginWithRedirect } = useUserContext();
   const [index, setIndex] = useState(0);
@@ -94,12 +94,13 @@ const SingleObject = () => {
           number,
           logo,
         } = object;
+
         return (
           <div className="singel-object-container" key={id}>
             <div className="singel-object">
               <div className="single-object-img-container">
                 <img
-                  src={`../.${url[index]}`}
+                  src={url.includes("firebase") ? url[1] : `../.${url[index]}`}
                   style={{ backgroundPosition: "cover", maxHeight: "500px" }}
                 />
                 {index > 0 && (
@@ -135,7 +136,7 @@ const SingleObject = () => {
               <div className="singel-object-heartmap">
                 <button
                   onClick={(e) => {
-                    if (myUser) {
+                    if (logedinUser.displayName) {
                       e.currentTarget.children[0].classList.toggle(
                         "fill-hjarta"
                       );

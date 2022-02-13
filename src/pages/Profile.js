@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useUserContext } from "../user_context";
-
 import styled from "styled-components";
 import { BsHeart } from "react-icons/bs";
 import { RiAdvertisementLine } from "react-icons/ri";
 import { objects } from "../utils/data";
 import { Link } from "react-router-dom";
-const Profile = () => {
+import { useGlobalContext } from "../context";
+const Profile = ({ logedinUser }) => {
+  const { propertys, fetchDataFirebase } = useGlobalContext();
   const { myUser, active, setActive } = useUserContext();
   const [items, setItem] = useState([]);
   const [myAdsId, setMyAdsId] = useState([]);
-
+  useEffect(() => {
+    fetchDataFirebase();
+  }, []);
   useEffect(() => {
     if (localStorage.getItem("zanzihomeAdId")) {
       setMyAdsId([localStorage.getItem("zanzihomeAdId")]);
@@ -19,24 +22,28 @@ const Profile = () => {
       setItem([localStorage.getItem("zanzihomeSaved")]);
     }
   }, []);
-
+  localStorage.setItem("zanzihomeAdId", 808256);
   return (
     <Wrapper>
-      <h2>Welcome {myUser && myUser.nickname}</h2>
+      <h2>Welcome {logedinUser.displayName && logedinUser.displayName}</h2>
       <div
         className="divider"
         style={{ margin: "0 auto", width: "8rem" }}
       ></div>
       <div className="user-profile-info" style={{ height: "200px" }}>
         <div>
-          <img src={myUser && myUser.picture} alt="user icon" />
+          <img
+            src={logedinUser.displayName && logedinUser.photoURL}
+            alt="user icon"
+          />
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <p>
-            Name: <span> {myUser && myUser.nickname}</span>
+            Name:
+            <span> {logedinUser.displayName && logedinUser.displayName}</span>
           </p>
           <p>
-            Email: <span> {myUser && myUser.email}</span>
+            Email: <span>{logedinUser.displayName && logedinUser.email} </span>
           </p>
         </div>
       </div>
@@ -62,10 +69,10 @@ const Profile = () => {
           </button>
         </div>
       </article>
-      {items.length >= 1 &&
+      {items &&
         active &&
         items.map((el) => {
-          const r = objects.filter((ob) => ob.id === +el);
+          const r = propertys.filter((ob) => ob.id === +el);
           return (
             <div key={el.id} style={{ height: "100%" }}>
               {r.map((ob) => {
@@ -101,9 +108,9 @@ const Profile = () => {
           );
         })}
 
-      {myAdsId.length >= 1 &&
+      {myAdsId &&
         !active &&
-        objects
+        propertys
           .filter((el) => el.id === +myAdsId[0])
           .map((ad) => {
             return (

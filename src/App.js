@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/about";
@@ -16,10 +16,49 @@ import Guid from "./pages/Guid";
 import Build from "./pages/Build";
 import Foreginer from "./pages/Foreginer";
 import ErrorPage from "./pages/ErrorPage";
+import { app } from "./components/firebaseConfig";
+import { useHistory } from "react-router-dom";
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut,
+} from "firebase/auth";
+
 function App() {
+  const [logedinUser, setLogedinUser] = useState({});
+  const [loading, setLoading] = useState(false);
+  const history = useHistory();
+  const auth = getAuth();
+  const provider = new GoogleAuthProvider();
+  const signIn = () => {
+    setLoading(true);
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        setLogedinUser(user);
+        setLoading(false);
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+  };
+
   return (
     <Router>
-      <Navbar />
+      <Navbar signIn={signIn} logedinUser={logedinUser} loading={loading} />
       <Switch>
         <Route path="/" exact>
           <Home />
@@ -52,14 +91,15 @@ function App() {
           <Foreginer />
         </Route>
         <Route path="/profile/:id">
-          <Profile />
+          <Profile logedinUser={logedinUser} />
         </Route>
         <Route path="/checkout">
-          <Checkcout />
+          <Checkcout logedinUser={logedinUser} />
         </Route>
+
         <Route
           path="/propertys/zanzibar/:id"
-          children={<SingleObject />}
+          children={<SingleObject logedinUser={logedinUser} signIn={signIn} />}
         ></Route>
         <Route path="*">
           <ErrorPage />

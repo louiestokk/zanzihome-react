@@ -1,9 +1,17 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useFormContext } from "../form_ads_context";
 import { RiAdvertisementFill } from "react-icons/ri";
 import emailjs from "@emailjs/browser";
 import { BsFillCameraFill } from "react-icons/bs";
 import { useHistory } from "react-router-dom";
+import { useGlobalContext } from "../context";
+import { app } from "./firebaseConfig";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
 import { init } from "@emailjs/browser";
 init("user_a9rRSeZcRVhTLpSYxEfo8");
@@ -11,7 +19,7 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
   const [accept, setAccept] = useState(true);
   const [loading, setLoading] = useState(false);
   const [sended, setSended] = useState(false);
-  const [firebaseData, setFirebaseData] = useState([]);
+  const [progress, setProgress] = useState(0);
   const form = useRef();
   const history = useHistory();
   const { company, sell, handleChange, price, setPrice, adId, setAdId } =
@@ -20,7 +28,6 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
   const sendEmail = (e) => {
     localStorage.setItem("zanzihomeAdId", adId);
     setLoading(true);
-    e.preventDefault();
 
     emailjs
       .sendForm(
@@ -43,12 +50,55 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
       );
   };
 
+  const storage = getStorage();
+  const { writeNewObject } = useGlobalContext();
+
+  const uploadFile = (file) => {
+    if (!file) return;
+    const storageRef = ref(storage, `/files/${adId}/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const prog = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgress(prog);
+      },
+      (err) => console.log(err),
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => console.log(url));
+      }
+    );
+  };
+  const handleFile = (e) => {
+    uploadFile(e.target.files[0]);
+  };
+
+  // new image
+
   return (
     <>
       <form
         className={sended ? "ad-form-in hidden" : "ad-form-in"}
         ref={form}
-        onSubmit={sendEmail}
+        onSubmit={(e) => {
+          e.preventDefault();
+          sendEmail();
+          writeNewObject(
+            e.target.elements[17].value,
+            e.target.elements[3].value,
+            e.target.elements[4].value,
+            e.target.elements[5].value,
+            e.target.elements[10].value,
+            e.target.elements[11].value,
+            e.target.elements[12].value,
+            e.target.elements[13].value,
+            e.target.elements[14].value,
+            e.target.elements[15].value,
+            e.target.elements[16].value
+          );
+        }}
       >
         <div className="step-container">
           <div className="form-header">
@@ -231,16 +281,18 @@ const AdsForm = ({ setActiveStep, setAmount }) => {
         </div>
 
         <div style={{ marginLeft: "1rem", height: "360px", marginTop: "4rem" }}>
-          <h5>Images</h5>
+          {progress > 0 ? <h5> Uploaded {progress}%</h5> : <h5>Images</h5>}
           <div style={{ display: "flex" }}>
             <div className="up-image">
               <BsFillCameraFill />
               <input
                 type="file"
                 style={{
-                  fontSize: "0.8rem",
-                  marginLeft: "1rem",
+                  fontSize: "0.6rem",
+                  marginTop: "0.5rem",
+                  width: "4rem",
                 }}
+                onChange={(e) => handleFile(e)}
               />
             </div>
           </div>

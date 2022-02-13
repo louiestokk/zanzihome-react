@@ -1,10 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
-
 import { useAuth0 } from "@auth0/auth0-react";
-import axios from "axios";
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { objects } from "./utils/data";
+import {
+  getDatabase,
+  ref,
+  onValue,
+  set,
+  child,
+  push,
+  update,
+} from "firebase/database";
+
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
@@ -15,36 +21,59 @@ const AppProvider = ({ children }) => {
   const [index, setIndex] = useState(0);
   const [savedItemsArray, setSavedItemsArray] = useState([]);
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   //firebase
-  const firebaseConfig = {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: "food-a14ec.firebaseapp.com",
-    databaseURL:
-      "https://food-a14ec-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "food-a14ec",
-    storageBucket: "food-a14ec.appspot.com",
-    messagingSenderId: "940026090369",
-    appId: "1:940026090369:web:007a7ba2c8b1091657ce80",
-    measurementId: "G-QZFKVCLKMP",
+
+  const writeNewObject = (
+    adId,
+    name,
+    email,
+    phone,
+    category,
+    area,
+    adress,
+    zip,
+    title,
+    info,
+    price
+  ) => {
+    const db = getDatabase();
+    const postData = {
+      adId,
+      name,
+      email,
+      phone,
+      category,
+      area,
+      adress,
+      zip,
+      title,
+      info,
+      price,
+    };
+    const newPostKey = push(child(ref(db), "objects")).key;
+    const updates = {};
+    updates["objects" + newPostKey] = postData;
+
+    return update(ref(db), updates);
   };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  const database = getDatabase();
   const fetchDataFirebase = () => {
+    setLoading(true);
     const db = getDatabase();
     const starCountRef = ref(db, "objects");
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
       setPropertys(data);
+      setLoading(false);
     });
   };
 
   useEffect(() => {
     fetchDataFirebase();
   }, []);
-  // filters
+
   const forSale = () => {
     const objectsForSale = propertys.filter((el) => el.to === "Buy");
     setPropertys(objectsForSale);
@@ -64,9 +93,7 @@ const AppProvider = ({ children }) => {
   useEffect(() => {
     setMyUser(user);
   }, [user]);
-  const handleChange = (e) => {
-    console.log(e.target.value);
-  };
+
   //
   return (
     <AppContext.Provider
@@ -85,9 +112,11 @@ const AppProvider = ({ children }) => {
         loginWithRedirect,
         logout,
         myUser,
-        handleChange,
         savedItemsArray,
         setSavedItemsArray,
+        writeNewObject,
+        loading,
+        fetchDataFirebase,
       }}
     >
       {children}

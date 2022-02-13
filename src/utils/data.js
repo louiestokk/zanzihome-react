@@ -3,7 +3,7 @@ import { BsSquare } from "react-icons/bs";
 import { ImHome } from "react-icons/im";
 
 export const navlinks = [
-  { id: 1, text: "Home", url: "./" },
+  { id: 1, text: "Home", url: "/" },
   {
     id: 2,
     text: "Find Property",

@@ -5,19 +5,20 @@ import { Link } from "react-router-dom";
 import { ImHome } from "react-icons/im";
 import { FiUser } from "react-icons/fi";
 import { RiAdvertisementLine } from "react-icons/ri";
-
 import { FaWindowClose } from "react-icons/fa";
 import { useGlobalContext } from "../context";
 import { useUserContext } from "../user_context";
-
-const Navbar = () => {
+import { useHistory } from "react-router-dom";
+import { getAuth, signOut } from "firebase/auth";
+const Navbar = ({ signIn, logedinUser, loading }) => {
+  const auth = getAuth();
+  const history = useHistory();
   const { show, setShow } = useGlobalContext();
   const { showUser, setShowUser, loginWithRedirect, myUser, logout } =
     useUserContext();
   const refreshPage = () => {
     window.location.href = "/";
   };
-
   return (
     <>
       <div className={`${show ? "nav-menu show-menu" : "nav-menu"}`}>
@@ -66,29 +67,42 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {myUser ? (
+        {logedinUser.accessToken ? (
           <div className="nav-login-container">
             <div
               className="user-icon-container"
               onClick={() => setShowUser(!showUser)}
             >
-              <img src={myUser.picture} className="user-icon" alt="user-icon" />
+              <img
+                src={logedinUser.photoURL}
+                className="user-icon"
+                alt="user-icon"
+              />
             </div>
           </div>
         ) : (
-          <button className="nav-login-container" onClick={loginWithRedirect}>
+          <button className="nav-login-container" onClick={signIn}>
             <FiUser className="login-icon" />
-            <p className="login-text">Login</p>
+            <p className="login-text">
+              {loading ? "proccessing...." : "Login"}
+            </p>
           </button>
         )}
       </div>
-      {myUser && (
+      {logedinUser.accessToken && (
         <div className={showUser ? "show-user-modal user-modal" : "user-modal"}>
-          <div className="sums">
-            <img src={myUser.picture} alt="user icon" />
+          <div
+            className="sums"
+            style={{
+              display: "flex",
+              width: "100%",
+              flexDirection: "row",
+            }}
+          >
+            <img src={logedinUser.photoURL} alt="user icon" />
             <div>
               <span>Welcome</span>
-              <p>{myUser.email}</p>
+              <p>{logedinUser.displayName}</p>
             </div>
           </div>
           <button
@@ -97,7 +111,7 @@ const Navbar = () => {
             className="user-account"
           >
             <Link
-              to={`/profile/${myUser.nickname}`}
+              to={`/profile/${logedinUser.email}`}
               className="user-modal-link"
               onClick={() => setShowUser(false)}
             >
@@ -119,9 +133,17 @@ const Navbar = () => {
           </Link>
           <button
             className="user-logout"
-            onClick={() => logout({ returnTo: window.location.origin })}
+            onClick={() => {
+              signOut(auth)
+                .then(() => {
+                  history.go(0);
+                })
+                .catch((error) => {
+                  // An error happened.
+                });
+            }}
           >
-            Logout
+            {loading ? "proccessing..." : "Logout"}
           </button>
         </div>
       )}

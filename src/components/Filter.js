@@ -12,7 +12,7 @@ import { objects } from "../utils/data";
 import styled from "styled-components";
 import { useGlobalContext } from "../context";
 const Filter = () => {
-  const { setPropertys, propertys } = useGlobalContext();
+  const { setPropertys, propertys, loading } = useGlobalContext();
   const [showList, setShowList] = useState(false);
   const [rental, setRental] = useState(false);
   const [size, setSize] = useState(0);
@@ -354,7 +354,7 @@ const Filter = () => {
         <button type="button" className="submit" onClick={handleSubmit}>
           {rental ? "Find property for rent" : "Find properties for sale"}
         </button>
-        {propertys.length === 0 && (
+        {propertys.length === 0 && !loading && (
           <div
             style={{
               display: "flex",

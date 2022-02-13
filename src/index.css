@@ -1478,21 +1478,21 @@ input[type="textarea"] {
   justify-content: center;
   align-items: center;
   border: 1px solid rgb(177, 175, 175);
-  width: 280px;
+  width: 200px;
   height: 4rem;
   border-radius: 5px 5px;
 }
 .new-img-btn {
   background: var(--logoColorLight);
   color: white;
+  font-size: 0.7rem;
+  height: 1.2rem;
+  width: 5rem;
+  opacity: 0.8;
+}
+.new-img-btn:hover {
+  opacity: 1;
   font-weight: bold;
-  width: 1.4rem;
-  height: 1.4rem;
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .new-img-btn:hover {
   background: white;

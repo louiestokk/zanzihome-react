@@ -14,7 +14,7 @@ import { useHistory } from "react-router-dom";
 //  username UID:  PK50165_13f9999571fb
 // password HhSB9JCaQBa14ish
 const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
-const CheckoutForm = () => {
+const CheckoutForm = ({ logedinUser }) => {
   const { myUser } = useUserContext();
   const history = useHistory();
   const [confirmAd, setConfirmAd] = useState(true);
@@ -112,7 +112,7 @@ const CheckoutForm = () => {
             marginTop: "2rem",
           }}
         >
-          <h5>Hello {myUser && myUser.nickname}</h5>
+          <h5>Hello {logedinUser && logedinUser.displayName}</h5>
         </article>
       )}
 
@@ -154,7 +154,7 @@ const CheckoutForm = () => {
     </div>
   );
 };
-const StripeCheckout = () => {
+const StripeCheckout = ({ logedinUser }) => {
   const [showText, setShowtext] = useState(true);
 
   const hidetext = () => {
@@ -168,7 +168,7 @@ const StripeCheckout = () => {
   return (
     <Wrapper className="stripe-container">
       <Elements stripe={promise}>
-        <CheckoutForm />
+        <CheckoutForm logedinUser={logedinUser} />
       </Elements>
     </Wrapper>
   );
