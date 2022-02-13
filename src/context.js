@@ -16,7 +16,7 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
   const [myUser, setMyUser] = useState(null);
   const { loginWithRedirect, logout, user } = useAuth0();
-  const [propertys, setPropertys] = useState([]);
+  const [propertys, setPropertys] = useState(objects);
   const [active, setActive] = useState(true);
   const [index, setIndex] = useState(0);
   const [savedItemsArray, setSavedItemsArray] = useState([]);
@@ -70,9 +70,9 @@ const AppProvider = ({ children }) => {
     });
   };
 
-  useEffect(() => {
-    fetchDataFirebase();
-  }, []);
+  // useEffect(() => {
+  //   fetchDataFirebase();
+  // }, []);
 
   const forSale = () => {
     const objectsForSale = propertys.filter((el) => el.to === "Buy");
