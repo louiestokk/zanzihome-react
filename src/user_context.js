@@ -8,10 +8,7 @@ const UserProvider = ({ children }) => {
   const [active, setActive] = useState(true);
   const [showUser, setShowUser] = useState(false);
   const [saved, setSaved] = useState(false);
-  const { loginWithRedirect, logout, user } = useAuth0();
-  useEffect(() => {
-    setMyUser(user);
-  }, [user]);
+  const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
 
   // sparade bostäder , mina annonser, mitt konto, logga ut
   // knappar för varje och state för varje och om true returnera det man tryckt på annars retunera inget
@@ -28,6 +25,7 @@ const UserProvider = ({ children }) => {
         setShowUser,
         saved,
         setSaved,
+        user,
       }}
     >
       {children}

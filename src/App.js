@@ -16,49 +16,16 @@ import Guid from "./pages/Guid";
 import Build from "./pages/Build";
 import Foreginer from "./pages/Foreginer";
 import ErrorPage from "./pages/ErrorPage";
-import { app } from "./components/firebaseConfig";
 import { useHistory } from "react-router-dom";
-import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  signOut,
-} from "firebase/auth";
 
 function App() {
   const [logedinUser, setLogedinUser] = useState({});
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-  const auth = getAuth();
-  const provider = new GoogleAuthProvider();
-  const signIn = () => {
-    setLoading(true);
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        setLogedinUser(user);
-        setLoading(false);
-        // ...
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-      });
-  };
 
   return (
     <Router>
-      <Navbar signIn={signIn} logedinUser={logedinUser} loading={loading} />
+      <Navbar logedinUser={logedinUser} loading={loading} />
       <Switch>
         <Route path="/" exact>
           <Home />
@@ -99,7 +66,7 @@ function App() {
 
         <Route
           path="/propertys/zanzibar/:id"
-          children={<SingleObject logedinUser={logedinUser} signIn={signIn} />}
+          children={<SingleObject logedinUser={logedinUser} />}
         ></Route>
         <Route path="*">
           <ErrorPage />

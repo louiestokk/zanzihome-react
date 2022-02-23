@@ -9,16 +9,15 @@ import { FaWindowClose } from "react-icons/fa";
 import { useGlobalContext } from "../context";
 import { useUserContext } from "../user_context";
 import { useHistory } from "react-router-dom";
-import { getAuth, signOut } from "firebase/auth";
-const Navbar = ({ signIn, logedinUser, loading }) => {
-  const auth = getAuth();
+const Navbar = ({ logedinUser, loading }) => {
   const history = useHistory();
   const { show, setShow } = useGlobalContext();
-  const { showUser, setShowUser, loginWithRedirect, myUser, logout } =
+  const { showUser, setShowUser, loginWithRedirect, myUser, logout, user } =
     useUserContext();
   const refreshPage = () => {
     window.location.href = "/";
   };
+  console.log(user);
   return (
     <>
       <div className={`${show ? "nav-menu show-menu" : "nav-menu"}`}>
@@ -67,21 +66,17 @@ const Navbar = ({ signIn, logedinUser, loading }) => {
           </Link>
         </div>
 
-        {logedinUser.accessToken ? (
+        {user ? (
           <div className="nav-login-container">
             <div
               className="user-icon-container"
               onClick={() => setShowUser(!showUser)}
             >
-              <img
-                src={logedinUser.photoURL}
-                className="user-icon"
-                alt="user-icon"
-              />
+              <img src={user.picture} className="user-icon" alt="user-icon" />
             </div>
           </div>
         ) : (
-          <button className="nav-login-container" onClick={signIn}>
+          <button className="nav-login-container" onClick={loginWithRedirect}>
             <FiUser className="login-icon" />
             <p className="login-text">
               {loading ? "proccessing...." : "Login"}
@@ -89,7 +84,7 @@ const Navbar = ({ signIn, logedinUser, loading }) => {
           </button>
         )}
       </div>
-      {logedinUser.accessToken && (
+      {user && (
         <div className={showUser ? "show-user-modal user-modal" : "user-modal"}>
           <div
             className="sums"
@@ -99,10 +94,10 @@ const Navbar = ({ signIn, logedinUser, loading }) => {
               flexDirection: "row",
             }}
           >
-            <img src={logedinUser.photoURL} alt="user icon" />
+            <img src={user.picture} alt="user icon" />
             <div>
               <span>Welcome</span>
-              <p>{logedinUser.displayName}</p>
+              <p>{user.nickname}</p>
             </div>
           </div>
           <button
@@ -133,15 +128,7 @@ const Navbar = ({ signIn, logedinUser, loading }) => {
           </Link>
           <button
             className="user-logout"
-            onClick={() => {
-              signOut(auth)
-                .then(() => {
-                  history.go(0);
-                })
-                .catch((error) => {
-                  // An error happened.
-                });
-            }}
+            onClick={() => logout({ returnTo: window.location.origin })}
           >
             {loading ? "proccessing..." : "Logout"}
           </button>

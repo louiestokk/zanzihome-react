@@ -49,7 +49,7 @@ const CheckoutForm = ({ logedinUser }) => {
   const createPaymentIntent = async () => {
     try {
       const { data } = await axios.post(
-        "/.netlify/netlify-functions/create-payment-intent",
+        "/.netlify/functions/create-payment-intent",
         JSON.stringify(price)
       );
       setClientSecret(data.clientSecret);

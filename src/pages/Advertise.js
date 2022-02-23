@@ -8,9 +8,10 @@ import { BsCheck } from "react-icons/bs";
 import { IoIosRocket } from "react-icons/io";
 import { FiRotateCw } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
 
 function Advertise() {
-  const { loginWithRedirect, myUser } = useUserContext();
+  const { loginWithRedirect, user } = useUserContext();
   const history = useHistory();
 
   return (
@@ -101,7 +102,7 @@ function Advertise() {
           </div>
         </div>
         <div className="ads-btn-container">
-          {myUser ? (
+          {user.nickname ? (
             <button type="button" onClick={() => history.push("/checkout")}>
               Create new ad
             </button>

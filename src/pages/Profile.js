@@ -7,13 +7,11 @@ import { objects } from "../utils/data";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context";
 const Profile = ({ logedinUser }) => {
-  const { propertys, fetchDataFirebase } = useGlobalContext();
+  const { propertys } = useGlobalContext();
   const { myUser, active, setActive } = useUserContext();
   const [items, setItem] = useState([]);
   const [myAdsId, setMyAdsId] = useState([]);
-  useEffect(() => {
-    fetchDataFirebase();
-  }, []);
+
   useEffect(() => {
     if (localStorage.getItem("zanzihomeAdId")) {
       setMyAdsId([localStorage.getItem("zanzihomeAdId")]);
