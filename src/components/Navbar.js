@@ -17,7 +17,7 @@ const Navbar = ({ logedinUser, loading }) => {
   const refreshPage = () => {
     window.location.href = "/";
   };
-  console.log(user);
+
   return (
     <>
       <div className={`${show ? "nav-menu show-menu" : "nav-menu"}`}>

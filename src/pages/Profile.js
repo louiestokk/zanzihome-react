@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context";
 const Profile = ({ logedinUser }) => {
   const { propertys } = useGlobalContext();
-  const { myUser, active, setActive } = useUserContext();
+  const { user, active, setActive } = useUserContext();
   const [items, setItem] = useState([]);
   const [myAdsId, setMyAdsId] = useState([]);
 
@@ -19,29 +19,28 @@ const Profile = ({ logedinUser }) => {
     if (localStorage.getItem("zanzihomeSaved")) {
       setItem([localStorage.getItem("zanzihomeSaved")]);
     }
+
+    localStorage.setItem("zanzifoodOrder", "544653");
   }, []);
-  localStorage.setItem("zanzihomeAdId", 808256);
+  localStorage.setItem("zanzihomeAdId", 544653);
   return (
     <Wrapper>
-      <h2>Welcome {logedinUser.displayName && logedinUser.displayName}</h2>
+      <h2>Welcome {user && user.nickname}</h2>
       <div
         className="divider"
         style={{ margin: "0 auto", width: "8rem" }}
       ></div>
       <div className="user-profile-info" style={{ height: "200px" }}>
         <div>
-          <img
-            src={logedinUser.displayName && logedinUser.photoURL}
-            alt="user icon"
-          />
+          <img src={user && user.picture} alt="user icon" />
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <p>
             Name:
-            <span> {logedinUser.displayName && logedinUser.displayName}</span>
+            <span> {user && user.nickname}</span>
           </p>
           <p>
-            Email: <span>{logedinUser.displayName && logedinUser.email} </span>
+            Email: <span>{user && user.email} </span>
           </p>
         </div>
       </div>

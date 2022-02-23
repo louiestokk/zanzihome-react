@@ -16,7 +16,7 @@ init("user_a9rRSeZcRVhTLpSYxEfo8");
 
 const SingleObject = ({ logedinUser, signIn }) => {
   const { propertys, setPropertys } = useGlobalContext();
-  const { saved, setSaved, myUser, loginWithRedirect } = useUserContext();
+  const { saved, setSaved, user, loginWithRedirect } = useUserContext();
   const [index, setIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -136,7 +136,7 @@ const SingleObject = ({ logedinUser, signIn }) => {
               <div className="singel-object-heartmap">
                 <button
                   onClick={(e) => {
-                    if (logedinUser.displayName) {
+                    if (user.nickname) {
                       e.currentTarget.children[0].classList.toggle(
                         "fill-hjarta"
                       );
