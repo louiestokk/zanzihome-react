@@ -1,29 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { ImHome } from "react-icons/im";
 import { BsSquare } from "react-icons/bs";
-import { useGlobalContext } from "../context";
 import { Link } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 const Objects = () => {
-  const { propertys, setPropertys } = useGlobalContext();
+  const { allObjects } = useSelector((state) => state);
   return (
     <>
-      <h4 className="antal-objects">{propertys.length} properties</h4>
+      <h4 className="antal-objects">{allObjects.objects.length} properties</h4>
       <div className="objects-container">
-        {propertys.map((object) => {
-          const {
-            id,
-            date,
-            url,
-            location,
-            price,
-            size,
-            type,
-            to,
-            desc,
-            info,
-            icon,
-          } = object;
+        {allObjects.objects.map((object) => {
+          const { id, url, location, price, size, type, to, desc } = object;
 
           return (
             <div className="objects" key={id}>

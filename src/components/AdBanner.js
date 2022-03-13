@@ -1,19 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { bannerInfo } from "../utils/data";
-import banner from "../utils/buildhousezanzibar.jpg";
-import { MdConstruction } from "react-icons/md";
-import { MdPool } from "react-icons/md";
-import { MdRoofing } from "react-icons/md";
-import { BsFillHouseFill } from "react-icons/bs";
+
 import { BsFillArrowDownCircleFill } from "react-icons/bs";
-import { GiWoodBeam } from "react-icons/gi";
-import { AiOutlineCheck } from "react-icons/ai";
-import image from "../utils/zanzibarisland.jpg";
 
-const AdBanner = ({ size, setSize }) => {
-  const { company, name, id, url } = bannerInfo[0];
-
+const AdBanner = () => {
   return (
     <Wrapper className="ooo">
       <div className="holder">

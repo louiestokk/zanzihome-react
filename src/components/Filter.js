@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
 import { BsThreeDotsVertical } from "react-icons/bs";
@@ -20,10 +20,9 @@ const Filter = () => {
   const [extendFilter, setExtendFilter] = useState(false);
   const [active, setActive] = useState(true);
   const [alertmsg, setAlertMsg] = useState(false);
-  const [adressQuery, setAdressQuery] = useState();
+
   const [query, setQuery] = useState();
-  const defaultSize = 20;
-  const defaultprice = 20;
+
   const handleClick = (e) => {
     if (e.currentTarget.className === "loc-btn") {
       const newitems = propertys.filter(

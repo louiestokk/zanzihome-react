@@ -11,7 +11,11 @@ const Brokers = ({ agency, number, contact, logo }) => {
         <div>
           <div className="brokers-logo-div">
             <h2>Contact Broker</h2>
-            <img src={`../../${logo}`} className="brokers-logo" />
+            <img
+              src={`../../${logo}`}
+              className="brokers-logo"
+              alt="broker logo"
+            />
           </div>
           <p>{contact}</p>
 

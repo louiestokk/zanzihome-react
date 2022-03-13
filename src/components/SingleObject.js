@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { useGlobalContext } from "../context";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { AiFillHeart } from "react-icons/ai";
-
 import { FiUser } from "react-icons/fi";
 import Bid from "./Bid";
 import SingelObjectInfo from "./SingelObjectInfo";
 import Brokers from "./Brokers";
 import emailjs from "@emailjs/browser";
 import { useUserContext } from "../user_context";
-import { init } from "@emailjs/browser";
-init("user_a9rRSeZcRVhTLpSYxEfo8");
+import { useSelector, useDispatch } from "react-redux";
+import { selectedObject } from "../redux/actions/objectsActions";
 
-const SingleObject = ({ logedinUser, signIn }) => {
-  const { propertys, setPropertys } = useGlobalContext();
+const SingleObject = () => {
+  const dispatch = useDispatch();
+  const { allObjects } = useSelector((state) => state);
+  const { object } = useSelector((state) => state);
   const { saved, setSaved, user, loginWithRedirect } = useUserContext();
   const [index, setIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
@@ -25,20 +25,20 @@ const SingleObject = ({ logedinUser, signIn }) => {
   const [recivied, setRecivied] = useState(false);
   const { id } = useParams();
   const form = useRef();
+
   const filterObject = () => {
-    const newObject = propertys.filter((el) => el.id === +id);
-    setPropertys(newObject);
+    const newObject = allObjects.objects.filter((el) => el.id === +id);
+    dispatch(selectedObject(newObject));
   };
 
   const nextImage = () => {
-    const num = propertys.map((el) => el.url).length;
+    const num = allObjects.objects.map((el) => el.url).length;
     setIndex(index + 1);
     if (index > num - 1) {
       setIndex(0);
     }
   };
   const prevImage = () => {
-    const num = propertys.map((el) => el.url).length;
     setIndex(index - 1);
     if (index < 0) {
       setIndex(0);
@@ -74,10 +74,9 @@ const SingleObject = ({ logedinUser, signIn }) => {
 
   return (
     <>
-      {propertys.map((object) => {
+      {object.objects.map((object) => {
         const {
           id,
-          date,
           url,
           location,
           price,
@@ -85,7 +84,6 @@ const SingleObject = ({ logedinUser, signIn }) => {
           type,
           to,
           desc,
-          icon,
           info,
           rooms,
           bid,
@@ -125,9 +123,8 @@ const SingleObject = ({ logedinUser, signIn }) => {
               <div className={showLoginModal ? "not-loggedin-modal" : "hidden"}>
                 <h3>Log in to save items</h3>
                 <button
-                  className="nav-login-container"
+                  className="nav-login-container inte-inloggad-btn"
                   onClick={loginWithRedirect}
-                  className="inte-inloggad-btn"
                 >
                   <FiUser />
                   Login

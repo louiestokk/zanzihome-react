@@ -16,12 +16,10 @@ import Guid from "./pages/Guid";
 import Build from "./pages/Build";
 import Foreginer from "./pages/Foreginer";
 import ErrorPage from "./pages/ErrorPage";
-import { useHistory } from "react-router-dom";
 
 function App() {
   const [logedinUser, setLogedinUser] = useState({});
   const [loading, setLoading] = useState(false);
-  const history = useHistory();
 
   return (
     <Router>

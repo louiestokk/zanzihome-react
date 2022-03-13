@@ -1,18 +1,11 @@
-import React, { useState } from "react";
-import { MapContainer, Map, TileLayer, Marker, Popup } from "react-leaflet";
+import React from "react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { objects } from "../utils/data";
 import { useHistory } from "react-router-dom";
-import AdBanner from "./AdBanner";
-import { bannerInfo } from "../utils/data";
-import banner from "../utils/buildhousezanzibar.jpg";
-import { MdConstruction } from "react-icons/md";
-import { AiOutlineCheck } from "react-icons/ai";
-const MapComp = ({ size, setSize }) => {
-  const { company, name, id, url } = bannerInfo[0];
+
+const MapComp = () => {
   // const [plats, setPlats] = useState();
-  const [plats, setPlats] = useState([]);
   const zanizbar = [-6.0084, 39.2401];
-  const [namn, setName] = useState("hidden");
 
   // const getPosition = () => {
   //   const position = navigator.geolocation.getCurrentPosition(

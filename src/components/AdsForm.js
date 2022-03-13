@@ -4,17 +4,15 @@ import { RiAdvertisementFill } from "react-icons/ri";
 import emailjs from "@emailjs/browser";
 import { BsFillCameraFill } from "react-icons/bs";
 import { useHistory } from "react-router-dom";
-import { useGlobalContext } from "../context";
 
-const AdsForm = ({ setActiveStep, setAmount }) => {
+const AdsForm = ({ setActiveStep }) => {
   const [accept, setAccept] = useState(true);
   const [loading, setLoading] = useState(false);
   const [sended, setSended] = useState(false);
   const [progress, setProgress] = useState(0);
   const form = useRef();
   const history = useHistory();
-  const { company, sell, handleChange, price, setPrice, adId, setAdId } =
-    useFormContext();
+  const { company, sell, handleChange, setPrice, adId } = useFormContext();
 
   const sendEmail = (e) => {
     localStorage.setItem("zanzihomeAdId", adId);
