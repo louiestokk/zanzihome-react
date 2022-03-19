@@ -11,6 +11,7 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import { objects } from "../utils/data";
 import styled from "styled-components";
 import { useGlobalContext } from "../context";
+
 const Filter = () => {
   const { setPropertys, propertys, loading } = useGlobalContext();
   const [showList, setShowList] = useState(false);
@@ -20,7 +21,6 @@ const Filter = () => {
   const [extendFilter, setExtendFilter] = useState(false);
   const [active, setActive] = useState(true);
   const [alertmsg, setAlertMsg] = useState(false);
-
   const [query, setQuery] = useState();
 
   const handleClick = (e) => {
@@ -28,7 +28,6 @@ const Filter = () => {
       const newitems = propertys.filter(
         (el) => el.location === e.currentTarget.textContent
       );
-
       setPropertys(newitems);
     }
     if (e.currentTarget.className === "btn") {
@@ -58,7 +57,7 @@ const Filter = () => {
     //   setPropertys(newItems);
     // }
     if (query) {
-      const newitems = propertys.filter((el) => el.query.includes(query));
+      const newitems = objects.filter((el) => el.query.includes(query));
       setPropertys(newitems);
     }
   };
@@ -73,13 +72,14 @@ const Filter = () => {
   };
   const handleSizePrice = (e) => {
     if (e.currentTarget.name === "size") {
-      const newitems = propertys.filter(
+      const newitems = objects.filter(
         (el) => +el.size >= Number(e.currentTarget.value)
       );
+
       setPropertys(newitems);
     }
     if (e.currentTarget.name === "price") {
-      const newitems = propertys.filter(
+      const newitems = objects.filter(
         (el) => el.price * 1000 <= +e.currentTarget.value
       );
       setPropertys(newitems);
@@ -183,7 +183,7 @@ const Filter = () => {
               <button
                 type="button"
                 className="loc-btn"
-                onClick={() => setPropertys(objects)}
+                onClick={() => objects.filter((el) => el.to === "Buy")}
               >
                 All
               </button>

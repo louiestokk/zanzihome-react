@@ -13,6 +13,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectedObject } from "../redux/actions/objectsActions";
 
 const SingleObject = () => {
+  const { filtered } = useSelector((state) => state.filtered);
+  console.log(filtered);
   const dispatch = useDispatch();
   const { allObjects } = useSelector((state) => state);
   const { object } = useSelector((state) => state);

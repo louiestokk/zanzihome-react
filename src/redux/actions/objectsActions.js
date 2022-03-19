@@ -11,3 +11,9 @@ export const selectedObject = (objects) => {
     payload: objects,
   };
 };
+export const filteredObjects = (newobjects) => {
+  return {
+    type: ActionTypes.FILTERED_OBJECTS,
+    payload: newobjects,
+  };
+};
