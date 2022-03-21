@@ -4,7 +4,7 @@ import { RiAdvertisementFill } from "react-icons/ri";
 import emailjs from "@emailjs/browser";
 import { BsFillCameraFill } from "react-icons/bs";
 import { useHistory } from "react-router-dom";
-
+import { useGlobalContext } from "../context";
 const AdsForm = ({ setActiveStep }) => {
   const [accept, setAccept] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -12,6 +12,7 @@ const AdsForm = ({ setActiveStep }) => {
   const [progress, setProgress] = useState(0);
   const form = useRef();
   const history = useHistory();
+  const { myUser } = useGlobalContext();
   const { company, sell, handleChange, setPrice, adId } = useFormContext();
 
   const sendEmail = (e) => {
@@ -230,18 +231,19 @@ const AdsForm = ({ setActiveStep }) => {
 
         <div style={{ marginLeft: "1rem", height: "360px", marginTop: "4rem" }}>
           {progress > 0 ? <h5> Uploaded {progress}%</h5> : <h5>Images</h5>}
-          <div style={{ display: "flex" }}>
-            <div className="up-image">
-              <BsFillCameraFill />
-              <input
-                type="file"
-                style={{
-                  fontSize: "0.6rem",
-                  marginTop: "0.5rem",
-                  width: "4rem",
-                }}
-              />
-            </div>
+          <div>
+            <button
+              onClick={() => {
+                window.location.href = `mailto:${myUser.email}?subject=Images adId:${adId}&body=Attach images in this email`;
+              }}
+              style={{
+                background: "#22c55e",
+                padding: "0.4rem",
+                color: "white",
+              }}
+            >
+              Send images
+            </button>
           </div>
           <div className="form-ad-btn-cont-sub">
             <div>
