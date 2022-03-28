@@ -9,15 +9,14 @@ import SingelObjectInfo from "./SingelObjectInfo";
 import Brokers from "./Brokers";
 import emailjs from "@emailjs/browser";
 import { useUserContext } from "../user_context";
+import {
+  getAllObjects,
+  filterObjects,
+} from "../redux-toolkit/objects/objectSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { selectedObject } from "../redux/actions/objectsActions";
 
 const SingleObject = () => {
-  const { filtered } = useSelector((state) => state.filtered);
-  console.log(filtered);
-  const dispatch = useDispatch();
-  const { allObjects } = useSelector((state) => state);
-  const { object } = useSelector((state) => state);
+  const allObjects = useSelector(getAllObjects);
   const { saved, setSaved, user, loginWithRedirect } = useUserContext();
   const [index, setIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
@@ -27,14 +26,14 @@ const SingleObject = () => {
   const [recivied, setRecivied] = useState(false);
   const { id } = useParams();
   const form = useRef();
-
+  const dispatch = useDispatch();
   const filterObject = () => {
-    const newObject = allObjects.objects.filter((el) => el.id === +id);
-    dispatch(selectedObject(newObject));
+    const newObject = allObjects.filter((el) => el.id === +id);
+    dispatch(filterObjects(newObject));
   };
 
   const nextImage = () => {
-    const num = allObjects.objects.map((el) => el.url).length;
+    const num = allObjects.map((el) => el.url).length;
     setIndex(index + 1);
     if (index > num - 1) {
       setIndex(0);
@@ -76,7 +75,7 @@ const SingleObject = () => {
 
   return (
     <>
-      {object.objects.map((object) => {
+      {allObjects.map((object) => {
         const {
           id,
           url,

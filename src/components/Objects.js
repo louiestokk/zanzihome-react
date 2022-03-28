@@ -3,13 +3,15 @@ import { ImHome } from "react-icons/im";
 import { BsSquare } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { getAllObjects } from "../redux-toolkit/objects/objectSlice";
+
 const Objects = () => {
-  const { allObjects } = useSelector((state) => state);
+  const allObjects = useSelector(getAllObjects);
   return (
     <>
-      <h4 className="antal-objects">{allObjects.objects.length} properties</h4>
+      <h4 className="antal-objects">{allObjects?.length} properties</h4>
       <div className="objects-container">
-        {allObjects.objects.map((object) => {
+        {allObjects?.map((object) => {
           const { id, url, location, price, size, type, to, desc } = object;
 
           return (
