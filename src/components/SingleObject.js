@@ -134,7 +134,7 @@ const SingleObject = () => {
               <div className="singel-object-heartmap">
                 <button
                   onClick={(e) => {
-                    if (user.nickname) {
+                    if (user?.nickname) {
                       e.currentTarget.children[0].classList.toggle(
                         "fill-hjarta"
                       );
