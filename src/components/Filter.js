@@ -11,9 +11,15 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import { objects } from "../utils/data";
 import styled from "styled-components";
 import { useGlobalContext } from "../context";
-
+import {
+  getAllObjects,
+  filterObjects,
+} from "../redux-toolkit/objects/objectSlice";
+import { useSelector, useDispatch } from "react-redux";
 const Filter = () => {
-  const { setPropertys, propertys, loading } = useGlobalContext();
+  const allObjects = useSelector(getAllObjects);
+  const dispatch = useDispatch();
+  const { loading } = useGlobalContext();
   const [showList, setShowList] = useState(false);
   const [rental, setRental] = useState(false);
   const [size, setSize] = useState(0);
@@ -25,19 +31,19 @@ const Filter = () => {
 
   const handleClick = (e) => {
     if (e.currentTarget.className === "loc-btn") {
-      const newitems = propertys.filter(
+      const newitems = allObjects.filter(
         (el) => el.location === e.currentTarget.textContent
       );
-      setPropertys(newitems);
+      dispatch(filterObjects(newitems));
     }
     if (e.currentTarget.className === "btn") {
-      const newitems = propertys.filter(
+      const newitems = allObjects.filter(
         (el) => el.type === e.currentTarget.textContent
       );
       if (newitems.length === 0) {
         setAlertMsg(!alertmsg);
       }
-      setPropertys(newitems);
+      dispatch(filterObjects(newitems));
     }
     setTimeout(() => {
       setAlertMsg(false);
@@ -57,8 +63,8 @@ const Filter = () => {
     //   setPropertys(newItems);
     // }
     if (query) {
-      const newitems = objects.filter((el) => el.query.includes(query));
-      setPropertys(newitems);
+      const newitems = allObjects.filter((el) => el.query.includes(query));
+      dispatch(filterObjects(newitems));
     }
   };
 
@@ -66,8 +72,8 @@ const Filter = () => {
     if ((e.currentTarget.className = "querys area")) {
       const query =
         e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
-      const newitems = objects.filter((el) => el.location === query);
-      setPropertys(newitems);
+      const newitems = allObjects.filter((el) => el.location === query);
+      dispatch(filterObjects(newitems));
     }
   };
   const handleSizePrice = (e) => {
@@ -76,13 +82,13 @@ const Filter = () => {
         (el) => +el.size >= Number(e.currentTarget.value)
       );
 
-      setPropertys(newitems);
+      dispatch(filterObjects(newitems));
     }
     if (e.currentTarget.name === "price") {
-      const newitems = objects.filter(
+      const newitems = allObjects.filter(
         (el) => el.price * 1000 <= +e.currentTarget.value
       );
-      setPropertys(newitems);
+      dispatch(filterObjects(newitems));
     }
   };
 
@@ -97,7 +103,7 @@ const Filter = () => {
           className={active ? "button active" : "button"}
           onClick={() => {
             setActive(!active);
-            setPropertys(objects.filter((el) => el.to === "Buy"));
+            dispatch(filterObjects(objects.filter((el) => el.to === "Buy")));
           }}
         >
           Sale
@@ -107,7 +113,7 @@ const Filter = () => {
           className={!active ? "button active" : "button"}
           onClick={() => {
             setActive(!active);
-            setPropertys(objects.filter((el) => el.to === "Rent"));
+            dispatch(filterObjects(objects.filter((el) => el.to === "Rent")));
           }}
         >
           Rental
@@ -225,7 +231,7 @@ const Filter = () => {
           <button
             className="btn"
             type="button"
-            onClick={() => setPropertys(objects)}
+            onClick={() => dispatch(filterObjects(objects))}
           >
             <BsThreeDotsVertical />
             <span style={{ fontSize: "0.85rem" }}>All types</span>
@@ -353,7 +359,7 @@ const Filter = () => {
         <button type="button" className="submit" onClick={handleSubmit}>
           {rental ? "Find property for rent" : "Find properties for sale"}
         </button>
-        {propertys.length === 0 && !loading && (
+        {allObjects.length === 0 && !loading && (
           <div
             style={{
               display: "flex",
@@ -372,7 +378,7 @@ const Filter = () => {
               No result match you search citeria. Clear filter and start over
             </p>
             <button
-              onClick={() => setPropertys(objects)}
+              onClick={() => dispatch(filterObjects(objects))}
               style={{
                 margin: "0 0.5rem",
                 border: "1px solid red",

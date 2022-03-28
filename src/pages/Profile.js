@@ -3,11 +3,15 @@ import { useUserContext } from "../user_context";
 import styled from "styled-components";
 import { BsHeart } from "react-icons/bs";
 import { RiAdvertisementLine } from "react-icons/ri";
-import { objects } from "../utils/data";
+import {
+  getAllObjects,
+  filterObjects,
+} from "../redux-toolkit/objects/objectSlice";
 import { Link } from "react-router-dom";
-import { useGlobalContext } from "../context";
-const Profile = ({ logedinUser }) => {
-  const { propertys } = useGlobalContext();
+import { useSelector } from "react-redux";
+
+const Profile = () => {
+  const allObjects = useSelector(getAllObjects);
   const { user, active, setActive } = useUserContext();
   const [items, setItem] = useState([]);
   const [myAdsId, setMyAdsId] = useState([]);
@@ -69,7 +73,7 @@ const Profile = ({ logedinUser }) => {
       {items &&
         active &&
         items.map((el) => {
-          const r = propertys.filter((ob) => ob.id === +el);
+          const r = allObjects.filter((ob) => ob.id === +el);
           return (
             <div key={el.id} style={{ height: "100%" }}>
               {r.map((ob) => {
@@ -107,7 +111,7 @@ const Profile = ({ logedinUser }) => {
 
       {myAdsId &&
         !active &&
-        propertys
+        allObjects
           .filter((el) => el.id === +myAdsId[0])
           .map((ad) => {
             return (
