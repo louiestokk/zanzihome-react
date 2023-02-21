@@ -21,10 +21,11 @@ const Brokers = ({ agency, number, contact, logo, email }) => {
         </div>
       </div>
       <div className="bbb">
-        <button type="button" onClick={handleClick}>
+        <button type="button" onClick={handleClick} style={{ color: "black" }}>
           <AiOutlinePhone className="icon-broker" /> Show number
         </button>
         <button
+          style={{ color: "black" }}
           type="button"
           onClick={(e) =>
             (e.currentTarget.innerHTML = email ? email : "louiestokk@gmail.com")

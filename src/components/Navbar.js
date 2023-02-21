@@ -59,7 +59,7 @@ const Navbar = ({ logedinUser, loading }) => {
                   alignItems: "center"
                 }}
               >
-                <h4>ZanziHome</h4>
+                <h4>ZanziHom</h4>
                 <p>e</p>
               </div>
             </div>

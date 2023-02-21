@@ -133,6 +133,7 @@ const SingleObject = () => {
               </div>
               <div className="singel-object-heartmap">
                 <button
+                  style={{ color: "black" }}
                   onClick={(e) => {
                     if (user?.nickname) {
                       e.currentTarget.children[0].classList.toggle(
