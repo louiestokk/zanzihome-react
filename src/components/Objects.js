@@ -28,7 +28,9 @@ const Objects = () => {
 
   return (
     <>
-      <h4 className="antal-objects">{allObjects?.length} properties</h4>
+      <h4 className="antal-objects">
+        {allObjects?.length + firestoreData?.length} properties
+      </h4>
       <div className="objects-container">
         {allObjects?.map((object) => {
           const { id, url, location, price, size, type, to, desc } = object;
@@ -38,6 +40,7 @@ const Objects = () => {
               <img
                 src={url.includes("firebase") ? url[1] : url[0]}
                 alt={location}
+                loading={"lazy"}
               />
               <div className="objects-footer-first">
                 <div className="objects-logo">
@@ -115,7 +118,7 @@ const Objects = () => {
             } = object;
             return (
               <div key={index} className="objects">
-                <img src={uri && uri} alt={Adress} />
+                <img src={uri && uri} alt={Adress} loading={"lazy"} />
                 <div className="objects-footer-first">
                   <div className="objects-logo">
                     <h3 className="object-location-text">{Area}</h3>
@@ -127,8 +130,8 @@ const Objects = () => {
                         className="logo-text objectsreal-logo"
                         style={{ marginRight: "0.75rem" }}
                       >
-                        <h4>HomeNe</h4>
-                        <p className="pp">t</p>
+                        <h4>ZanziHom</h4>
+                        <p className="pp">e</p>
                       </div>
                     </div>
                   </div>
