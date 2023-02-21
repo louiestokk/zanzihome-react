@@ -7,7 +7,7 @@ import { SiAdobepremierepro } from "react-icons/si";
 import { BsCheck } from "react-icons/bs";
 import { IoIosRocket } from "react-icons/io";
 import { FiRotateCw } from "react-icons/fi";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 
 function Advertise() {
@@ -18,11 +18,11 @@ function Advertise() {
     <>
       <PageHero
         icon={<HiArrowCircleDown />}
-        title={"Advertise your property on Zanzihome"}
-        subtitle={" Zanzihome is one of the"}
+        title={"Advertise your property on HomeNet"}
+        subtitle={"HomeNet is one of the"}
         sub2={"largest"}
         sub3={"platforms for buying and selling properties."}
-        sub4={"Advertise with Zanzihome"}
+        sub4={"Advertise with HomeNet"}
         sub5={"ad package"}
         name={".ads-prices-text-btn"}
       />
@@ -38,12 +38,12 @@ function Advertise() {
                 <SiAdobepremierepro className="opop" />
               </span>
             </h4>
-            <h5>Price: $50</h5>
+            <h5>Price: $10</h5>
           </div>
           <div className="ads-package-inner">
             <p>
               <BsCheck className="ads-package-inner-icon" />
-              Listed for 6 months
+              Listed for 12 months
             </p>
             <p>
               <BsCheck className="ads-package-inner-icon" />
@@ -60,7 +60,7 @@ function Advertise() {
           <div className="dagar-div">Rent out</div>
           <div>
             <h4>Rent out </h4>
-            <h5>Price: $50</h5>
+            <h5>Price: $10</h5>
           </div>
           <div className="ads-package-inner">
             <p>
@@ -84,9 +84,9 @@ function Advertise() {
             <p>
               <span style={{ fontWeight: "bold" }}>Rocket</span> Top 3 Rank
             </p>
-            <span style={{ fontSize: "0.8rem" }}> (60 days)</span>
+            <span style={{ fontSize: "0.8rem" }}> (120 days)</span>
             <div>
-              <h5>$100</h5>
+              <h5>$50</h5>
             </div>
           </div>
 
@@ -95,14 +95,14 @@ function Advertise() {
             <p>
               <span style={{ fontWeight: "bold" }}>Rocket</span> Top 10 Rank
             </p>
-            <span style={{ fontSize: "0.8rem" }}> (60 days)</span>
+            <span style={{ fontSize: "0.8rem" }}> (120 days)</span>
             <div>
-              <h5>$50</h5>
+              <h5>$25</h5>
             </div>
           </div>
         </div>
         <div className="ads-btn-container">
-          {user.nickname ? (
+          {/* {user?.nickname ? (
             <button type="button" onClick={() => history.push("/checkout")}>
               Create new ad
             </button>
@@ -110,7 +110,10 @@ function Advertise() {
             <button type="buttons" onClick={loginWithRedirect}>
               Log in & get started
             </button>
-          )}
+          )} */}
+          <button type="button" onClick={() => history.push("/checkout")}>
+            Create new ad
+          </button>
         </div>
       </div>
     </>

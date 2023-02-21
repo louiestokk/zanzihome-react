@@ -8,12 +8,12 @@ import {
   CardElement,
   useStripe,
   Elements,
-  useElements,
+  useElements
 } from "@stripe/react-stripe-js";
 import { useHistory } from "react-router-dom";
 //  username UID:  PK50165_13f9999571fb
 // password HhSB9JCaQBa14ish
-const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
+const promise = loadStripe(process.env.RECT_APP_STRIPE_PUBLIC_KEY);
 const CheckoutForm = ({ logedinUser }) => {
   const { myUser } = useUserContext();
   const history = useHistory();
@@ -37,20 +37,20 @@ const CheckoutForm = ({ logedinUser }) => {
         fontSmoothing: "antialiased",
         fontSize: "16px",
         "::placeholder": {
-          color: "#32325d",
-        },
+          color: "#32325d"
+        }
       },
       invalid: {
         color: "#fa755a",
-        iconColor: "#fa755a",
-      },
-    },
+        iconColor: "#fa755a"
+      }
+    }
   };
   const createPaymentIntent = async () => {
     try {
       const { data } = await axios.post(
         "/.netlify/functions/create-payment-intent",
-        JSON.stringify(price)
+        JSON.stringify(10)
       );
       setClientSecret(data.clientSecret);
       console.log(data.clientSecret);
@@ -67,8 +67,8 @@ const CheckoutForm = ({ logedinUser }) => {
     setProccessing(true);
     const payload = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
-        card: elements.getElement(CardElement),
-      },
+        card: elements.getElement(CardElement)
+      }
     });
     if (payload.error) {
       setError(`Payment failed ${payload.error.message}`);
@@ -109,7 +109,7 @@ const CheckoutForm = ({ logedinUser }) => {
           style={{
             marginBottom: "1rem",
             marginLeft: "1rem",
-            marginTop: "2rem",
+            marginTop: "2rem"
           }}
         >
           <h5>Hello {logedinUser && logedinUser.displayName}</h5>
@@ -123,7 +123,7 @@ const CheckoutForm = ({ logedinUser }) => {
           och appen kan gå live */}
 
       <form onSubmit={handleStripeSubmit} style={{ width: "100%" }}>
-        <h5>{`Price: ${price}`}</h5>
+        <h5>{`Price: $${Number(10)}`}</h5>
 
         <CardElement
           id="card-element"

@@ -9,14 +9,10 @@ import SingelObjectInfo from "./SingelObjectInfo";
 import Brokers from "./Brokers";
 import emailjs from "@emailjs/browser";
 import { useUserContext } from "../user_context";
-import {
-  getAllObjects,
-  filterObjects
-} from "../redux-toolkit/objects/objectSlice";
-import { useSelector, useDispatch } from "react-redux";
-
-const SingleObject = () => {
-  const allObjects = useSelector(getAllObjects);
+import { useSelector } from "react-redux";
+import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
+const SingelFirebaseObject = () => {
+  const firestoreData = useSelector(getFirestoreData);
   const { saved, setSaved, user, loginWithRedirect } = useUserContext();
   const [index, setIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
@@ -24,16 +20,11 @@ const SingleObject = () => {
   const [randomId, setRandomId] = useState(Math.floor(Math.random() * 1000000));
   const [sending, setSending] = useState(false);
   const [recivied, setRecivied] = useState(false);
-  const { id } = useParams();
+  const { adId } = useParams();
   const form = useRef();
-  const dispatch = useDispatch();
-  const filterObject = () => {
-    const newObject = allObjects.filter((el) => el.id === +id);
-    dispatch(filterObjects(newObject));
-  };
 
   const nextImage = () => {
-    const num = allObjects.map((el) => el.url).length;
+    const num = firestoreData.map((el) => el.url).length;
     setIndex(index + 1);
     if (index > num - 1) {
       setIndex(0);
@@ -68,38 +59,38 @@ const SingleObject = () => {
         }
       );
   };
-
-  useEffect(() => {
-    filterObject();
-  }, [id]);
-
   return (
     <>
-      {allObjects.map((object) => {
+      {firestoreData.map((object) => {
         const {
-          id,
-          url,
-          location,
-          price,
-          size,
-          type,
-          to,
-          desc,
-          info,
-          rooms,
-          bid,
-          contact,
-          agency,
-          number,
-          logo
+          Name,
+          Email,
+          Phone,
+          Sell,
+          Area,
+          Adress,
+          Rent,
+          top3,
+          rocket3,
+          rocket10,
+          top10,
+          category,
+          Zip,
+          Title,
+          Text,
+          Price,
+          adId,
+          About,
+          Size,
+          uri
         } = object;
 
         return (
-          <div className="singel-object-container" key={id}>
+          <div className="singel-object-container" key={adId}>
             <div className="singel-object">
               <div className="single-object-img-container">
                 <img
-                  src={url.includes("firebase") ? url[1] : `../.${url[index]}`}
+                  src={uri}
                   style={{ backgroundPosition: "cover", maxHeight: "500px" }}
                 />
                 {index > 0 && (
@@ -111,7 +102,7 @@ const SingleObject = () => {
                     <MdOutlineArrowBackIosNew />
                   </button>
                 )}
-                {url.length > 1 && (
+                {uri.length > 1 && (
                   <button
                     typ="button"
                     className="singel-img-right-arr"
@@ -141,7 +132,7 @@ const SingleObject = () => {
                       e.currentTarget.style.background = "#dfe6d8";
                       setSaved(!saved);
 
-                      localStorage.setItem("zanzihomeSaved", id);
+                      localStorage.setItem("zanzihomeSaved", adId);
                     } else {
                       e.currentTarget.textContent = "You have to login to save";
                     }
@@ -154,9 +145,9 @@ const SingleObject = () => {
               </div>
               <div className="singel-object-info">
                 <h2>
-                  {type} In {location}
+                  {category} In {Adress}
                 </h2>
-                <p>{desc}</p>
+                <p>{Text}</p>
 
                 <button
                   onClick={() => setIndex(1)}
@@ -165,10 +156,12 @@ const SingleObject = () => {
                   Se on map
                 </button>
                 <h4 className="singel-object-price">
-                  {to === "Rent" ? `${price}$ / week` : `${price}.00$`}
+                  {Sell === null && Rent === null
+                    ? `${Price}.00$`
+                    : `${Price}$/week`}
                 </h4>
               </div>
-              <div className="bid-div">{bid && <Bid bid={bid} />}</div>
+              {/* <div className="bid-div">{bid && <Bid bid={bid} />}</div> */}
 
               <div className="divider-singel-object"></div>
               <div className="jjj">
@@ -178,24 +171,26 @@ const SingleObject = () => {
                       <ul className="ul-title">
                         <li>Housing Type</li>
                         <li>Size</li>
-                        <li>{rooms && "Rooms"}</li>
+                        <li>{"Rooms"}</li>
                         <li>Price</li>
                       </ul>
                     </div>
                     <div>
                       <ul className="ul-besk">
-                        <li>{type}</li>
-                        <li>{size} sq.m</li>
-                        <li>{rooms || ""}</li>
+                        <li>{category}</li>
+                        <li>{Size} sq.m</li>
+                        <li>{"rooms"}</li>
                         <li>
-                          {to === "Rent" ? `${price}$ / week` : `${price}.000$`}
+                          {Sell === null && Rent === null
+                            ? `${Price}.000$`
+                            : `${Price}$/week`}
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
                 <SingelObjectInfo
-                  info={info}
+                  info={Text}
                   showModal={showModal}
                   setShowModal={setShowModal}
                   recivied={recivied}
@@ -208,7 +203,11 @@ const SingleObject = () => {
                   >
                     <div style={{ display: "none" }}>
                       <label htmlFor="id">Object:</label>
-                      <input type="text" name="id" value={`${randomId}${id}`} />
+                      <input
+                        type="text"
+                        name="id"
+                        value={`${randomId}${adId}`}
+                      />
                     </div>
                     <div>
                       <label htmlFor="name">Name: </label>
@@ -266,10 +265,11 @@ const SingleObject = () => {
             </div> */}
             <div className="broker-contact-div">
               <Brokers
-                contact={contact}
-                agency={agency}
-                number={number}
-                logo={logo}
+                contact={Name}
+                agency={Name}
+                number={Phone}
+                logo={"logo"}
+                email={Email}
               />
             </div>
 
@@ -283,4 +283,4 @@ const SingleObject = () => {
   );
 };
 
-export default SingleObject;
+export default SingelFirebaseObject;

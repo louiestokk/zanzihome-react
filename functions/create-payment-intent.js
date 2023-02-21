@@ -12,22 +12,22 @@ exports.handler = async function (event, context) {
     const amount = JSON.parse(event.body);
     try {
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: Number(amount) * 100,
-        currency: "usd",
+        amount: Number(amount),
+        currency: "usd"
       });
       return {
         statusCode: 200,
-        body: JSON.stringify({ clientSecret: paymentIntent.client_secret }),
+        body: JSON.stringify({ clientSecret: paymentIntent.client_secret })
       };
     } catch (error) {
       return {
         statusCode: 500,
-        body: JSON.stringify({ msg: error.message }),
+        body: JSON.stringify({ msg: error.message })
       };
     }
   }
   return {
     statusCode: 200,
-    body: "Create Payment Intent",
+    body: "Create Payment Intent"
   };
 };

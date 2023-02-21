@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { objects } from "../../utils/data";
 const initialState = {
-  object: objects,
+  object: objects
 };
 
 const objectSlice = createSlice({
@@ -10,8 +10,8 @@ const objectSlice = createSlice({
   reducers: {
     filterObjects: (state = initialState, { payload }) => {
       state.object = payload;
-    },
-  },
+    }
+  }
 });
 
 export const getAllObjects = (state) => state.object.object;

@@ -5,16 +5,58 @@ import emailjs from "@emailjs/browser";
 import { BsFillCameraFill } from "react-icons/bs";
 import { useHistory } from "react-router-dom";
 import { useGlobalContext } from "../context";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase";
+import SendImages from "./SendImages";
+
 const AdsForm = ({ setActiveStep }) => {
+  const { company, sell, handleChange, setPrice, adId } = useFormContext();
   const [accept, setAccept] = useState(true);
   const [loading, setLoading] = useState(false);
   const [sended, setSended] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [formData, setformData] = useState("");
+  const [adsFormData, setadsFormData] = useState({
+    Name: "",
+    Email: "",
+    Phone: null,
+    Sell: null,
+    Area: null,
+    Adress: "",
+    Rent: null,
+    top3: null,
+    rocket3: null,
+    rocket10: null,
+    top10: null,
+    category: "House",
+    Zip: null,
+    Title: "",
+    Text: "",
+    Price: "",
+    adId: adId,
+    About: "",
+    Size: null,
+    uri: ""
+  });
   const form = useRef();
   const history = useHistory();
   const { myUser } = useGlobalContext();
-  const { company, sell, handleChange, setPrice, adId } = useFormContext();
 
+  const handleAdsFormChange = (e) => {
+    setadsFormData({ ...adsFormData, [e.target.name]: e.target.value });
+  };
+  const addNewAdToFirebase = async () => {
+    setLoading(true);
+    try {
+      const docRef = await addDoc(collection(db, "newAd"), adsFormData);
+      console.log("Document written with ID: ", docRef.id);
+      setLoading(false);
+      setSended(true);
+      setActiveStep(1);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
   const sendEmail = (e) => {
     localStorage.setItem("zanzihomeAdId", adId);
     setLoading(true);
@@ -39,6 +81,7 @@ const AdsForm = ({ setActiveStep }) => {
         }
       );
   };
+
   return (
     <>
       <form
@@ -46,18 +89,18 @@ const AdsForm = ({ setActiveStep }) => {
         ref={form}
         onSubmit={(e) => {
           e.preventDefault();
-          sendEmail();
+          // sendEmail();
         }}
       >
         <div className="step-container">
           <div className="form-header">
-            <h1>Place ad on Zanzihome</h1>
+            <h1>Place ad on HomeNet</h1>
             <button
               type="button"
               className="cancel-form-btn"
               onClick={() => history.push("/")}
             >
-              Cancel
+              x
             </button>
           </div>
           <div
@@ -85,15 +128,32 @@ const AdsForm = ({ setActiveStep }) => {
           </div>
           <div className="form-control">
             <label htmlFor="Name">{!company ? "Company name" : "Name"}</label>
-            <input type="text" name="Name" required />
+            <input
+              type="text"
+              name="Name"
+              required
+              onChange={handleAdsFormChange}
+            />
           </div>
           <div className="form-control">
             <label htmlFor="Email">E-mail</label>
-            <input type="email" name="Email" required />
+            <input
+              type="email"
+              name="Email"
+              required
+              value={formData.email}
+              placeholder="Email"
+              onChange={handleAdsFormChange}
+            />
           </div>
           <div className="form-control">
             <label htmlFor="Phone">Phone</label>
-            <input type="text" name="Phone" required />
+            <input
+              type="text"
+              name="Phone"
+              required
+              onChange={handleAdsFormChange}
+            />
           </div>
           <h5>Ad</h5>
           <div
@@ -106,19 +166,21 @@ const AdsForm = ({ setActiveStep }) => {
               name="Sell"
               id="checkad"
               checked={sell}
-              onChange={handleChange}
+              onClick={handleChange}
+              onChange={handleAdsFormChange}
             />
-            <label htmlFor="Sell">Sell $50 1/2 year</label>
+            <label htmlFor="Sell">Sell $10 1year</label>
             <input
               type="checkbox"
               value="Rent"
               name="Rent"
               id="checkad"
               checked={!sell}
-              onChange={handleChange}
+              onClick={handleChange}
+              onChange={handleAdsFormChange}
             />
 
-            <label htmlFor="Rent">Rent out $50 1 year</label>
+            <label htmlFor="Rent">Rent out $10 1 year</label>
           </div>
           <h5>Adons</h5>
           <div
@@ -130,15 +192,17 @@ const AdsForm = ({ setActiveStep }) => {
               value={100}
               name="rocket3"
               onClick={() => setPrice(150)}
+              onChange={handleAdsFormChange}
             />
-            <label htmlFor="Sell">Rocket 3 - $100</label>
+            <label htmlFor="Sell">Listed top 3 $50</label>
             <input
               type="checkbox"
               value={50}
               name="rocket10"
               onClick={() => setPrice(100)}
+              onChange={handleAdsFormChange}
             />
-            <label htmlFor="Rent">Rocket 10 - $50</label>
+            <label htmlFor="Rent">Listed top 10 - $25</label>
           </div>
           {/* <div className="form-control form-select-category">
             <p>Ad package</p>
@@ -151,12 +215,22 @@ const AdsForm = ({ setActiveStep }) => {
           </div> */}
           <div className="form-control form-select-category">
             <p>Category</p>
-            <select name="category">
+            <select name="category" onChange={handleAdsFormChange}>
               <option value="house">House</option>
               <option value="land">Land / Plot</option>
               <option value="apartment">Apartment</option>
               <option value="business">Businesss</option>
             </select>
+          </div>
+          <div className="form-control">
+            <label htmlFor="Area">Size</label>
+            <input
+              type="text"
+              name="Size"
+              placeholder="sqm"
+              required
+              onChange={handleAdsFormChange}
+            />
           </div>
           <div className="form-control">
             <label htmlFor="Area">Area</label>
@@ -165,6 +239,7 @@ const AdsForm = ({ setActiveStep }) => {
               name="Area"
               placeholder="ex: Jambiani"
               required
+              onChange={handleAdsFormChange}
             />
           </div>
           <div className="form-control">
@@ -174,17 +249,23 @@ const AdsForm = ({ setActiveStep }) => {
               name="Adress"
               placeholder="ex: exampleroad 22"
               required
+              onChange={handleAdsFormChange}
             />
           </div>
           <div className="form-control">
             <label htmlFor="Zip">Zip code</label>
-            <input type="text" name="Zip" placeholder="ex: 71000" />
+            <input
+              type="text"
+              name="Zip"
+              placeholder="ex: 71000"
+              onChange={handleAdsFormChange}
+            />
           </div>
           <div className="form-control">
             <h2
               style={{
                 marginTop: "1rem",
-                fontWeight: "100",
+                fontWeight: "100"
               }}
             >
               Ad content
@@ -193,6 +274,7 @@ const AdsForm = ({ setActiveStep }) => {
             <input
               type="text"
               name="Title"
+              onChange={handleAdsFormChange}
               placeholder="ex: House for sale in Paje close by beach"
               required
             />
@@ -206,11 +288,22 @@ const AdsForm = ({ setActiveStep }) => {
               required
               rows="12"
               cols="60"
+              onChange={handleAdsFormChange}
             />
           </div>
           <div className="form-control">
             <label htmlFor="Price">Price USD $</label>
-            <input type="text" name="Price" required />
+            <input
+              type="text"
+              name="Price"
+              required
+              placeholder={
+                adsFormData.Sell === null && adsFormData.Rent === null
+                  ? "Total selling price"
+                  : "Price per week"
+              }
+              onChange={handleAdsFormChange}
+            />
           </div>
 
           <div className="form-control">
@@ -224,7 +317,14 @@ const AdsForm = ({ setActiveStep }) => {
           {!company && (
             <div className="form-control">
               <label htmlFor="About">About company</label>
-              <textarea type="text" name="About" required rows="4" cols="6s0" />
+              <textarea
+                type="text"
+                name="About"
+                required
+                rows="4"
+                cols="6s0"
+                onChange={handleAdsFormChange}
+              />
             </div>
           )}
         </div>
@@ -232,18 +332,22 @@ const AdsForm = ({ setActiveStep }) => {
         <div style={{ marginLeft: "1rem", height: "360px", marginTop: "4rem" }}>
           {progress > 0 ? <h5> Uploaded {progress}%</h5> : <h5>Images</h5>}
           <div>
-            <button
+            <SendImages
+              adsFormData={adsFormData}
+              setadsFormData={setadsFormData}
+            />
+            {/* <button
               onClick={() => {
-                window.location.href = `mailto:${myUser.email}?subject=Images adId:${adId}&body=Attach images in this email`;
+                window.location.href = `mailto:${"louiestokk@gmail.com"}?subject=Images adId:${adId}&body=Attach images in this email`;
               }}
               style={{
                 background: "#22c55e",
                 padding: "0.4rem",
-                color: "white",
+                color: "white"
               }}
             >
-              Send images
-            </button>
+              Upload images
+            </button> */}
           </div>
           <div className="form-ad-btn-cont-sub">
             <div>
@@ -261,6 +365,7 @@ const AdsForm = ({ setActiveStep }) => {
               type="submit"
               className="form-ad-btn-cont-sub-btn"
               disabled={accept}
+              onClick={addNewAdToFirebase}
             >
               {loading ? "sending..." : "Place the ad"}
             </button>

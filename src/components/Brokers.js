@@ -1,9 +1,9 @@
 import React from "react";
 import { AiOutlinePhone } from "react-icons/ai";
 import { AiOutlineMail } from "react-icons/ai";
-const Brokers = ({ agency, number, contact, logo }) => {
+const Brokers = ({ agency, number, contact, logo, email }) => {
   const handleClick = (e) => {
-    e.currentTarget.innerHTML = `+${number}`;
+    e.currentTarget.innerHTML = `${number}`;
   };
   return (
     <>
@@ -28,7 +28,9 @@ const Brokers = ({ agency, number, contact, logo }) => {
         </button>
         <button
           type="button"
-          onClick={(e) => (e.currentTarget.innerHTML = "contact@3m.tz")}
+          onClick={(e) =>
+            (e.currentTarget.innerHTML = email ? email : "louiestokk@gmail.com")
+          }
         >
           <AiOutlineMail className="icon-broker" /> Show e-mail
         </button>

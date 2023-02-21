@@ -13,7 +13,7 @@ import styled from "styled-components";
 import { useGlobalContext } from "../context";
 import {
   getAllObjects,
-  filterObjects,
+  filterObjects
 } from "../redux-toolkit/objects/objectSlice";
 import { useSelector, useDispatch } from "react-redux";
 const Filter = () => {
@@ -102,6 +102,7 @@ const Filter = () => {
           type="button"
           className={active ? "button active" : "button"}
           onClick={() => {
+            setRental(false);
             setActive(!active);
             dispatch(filterObjects(objects.filter((el) => el.to === "Buy")));
           }}
@@ -112,6 +113,7 @@ const Filter = () => {
           type="button"
           className={!active ? "button active" : "button"}
           onClick={() => {
+            setRental(true);
             setActive(!active);
             dispatch(filterObjects(objects.filter((el) => el.to === "Rent")));
           }}
@@ -126,7 +128,7 @@ const Filter = () => {
               style={{
                 display: "flex",
                 width: "100%",
-                alignItems: "center",
+                alignItems: "center"
               }}
             >
               <h4 style={{ marginLeft: "0.5rem" }}>Area</h4>
@@ -134,7 +136,7 @@ const Filter = () => {
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  marginLeft: "1rem",
+                  marginLeft: "1rem"
                 }}
               >
                 <FaBars
@@ -152,7 +154,7 @@ const Filter = () => {
                 margin: "0 auto",
                 color: "red",
                 fontSize: "0.8rem",
-                maxWidth: "300px",
+                maxWidth: "300px"
               }}
             >
               Sorry no objects for the moment for this search citeria. Please
@@ -169,7 +171,7 @@ const Filter = () => {
                 marginBottom: "1.5rem",
                 flexWrap: "wrap",
                 display: "flex",
-                alignItems: "center",
+                alignItems: "center"
               }}
             >
               {Array.from(new Set(objects.map((el) => el.location))).map(
@@ -205,7 +207,7 @@ const Filter = () => {
                 color: "gray",
                 display: "flex",
 
-                alignItems: "center",
+                alignItems: "center"
               }}
             >
               <BiSearch style={{ marginRight: "1rem" }} />
@@ -225,7 +227,7 @@ const Filter = () => {
             display: "flex",
             alignItems: "center",
             flexWrap: "wrap",
-            justifyContent: "center",
+            justifyContent: "center"
           }}
         >
           <button
@@ -234,13 +236,15 @@ const Filter = () => {
             onClick={() => dispatch(filterObjects(objects))}
           >
             <BsThreeDotsVertical />
-            <span style={{ fontSize: "0.85rem" }}>All types</span>
+            <span style={{ fontSize: "0.85rem", marginLeft: "0.6rem" }}>
+              All types
+            </span>
           </button>
           <button className="btn" type="button" onClick={handleClick}>
             <BsFillHouseDoorFill
               style={{ color: "#0b8b3a", marginLeft: "0.25rem" }}
             />
-            <span style={{ fontSize: "0.85rem", marginLeft: "0.25rem" }}>
+            <span style={{ fontSize: "0.85rem", marginLeft: "0.6rem" }}>
               House
             </span>
           </button>
@@ -249,31 +253,35 @@ const Filter = () => {
               style={{
                 color: "#0369A1",
                 fontSize: "1.2rem",
-                marginLeft: "0.25rem",
+                marginLeft: "0.25rem"
               }}
             />
-            <span style={{ fontSize: "0.85rem" }}>Apartment</span>
+            <span style={{ fontSize: "0.85rem", marginLeft: "0.6rem" }}>
+              Apartment
+            </span>
           </button>
           <button className="btn" type="button" onClick={handleClick}>
             <MdOutlineHouseSiding
               style={{
                 color: "#15803D",
                 fontSize: "1.4rem",
-                marginLeft: "0.25rem",
+                marginLeft: "0.25rem"
               }}
             />
-            <span style={{ fontSize: "0.85rem" }}>Bangalow</span>
+            <span style={{ fontSize: "0.85rem", marginLeft: "0.6rem" }}>
+              Bangalow
+            </span>
           </button>
           <button className="btn" type="button" onClick={handleClick}>
             <GiIsland
               style={{
                 color: "#65A30D",
                 fontSize: "1.6rem",
-                marginLeft: "0.4rem",
+                marginLeft: "0.4rem"
               }}
             />
-            <span style={{ fontSize: "0.85rem", marginLeft: "0.3rem" }}>
-              Land
+            <span style={{ fontSize: "0.85rem", marginLeft: "0.8rem" }}>
+              Plot
             </span>
           </button>
         </article>
@@ -327,7 +335,7 @@ const Filter = () => {
                 width: "70%",
                 margin: "1rem 0rem",
                 textAlign: "center",
-                textTransform: "lowercase",
+                textTransform: "lowercase"
               }}
             />
           </div>
@@ -339,7 +347,7 @@ const Filter = () => {
             fontSize: "0.9rem",
             color: "#0369A1",
             cursor: "pointer",
-            margin: "0.3rem 0",
+            margin: "0.3rem 0"
           }}
           onClick={() => setExtendFilter(!extendFilter)}
         >
@@ -364,7 +372,7 @@ const Filter = () => {
             style={{
               display: "flex",
               margin: "0 auto",
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           >
             <p
@@ -372,7 +380,7 @@ const Filter = () => {
                 textAlign: "center",
                 color: "red",
                 fontSize: "0.75rem",
-                margin: "0 0",
+                margin: "0 0"
               }}
             >
               No result match you search citeria. Clear filter and start over
@@ -383,7 +391,7 @@ const Filter = () => {
                 margin: "0 0.5rem",
                 border: "1px solid red",
                 padding: "0.1rem",
-                color: "red",
+                color: "red"
               }}
             >
               clear filter

@@ -487,8 +487,8 @@ button {
   margin: 1rem auto;
   width: 95%;
   height: 100%;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  /* box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05); */
 }
 .objects {
   cursor: pointer;
@@ -1356,7 +1356,8 @@ h5 {
 }
 .ad-form-in {
   font-family: "Roboto Condensed", sans-serif;
-  height: 1640px;
+  height: 100%;
+  margin-bottom: 4rem;
 }
 .ad-form-in div {
   margin-left: 1rem;
@@ -1372,11 +1373,15 @@ h5 {
 }
 .cancel-form-btn {
   margin-right: 1rem;
-  width: 6rem;
-  height: 2.4rem;
+  width: 25px;
+  height: 25px;
   border: 1px solid var(--navback);
   color: var(--logoColor);
-  letter-spacing: 1px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 .form-control {
   display: flex;

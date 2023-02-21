@@ -12,7 +12,7 @@ const Footer = () => {
         <div
           style={{
             padding: "1rem",
-            fontFamily: "serif",
+            fontFamily: "serif"
           }}
         >
           <h2 style={{ borderBottom: "0.1px solid white" }}>Contact</h2>
@@ -24,7 +24,7 @@ const Footer = () => {
             </li>
             <li>
               <Link to="/about" className="footer-links">
-                About ZanziHome
+                About HomeNet
               </Link>
             </li>
             <li>
@@ -42,7 +42,7 @@ const Footer = () => {
         <div
           style={{
             padding: "1rem",
-            fontFamily: "serif",
+            fontFamily: "serif"
           }}
         >
           <h2 style={{ borderBottom: "0.1px solid white" }}>Follow Us</h2>
@@ -50,7 +50,7 @@ const Footer = () => {
             <li>
               <HiOutlineMail className="insta-fot" />
               <Link to="/newsletter" className="footer-links">
-                ZanziHome newsletter
+                HomeNet newsletter
               </Link>
             </li>
             <li>
@@ -79,7 +79,7 @@ const Footer = () => {
         </div>
         <div>
           <span>Stokk Tech Limited &copy;</span>
-          <span> {year} ZanziHome</span>
+          <span> {year} HomeNet</span>
         </div>
       </div>
     </>

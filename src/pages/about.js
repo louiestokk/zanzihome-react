@@ -7,8 +7,8 @@ const About = () => {
     <main style={{ background: "#dfe6d8" }} className="call-main">
       <PageHero
         icon={<HiArrowCircleDown />}
-        title={"ZanziHome"}
-        subtitle={" Zanzihome is one of the"}
+        title={"HomeNet"}
+        subtitle={" HomeNet is one of the"}
         sub2={"largest"}
         sub3={"platforms for buying, selling and rent properties."}
         sub4={"You are warmly welcome"}
@@ -20,8 +20,7 @@ const About = () => {
         <article>
           <div className="contact-adress">
             <h4>Visiting address</h4>
-            <p>Zanzihome.com / Stokk Tech Limited</p>
-            <p>Paje njia ya mshez, Zaznibar</p>
+            <p>HomeNet.com / Stokk Tech Limited</p>
           </div>
           <div className="contact-adress" style={{ marginTop: "1rem" }}>
             <h4>Call us</h4>
@@ -49,8 +48,8 @@ const About = () => {
         </article>
         <div className="contact-adress" style={{ marginTop: "1rem" }}>
           <h4>Send us email</h4>
-          <a href="mailto:info@zanzihome.con" className="ring">
-            info@zanzihome.com
+          <a href="mailto:louiestokk@gmail.com" className="ring">
+            HomeNet.com
           </a>
         </div>
       </section>

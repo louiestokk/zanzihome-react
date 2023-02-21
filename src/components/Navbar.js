@@ -56,11 +56,11 @@ const Navbar = ({ logedinUser, loading }) => {
                 style={{
                   display: "flex",
                   justifyContent: "center",
-                  alignItems: "center",
+                  alignItems: "center"
                 }}
               >
-                <h4>ZanziHome</h4>
-                <p>e</p>
+                <h4>HomeNe</h4>
+                <p>t</p>
               </div>
             </div>
           </Link>
@@ -91,7 +91,7 @@ const Navbar = ({ logedinUser, loading }) => {
             style={{
               display: "flex",
               width: "100%",
-              flexDirection: "row",
+              flexDirection: "row"
             }}
           >
             <img src={user.picture} alt="user icon" />
