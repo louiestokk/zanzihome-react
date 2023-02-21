@@ -78,7 +78,7 @@ const Navbar = ({ logedinUser, loading }) => {
         ) : (
           <button className="nav-login-container" onClick={loginWithRedirect}>
             <FiUser className="login-icon" />
-            <p className="login-text">
+            <p className="login-text" style={{ color: "black" }}>
               {loading ? "proccessing...." : "Login"}
             </p>
           </button>
