@@ -236,7 +236,13 @@ const Filter = () => {
             onClick={() => dispatch(filterObjects(objects))}
           >
             <BsThreeDotsVertical />
-            <span style={{ fontSize: "0.85rem", marginLeft: "0.6rem" }}>
+            <span
+              style={{
+                fontSize: "0.85rem",
+                marginLeft: "0.6rem",
+                color: "black"
+              }}
+            >
               All types
             </span>
           </button>
@@ -244,7 +250,13 @@ const Filter = () => {
             <BsFillHouseDoorFill
               style={{ color: "#0b8b3a", marginLeft: "0.25rem" }}
             />
-            <span style={{ fontSize: "0.85rem", marginLeft: "0.6rem" }}>
+            <span
+              style={{
+                fontSize: "0.85rem",
+                marginLeft: "0.6rem",
+                color: "black"
+              }}
+            >
               House
             </span>
           </button>
@@ -256,7 +268,13 @@ const Filter = () => {
                 marginLeft: "0.25rem"
               }}
             />
-            <span style={{ fontSize: "0.85rem", marginLeft: "0.6rem" }}>
+            <span
+              style={{
+                fontSize: "0.85rem",
+                marginLeft: "0.6rem",
+                color: "black"
+              }}
+            >
               Apartment
             </span>
           </button>
@@ -268,7 +286,13 @@ const Filter = () => {
                 marginLeft: "0.25rem"
               }}
             />
-            <span style={{ fontSize: "0.85rem", marginLeft: "0.6rem" }}>
+            <span
+              style={{
+                fontSize: "0.85rem",
+                marginLeft: "0.6rem",
+                color: "black"
+              }}
+            >
               Bangalow
             </span>
           </button>
@@ -280,7 +304,13 @@ const Filter = () => {
                 marginLeft: "0.4rem"
               }}
             />
-            <span style={{ fontSize: "0.85rem", marginLeft: "0.8rem" }}>
+            <span
+              style={{
+                fontSize: "0.85rem",
+                marginLeft: "0.8rem",
+                color: "black"
+              }}
+            >
               Plot
             </span>
           </button>
@@ -353,7 +383,7 @@ const Filter = () => {
         >
           {!extendFilter && (
             <>
-              Extend filter
+              Extend filters
               <MdKeyboardArrowDown />
             </>
           )}
