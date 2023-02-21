@@ -34,14 +34,16 @@ const Objects = () => {
       <div className="objects-container">
         {allObjects?.map((object) => {
           const { id, url, location, price, size, type, to, desc } = object;
-
           return (
             <div className="objects" key={id}>
-              <img
-                src={url.includes("firebase") ? url[1] : url[0]}
-                alt={location}
-                loading={"lazy"}
-              />
+              <Link to={`/propertys/zanzibar/${id}`}>
+                <img
+                  src={url.includes("firebase") ? url[1] : url[0]}
+                  alt={location}
+                  loading={"lazy"}
+                />
+              </Link>
+
               <div className="objects-footer-first">
                 <div className="objects-logo">
                   <h3 className="object-location-text">{location}</h3>
@@ -115,7 +117,9 @@ const Objects = () => {
             } = object;
             return (
               <div key={index} className="objects">
-                <img src={uri && uri} alt={Adress} loading={"lazy"} />
+                <Link to={`/propertys/property/${adId}`}>
+                  <img src={uri && uri} alt={Adress} loading={"lazy"} />
+                </Link>
                 <div className="objects-footer-first">
                   <div className="objects-logo">
                     <h3 className="object-location-text">{Area}</h3>
