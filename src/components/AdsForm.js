@@ -58,22 +58,19 @@ const AdsForm = ({ setActiveStep }) => {
     }
   };
   const sendEmail = (e) => {
-    localStorage.setItem("zanzihomeAdId", adId);
-    setLoading(true);
-
     emailjs
       .sendForm(
-        "service_9wx2s0e",
-        "template_cj67o8s",
+        "service_thbibzh",
+        "template_xn7q61k",
         form.current,
-        process.env.REACT_APP_EMAILJ_USER_ID
+        process.env.REACT_APP_EMAILJS
       )
       .then(
         (result) => {
           if (result.text === "OK") {
             setLoading(false);
             setSended(true);
-            setActiveStep((old) => old + 1);
+            setActiveStep(1);
           }
         },
         (error) => {
@@ -89,12 +86,12 @@ const AdsForm = ({ setActiveStep }) => {
         ref={form}
         onSubmit={(e) => {
           e.preventDefault();
-          // sendEmail();
+          sendEmail();
         }}
       >
         <div className="step-container">
           <div className="form-header">
-            <h1>Place ad on HomeNet</h1>
+            <h1>Place ad on ZanziHome</h1>
             <button
               type="button"
               className="cancel-form-btn"
@@ -311,6 +308,16 @@ const AdsForm = ({ setActiveStep }) => {
               type="text"
               name="adId"
               value={adId}
+              style={{ display: "none" }}
+            />
+          </div>
+          <div className="form-control">
+            <input
+              type={"url"}
+              name="payment"
+              value={
+                "https://checkout.stripe.com/c/pay/cs_live_a10XIZ0ePgPePX3pECV6Xire73XFjeP3PfykxmeIi6o7ccoLxaGkTG2XZZ#fidkdWxOYHwnPyd1blppbHNgWjA0SXRub3RBVlRIb21KTnVKPTZATm9pNTJLamR1QzJLSm9KTEQxZ3Vmc20waW9OZ1Y9UmJtQGNvcE1nR1NIZmo0Vk98UXRuYWFyMmhsb2JMT3V2N21WQzRtNTVpVkFBU3dBdScpJ3VpbGtuQH11anZgYUxhJz8nM2pANDNrZ04yYU5UMl1SPXJyJ3gl"
+              }
               style={{ display: "none" }}
             />
           </div>

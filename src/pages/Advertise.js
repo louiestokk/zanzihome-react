@@ -18,11 +18,11 @@ function Advertise() {
     <>
       <PageHero
         icon={<HiArrowCircleDown />}
-        title={"Advertise your property on HomeNet"}
-        subtitle={"HomeNet is one of the"}
+        title={"Advertise your property on ZanziHome"}
+        subtitle={"ZanziHome is one of the"}
         sub2={"largest"}
         sub3={"platforms for buying and selling properties."}
-        sub4={"Advertise with HomeNet"}
+        sub4={"Advertise with ZanziHome"}
         sub5={"ad package"}
         name={".ads-prices-text-btn"}
       />

@@ -5,17 +5,15 @@ const Brokers = ({ agency, number, contact, logo, email }) => {
   const handleClick = (e) => {
     e.currentTarget.innerHTML = `${number}`;
   };
+  console.log(logo);
   return (
     <>
       <div className="brokers-comp-div">
         <div>
           <div className="brokers-logo-div">
             <h2>Contact Broker</h2>
-            <img
-              src={`../../${logo}`}
-              className="brokers-logo"
-              alt="broker logo"
-            />
+
+            <h4 style={{ marginRight: "1rem" }}>{agency}</h4>
           </div>
           <p>{contact}</p>
 

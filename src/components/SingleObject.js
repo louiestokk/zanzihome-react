@@ -269,7 +269,7 @@ const SingleObject = () => {
                 contact={contact}
                 agency={agency}
                 number={number}
-                logo={logo}
+                // logo={logo}
               />
             </div>
 

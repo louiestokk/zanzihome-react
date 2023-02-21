@@ -24,7 +24,7 @@ const Footer = () => {
             </li>
             <li>
               <Link to="/about" className="footer-links">
-                About HomeNet
+                About ZanziHome
               </Link>
             </li>
             <li>
@@ -50,7 +50,7 @@ const Footer = () => {
             <li>
               <HiOutlineMail className="insta-fot" />
               <Link to="/newsletter" className="footer-links">
-                HomeNet newsletter
+                ZanziHome newsletter
               </Link>
             </li>
             <li>
@@ -79,7 +79,7 @@ const Footer = () => {
         </div>
         <div>
           <span>Stokk Tech Limited &copy;</span>
-          <span> {year} HomeNet</span>
+          <span> {year} ZanziHome</span>
         </div>
       </div>
     </>

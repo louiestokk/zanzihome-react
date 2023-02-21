@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { AiFillHeart } from "react-icons/ai";
@@ -11,7 +11,9 @@ import emailjs from "@emailjs/browser";
 import { useUserContext } from "../user_context";
 import { useSelector } from "react-redux";
 import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
+
 const SingelFirebaseObject = () => {
+  const location = useLocation();
   const firestoreData = useSelector(getFirestoreData);
   const { saved, setSaved, user, loginWithRedirect } = useUserContext();
   const [index, setIndex] = useState(0);
@@ -59,6 +61,7 @@ const SingelFirebaseObject = () => {
         }
       );
   };
+
   return (
     <>
       {firestoreData.map((object) => {
@@ -84,7 +87,7 @@ const SingelFirebaseObject = () => {
           Size,
           uri
         } = object;
-
+        if (!location.pathname.includes(adId)) return;
         return (
           <div className="singel-object-container" key={adId}>
             <div className="singel-object">
@@ -268,7 +271,7 @@ const SingelFirebaseObject = () => {
                 contact={Name}
                 agency={Name}
                 number={Phone}
-                logo={"logo"}
+                // logo={"logo"}
                 email={Email}
               />
             </div>

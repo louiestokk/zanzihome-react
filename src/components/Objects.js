@@ -113,7 +113,6 @@ const Objects = () => {
               Size,
               uri
             } = object;
-            console.log(Price);
             return (
               <div key={index} className="objects">
                 <img src={uri && uri} alt={Adress} />
