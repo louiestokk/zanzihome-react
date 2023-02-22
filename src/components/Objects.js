@@ -11,7 +11,7 @@ import { db } from "../firebase";
 import { objects } from "../utils/data";
 const Objects = () => {
   const dispatch = useDispatch();
-  const allObjects = objects;
+  const allObjects = useSelector(getAllObjects);
   const [firestoreData, setfirestoreData] = useState();
   const fetchFirestoreData = async () => {
     await getDocs(collection(db, "newAd")).then((querySnapshot) => {
@@ -30,10 +30,10 @@ const Objects = () => {
   return (
     <>
       <h4 className="antal-objects">
-        {objects?.length + firestoreData?.length} properties
+        {allObjects?.length + firestoreData?.length} properties
       </h4>
       <div className="objects-container">
-        {objects?.map((object) => {
+        {allObjects?.map((object) => {
           const { id, url, location, price, size, type, to, desc } = object;
           return (
             <div className="objects" key={id}>

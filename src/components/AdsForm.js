@@ -36,7 +36,8 @@ const AdsForm = ({ setActiveStep }) => {
     adId: adId,
     About: "",
     Size: null,
-    uri: ""
+    uri: "",
+    coords: [null, null]
   });
   const form = useRef();
   const history = useHistory();
