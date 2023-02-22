@@ -16,8 +16,13 @@ import {
   filterObjects
 } from "../redux-toolkit/objects/objectSlice";
 import { useSelector, useDispatch } from "react-redux";
+import {
+  getFirestoreData,
+  setFirestoreData
+} from "../redux-toolkit/firebaseDataSlice";
 const Filter = () => {
   const allObjects = useSelector(getAllObjects);
+  const firebaseData = useSelector(getFirestoreData);
   const dispatch = useDispatch();
   const { loading } = useGlobalContext();
   const [showList, setShowList] = useState(false);
@@ -28,7 +33,7 @@ const Filter = () => {
   const [active, setActive] = useState(true);
   const [alertmsg, setAlertMsg] = useState(false);
   const [query, setQuery] = useState();
-
+  // rent null och sell null = sell
   const handleClick = (e) => {
     if (e.currentTarget.className === "loc-btn") {
       const newitems = allObjects.filter(
@@ -36,6 +41,7 @@ const Filter = () => {
       );
       dispatch(filterObjects(newitems));
     }
+
     if (e.currentTarget.className === "btn") {
       const newitems = allObjects.filter(
         (el) => el.type === e.currentTarget.textContent
@@ -69,6 +75,10 @@ const Filter = () => {
   };
 
   const handleChange = (e) => {
+    const newItems = firebaseData?.filter(
+      (el) => el.Adress === e.target.value || el.Area === e.target.value
+    );
+    dispatch(setFirestoreData(newItems));
     if ((e.currentTarget.className = "querys area")) {
       const query =
         e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
@@ -150,15 +160,15 @@ const Filter = () => {
             </div>
           ) : (
             <p
-              style={{
-                margin: "0 auto",
-                color: "red",
-                fontSize: "0.8rem",
-                maxWidth: "300px"
-              }}
+            // style={{
+            //   margin: "0 auto",
+            //   color: "red",
+            //   fontSize: "0.8rem",
+            //   maxWidth: "300px"
+            // }}
             >
-              Sorry no objects for the moment for this search citeria. Please
-              try another search criteria.
+              {/* Sorry no objects for the moment for this search citeria. Please
+              try another search criteria. */}
             </p>
           )}
           {showList && (
