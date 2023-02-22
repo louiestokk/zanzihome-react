@@ -74,7 +74,7 @@ const Footer = () => {
             <Link to="/">Payments</Link>
           </button>
           <button type="button" className="footer-info-bottom-btn">
-            <Link to="/advertisepropertyzanzibar">Prices</Link>
+            <Link to="/payments">Prices</Link>
           </button>
         </div>
         <div>

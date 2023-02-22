@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Audio } from "react-loader-spinner";
 
 const Home = lazy(() => import("./pages/Home"));
+const Payments = lazy(() => import("./components/Payments"));
 const About = lazy(() => import("./pages/about"));
 const Contact = lazy(() => import("./pages/contact"));
 const Propertyzanzibar = lazy(() => import("./pages/propertyzanzibar"));
@@ -46,6 +47,9 @@ function App() {
           </Route>
           <Route path="/propertyzanzibar">
             <Propertyzanzibar />
+          </Route>
+          <Route path="/payments">
+            <Payments />
           </Route>
           <Route path="/about">
             <About />
