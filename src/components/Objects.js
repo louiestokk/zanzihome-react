@@ -8,9 +8,10 @@ import { getAllObjects } from "../redux-toolkit/objects/objectSlice";
 import { getImages } from "../redux-toolkit/ImagesSlice";
 import { setFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 import { db } from "../firebase";
+import { objects } from "../utils/data";
 const Objects = () => {
   const dispatch = useDispatch();
-  const allObjects = useSelector(getAllObjects);
+  const allObjects = objects;
   const [firestoreData, setfirestoreData] = useState();
   const fetchFirestoreData = async () => {
     await getDocs(collection(db, "newAd")).then((querySnapshot) => {
@@ -29,10 +30,10 @@ const Objects = () => {
   return (
     <>
       <h4 className="antal-objects">
-        {allObjects?.length + firestoreData?.length} properties
+        {objects?.length + firestoreData?.length} properties
       </h4>
       <div className="objects-container">
-        {allObjects?.map((object) => {
+        {objects?.map((object) => {
           const { id, url, location, price, size, type, to, desc } = object;
           return (
             <div className="objects" key={id}>
