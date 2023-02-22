@@ -65,16 +65,16 @@ const Footer = () => {
       <div className="footer-bottom-info">
         <div>
           <button type="button" className="footer-info-bottom-btn">
-            <Link to="/propertyzanzibar">All properties</Link>
+            <Link to="/">All properties</Link>
           </button>
           <button type="button" className="footer-info-bottom-btn">
             <Link to="/advertisepropertyzanzibar">Advertise</Link>
           </button>
           <button type="button" className="footer-info-bottom-btn">
-            <Link to="/">Payments</Link>
+            <Link to="/payments">Payments</Link>
           </button>
           <button type="button" className="footer-info-bottom-btn">
-            <Link to="/payments">Prices</Link>
+            <Link to="/advertisepropertyzanzibar">Prices</Link>
           </button>
         </div>
         <div>
