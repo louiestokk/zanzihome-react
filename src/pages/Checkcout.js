@@ -36,7 +36,7 @@ const Checkcout = ({ logedinUser }) => {
             subtitle={"We have emailed you an order confirmation"}
             sub2={"with link for payment of your ad."}
             sub3={"The ad is now published on the page."}
-            sub4={"Pay for the ad within 24 hours"}
+            sub4={"Pay for the ad within 2 hours"}
             sub5={"otherwise the ad will be removed."}
             name={".contact-adress"}
           />
