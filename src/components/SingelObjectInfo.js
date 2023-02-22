@@ -8,13 +8,13 @@ const SingelObjectInfo = ({ info, showModal, setShowModal, recivied }) => {
 
   const handleClick = () => {
     setHidden(!hidden);
-    setHeight("300px");
+    setHeight("100%");
     setPosition("82%");
   };
   return (
     <div className="singel-object-infotext" style={{ height: height }}>
-      <div>
-        <p>{info}</p>
+      <div style={{ height: "100%" }}>
+        <p style={{ height: "100%" }}>{info}</p>
         <br></br>
         <span>
           Feel free to contact the broker for more information and register your

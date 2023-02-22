@@ -802,7 +802,7 @@ button {
   font-weight: 100;
   max-width: 90%;
   overflow: hidden;
-  height: 250px;
+  height: 100%;
   transition: all 0.3s linear;
 }
 .singel-object-infotext span {
@@ -883,6 +883,7 @@ button {
   .jjj {
     display: flex;
     position: relative;
+    height: 100%;
   }
 
   .bid-div {
