@@ -49,12 +49,17 @@ const Footer = () => {
           <ul className="footer-ul">
             <li>
               <HiOutlineMail className="insta-fot" />
-              <Link to="/newsletter" className="footer-links">
+              <Link to="/contact" className="footer-links">
                 ZanziHome newsletter
               </Link>
             </li>
             <li>
-              <a href="" className="insta-fot">
+              <a
+                href="https://www.instagram.com/zanzihome2021/?igshid=YmMyMTA2M2Y%3D"
+                className="insta-fot"
+                title="zanzihome2021 instagram profile"
+                target={"_blank"}
+              >
                 <FaInstagram />
               </a>
               Instagram
