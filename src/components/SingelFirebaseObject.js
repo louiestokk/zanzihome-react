@@ -148,9 +148,9 @@ const SingelFirebaseObject = () => {
               </div>
               <div className="singel-object-info">
                 <h2>
-                  {category} In {Adress}
+                  {category} In {Area}
                 </h2>
-                <p>{Text}</p>
+                <p>{Title}</p>
 
                 <button
                   onClick={() => setIndex(1)}

@@ -2,11 +2,14 @@ import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { objects } from "../utils/data";
 import { useHistory } from "react-router-dom";
-
+import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
+import { useSelector } from "react-redux";
 const MapComp = () => {
-  // const [plats, setPlats] = useState();
+  const firebaseData = useSelector(getFirestoreData);
+  const history = useHistory();
   const zanizbar = [-6.0084, 39.2401];
 
+  // const [plats, setPlats] = useState();
   // const getPosition = () => {
   //   const position = navigator.geolocation.getCurrentPosition(
   //     function (pos) {
@@ -25,7 +28,6 @@ const MapComp = () => {
   // }, [plats]);
   // map.remove();
 
-  const history = useHistory();
   return (
     <div className="map-holder">
       <MapContainer
@@ -38,6 +40,27 @@ const MapComp = () => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        {firebaseData &&
+          firebaseData?.map((el, index) => {
+            let coords = [0, 0];
+            if (el.Adress === "Michamvi" || el.Area === "Michamvi")
+              coords = [-6.1448, 39.4948];
+            if (el.Adress === "Bwejuu" || el.Area === "Bwejuu")
+              coords = [-6.2376, 39.5304];
+            return (
+              <Marker
+                position={coords}
+                key={index}
+                eventHandlers={{
+                  click: (e) => {
+                    history.push(`/propertys/property/${el.adId}`);
+                  }
+                }}
+              >
+                <Popup>{el.desc}</Popup>
+              </Marker>
+            );
+          })}
         {objects.map((el) => {
           const { coords } = el;
           if (coords) {
@@ -48,7 +71,7 @@ const MapComp = () => {
                 eventHandlers={{
                   click: (e) => {
                     history.push(`/propertys/zanzibar/${el.id}`);
-                  },
+                  }
                 }}
               >
                 <Popup>{el.desc}</Popup>

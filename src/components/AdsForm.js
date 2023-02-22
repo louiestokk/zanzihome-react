@@ -214,10 +214,11 @@ const AdsForm = ({ setActiveStep }) => {
           <div className="form-control form-select-category">
             <p>Category</p>
             <select name="category" onChange={handleAdsFormChange}>
-              <option value="house">House</option>
-              <option value="land">Land / Plot</option>
-              <option value="apartment">Apartment</option>
-              <option value="business">Businesss</option>
+              <option value="House">House</option>
+              <option value="Hand">Land / Plot</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Bangalow">Bangalow</option>
+              <option value="Business">Businesss</option>
             </select>
           </div>
           <div className="form-control">
