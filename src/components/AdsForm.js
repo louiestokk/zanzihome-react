@@ -393,9 +393,10 @@ const AdsForm = ({ setActiveStep }) => {
           <div className="lllll">
             <RiAdvertisementFill />
             <p style={{ marginLeft: "0.2rem" }}>
-              Review all information , send the images and then pay for the ad.
-              The ad will be reviewed and published within 24 hours. You will
-              receive a notice by email.
+              Review all information. The ad will be reviewed and published as
+              soon as payment for the ad is made. You will receive an email with
+              login details where you can edit your ad and add more pictures
+              etc.
             </p>
           </div>
         </div>
