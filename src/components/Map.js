@@ -32,7 +32,7 @@ const MapComp = () => {
     <div className="map-holder">
       <MapContainer
         center={zanizbar}
-        zoom={7}
+        zoom={8}
         scrollWheelZoom={false}
         className="map-container"
       >
