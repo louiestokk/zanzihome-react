@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
 import { BsThreeDotsVertical } from "react-icons/bs";
@@ -20,9 +20,11 @@ import {
   getFirestoreData,
   setFirestoreData
 } from "../redux-toolkit/firebaseDataSlice";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 const Filter = () => {
-  const allObjects = useSelector(getAllObjects);
   const firebaseData = useSelector(getFirestoreData);
+  const allObjects = useSelector(getAllObjects);
   const dispatch = useDispatch();
   const { loading } = useGlobalContext();
   const [showList, setShowList] = useState(false);
@@ -33,6 +35,7 @@ const Filter = () => {
   const [active, setActive] = useState(true);
   const [alertmsg, setAlertMsg] = useState(false);
   const [query, setQuery] = useState();
+  const [memo, setMemo] = useState([]);
   // rent null och sell null = sell
   const handleClick = (e) => {
     if (e.currentTarget.className === "loc-btn") {
@@ -76,15 +79,21 @@ const Filter = () => {
 
   const handleChange = (e) => {
     const newItems = firebaseData?.filter(
-      (el) => el.Adress === e.target.value || el.Area === e.target.value
+      (el) =>
+        el.Adress === e.target.value.toUpperCase() ||
+        el.Area === e.target.value.toUpperCase()
     );
     dispatch(setFirestoreData(newItems));
+
     if ((e.currentTarget.className = "querys area")) {
       const query =
         e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
+      console.log(query);
       const newitems = allObjects.filter((el) => el.location === query);
       dispatch(filterObjects(newitems));
     }
+
+    // här skall du bygga for firestoredatan
   };
   const handleSizePrice = (e) => {
     if (e.currentTarget.name === "size") {
@@ -101,6 +110,19 @@ const Filter = () => {
       dispatch(filterObjects(newitems));
     }
   };
+  const fetchFirestoreData = async () => {
+    await getDocs(collection(db, "newAd")).then((querySnapshot) => {
+      const newData = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id
+      }));
+      setMemo(newData);
+    });
+  };
+
+  useEffect(() => {
+    fetchFirestoreData();
+  }, []);
 
   return (
     <Wrapper
@@ -113,8 +135,9 @@ const Filter = () => {
           className={active ? "button active" : "button"}
           onClick={() => {
             setRental(false);
-            setActive(!active);
+            setActive(true);
             dispatch(filterObjects(objects.filter((el) => el.to === "Buy")));
+            dispatch(setFirestoreData(memo?.filter((el) => el.Rent === null)));
           }}
         >
           Sale
@@ -124,8 +147,10 @@ const Filter = () => {
           className={!active ? "button active" : "button"}
           onClick={() => {
             setRental(true);
-            setActive(!active);
+            setActive(false);
             dispatch(filterObjects(objects.filter((el) => el.to === "Rent")));
+            firebaseData.length > 0 &&
+              dispatch(setFirestoreData(memo.filter((el) => el.Rent !== null)));
           }}
         >
           Rental
@@ -133,7 +158,7 @@ const Filter = () => {
       </article>
       <div className="holder" style={{ height: extendFilter && "520px" }}>
         <article className="filter" style={{ marginBottom: "1rem" }}>
-          {!alertmsg ? (
+          {/* {!alertmsg ? (
             <div
               style={{
                 display: "flex",
@@ -160,18 +185,17 @@ const Filter = () => {
             </div>
           ) : (
             <p
-            // style={{
-            //   margin: "0 auto",
-            //   color: "red",
-            //   fontSize: "0.8rem",
-            //   maxWidth: "300px"
-            // }}
+            style={{
+              margin: "0 auto",
+              color: "red",
+              fontSize: "0.8rem",
+              maxWidth: "300px"
+            }}
             >
-              {/* Sorry no objects for the moment for this search citeria. Please
-              try another search criteria. */}
+           
             </p>
-          )}
-          {showList && (
+          )} */}
+          {/* {showList && (
             <div
               style={{
                 background: "white",
@@ -206,7 +230,7 @@ const Filter = () => {
                 All
               </button>
             </div>
-          )}
+          )} */}
           <div style={{ position: "relative" }} className="filter">
             <div
               style={{

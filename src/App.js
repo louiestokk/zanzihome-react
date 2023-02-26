@@ -1,9 +1,14 @@
 import React, { useState, useEffect, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Audio } from "react-loader-spinner";
-
+import { setFirestoreData } from "./redux-toolkit/firebaseDataSlice";
+import { collection, getDocs } from "firebase/firestore";
+import { useDispatch } from "react-redux";
+import { db } from "./firebase";
 const Home = lazy(() => import("./pages/Home"));
 const Payments = lazy(() => import("./components/Payments"));
+const AdminDashBoard = lazy(() => import("./pages/AdminDashBoard"));
+const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 const About = lazy(() => import("./pages/about"));
 const Contact = lazy(() => import("./pages/contact"));
 const Propertyzanzibar = lazy(() => import("./pages/propertyzanzibar"));
@@ -27,6 +32,21 @@ function App() {
   const [logedinUser, setLogedinUser] = useState({});
   const [loading, setLoading] = useState(false);
 
+  const dispatch = useDispatch();
+
+  const fetchFirestoreData = async () => {
+    await getDocs(collection(db, "newAd")).then((querySnapshot) => {
+      const newData = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id
+      }));
+      dispatch(setFirestoreData(newData));
+    });
+  };
+
+  useEffect(() => {
+    fetchFirestoreData();
+  }, []);
   return (
     <Suspense
       fallback={
@@ -51,6 +71,9 @@ function App() {
           <Route path="/payments">
             <Payments />
           </Route>
+          <Route path="/admin-login">
+            <AdminLogin />
+          </Route>
           <Route path="/about">
             <About />
           </Route>
@@ -71,6 +94,9 @@ function App() {
           </Route>
           <Route path="/buildhousezanzibar">
             <Build />
+          </Route>
+          <Route path="/admin-dashboard">
+            <AdminDashBoard />
           </Route>
           <Route path="/foreginerpropertyzanzibar">
             <Foreginer />

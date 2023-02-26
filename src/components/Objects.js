@@ -1,32 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import React from "react";
 import { ImHome } from "react-icons/im";
 import { BsSquare } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllObjects } from "../redux-toolkit/objects/objectSlice";
-import { getImages } from "../redux-toolkit/ImagesSlice";
-import { setFirestoreData } from "../redux-toolkit/firebaseDataSlice";
-import { db } from "../firebase";
-import { objects } from "../utils/data";
-const Objects = () => {
-  const dispatch = useDispatch();
-  const allObjects = useSelector(getAllObjects);
-  const [firestoreData, setfirestoreData] = useState();
-  const fetchFirestoreData = async () => {
-    await getDocs(collection(db, "newAd")).then((querySnapshot) => {
-      const newData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id
-      }));
-      setfirestoreData(newData);
-      dispatch(setFirestoreData(newData));
-    });
-  };
-  useEffect(() => {
-    fetchFirestoreData();
-  }, []);
+import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 
+const Objects = () => {
+  const allObjects = useSelector(getAllObjects);
+  const firestoreData = useSelector(getFirestoreData);
   return (
     <>
       <h4 className="antal-objects">

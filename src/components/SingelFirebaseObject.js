@@ -85,6 +85,7 @@ const SingelFirebaseObject = () => {
           adId,
           About,
           Size,
+          Rooms,
           uri
         } = object;
         if (!location.pathname.includes(adId)) return;
@@ -183,7 +184,7 @@ const SingelFirebaseObject = () => {
                       <ul className="ul-besk">
                         <li>{category}</li>
                         <li>{Size} sq.m</li>
-                        <li>{"rooms"}</li>
+                        <li>{Rooms && Rooms}</li>
                         <li>
                           {Sell === null && Rent === null
                             ? `${Price}.000$`

@@ -21,7 +21,7 @@ const AdsForm = ({ setActiveStep }) => {
     Email: "",
     Phone: null,
     Sell: null,
-    Area: null,
+    Area: "",
     Adress: "",
     Rent: null,
     top3: null,
@@ -37,6 +37,7 @@ const AdsForm = ({ setActiveStep }) => {
     About: "",
     Size: null,
     uri: "",
+    Rooms: null,
     coords: [null, null]
   });
   const form = useRef();
@@ -232,11 +233,21 @@ const AdsForm = ({ setActiveStep }) => {
             />
           </div>
           <div className="form-control">
+            <label htmlFor="Area">Rooms</label>
+            <input
+              type="text"
+              name="Rooms"
+              placeholder="how many rooms?"
+              required
+              onChange={handleAdsFormChange}
+            />
+          </div>
+          <div className="form-control">
             <label htmlFor="Area">Area</label>
             <input
               type="text"
               name="Area"
-              placeholder="ex: Jambiani"
+              placeholder="ex: Paje"
               required
               onChange={handleAdsFormChange}
             />
@@ -247,7 +258,6 @@ const AdsForm = ({ setActiveStep }) => {
               type="text"
               name="Adress"
               placeholder="ex: exampleroad 22"
-              required
               onChange={handleAdsFormChange}
             />
           </div>

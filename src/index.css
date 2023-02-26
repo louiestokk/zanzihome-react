@@ -180,6 +180,7 @@ button {
   height: 100vh;
   z-index: 99;
   transition: all 0.3s linear;
+  z-index: 1000000;
 }
 .show-menu {
   transform: translateX(0);
