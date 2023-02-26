@@ -1551,10 +1551,27 @@ input[type="textarea"] {
 }
 .ooo {
   background: linear-gradient(
-      rgba(0.2, 0.2, 0.2, 0.2),
-      rgba(0.2, 0.2, 0.2, 0.2)
+      rgba(0.3, 0.3, 0.3, 0.3),
+      rgba(0.3, 0.3, 0.3, 0.3)
     ),
-    url("./utils/filterBackground.jpg");
+    url("./utils/zanzibarisland.jpg") no-repeat;
   width: 100%;
   height: 400px;
+  overflow: hidden;
+  object-fit: cover;
+  background-position: center;
+}
+.adbannerp {
+  font-family: "Roboto Condensed", sans-serif;
+  letter-spacing: 1px;
+}
+.adbannerbtn {
+  color: white;
+  cursor: pointer;
+  border: 1px solid white;
+  width: 8rem;
+  height: 2.4rem;
+  letter-spacing: 2px;
+  font-weight: bold;
+  font-family: "Roboto Condensed", sans-serif;
 }

@@ -95,7 +95,10 @@ const SingelFirebaseObject = () => {
               <div className="single-object-img-container">
                 <img
                   src={uri}
-                  style={{ backgroundPosition: "cover", maxHeight: "500px" }}
+                  style={{
+                    backgroundPosition: "cover",
+                    maxHeight: "500px"
+                  }}
                 />
                 {index > 0 && (
                   <button
