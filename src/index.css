@@ -1551,8 +1551,8 @@ input[type="textarea"] {
 }
 .ooo {
   background: linear-gradient(
-      rgba(0.3, 0.3, 0.3, 0.3),
-      rgba(0.3, 0.3, 0.3, 0.3)
+      rgba(0.2, 0.2, 0.2, 0.2),
+      rgba(0.2, 0.2, 0.2, 0.2)
     ),
     url("./utils/zanzibarisland.jpg") no-repeat;
   width: 100%;
