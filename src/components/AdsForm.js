@@ -43,22 +43,6 @@ const AdsForm = ({ setActiveStep }) => {
   const form = useRef();
   const history = useHistory();
   const { myUser } = useGlobalContext();
-
-  const handleAdsFormChange = (e) => {
-    setadsFormData({ ...adsFormData, [e.target.name]: e.target.value });
-  };
-  const addNewAdToFirebase = async () => {
-    setLoading(true);
-    try {
-      const docRef = await addDoc(collection(db, "newAd"), adsFormData);
-      console.log("Document written with ID: ", docRef.id);
-      setLoading(false);
-      setSended(true);
-      setActiveStep(1);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-  };
   const sendEmail = (e) => {
     emailjs
       .sendForm(
@@ -69,6 +53,7 @@ const AdsForm = ({ setActiveStep }) => {
       )
       .then(
         (result) => {
+          console.log(result);
           if (result.text === "OK") {
             setLoading(false);
             setSended(true);
@@ -81,6 +66,23 @@ const AdsForm = ({ setActiveStep }) => {
       );
   };
 
+  const handleAdsFormChange = (e) => {
+    setadsFormData({ ...adsFormData, [e.target.name]: e.target.value });
+  };
+  const addNewAdToFirebase = async () => {
+    sendEmail();
+    setLoading(true);
+    try {
+      const docRef = await addDoc(collection(db, "newAd"), adsFormData);
+      console.log("Document written with ID: ", docRef.id);
+      setLoading(false);
+      setSended(true);
+      setActiveStep(1);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
+
   return (
     <>
       <form
@@ -88,7 +90,6 @@ const AdsForm = ({ setActiveStep }) => {
         ref={form}
         onSubmit={(e) => {
           e.preventDefault();
-          sendEmail();
         }}
       >
         <div className="step-container">
@@ -294,7 +295,6 @@ const AdsForm = ({ setActiveStep }) => {
               style={{ borderradius: "5px 5px" }}
               type="text"
               name="Text"
-              required
               rows="12"
               cols="60"
               onChange={handleAdsFormChange}
