@@ -70,9 +70,12 @@ const EditObject = () => {
     // }
   };
   //  jag kan ju här skicka helt nya data vilket är den vi redan har. men den vi har här lokalt ändrar jag just det objektet opch sen retunerar jag det nya objeltet
+  console.log(firestoreData);
   return (
     <div className={classes.root}>
-      <section>add more images</section>
+      <section>
+        <SendImages adsFormData={adsFormData} setadsFormData={setadsFormData} />
+      </section>
       <form className={classes.form} ref={form}>
         <h4>Edit your ad content</h4>
         <input

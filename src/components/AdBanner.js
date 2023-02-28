@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import { BsFillArrowDownCircleFill } from "react-icons/bs";
-
 const AdBanner = () => {
   return (
     <Wrapper className="ooo">

@@ -355,18 +355,6 @@ const AdsForm = ({ setActiveStep }) => {
               adsFormData={adsFormData}
               setadsFormData={setadsFormData}
             />
-            {/* <button
-              onClick={() => {
-                window.location.href = `mailto:${"louiestokk@gmail.com"}?subject=Images adId:${adId}&body=Attach images in this email`;
-              }}
-              style={{
-                background: "#22c55e",
-                padding: "0.4rem",
-                color: "white"
-              }}
-            >
-              Upload images
-            </button> */}
           </div>
           <div className="form-ad-btn-cont-sub">
             <div>

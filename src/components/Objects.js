@@ -58,7 +58,10 @@ const Objects = () => {
                     {to === "Rent" ? `$${price}/week` : `$${price}.000`}
                   </span>
                   <span>{size}sqm</span>
-                  <span>{type.charAt(0).toUpperCase() + type.slice(1)}</span>
+                  <span style={{ opacity: "0.8" }}>
+                    <p>{to}</p>
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                  </span>
                 </div>
               </div>
               <div className="objects-btn-container">
@@ -96,10 +99,16 @@ const Objects = () => {
               adId,
               About,
               Size,
-              uri
+              uri,
+              Rooms
             } = object;
+            console.log(Rooms);
             return (
-              <div key={index} className="objects">
+              <div
+                key={index}
+                className="objects"
+                style={{ height: !Rooms && "340px" }}
+              >
                 <Link to={`/propertys/property/${adId}`}>
                   <img src={uri && uri} alt={Adress} loading={"lazy"} />
                 </Link>
@@ -138,6 +147,7 @@ const Objects = () => {
                     <span>{Size}sqm</span>
                     <span>
                       {category.charAt(0).toUpperCase() + category.slice(1)}
+                      {Rooms && <p>{Rooms} rooms</p>}
                     </span>
                   </div>
                 </div>
