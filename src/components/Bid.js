@@ -8,11 +8,6 @@ const Bid = ({ bid, id, propertys }) => {
         <GiFlatHammer className="hammer" />
         <p>Bidding in progress</p>
       </div>
-      <button type="button" className="bid-btn">
-        <Link className="bid-link" to="/">
-          See bidding
-        </Link>
-      </button>
     </div>
   );
 };
