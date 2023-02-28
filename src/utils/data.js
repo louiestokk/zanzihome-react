@@ -7,25 +7,25 @@ export const navlinks = [
   {
     id: 2,
     text: "Find Property",
-    url: "/propertyzanzibar",
+    url: "/propertyzanzibar"
   },
   {
     id: 3,
     text: "Advertise Property",
-    url: "/advertisepropertyzanzibar",
+    url: "/advertisepropertyzanzibar"
   },
 
   {
     id: 9,
     text: "About Us",
-    url: "/about",
+    url: "/about"
   },
   {
     id: 10,
     text: "Contact Us",
     url: "/contact",
-    icon: <AiOutlinePhone />,
-  },
+    icon: <AiOutlinePhone />
+  }
 ];
 export const objects = [
   {
@@ -47,7 +47,7 @@ export const objects = [
     logo: "/images/tripplemlogo.png",
     active: true,
     coords: [-6.1448, 39.4948],
-    query: ["beach"],
+    query: ["beach"]
   },
   {
     id: 4,
@@ -67,7 +67,7 @@ export const objects = [
     number: "+255 799 912 498",
     logo: "/images/tripplemlogo.png",
     coords: [-5.0979, 39.7756],
-    query: ["beach"],
+    query: ["beach"]
   },
   {
     id: 5,
@@ -88,7 +88,7 @@ export const objects = [
     logo: "/images/tripplemlogo.png",
     info: "Beach front house for rent in Jambiani Zanzibar with pool. 5 bedrooms, 2 living room, 3 bathrooms and a big kitchen",
     coords: [-6.3158, 39.5446],
-    query: [""],
+    query: [""]
   },
   {
     id: 6,
@@ -108,7 +108,7 @@ export const objects = [
     logo: "/images/tripplemlogo.png",
     info: "Big land in Paje Zanzibar and close to the main road. Close to the village and paje beach. Here you can build smaller houses for business or a big house with pool.",
     coords: [-6.2665, 39.5338],
-    query: ["shopping,restaurants", "supermarket", "pharmacy", "hospital"],
+    query: ["shopping,restaurants", "supermarket", "pharmacy", "hospital"]
   },
   {
     id: 7,
@@ -119,11 +119,11 @@ export const objects = [
     url: [
       "./images/buylandpaje-3.jpg",
       "./images/uk.png",
-      "./images/buylandpaje-2.jpg",
+      "./images/buylandpaje-2.jpg"
     ],
     location: "Paje",
     logo: "/images/tripplemlogo.png",
-    price: 13,
+    price: 16,
     size: 900,
     icon: <BsSquare className="object-plot-icon" />,
     type: "Land",
@@ -135,8 +135,8 @@ export const objects = [
       "supermarket",
       "pharmacy",
       "hospital",
-      "beach",
-    ],
+      "beach"
+    ]
   },
   {
     id: 8,
@@ -148,7 +148,7 @@ export const objects = [
     url: [
       "./images/beachplotzanzibar.jpg",
       "./images/beachplotzanzibar-1.jpg",
-      "./images/beachplotzanzibar-2.jpg",
+      "./images/beachplotzanzibar-2.jpg"
     ],
     location: "Paje",
     price: 125,
@@ -163,8 +163,8 @@ export const objects = [
       "supermarket",
       "pharmacy",
       "hospital",
-      "beach",
-    ],
+      "beach"
+    ]
   },
 
   {
@@ -176,7 +176,7 @@ export const objects = [
     date: 2112,
     url: ["./images/my-1.jpg", "./images/my-2.jpg"],
     location: "Paje",
-    price: 8,
+    price: 13,
     size: 555,
     type: "Land",
     icon: <BsSquare className="object-plot-icon" />,
@@ -188,8 +188,8 @@ export const objects = [
       "supermarket",
       "pharmacy",
       "hospital",
-      "beach",
-    ],
+      "beach"
+    ]
   },
   {
     id: 10,
@@ -200,7 +200,7 @@ export const objects = [
     url: ["./images/mina3.JPG", "hh.png"],
     logo: "/images/tripplemlogo.png",
     location: "Paje",
-    price: 7,
+    price: 12,
     size: 1040,
     type: "Land",
     icon: <BsSquare className="object-plot-icon" />,
@@ -212,8 +212,8 @@ export const objects = [
       "supermarket",
       "pharmacy",
       "hospital",
-      "forest",
-    ],
+      "forest"
+    ]
   },
 
   {
@@ -225,7 +225,7 @@ export const objects = [
     logo: "/images/tripplemlogo.png",
     url: ["./images/mina3.JPG", "./images/hh.png"],
     location: "Paje",
-    price: 11,
+    price: 15,
     size: 2000,
     type: "Land",
     icon: <BsSquare className="object-plot-icon" />,
@@ -237,8 +237,8 @@ export const objects = [
       "supermarket",
       "pharmacy",
       "hospital",
-      "forest",
-    ],
+      "forest"
+    ]
   },
   {
     id: 1,
@@ -261,8 +261,8 @@ export const objects = [
       "supermarket",
       "pharmacy",
       "hospital",
-      "forest",
-    ],
+      "forest"
+    ]
   },
   {
     id: 2,
@@ -286,8 +286,8 @@ export const objects = [
       "supermarket",
       "pharmacy",
       "hospital",
-      "forest",
-    ],
+      "forest"
+    ]
   },
   {
     id: 3,
@@ -310,9 +310,9 @@ export const objects = [
       "supermarket",
       "pharmacy",
       "hospital",
-      "forest",
-    ],
-  },
+      "forest"
+    ]
+  }
 ];
 
 export const bannerInfo = [
@@ -320,6 +320,6 @@ export const bannerInfo = [
     company: "Tripple M Limited",
     id: 1,
     name: "Gerrard M",
-    url: ["../../public/images//buildhousezanzibar.jpg"],
-  },
+    url: ["../../public/images//buildhousezanzibar.jpg"]
+  }
 ];

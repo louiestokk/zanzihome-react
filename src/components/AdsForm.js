@@ -394,9 +394,8 @@ const AdsForm = ({ setActiveStep }) => {
             <RiAdvertisementFill />
             <p style={{ marginLeft: "0.2rem" }}>
               Review all information. The ad will be reviewed and published as
-              soon as payment for the ad is made. You will receive an email with
-              login details where you can edit your ad and add more pictures
-              etc.
+              soon as payment for the ad is made. Login and edit your ad like
+              adding more images.
             </p>
           </div>
         </div>
