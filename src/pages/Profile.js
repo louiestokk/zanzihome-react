@@ -13,7 +13,8 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    width: "100%"
   },
   sec1: {
     display: "flex",
@@ -22,8 +23,8 @@ const useStyles = makeStyles({
   img: {
     objectFit: "cover",
     backgroundPosition: "center",
-    width: "200px",
-    height: "200px",
+    width: "100%",
+    height: "220px",
     borderRadius: "5px"
   },
   horis: {
@@ -31,6 +32,28 @@ const useStyles = makeStyles({
     background: "lightgray",
     width: "90%",
     margin: "1.5rem 0"
+  },
+  container: {
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    cursor: "pointer",
+    marginBottom: "1rem",
+    "&:hover": {
+      border: "1px solid black",
+      borderRadius: "5px"
+    },
+    boxShadow:
+      "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset"
+  },
+
+  holder: {
+    position: "absolute",
+    color: "white",
+    background: "black",
+    padding: "0.5rem"
   }
 });
 const Profile = () => {
@@ -38,7 +61,6 @@ const Profile = () => {
   const fireStoreData = useSelector(getFirestoreData);
   const { user, active, setActive } = useUserContext();
   const email = "gerrardzanzibar@gmail.com";
-  console.log(fireStoreData);
   return (
     <div className={classes.root} id="profile">
       <h2 style={{ margin: "0.5rem 0" }}>Welcome {user && user.nickname}</h2>
@@ -57,9 +79,13 @@ const Profile = () => {
           <FaUserCircle />
         )}
         <div style={{ marginTop: "0.5rem" }}>
-          {user && user.nickname ? user.nickname : "user"}
+          <p style={{ fontSize: "0.75rem" }}>
+            {user && user.nickname ? user.nickname : "user"}
+          </p>
           {"  "}
-          {user && user.email ? user.email : "email"}
+          <p style={{ fontSize: "0.75rem" }}>
+            {user && user.email ? user.email : "email"}
+          </p>
         </div>
       </section>
       <div className={classes.horis}></div>
@@ -93,10 +119,14 @@ const Profile = () => {
                 uri
               } = el;
               return (
-                <div key={adId} className={classes.container}>
-                  <h4>adId:{adId}</h4>
-                  <img src={uri} alt="image" className={classes.img} />
-                </div>
+                <Link to={`/edit/property/user/${adId}`}>
+                  <div key={adId} className={classes.container}>
+                    <div className={classes.holder}>
+                      <h4>adId:{adId}</h4>
+                    </div>
+                    <img src={uri} alt="image" className={classes.img} />
+                  </div>
+                </Link>
               );
             })}
       </section>

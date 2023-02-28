@@ -27,7 +27,7 @@ const ErrorPage = lazy(() => import("./pages/ErrorPage"));
 const SingelFirebaseObject = lazy(() =>
   import("./components/SingelFirebaseObject")
 );
-
+const EditObject = lazy(() => import("./components/EditObject"));
 function App() {
   const [logedinUser, setLogedinUser] = useState({});
   const [loading, setLoading] = useState(false);
@@ -107,7 +107,9 @@ function App() {
           <Route path="/checkout">
             <Checkcout logedinUser={logedinUser} />
           </Route>
-
+          <Route path="/edit/property/user/:adId">
+            <EditObject />
+          </Route>
           <Route
             path="/propertys/zanzibar/:id"
             children={<SingleObject logedinUser={logedinUser} />}
