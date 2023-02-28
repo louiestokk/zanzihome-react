@@ -480,6 +480,8 @@ button {
   border-top-right-radius: 6px;
   height: 180px;
   width: 100%;
+  object-fit: cover;
+  background-position: center;
 }
 .objects-container {
   display: grid;
@@ -976,7 +978,7 @@ button {
 }
 
 .bbb button {
-  width: 200px;
+  width: 280px;
   height: 2.4rem;
   background: white;
   border: 1px solid rgb(192, 189, 189);
@@ -1574,4 +1576,8 @@ input[type="textarea"] {
   letter-spacing: 2px;
   font-weight: bold;
   font-family: "Roboto Condensed", sans-serif;
+}
+#profile {
+  font-family: "Roboto Condensed", sans-serif;
+  letter-spacing: 1px;
 }
