@@ -141,15 +141,27 @@ const Objects = () => {
                     <span
                       style={{
                         letterSpacing: "1px",
-                        marginRight: Rooms !== null && "2rem"
+                        marginRight: Rooms && "2rem"
                       }}
                     >
                       {Rent === null && Sell === null
                         ? `$${Price}.00`
                         : `$${Price}/week`}
                     </span>
-                    <span>{Size}sqm</span>
-                    <span>{category === "Hand" ? "Land" : category}</span>
+                    <span
+                      style={{
+                        marginRight: Rooms && "2rem"
+                      }}
+                    >
+                      {Size}sqm
+                    </span>
+                    <span
+                      style={{
+                        marginRight: Rooms && "2rem"
+                      }}
+                    >
+                      {category === "Hand" ? "Land" : category}
+                    </span>
                     {Rooms && (
                       <div>
                         <p> {Rooms}</p>
