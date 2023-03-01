@@ -60,7 +60,7 @@ const Profile = () => {
   const classes = useStyles();
   const fireStoreData = useSelector(getFirestoreData);
   const { user, active, setActive } = useUserContext();
-  const email = "gerrardzanzibar@gmail.com";
+  const email = "louiestokk@gmail.com";
   return (
     <div className={classes.root} id="profile">
       <h2 style={{ margin: "0.5rem 0" }}>Welcome {user && user.nickname}</h2>
