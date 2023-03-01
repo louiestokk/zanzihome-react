@@ -47,6 +47,12 @@ const MapComp = () => {
               coords = [-6.1448, 39.4948];
             if (el.Adress === "Bwejuu" || el.Area === "Bwejuu")
               coords = [-6.2376, 39.5304];
+            if (el.Adress === "Pemba" || el.Area === "Pemba")
+              coords = [-5.0979, 39.7756];
+            if (el.Adress === "Jambiani" || el.Area === "Jambiani")
+              coords = [-6.3158, 39.5446];
+            if (el.Adress === "Paje" || el.Area === "Paje")
+              coords = [-6.2665, 39.5338];
             return (
               <Marker
                 position={coords}
@@ -61,7 +67,7 @@ const MapComp = () => {
               </Marker>
             );
           })}
-        {objects.map((el) => {
+        {/* {objects.map((el) => {
           const { coords } = el;
           if (coords) {
             return (
@@ -78,7 +84,7 @@ const MapComp = () => {
               </Marker>
             );
           }
-        })}
+        })} */}
       </MapContainer>
       {/* <div className={`${size < 705 ? namn : ""}`}>
         <div className="adBanner-image-container">
