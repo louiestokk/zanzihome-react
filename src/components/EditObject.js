@@ -10,6 +10,8 @@ import {
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
 import SendImages from "./SendImages";
+import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
+import { useSelector } from "react-redux";
 import { db } from "../firebase";
 const useStyles = makeStyles({
   form: {
@@ -29,6 +31,7 @@ const useStyles = makeStyles({
   }
 });
 const EditObject = () => {
+  const firestoreData = useSelector(getFirestoreData);
   const form = useRef();
   const classes = useStyles();
   const { adId } = useParams();
@@ -49,6 +52,7 @@ const EditObject = () => {
       console.log(error);
     }
   };
+  const currentObject = firestoreData?.filter((el) => el.adId === Number(adId));
 
   return (
     <div className={classes.root}>
@@ -59,61 +63,61 @@ const EditObject = () => {
       <form className={classes.form} ref={form}>
         <h4>Edit ad: {adId}</h4>
         <input
-          placeholder="Edit Name"
+          placeholder={currentObject[0].Name}
           name="Name"
           className={classes.input}
           onChange={handleAdsFormChange}
         />
         <input
-          placeholder="Edit Email"
+          placeholder={currentObject[0].Email}
           name="Email"
           className={classes.input}
           onChange={handleAdsFormChange}
         />
         <input
-          placeholder="Edit Phone"
+          placeholder={currentObject[0].Phone}
           name="Phone"
           className={classes.input}
           onChange={handleAdsFormChange}
         />
         <input
-          placeholder=" Edit Area"
+          placeholder={currentObject[0].Area}
           name="Area"
           className={classes.input}
           onChange={handleAdsFormChange}
         />
         <input
-          placeholder="Edit Address"
+          placeholder={currentObject[0].Adress}
           name="Adress"
           className={classes.input}
           onChange={handleAdsFormChange}
         />
         <input
-          placeholder="Edit Title"
+          placeholder={currentObject[0].Title}
           name="Title"
           className={classes.input}
           onChange={handleAdsFormChange}
         />
         <input
-          placeholder="Edit Text"
+          placeholder={currentObject[0].Text}
           name="Text"
           className={classes.input}
           onChange={handleAdsFormChange}
         />
         <input
-          placeholder="Edit Price"
+          placeholder={`${currentObject[0].Price}$`}
           name="Price"
           className={classes.input}
           onChange={handleAdsFormChange}
         />
         <input
-          placeholder="Edit Size"
+          placeholder={`${currentObject[0].Size}.sqm`}
           name="Size"
           className={classes.input}
           onChange={handleAdsFormChange}
         />
         <input
-          placeholder="Edit Rooms"
+          placeholder={currentObject[0].Rooms}
           name="Rooms"
           className={classes.input}
           onChange={handleAdsFormChange}
