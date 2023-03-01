@@ -102,7 +102,7 @@ const Objects = () => {
               uri,
               Rooms
             } = object;
-            console.log(Rooms);
+
             return (
               <div key={index} className="objects">
                 <Link to={`/propertys/property/${adId}`}>
@@ -136,7 +136,7 @@ const Objects = () => {
                   </p>
                   <div
                     className="objects-footer"
-                    style={{ marginBottom: !Rooms && "1.2rem" }}
+                    style={{ marginBottom: !Rooms ? "1rem" : "1rem" }}
                   >
                     <span style={{ letterSpacing: "1px" }}>
                       {Rent === null && Sell === null
@@ -144,9 +144,15 @@ const Objects = () => {
                         : `$${Price}/week`}
                     </span>
                     <span>{Size}sqm</span>
+                    {!Rooms && (
+                      <span>{category === "Hand" ? "Land" : category}</span>
+                    )}
                     <span>
-                      {category.charAt(0).toUpperCase() + category.slice(1)}
-                      {Rooms && <p>{Rooms} rooms</p>}
+                      {Rooms && (
+                        <p>
+                          {Rooms} {Rooms > 1 ? "rooms" : "room"}
+                        </p>
+                      )}
                     </span>
                   </div>
                 </div>
