@@ -83,7 +83,7 @@ const EditObject = () => {
       }
     );
   };
-  console.log(imagesArray);
+
   const uploadNewImages = async (e) => {
     e.preventDefault();
     try {
@@ -182,6 +182,26 @@ const EditObject = () => {
         <input
           placeholder={currentObject[0].Rooms}
           name="Rooms"
+          className={classes.input}
+          onChange={handleAdsFormChange}
+        />
+        <input
+          placeholder={
+            currentObject[0].lat != null
+              ? currentObject[0].lat != null
+              : "latitude"
+          }
+          name="lat"
+          className={classes.input}
+          onChange={handleAdsFormChange}
+        />
+        <input
+          placeholder={
+            currentObject[0].lng != null
+              ? currentObject[0].lng != null
+              : "longitude"
+          }
+          name="lng"
           className={classes.input}
           onChange={handleAdsFormChange}
         />
