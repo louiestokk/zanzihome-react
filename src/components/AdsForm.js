@@ -239,7 +239,6 @@ const AdsForm = ({ setActiveStep }) => {
               type="text"
               name="Rooms"
               placeholder="how many rooms?"
-              required
               onChange={handleAdsFormChange}
             />
           </div>

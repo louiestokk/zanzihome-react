@@ -11,10 +11,8 @@ const Objects = () => {
   const firestoreData = useSelector(getFirestoreData);
   return (
     <>
-      <h4 className="antal-objects">
-        {allObjects?.length + firestoreData?.length} properties
-      </h4>
-      <div className="objects-container">
+      <h4 className="antal-objects">{firestoreData?.length} properties</h4>
+      {/* <div className="objects-container">
         {allObjects?.map((object) => {
           const { id, url, location, price, size, type, to, desc } = object;
           return (
@@ -75,7 +73,7 @@ const Objects = () => {
             </div>
           );
         })}
-      </div>
+      </div> */}
       <div className="objects-container">
         {firestoreData &&
           firestoreData?.map((object, index) => {
@@ -140,7 +138,7 @@ const Objects = () => {
                   >
                     <span
                       style={{
-                        letterSpacing: "1px",
+                        letterSpacing: "2px",
                         marginRight: Rooms && "2rem"
                       }}
                     >

@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
+import { storage } from "../firebase";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import {
   doc,
   collection,
@@ -9,7 +11,6 @@ import {
 } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
-import SendImages from "./SendImages";
 import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 import { useSelector } from "react-redux";
 import { db } from "../firebase";
@@ -31,11 +32,16 @@ const useStyles = makeStyles({
   }
 });
 const EditObject = () => {
+  const [percent, setPercent] = useState(0);
   const firestoreData = useSelector(getFirestoreData);
   const form = useRef();
   const classes = useStyles();
   const { adId } = useParams();
-
+  const [upDated, setupDated] = useState(false);
+  const [currentObject, setcurrentOject] = useState(
+    firestoreData?.filter((el) => el.adId === Number(adId))
+  );
+  const [imagesArray, setimagesArray] = useState([]);
   const handleAdsFormChange = async (e) => {
     try {
       const q = query(
@@ -46,24 +52,80 @@ const EditObject = () => {
       let docId = "";
       querySnapshot.forEach((doc) => (docId = doc.id));
       const object = doc(db, "newAd", docId);
-      await updateDoc(object, { [e.target.name]: e.target.value });
+      await updateDoc(object, {
+        [e.target.name]: e.target.value,
+        imagesArray: imagesArray
+      });
       console.log("updated");
     } catch (error) {
       console.log(error);
     }
   };
-  const currentObject = firestoreData?.filter((el) => el.adId === Number(adId));
+
+  const handleImageChange = (event) => {
+    event.preventDefault();
+    const storageRef = ref(storage, `/files/${event.target.files[0]?.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, event.target.files[0]);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const percent = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        ); // update progress
+        setPercent(percent);
+      },
+      (err) => console.log(err),
+      () => {
+        // download url
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          setimagesArray(url);
+        });
+      }
+    );
+  };
+  console.log(imagesArray);
+  const uploadNewImages = async (e) => {
+    e.preventDefault();
+    try {
+      const q = query(
+        collection(db, "newAd"),
+        where("adId", "==", Number(adId))
+      );
+      const querySnapshot = await getDocs(q);
+      let docId = "";
+      querySnapshot.forEach((doc) => (docId = doc.id));
+      const object = doc(db, "newAd", docId);
+      await updateDoc(object, {
+        imagesArray: imagesArray
+      });
+      console.log("updated");
+      setupDated(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className={classes.root}>
       <section style={{ marginBottom: "1rem" }}>
-        <h4 style={{ marginBottom: "0.5rem" }}>Add more images</h4>
-        {/* <SendImages adsFormData={adsFormData} setadsFormData={setadsFormData} /> */}
+        <h4 style={{ marginBottom: "0.5rem" }}>Add images</h4>
+        <div className="edit-object-file">
+          <input type={"file"} accept="image/*" onChange={handleImageChange} />
+          <input type={"file"} accept="image/*" onChange={handleImageChange} />
+        </div>
+        <div className="edit-object-file">
+          <input type={"file"} accept="image/*" onChange={handleImageChange} />
+          <input type={"file"} accept="image/*" onChange={handleImageChange} />
+        </div>
+        <div className="edit-object-file">
+          <input type={"file"} accept="image/*" onChange={handleImageChange} />
+          <input type={"file"} accept="image/*" onChange={handleImageChange} />
+        </div>
       </section>
       <form className={classes.form} ref={form}>
         <h4>Edit ad: {adId}</h4>
         <input
-          placeholder={currentObject[0].Name}
+          placeholder={currentObject?.[0].Name}
           name="Name"
           className={classes.input}
           onChange={handleAdsFormChange}
@@ -71,6 +133,7 @@ const EditObject = () => {
         <input
           placeholder={currentObject[0].Email}
           name="Email"
+          type={"email"}
           className={classes.input}
           onChange={handleAdsFormChange}
         />
@@ -150,12 +213,13 @@ const EditObject = () => {
           onClick={(e) => {
             e.preventDefault();
             e.target.textContent = "Sending...";
-            setTimeout(() => {
-              window.location.href = `/propertys/property/${adId}`;
-            }, 1000);
+            uploadNewImages(e);
+            // setTimeout(() => {
+            //   window.location.href = `/propertys/property/${adId}`;
+            // }, 1000);
           }}
         >
-          Submit
+          {upDated ? "Updated" : "Submit"}
         </button>
       </form>
     </div>
