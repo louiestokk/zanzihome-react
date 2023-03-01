@@ -104,11 +104,7 @@ const Objects = () => {
             } = object;
             console.log(Rooms);
             return (
-              <div
-                key={index}
-                className="objects"
-                style={{ height: !Rooms && "340px" }}
-              >
+              <div key={index} className="objects">
                 <Link to={`/propertys/property/${adId}`}>
                   <img src={uri && uri} alt={Adress} loading={"lazy"} />
                 </Link>
@@ -138,8 +134,11 @@ const Objects = () => {
                     )}{" "}
                     {Title}
                   </p>
-                  <div className="objects-footer">
-                    <span>
+                  <div
+                    className="objects-footer"
+                    style={{ marginBottom: !Rooms && "1.2rem" }}
+                  >
+                    <span style={{ letterSpacing: "1px" }}>
                       {Rent === null && Sell === null
                         ? `$${Price}.00`
                         : `$${Price}/week`}

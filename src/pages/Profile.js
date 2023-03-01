@@ -119,7 +119,7 @@ const Profile = () => {
                 uri
               } = el;
               return (
-                <Link to={`/edit/property/user/${adId}`}>
+                <Link to={`/edit/property/user/${adId}`} key={adId}>
                   <div key={adId} className={classes.container}>
                     <div className={classes.holder}>
                       <h4>adId:{adId}</h4>

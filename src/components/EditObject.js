@@ -1,5 +1,13 @@
-import React, { useState, useRef } from "react";
-import { doc, addDoc, collection } from "firebase/firestore";
+import React, { useState, useRef, useEffect } from "react";
+import {
+  doc,
+  addDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+  updateDoc
+} from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 import { useSelector } from "react-redux";
@@ -46,7 +54,7 @@ const EditObject = () => {
     Title: "",
     Text: "",
     Price: "",
-    adId: adId,
+    adId: Number(adId),
     About: "",
     Size: null,
     uri: "",
@@ -57,9 +65,24 @@ const EditObject = () => {
     setadsFormData({ ...adsFormData, [e.target.name]: e.target.value });
   };
 
-  const addNewAdToFirebase = async (e) => {
-    e.preventDefault();
-    console.log(adsFormData);
+  const addNewAdToFirebase = async () => {
+    try {
+      const q = query(
+        collection(db, "newAd"),
+        where("adId", "==", Number(adId))
+      );
+      const querySnapshot = await getDocs(q);
+      let docId = "";
+      querySnapshot.forEach((doc) => (docId = doc.id));
+      const object = doc(db, "newAd", docId);
+      await updateDoc(object, {
+        Rooms: 2
+      });
+      console.log("updated");
+    } catch (error) {
+      console.log(error);
+    }
+
     // setLoading(true);
     // try {
     //   const docRef = await addDoc(collection(db, "newAd"), adsFormData);
@@ -70,14 +93,17 @@ const EditObject = () => {
     // }
   };
   //  jag kan ju här skicka helt nya data vilket är den vi redan har. men den vi har här lokalt ändrar jag just det objektet opch sen retunerar jag det nya objeltet
-  console.log(firestoreData);
+  useEffect(() => {
+    addNewAdToFirebase();
+  }, []);
   return (
     <div className={classes.root}>
-      <section>
+      <section style={{ marginBottom: "1rem" }}>
+        <h4 style={{ marginBottom: "0.5rem" }}>Add more images</h4>
         <SendImages adsFormData={adsFormData} setadsFormData={setadsFormData} />
       </section>
       <form className={classes.form} ref={form}>
-        <h4>Edit your ad content</h4>
+        <h4>Edit ad: {adId}</h4>
         <input
           placeholder="Edit Name"
           name="Name"
