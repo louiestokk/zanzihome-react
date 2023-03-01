@@ -136,24 +136,26 @@ const Objects = () => {
                   </p>
                   <div
                     className="objects-footer"
-                    style={{ marginBottom: !Rooms ? "1rem" : "1rem" }}
+                    style={{ marginBottom: "1rem" }}
                   >
-                    <span style={{ letterSpacing: "1px" }}>
+                    <span
+                      style={{
+                        letterSpacing: "1px",
+                        marginRight: Rooms !== null && "2rem"
+                      }}
+                    >
                       {Rent === null && Sell === null
                         ? `$${Price}.00`
                         : `$${Price}/week`}
                     </span>
                     <span>{Size}sqm</span>
-                    {!Rooms && (
-                      <span>{category === "Hand" ? "Land" : category}</span>
+                    <span>{category === "Hand" ? "Land" : category}</span>
+                    {Rooms && (
+                      <div>
+                        <p> {Rooms}</p>
+                        <p>{Rooms > 1 ? "Rooms" : "Room"}</p>
+                      </div>
                     )}
-                    <span>
-                      {Rooms && (
-                        <p>
-                          {Rooms} {Rooms > 1 ? "rooms" : "room"}
-                        </p>
-                      )}
-                    </span>
                   </div>
                 </div>
                 <div className="objects-btn-container">
