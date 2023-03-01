@@ -177,7 +177,7 @@ const SingelFirebaseObject = () => {
                   <div className="col-1">
                     <div>
                       <ul className="ul-title">
-                        <li>Housing Type</li>
+                        <li>Type</li>
                         <li>Size</li>
                         <li>{"Rooms"}</li>
                         <li>Price</li>

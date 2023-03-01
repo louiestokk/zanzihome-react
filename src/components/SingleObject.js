@@ -95,7 +95,7 @@ const SingleObject = () => {
             number,
             logo
           } = object;
-
+          console.log(type);
           return (
             <div className="singel-object-container" key={id}>
               <div className="singel-object">
@@ -184,7 +184,7 @@ const SingleObject = () => {
                     <div className="col-1">
                       <div>
                         <ul className="ul-title">
-                          <li>Housing Type</li>
+                          <li>Type</li>
                           <li>Size</li>
                           <li>{rooms && "Rooms"}</li>
                           <li>Price</li>
@@ -193,7 +193,7 @@ const SingleObject = () => {
                       <div>
                         <ul className="ul-besk">
                           <li>{type}</li>
-                          <li>{size} sq.m</li>
+                          <li>{size}</li>
                           <li>{rooms || ""}</li>
                           <li>
                             {to === "Rent"
