@@ -5,7 +5,6 @@ const Brokers = ({ agency, number, contact, logo, email }) => {
   const handleClick = (e) => {
     e.currentTarget.innerHTML = `${number}`;
   };
-  console.log(logo);
   return (
     <>
       <div className="brokers-comp-div">
