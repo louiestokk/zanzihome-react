@@ -11,28 +11,17 @@ import emailjs from "@emailjs/browser";
 import { useUserContext } from "../user_context";
 import { useSelector } from "react-redux";
 import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
-
+import CarouselComponent from "./Carousel";
+let index = 0;
 const SingelFirebaseObject = () => {
   const location = useLocation();
   const firestoreData = useSelector(getFirestoreData);
   const { saved, setSaved, user, loginWithRedirect } = useUserContext();
-  let [index, setIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [recivied, setRecivied] = useState(false);
-  const [browsing, setBrowsing] = useState(false);
-  const nextImage = (imagesArray) => {
-    setBrowsing(true);
-    setIndex(index++);
-    if (index > imagesArray.length) setBrowsing(false);
-    console.log(index);
-  };
-  const prevImage = () => {
-    setIndex(index - 1);
-    if (index < 0) {
-      setIndex(0);
-    }
-  };
+  const nextImage = (imagesArray) => {};
+  const prevImage = () => {};
 
   return (
     <>
@@ -62,17 +51,23 @@ const SingelFirebaseObject = () => {
           imagesArray
         } = object;
         if (!location.pathname.includes(adId)) return;
+
         return (
           <div className="singel-object-container" key={adId}>
             <div className="singel-object">
               <div className="single-object-img-container">
-                <img
-                  src={browsing ? imagesArray[index] : uri}
-                  style={{
-                    backgroundPosition: "cover",
-                    maxHeight: "500px"
-                  }}
-                />
+                {imagesArray && imagesArray.length > 0 ? (
+                  <CarouselComponent imagesArray={imagesArray} uri={uri} />
+                ) : (
+                  <img
+                    src={uri}
+                    style={{
+                      backgroundPosition: "cover",
+                      maxHeight: "500px"
+                    }}
+                  />
+                )}
+
                 {index > 0 && (
                   <button
                     type="button"
@@ -130,10 +125,7 @@ const SingelFirebaseObject = () => {
                 </h2>
                 <p>{Title}</p>
 
-                <button
-                  onClick={() => setIndex(1)}
-                  className="map-btn-singel-object"
-                >
+                <button onClick={() => {}} className="map-btn-singel-object">
                   Se on map
                 </button>
                 <h4 className="singel-object-price">
