@@ -41,14 +41,14 @@ const Filter = () => {
         const newItems = memo && memo.filter((el) => el.category === "Hand");
         dispatch(setFirestoreData(newItems));
         document
-          .querySelector(".antal-objects")
+          .querySelector(".map-holder")
           .scrollIntoView({ behavior: "smooth" });
       }
       if (e.currentTarget.textContent === "House") {
         const newItems = memo && memo.filter((el) => el.category === "House");
         dispatch(setFirestoreData(newItems));
         document
-          .querySelector(".antal-objects")
+          .querySelector(".map-holder")
           .scrollIntoView({ behavior: "smooth" });
       }
       if (e.currentTarget.textContent === "Apartment") {
@@ -56,7 +56,7 @@ const Filter = () => {
           memo && memo.filter((el) => el.category === "Apartment");
         dispatch(setFirestoreData(newItems));
         document
-          .querySelector(".antal-objects")
+          .querySelector(".map-holder")
           .scrollIntoView({ behavior: "smooth" });
       }
       if (e.currentTarget.textContent === "Business") {
@@ -64,7 +64,7 @@ const Filter = () => {
           memo && memo.filter((el) => el.category === "Business");
         dispatch(setFirestoreData(newItems));
         document
-          .querySelector(".antal-objects")
+          .querySelector(".map-holder")
           .scrollIntoView({ behavior: "smooth" });
       }
     }
@@ -216,7 +216,7 @@ const Filter = () => {
             onClick={() => {
               dispatch(setFirestoreData(memo));
               document
-                .querySelector(".antal-objects")
+                .querySelector(".map-holder")
                 .scrollIntoView({ behavior: "smooth" });
             }}
           >
