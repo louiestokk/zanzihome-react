@@ -56,7 +56,7 @@ const SingelFirebaseObject = () => {
           <div className="singel-object-container" key={adId}>
             <div className="singel-object">
               <div className="single-object-img-container">
-                {imagesArray && imagesArray.length > 0 ? (
+                {imagesArray && imagesArray.length > 1 ? (
                   <CarouselComponent imagesArray={imagesArray} uri={uri} />
                 ) : (
                   <img
@@ -66,25 +66,6 @@ const SingelFirebaseObject = () => {
                       maxHeight: "500px"
                     }}
                   />
-                )}
-
-                {index > 0 && (
-                  <button
-                    type="button"
-                    className="singel-img-left-arr"
-                    onClick={prevImage}
-                  >
-                    <MdOutlineArrowBackIosNew />
-                  </button>
-                )}
-                {imagesArray && imagesArray.length > 0 && (
-                  <button
-                    typ="button"
-                    className="singel-img-right-arr"
-                    onClick={() => nextImage(imagesArray)}
-                  >
-                    <MdOutlineArrowForwardIos />
-                  </button>
                 )}
               </div>
               <div className={showLoginModal ? "not-loggedin-modal" : "hidden"}>
