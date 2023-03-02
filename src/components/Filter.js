@@ -360,7 +360,7 @@ const Filter = () => {
           style={{
             textAlign: "center",
             fontSize: "0.9rem",
-            color: "#0369A1",
+            color: "green",
             cursor: "pointer",
             margin: "0.3rem 0"
           }}
@@ -368,7 +368,7 @@ const Filter = () => {
         >
           {!extendFilter && (
             <>
-              Extend filters
+              Extend filter
               <MdKeyboardArrowDown />
             </>
           )}
