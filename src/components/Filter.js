@@ -27,36 +27,39 @@ const Filter = () => {
   const allObjects = useSelector(getAllObjects);
   const dispatch = useDispatch();
   const { loading } = useGlobalContext();
-  const [showList, setShowList] = useState(false);
   const [rental, setRental] = useState(false);
   const [size, setSize] = useState(0);
   const [price, setprice] = useState(0);
   const [extendFilter, setExtendFilter] = useState(false);
   const [active, setActive] = useState(true);
-  const [alertmsg, setAlertMsg] = useState(false);
   const [query, setQuery] = useState();
   const [memo, setMemo] = useState([]);
   // rent null och sell null = sell
   const handleClick = (e) => {
     if (e.currentTarget.className === "loc-btn") {
-      const newitems = allObjects.filter(
-        (el) => el.location === e.currentTarget.textContent
-      );
-      dispatch(filterObjects(newitems));
     }
 
     if (e.currentTarget.className === "btn") {
-      const newitems = allObjects.filter(
-        (el) => el.type === e.currentTarget.textContent
-      );
-      if (newitems.length === 0) {
-        setAlertMsg(!alertmsg);
+      if (e.currentTarget.textContent === "Plot") {
+        const newItems = memo && memo.filter((el) => el.category === "Hand");
+        dispatch(setFirestoreData(newItems));
       }
-      dispatch(filterObjects(newitems));
+      if (e.currentTarget.textContent === "House") {
+        const newItems = memo && memo.filter((el) => el.category === "House");
+        dispatch(setFirestoreData(newItems));
+      }
+      if (e.currentTarget.textContent === "Apartment") {
+        const newItems =
+          memo && memo.filter((el) => el.category === "Apartment");
+        dispatch(setFirestoreData(newItems));
+      }
+      if (e.currentTarget.textContent === "Business") {
+        const newItems =
+          memo && memo.filter((el) => el.category === "Business");
+        dispatch(setFirestoreData(newItems));
+      }
     }
-    setTimeout(() => {
-      setAlertMsg(false);
-    }, 5000);
+
     if (e.currentTarget.className === "button") {
       setActive(!active);
     }
@@ -157,80 +160,16 @@ const Filter = () => {
         </button>
       </article>
       <div className="holder" style={{ height: extendFilter && "520px" }}>
-        <article className="filter" style={{ marginBottom: "1rem" }}>
-          {/* {!alertmsg ? (
-            <div
-              style={{
-                display: "flex",
-                width: "100%",
-                alignItems: "center"
-              }}
-            >
-              <h4 style={{ marginLeft: "0.5rem" }}>Area</h4>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginLeft: "1rem"
-                }}
-              >
-                <FaBars
-                  style={{ color: "#0369A1", cursor: "pointer" }}
-                  onClick={() => setShowList(!showList)}
-                />
-                <p style={{ marginLeft: "0.2rem", fontSize: "0.8rem" }}>
-                  Select from list
-                </p>
-              </div>
-            </div>
-          ) : (
-            <p
-            style={{
-              margin: "0 auto",
-              color: "red",
-              fontSize: "0.8rem",
-              maxWidth: "300px"
-            }}
-            >
-           
-            </p>
-          )} */}
-          {/* {showList && (
-            <div
-              style={{
-                background: "white",
-                height: "1rem",
-                width: "100%",
-                fontSize: "0.9rem",
-                marginBottom: "1.5rem",
-                flexWrap: "wrap",
-                display: "flex",
-                alignItems: "center"
-              }}
-            >
-              {Array.from(new Set(objects.map((el) => el.location))).map(
-                (el) => {
-                  return (
-                    <button
-                      type="button"
-                      className="loc-btn"
-                      key={el}
-                      onClick={handleClick}
-                    >
-                      {el}
-                    </button>
-                  );
-                }
-              )}
-              <button
-                type="button"
-                className="loc-btn"
-                onClick={() => objects.filter((el) => el.to === "Buy")}
-              >
-                All
-              </button>
-            </div>
-          )} */}
+        <article
+          className="filter"
+          style={{
+            marginBottom: "1rem",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center"
+          }}
+        >
           <div style={{ position: "relative" }} className="filter">
             <div
               style={{
@@ -267,7 +206,7 @@ const Filter = () => {
           <button
             className="btn"
             type="button"
-            onClick={() => dispatch(filterObjects(objects))}
+            onClick={() => dispatch(setFirestoreData(memo))}
           >
             <BsThreeDotsVertical />
             <span
@@ -327,7 +266,7 @@ const Filter = () => {
                 color: "black"
               }}
             >
-              Bangalow
+              Business
             </span>
           </button>
           <button className="btn" type="button" onClick={handleClick}>
@@ -487,7 +426,7 @@ const Wrapper = styled.section`
   }
   .holder {
     background: white;
-    height: 380px;
+    height: 360px;
     width: 600px;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     border-radius: 5px 5px;
@@ -501,7 +440,7 @@ const Wrapper = styled.section`
   }
   input {
     height: 3rem;
-    width: 94%;
+    width: 96%;
     border: 2px solid #0b8b3a;
     text-align: center;
   }

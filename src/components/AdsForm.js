@@ -220,7 +220,6 @@ const AdsForm = ({ setActiveStep }) => {
               <option value="House">House</option>
               <option value="Hand">Land / Plot</option>
               <option value="Apartment">Apartment</option>
-              <option value="Bangalow">Bangalow</option>
               <option value="Business">Businesss</option>
             </select>
           </div>
