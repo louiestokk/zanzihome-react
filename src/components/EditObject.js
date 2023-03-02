@@ -33,6 +33,7 @@ const useStyles = makeStyles({
 });
 const EditObject = () => {
   const [percent, setPercent] = useState(0);
+  const [loading, setloading] = useState(false);
   const firestoreData = useSelector(getFirestoreData);
   const form = useRef();
   const classes = useStyles();
@@ -53,8 +54,7 @@ const EditObject = () => {
       querySnapshot.forEach((doc) => (docId = doc.id));
       const object = doc(db, "newAd", docId);
       await updateDoc(object, {
-        [e.target.name]: e.target.value,
-        imagesArray: imagesArray
+        [e.target.name]: e.target.value
       });
       console.log("updated");
     } catch (error) {
@@ -63,6 +63,7 @@ const EditObject = () => {
   };
 
   const handleImageChange = (event) => {
+    setloading(true);
     event.preventDefault();
     const storageRef = ref(storage, `/files/${event.target.files[0]?.name}`);
     const uploadTask = uploadBytesResumable(storageRef, event.target.files[0]);
@@ -73,12 +74,14 @@ const EditObject = () => {
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         ); // update progress
         setPercent(percent);
+        setloading(false);
       },
       (err) => console.log(err),
       () => {
         // download url
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          setimagesArray(url);
+          console.log(url);
+          imagesArray.push(url);
         });
       }
     );
@@ -121,66 +124,69 @@ const EditObject = () => {
           <input type={"file"} accept="image/*" onChange={handleImageChange} />
           <input type={"file"} accept="image/*" onChange={handleImageChange} />
         </div>
+        <div>
+          <p style={{ margin: "0.5rem 0" }}>{percent} "% done"</p>
+        </div>
       </section>
       <form className={classes.form} ref={form}>
         <h4>Edit ad: {adId}</h4>
         <input
-          placeholder={currentObject?.[0].Name}
+          placeholder={currentObject?.[0]?.Name}
           name="Name"
           className={classes.input}
           onChange={handleAdsFormChange}
         />
         <input
-          placeholder={currentObject[0].Email}
+          placeholder={currentObject?.[0]?.Email}
           name="Email"
           type={"email"}
           className={classes.input}
           onChange={handleAdsFormChange}
         />
         <input
-          placeholder={currentObject[0].Phone}
+          placeholder={currentObject?.[0]?.Phone}
           name="Phone"
           className={classes.input}
           onChange={handleAdsFormChange}
         />
         <input
-          placeholder={currentObject[0].Area}
+          placeholder={currentObject?.[0]?.Area}
           name="Area"
           className={classes.input}
           onChange={handleAdsFormChange}
         />
         <input
-          placeholder={currentObject[0].Adress}
+          placeholder={currentObject?.[0]?.Adress}
           name="Adress"
           className={classes.input}
           onChange={handleAdsFormChange}
         />
         <input
-          placeholder={currentObject[0].Title}
+          placeholder={currentObject?.[0]?.Title}
           name="Title"
           className={classes.input}
           onChange={handleAdsFormChange}
         />
         <input
-          placeholder={currentObject[0].Text}
+          placeholder={currentObject?.[0]?.Text}
           name="Text"
           className={classes.input}
           onChange={handleAdsFormChange}
         />
         <input
-          placeholder={`${currentObject[0].Price}$`}
+          placeholder={`${currentObject?.[0]?.Price}$`}
           name="Price"
           className={classes.input}
           onChange={handleAdsFormChange}
         />
         <input
-          placeholder={`${currentObject[0].Size}.sqm`}
+          placeholder={`${currentObject?.[0]?.Size}.sqm`}
           name="Size"
           className={classes.input}
           onChange={handleAdsFormChange}
         />
         <input
-          placeholder={currentObject[0].Rooms}
+          placeholder={currentObject?.[0]?.Rooms}
           name="Rooms"
           className={classes.input}
           onChange={handleAdsFormChange}

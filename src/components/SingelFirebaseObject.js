@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { MdOutlineArrowForwardIos, MdTurnedInNot } from "react-icons/md";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { AiFillHeart } from "react-icons/ai";
 import { FiUser } from "react-icons/fi";
@@ -16,50 +16,22 @@ const SingelFirebaseObject = () => {
   const location = useLocation();
   const firestoreData = useSelector(getFirestoreData);
   const { saved, setSaved, user, loginWithRedirect } = useUserContext();
-  const [index, setIndex] = useState(0);
+  let [index, setIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [randomId, setRandomId] = useState(Math.floor(Math.random() * 1000000));
-  const [sending, setSending] = useState(false);
   const [recivied, setRecivied] = useState(false);
-  const { adId } = useParams();
-  const form = useRef();
-
-  const nextImage = () => {
-    const num = firestoreData.map((el) => el.url).length;
-    setIndex(index + 1);
-    if (index > num - 1) {
-      setIndex(0);
-    }
+  const [browsing, setBrowsing] = useState(false);
+  const nextImage = (imagesArray) => {
+    setBrowsing(true);
+    setIndex(index++);
+    if (index > imagesArray.length) setBrowsing(false);
+    console.log(index);
   };
   const prevImage = () => {
     setIndex(index - 1);
     if (index < 0) {
       setIndex(0);
     }
-  };
-  const sendEmail = (e) => {
-    e.preventDefault();
-    setSending(true);
-    emailjs
-      .sendForm(
-        "service_9wx2s0e",
-        "template_9kq3rcn",
-        form.current,
-        process.env.REACT_APP_EMAILJ_USER_ID
-      )
-      .then(
-        (result) => {
-          if (result.text === "OK") {
-            setSending(false);
-            setShowModal(false);
-            setRecivied(true);
-          }
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
   };
 
   return (
@@ -86,7 +58,8 @@ const SingelFirebaseObject = () => {
           About,
           Size,
           Rooms,
-          uri
+          uri,
+          imagesArray
         } = object;
         if (!location.pathname.includes(adId)) return;
         return (
@@ -94,7 +67,7 @@ const SingelFirebaseObject = () => {
             <div className="singel-object">
               <div className="single-object-img-container">
                 <img
-                  src={uri}
+                  src={browsing ? imagesArray[index] : uri}
                   style={{
                     backgroundPosition: "cover",
                     maxHeight: "500px"
@@ -109,11 +82,11 @@ const SingelFirebaseObject = () => {
                     <MdOutlineArrowBackIosNew />
                   </button>
                 )}
-                {uri.length > 1 && (
+                {imagesArray && imagesArray.length > 0 && (
                   <button
                     typ="button"
                     className="singel-img-right-arr"
-                    onClick={nextImage}
+                    onClick={() => nextImage(imagesArray)}
                   >
                     <MdOutlineArrowForwardIos />
                   </button>
@@ -203,74 +176,9 @@ const SingelFirebaseObject = () => {
                   setShowModal={setShowModal}
                   recivied={recivied}
                 />
-                {showModal && (
-                  <form
-                    className="interest-root"
-                    ref={form}
-                    onSubmit={sendEmail}
-                  >
-                    <div style={{ display: "none" }}>
-                      <label htmlFor="id">Object:</label>
-                      <input
-                        type="text"
-                        name="id"
-                        value={`${randomId}${adId}`}
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="name">Name: </label>
-                      <input name="name" type="text" required />
-                    </div>
-                    <div>
-                      <label htmlFor="email">Email: </label>
-                      <input name="email" type="email" required />
-                    </div>
-                    <div>
-                      <label htmlFor="phone">Phone: </label>
-                      <input name="phone" type="text" required />
-                    </div>
-                    <div>
-                      <label htmlFor="commentInterest">Decsribe</label>
-                      <textarea
-                        name="commentInterest"
-                        cols={20}
-                        rows={4}
-                        required
-                      ></textarea>
-                    </div>
-                    <div>
-                      <button
-                        type="button"
-                        className="soitbt-2"
-                        style={{
-                          padding: "0.3rem",
-                          cursor: "pointer",
-                          width: "5rem"
-                        }}
-                        onClick={() => setShowModal(false)}
-                      >
-                        Close
-                      </button>
-                      <button
-                        type="submit"
-                        className="soitbt-1"
-                        style={{
-                          padding: "0.3rem",
-                          cursor: "pointer",
-                          width: "5rem"
-                        }}
-                      >
-                        {sending ? "...sending" : "Send"}
-                      </button>
-                    </div>
-                  </form>
-                )}
               </div>
             </div>
             <div className="divider-singel-object"></div>
-            {/* <div className="singel-banner">
-              <AdBanner />
-            </div> */}
             <div className="broker-contact-div">
               <Brokers
                 contact={Name}

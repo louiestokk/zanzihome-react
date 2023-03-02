@@ -2,78 +2,24 @@ import React from "react";
 import { ImHome } from "react-icons/im";
 import { BsSquare } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { getAllObjects } from "../redux-toolkit/objects/objectSlice";
+import { useSelector } from "react-redux";
+import { Audio, Oval } from "react-loader-spinner";
 import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 
 const Objects = () => {
-  const allObjects = useSelector(getAllObjects);
   const firestoreData = useSelector(getFirestoreData);
   return (
     <>
       <h4 className="antal-objects">{firestoreData?.length} properties</h4>
-      {/* <div className="objects-container">
-        {allObjects?.map((object) => {
-          const { id, url, location, price, size, type, to, desc } = object;
-          return (
-            <div className="objects" key={id}>
-              <Link to={`/propertys/zanzibar/${id}`}>
-                <img
-                  src={url.includes("firebase") ? url[1] : url[0]}
-                  alt={location}
-                  loading={"lazy"}
-                />
-              </Link>
-
-              <div className="objects-footer-first">
-                <div className="objects-logo">
-                  <h3 className="object-location-text">{location}</h3>
-                  <div className="logo">
-                    <div className="logo-circle circlar">
-                      <ImHome className="logo-icon ccc" />
-                    </div>
-                    <div
-                      className="logo-text objectsreal-logo"
-                      style={{ marginRight: "0.75rem" }}
-                    >
-                      <h4>ZanziHom</h4>
-                      <p className="pp">e</p>
-                    </div>
-                  </div>
-                </div>
-                <p>
-                  {type === "House" || type === "Apartment" ? (
-                    <ImHome style={{ color: "#22c55e" }} />
-                  ) : (
-                    <BsSquare
-                      style={{ color: "#22c55e", background: "#22c55e" }}
-                    />
-                  )}{" "}
-                  {desc}
-                </p>
-                <div className="objects-footer">
-                  <span>
-                    {to === "Rent" ? `$${price}/week` : `$${price}.000`}
-                  </span>
-                  <span>{size}sqm</span>
-                  <span style={{ opacity: "0.8" }}>
-                    <p>{to}</p>
-                    {type.charAt(0).toUpperCase() + type.slice(1)}
-                  </span>
-                </div>
-              </div>
-              <div className="objects-btn-container">
-                <Link to={`/propertys/zanzibar/${id}`}>
-                  <button type="button">Contact</button>
-                </Link>
-                <Link to={`/propertys/zanzibar/${id}`}>
-                  <button type="button">Info</button>
-                </Link>
-              </div>
-            </div>
-          );
-        })}
-      </div> */}
+      {firestoreData.length <= 0 && (
+        <Audio
+          height="80"
+          width="80"
+          radius="9"
+          color="green"
+          ariaLabel="loading"
+        />
+      )}
       <div className="objects-container">
         {firestoreData &&
           firestoreData?.map((object, index) => {
