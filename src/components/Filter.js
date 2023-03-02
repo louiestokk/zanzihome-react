@@ -36,30 +36,38 @@ const Filter = () => {
   const [memo, setMemo] = useState([]);
   // rent null och sell null = sell
   const handleClick = (e) => {
-    if (e.currentTarget.className === "loc-btn") {
-    }
-
     if (e.currentTarget.className === "btn") {
       if (e.currentTarget.textContent === "Plot") {
         const newItems = memo && memo.filter((el) => el.category === "Hand");
         dispatch(setFirestoreData(newItems));
+        document
+          .querySelector(".antal-objects")
+          .scrollIntoView({ behavior: "smooth" });
       }
       if (e.currentTarget.textContent === "House") {
         const newItems = memo && memo.filter((el) => el.category === "House");
         dispatch(setFirestoreData(newItems));
+        document
+          .querySelector(".antal-objects")
+          .scrollIntoView({ behavior: "smooth" });
       }
       if (e.currentTarget.textContent === "Apartment") {
         const newItems =
           memo && memo.filter((el) => el.category === "Apartment");
         dispatch(setFirestoreData(newItems));
+        document
+          .querySelector(".antal-objects")
+          .scrollIntoView({ behavior: "smooth" });
       }
       if (e.currentTarget.textContent === "Business") {
         const newItems =
           memo && memo.filter((el) => el.category === "Business");
         dispatch(setFirestoreData(newItems));
+        document
+          .querySelector(".antal-objects")
+          .scrollIntoView({ behavior: "smooth" });
       }
     }
-
     if (e.currentTarget.className === "button") {
       setActive(!active);
     }
@@ -81,19 +89,18 @@ const Filter = () => {
   };
 
   const handleChange = (e) => {
-    const newItems = firebaseData?.filter(
+    const newItems = memo?.filter(
       (el) =>
         el.Adress === e.target.value.toUpperCase() ||
-        el.Area === e.target.value.toUpperCase()
+        el.Area === e.target.value.toUpperCase() ||
+        el.Area === e.target.value
     );
     dispatch(setFirestoreData(newItems));
-
     if ((e.currentTarget.className = "querys area")) {
       const query =
         e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
-      console.log(query);
-      const newitems = allObjects.filter((el) => el.location === query);
-      dispatch(filterObjects(newitems));
+      const newitems = memo.filter((el) => el.Area === query);
+      dispatch(setFirestoreData(newitems));
     }
 
     // här skall du bygga for firestoredatan
@@ -206,7 +213,12 @@ const Filter = () => {
           <button
             className="btn"
             type="button"
-            onClick={() => dispatch(setFirestoreData(memo))}
+            onClick={() => {
+              dispatch(setFirestoreData(memo));
+              document
+                .querySelector(".antal-objects")
+                .scrollIntoView({ behavior: "smooth" });
+            }}
           >
             <BsThreeDotsVertical />
             <span
@@ -370,37 +382,6 @@ const Filter = () => {
         <button type="button" className="submit" onClick={handleSubmit}>
           {rental ? "Find property for rent" : "Find properties for sale"}
         </button>
-        {allObjects.length === 0 && !loading && (
-          <div
-            style={{
-              display: "flex",
-              margin: "0 auto",
-              justifyContent: "center"
-            }}
-          >
-            <p
-              style={{
-                textAlign: "center",
-                color: "red",
-                fontSize: "0.75rem",
-                margin: "0 0"
-              }}
-            >
-              No result match you search citeria. Clear filter and start over
-            </p>
-            <button
-              onClick={() => dispatch(filterObjects(objects))}
-              style={{
-                margin: "0 0.5rem",
-                border: "1px solid red",
-                padding: "0.1rem",
-                color: "red"
-              }}
-            >
-              clear filter
-            </button>
-          </div>
-        )}
       </div>
     </Wrapper>
   );
