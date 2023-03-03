@@ -93,31 +93,9 @@ const Profile = () => {
       <section className={classes.sec2}>
         {fireStoreData &&
           fireStoreData
-            .filter((el) => el.Email === "louiestokk@gmail.com")
+            .filter((el) => el.Email === user?.email)
             .map((el, ind) => {
-              const {
-                Name,
-                Email,
-                Phone,
-                Sell,
-                Area,
-                Adress,
-                Rent,
-                top3,
-                rocket3,
-                rocket10,
-                top10,
-                category,
-                Zip,
-                Title,
-                Text,
-                Price,
-                adId,
-                About,
-                Size,
-                Rooms,
-                uri
-              } = el;
+              const { adId, uri } = el;
               return (
                 <Link to={`/edit/property/user/${adId}`} key={adId}>
                   <div key={adId} className={classes.container}>
