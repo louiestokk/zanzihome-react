@@ -7,7 +7,9 @@ const propertyzanzibar = () => {
   return (
     <>
       <Filter />
-      <AdBanner />
+      <div className="adBanner-holder">
+        <AdBanner />
+      </div>
       <MapPage />
       <Objects />
     </>

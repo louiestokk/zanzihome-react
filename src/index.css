@@ -1598,3 +1598,8 @@ input[type="textarea"] {
     align-items: center;
   }
 }
+@media screen and (min-width: 900px) {
+  .adBanner-holder {
+    display: none;
+  }
+}
