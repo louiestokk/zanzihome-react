@@ -13,9 +13,7 @@ import {
 import { useHistory } from "react-router-dom";
 //  username UID:  PK50165_13f9999571fb
 // password HhSB9JCaQBa14ish
-const promise = loadStripe(
-  "pk_live_51LqkjqDSQMjhOKpO83EKjl07NoapF7NOjOIA4bpcvh5ljKbS8WghEfjuHbBVMco1SJyTqkddw7mijgIJps2hSF1h00lSDDVrDp"
-);
+const promise = loadStripe(`${process.env.RECT_APP_STRIPE_PUBLIC_KEY}`);
 const CheckoutForm = ({ logedinUser }) => {
   const { myUser } = useUserContext();
   const history = useHistory();
