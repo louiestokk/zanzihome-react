@@ -62,8 +62,10 @@ const SingelFirebaseObject = () => {
                   <img
                     src={uri}
                     style={{
-                      backgroundPosition: "cover",
-                      maxHeight: "500px"
+                      backgroundPosition: "center",
+                      maxHeight: "500px",
+                      objectFit: "cover",
+                      maxWidth: "700px"
                     }}
                   />
                 )}
