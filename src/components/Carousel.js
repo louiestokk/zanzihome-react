@@ -3,13 +3,13 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 const CarouselComponent = ({ imagesArray, uri }) => {
   return (
-    <Carousel autoPlay={true}>
+    <Carousel autoPlay={true} showArrows={true}>
       {imagesArray &&
         imagesArray.map((el, i) => (
           <div
             key={i}
             style={{
-              height: "400px",
+              maxHeight: "500px",
               backgroundPosition: "center",
               objectFit: "cover"
             }}
