@@ -42,9 +42,11 @@ const EditObject = () => {
   const [currentObject, setcurrentOject] = useState(
     firestoreData?.filter((el) => el.adId === Number(adId))
   );
-  const [imagesArray, setimagesArray] = useState([
-    ...currentObject[0]?.imagesArray
-  ]);
+  const [imagesArray, setimagesArray] = useState(
+    currentObject[0].imagesArray
+      ? [...currentObject[0].imagesArray]
+      : [currentObject[0]?.uri]
+  );
   const handleAdsFormChange = async (e) => {
     try {
       const q = query(

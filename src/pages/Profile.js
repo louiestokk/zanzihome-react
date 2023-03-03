@@ -93,7 +93,7 @@ const Profile = () => {
       <section className={classes.sec2}>
         {fireStoreData &&
           fireStoreData
-            .filter((el) => el.Email === user?.email)
+            .filter((el) => el.Email === "gerrardzanzibar@gmail.com")
             .map((el, ind) => {
               const { adId, uri } = el;
               return (
