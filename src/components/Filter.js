@@ -74,18 +74,9 @@ const Filter = () => {
   };
 
   const handleSubmit = () => {
-    // if (adressQuery) {
-    //   const newItems = objects.filter(
-    //     (el) =>
-    //       el.location ===
-    //       adressQuery.charAt(0).toUpperCase() + adressQuery.slice(1)
-    //   );
-    //   setPropertys(newItems);
-    // }
-    if (query) {
-      const newitems = allObjects.filter((el) => el.query.includes(query));
-      dispatch(filterObjects(newitems));
-    }
+    document
+      .querySelector(".map-holder")
+      .scrollIntoView({ behavior: "smooth" });
   };
 
   const handleChange = (e) => {
@@ -379,7 +370,7 @@ const Filter = () => {
           )}
         </p>
 
-        <button type="button" className="submit" onClick={handleSubmit}>
+        <button type="button" className="submit" onClick={() => handleSubmit()}>
           {rental ? "Find property for rent" : "Find properties for sale"}
         </button>
       </div>
