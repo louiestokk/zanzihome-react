@@ -42,7 +42,9 @@ const EditObject = () => {
   const [currentObject, setcurrentOject] = useState(
     firestoreData?.filter((el) => el.adId === Number(adId))
   );
-  const [imagesArray, setimagesArray] = useState([currentObject?.[0]?.uri]);
+  const [imagesArray, setimagesArray] = useState([
+    ...currentObject[0]?.imagesArray
+  ]);
   const handleAdsFormChange = async (e) => {
     try {
       const q = query(
@@ -80,13 +82,14 @@ const EditObject = () => {
       () => {
         // download url
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          console.log(url);
           imagesArray.push(url);
+          console.log(imagesArray);
         });
       }
     );
   };
 
+  // om den redan har en array med bilder så kan inte imagesArray vara uri utan den måste vara images array
   const uploadNewImages = async (e) => {
     e.preventDefault();
     try {

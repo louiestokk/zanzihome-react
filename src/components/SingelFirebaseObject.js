@@ -51,7 +51,7 @@ const SingelFirebaseObject = () => {
           imagesArray
         } = object;
         if (!location.pathname.includes(adId)) return;
-
+        console.log(imagesArray);
         return (
           <div className="singel-object-container" key={adId}>
             <div className="singel-object">
