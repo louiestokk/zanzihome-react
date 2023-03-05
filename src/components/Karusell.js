@@ -17,20 +17,23 @@ const Karusell = ({ imagesArray }) => {
           />
         )}
       </div>
-      {imagesArray &&
-        imagesArray.map((el, ind) => (
-          <img
-            loading="lazy"
-            src={el}
-            style={{
-              width: "75px",
-              height: "75px",
-              margin: "0.3rem 0.5rem",
-              cursor: "pointer"
-            }}
-            onClick={() => setindex(ind)}
-          />
-        ))}
+      <div style={{ display: "flex", overflowX: "scroll" }}>
+        {imagesArray &&
+          imagesArray.map((el, ind) => (
+            <img
+              loading="lazy"
+              src={el}
+              style={{
+                width: "75px",
+                height: "75px",
+                margin: "0.3rem 0.5rem",
+                cursor: "pointer",
+                borderRadius: "5px"
+              }}
+              onClick={() => setindex(ind)}
+            />
+          ))}
+      </div>
     </>
   );
 };
