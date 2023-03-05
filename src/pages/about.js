@@ -2,9 +2,20 @@ import React from "react";
 import PageHero from "../components/PageHero";
 import { HiArrowCircleDown } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 const About = () => {
   return (
     <main style={{ background: "#dfe6d8" }} className="call-main">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{"Zanzihome Properties in Zanzibar"}</title>
+        <meta
+          name="description"
+          content={
+            "Find houses, plots and apartments for sale or for rent. Zanzihome is a site that will help you find your next or first home. Find lots of apartments and houses for rent. Do you have a home, plot or business that you want to rent out or sell? Advertise with us. Find properties in Zanzibar. You can find all types of properties here. Eazy whay to sell or rent your property in Zanzibar."
+          }
+        />
+      </Helmet>
       <PageHero
         icon={<HiArrowCircleDown />}
         title={"ZanziHome"}
