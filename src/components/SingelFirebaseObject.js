@@ -1,17 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useParams, useLocation } from "react-router-dom";
-import { MdOutlineArrowForwardIos, MdTurnedInNot } from "react-icons/md";
-import { MdOutlineArrowBackIosNew } from "react-icons/md";
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { AiFillHeart } from "react-icons/ai";
 import { FiUser } from "react-icons/fi";
-import Bid from "./Bid";
 import SingelObjectInfo from "./SingelObjectInfo";
 import Brokers from "./Brokers";
-import emailjs from "@emailjs/browser";
 import { useUserContext } from "../user_context";
 import { useSelector } from "react-redux";
 import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
-import CarouselComponent from "./Carousel";
+import Karusell from "./Karusell";
 let index = 0;
 const SingelFirebaseObject = () => {
   const location = useLocation();
@@ -56,7 +52,7 @@ const SingelFirebaseObject = () => {
             <div className="singel-object">
               <div className="single-object-img-container">
                 {imagesArray && imagesArray.length > 1 ? (
-                  <CarouselComponent imagesArray={imagesArray} uri={uri} />
+                  <Karusell imagesArray={imagesArray} uri={uri} />
                 ) : (
                   <img
                     src={uri}

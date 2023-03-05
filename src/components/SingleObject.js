@@ -95,7 +95,7 @@ const SingleObject = () => {
             number,
             logo
           } = object;
-          console.log(type);
+
           return (
             <div className="singel-object-container" key={id}>
               <div className="singel-object">

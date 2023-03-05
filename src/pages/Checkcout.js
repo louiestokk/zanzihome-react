@@ -7,6 +7,7 @@ import { useFormContext } from "../form_ads_context";
 import PageHero from "../components/PageHero";
 import { HiArrowCircleDown } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import PaypalCheckout from "../components/PaypalCheckout";
 const steps = ["Ads content", "Confirmation"];
 
 const Checkcout = ({ logedinUser }) => {
@@ -36,6 +37,7 @@ const Checkcout = ({ logedinUser }) => {
             sub5={"otherwise the ad will be removed."}
             name={".contact-adress"}
           />
+          {/* <PaypalCheckout /> */}
         </main>
       )}
     </Wrapper>
