@@ -8,7 +8,7 @@ const initialOptions = {
   intent: "capture"
 };
 
-const PaypalCheckout = () => {
+const PaypalCheckout = ({ setActiveStep }) => {
   const Checkout = () => {
     const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
     const [currency, setCurrency] = useState(options.currency);
@@ -37,7 +37,7 @@ const PaypalCheckout = () => {
     const onApproveOrder = (data, actions) => {
       return actions.order.capture().then((details) => {
         const name = details.payer.name.given_name;
-        alert(`Transaction completed by ${name}`);
+        setActiveStep(2);
       });
     };
 
@@ -60,6 +60,12 @@ const PaypalCheckout = () => {
   };
   return (
     <PayPalScriptProvider options={initialOptions}>
+      <div style={{ textAlign: "center", margin: "1rem 0" }}>
+        <h4>Advertising</h4>
+        <p>
+          Price: <strong>10$ </strong> for 12 month
+        </p>
+      </div>
       <Checkout />
     </PayPalScriptProvider>
   );

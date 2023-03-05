@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import StripeCheckout from "../components/StripeCheckout";
 import AdsForm from "../components/AdsForm";
@@ -8,10 +8,11 @@ import PageHero from "../components/PageHero";
 import { HiArrowCircleDown } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import PaypalCheckout from "../components/PaypalCheckout";
-const steps = ["Ads content", "Confirmation"];
+const steps = ["Ads content", "Payment", "Confirmation"];
 
 const Checkcout = ({ logedinUser }) => {
   const { activeStep, setActiveStep } = useFormContext();
+
   return (
     <Wrapper>
       <Paper>
@@ -26,15 +27,16 @@ const Checkcout = ({ logedinUser }) => {
         </Stepper>
       </Paper>
       {activeStep === 0 && <AdsForm setActiveStep={setActiveStep} />}
-      {activeStep === 1 && (
+      {activeStep === 1 && <PaypalCheckout setActiveStep={setActiveStep} />}
+      {activeStep === 2 && (
         <main>
           <PageHero
-            title={"Thank you for your ad"}
-            subtitle={"We have emailed you an order confirmation"}
-            sub2={"with link for payment of your ad."}
+            title={"Thank you for your ad and payment"}
+            subtitle={"We have emailed you an order confirmation."}
             sub3={"The ad is now published on the page."}
-            sub4={"Pay for the ad within 6 hours"}
-            sub5={"otherwise the ad will be removed."}
+            sub4={
+              "Log in with the same email you created the ad with. You can log in directly with Google and Facebook or create an account. When you are logged in, you can edit your ad and add more images."
+            }
             name={".contact-adress"}
           />
           {/* <PaypalCheckout /> */}

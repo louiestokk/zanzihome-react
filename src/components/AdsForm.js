@@ -380,9 +380,9 @@ const AdsForm = ({ setActiveStep }) => {
           <div className="lllll">
             <RiAdvertisementFill />
             <p style={{ marginLeft: "0.2rem" }}>
-              Review all information. The ad will be reviewed and published as
-              soon as payment for the ad is made. Login and edit your ad like
-              adding more images.
+              Review all information. The ad will be published as soon as
+              payment for the ad is made. Login and edit your ad like adding
+              more images.
             </p>
           </div>
         </div>
