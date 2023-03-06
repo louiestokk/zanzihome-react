@@ -26,8 +26,8 @@ const Checkcout = ({ logedinUser }) => {
           })}
         </Stepper>
       </Paper>
-      {activeStep === 1 && <AdsForm setActiveStep={setActiveStep} />}
-      {activeStep === 0 && <PaypalCheckout setActiveStep={setActiveStep} />}
+      {activeStep === 0 && <AdsForm setActiveStep={setActiveStep} />}
+      {activeStep === 1 && <PaypalCheckout setActiveStep={setActiveStep} />}
       {activeStep === 2 && (
         <main>
           <PageHero
