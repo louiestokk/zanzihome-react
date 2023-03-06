@@ -18,6 +18,7 @@ const initialOptions = {
 };
 
 const PaypalCheckout = ({ setActiveStep }) => {
+  console.log("test");
   const Checkout = () => {
     const { adId } = useFormContext();
     const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
