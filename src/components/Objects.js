@@ -49,7 +49,7 @@ const Objects = () => {
               payerName,
               imagesArray
             } = object;
-
+            if (!paid) return;
             return (
               <div key={index} className="objects">
                 <Link to={`/propertys/property/${adId}`}>
