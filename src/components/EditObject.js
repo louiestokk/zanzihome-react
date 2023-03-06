@@ -43,7 +43,7 @@ const EditObject = () => {
     firestoreData?.filter((el) => el.adId === Number(adId))
   );
   const [imagesArray, setimagesArray] = useState(
-    currentObject[0].imagesArray
+    currentObject?.[0]?.imagesArray
       ? [...currentObject[0].imagesArray]
       : [currentObject[0]?.uri]
   );
@@ -197,8 +197,8 @@ const EditObject = () => {
         />
         <input
           placeholder={
-            currentObject[0].lat != null
-              ? currentObject[0].lat != null
+            currentObject?.[0]?.lat != null
+              ? currentObject?.[0]?.lat != null
               : "latitude"
           }
           name="lat"
@@ -207,8 +207,8 @@ const EditObject = () => {
         />
         <input
           placeholder={
-            currentObject[0].lng != null
-              ? currentObject[0].lng != null
+            currentObject?.[0]?.lng != null
+              ? currentObject?.[0]?.lng != null
               : "longitude"
           }
           name="lng"

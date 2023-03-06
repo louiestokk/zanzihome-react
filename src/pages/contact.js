@@ -61,7 +61,7 @@ const contact = () => {
         <div className="contact-adress" style={{ marginTop: "1rem" }}>
           <h4>Send us email</h4>
           <a href="mailto:louiestokk@gmail.com" className="ring">
-            ZanziHome.com
+            Send email
           </a>
         </div>
       </section>
