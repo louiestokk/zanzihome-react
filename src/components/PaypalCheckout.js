@@ -49,7 +49,7 @@ const PaypalCheckout = ({ setActiveStep }) => {
         purchase_units: [
           {
             amount: {
-              value: "1.00"
+              value: "10.00"
             }
           }
         ]
