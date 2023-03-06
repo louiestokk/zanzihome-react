@@ -40,32 +40,20 @@ const Filter = () => {
       if (e.currentTarget.textContent === "Plot") {
         const newItems = memo && memo.filter((el) => el.category === "Hand");
         dispatch(setFirestoreData(newItems));
-        document
-          .querySelector(".map-holder")
-          .scrollIntoView({ behavior: "smooth" });
       }
       if (e.currentTarget.textContent === "House") {
         const newItems = memo && memo.filter((el) => el.category === "House");
         dispatch(setFirestoreData(newItems));
-        document
-          .querySelector(".map-holder")
-          .scrollIntoView({ behavior: "smooth" });
       }
       if (e.currentTarget.textContent === "Apartment") {
         const newItems =
           memo && memo.filter((el) => el.category === "Apartment");
         dispatch(setFirestoreData(newItems));
-        document
-          .querySelector(".map-holder")
-          .scrollIntoView({ behavior: "smooth" });
       }
       if (e.currentTarget.textContent === "Business") {
         const newItems =
           memo && memo.filter((el) => el.category === "Business");
         dispatch(setFirestoreData(newItems));
-        document
-          .querySelector(".map-holder")
-          .scrollIntoView({ behavior: "smooth" });
       }
     }
     if (e.currentTarget.className === "button") {
@@ -93,8 +81,6 @@ const Filter = () => {
       const newitems = memo.filter((el) => el.Area === query);
       dispatch(setFirestoreData(newitems));
     }
-
-    // här skall du bygga for firestoredatan
   };
   const handleSizePrice = (e) => {
     if (e.currentTarget.name === "size") {
