@@ -8,7 +8,7 @@ import PageHero from "../components/PageHero";
 import { HiArrowCircleDown } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import PaypalCheckout from "../components/PaypalCheckout";
-const steps = ["Ads content", "Payment", "Confirmation"];
+const steps = ["Ads", "Payment", "Confirmation"];
 
 const Checkcout = ({ logedinUser }) => {
   const { activeStep, setActiveStep } = useFormContext();
@@ -39,7 +39,6 @@ const Checkcout = ({ logedinUser }) => {
             }
             name={".contact-adress"}
           />
-          {/* <PaypalCheckout /> */}
         </main>
       )}
     </Wrapper>

@@ -322,16 +322,7 @@ const AdsForm = ({ setActiveStep }) => {
               style={{ display: "none" }}
             />
           </div>
-          <div className="form-control">
-            <input
-              type={"url"}
-              name="payment"
-              value={
-                "https://checkout.stripe.com/c/pay/cs_live_a10XIZ0ePgPePX3pECV6Xire73XFjeP3PfykxmeIi6o7ccoLxaGkTG2XZZ#fidkdWxOYHwnPyd1blppbHNgWjA0SXRub3RBVlRIb21KTnVKPTZATm9pNTJLamR1QzJLSm9KTEQxZ3Vmc20waW9OZ1Y9UmJtQGNvcE1nR1NIZmo0Vk98UXRuYWFyMmhsb2JMT3V2N21WQzRtNTVpVkFBU3dBdScpJ3VpbGtuQH11anZgYUxhJz8nM2pANDNrZ04yYU5UMl1SPXJyJ3gl"
-              }
-              style={{ display: "none" }}
-            />
-          </div>
+
           {!company && (
             <div className="form-control">
               <label htmlFor="About">About company</label>
@@ -340,7 +331,6 @@ const AdsForm = ({ setActiveStep }) => {
                 name="About"
                 required
                 rows="4"
-                cols="6s0"
                 onChange={handleAdsFormChange}
               />
             </div>
@@ -375,7 +365,6 @@ const AdsForm = ({ setActiveStep }) => {
             >
               {loading ? "sending..." : "Place the ad"}
             </button>
-            {/* prevent default and check the Formdata object */}
           </div>
           <div className="lllll">
             <RiAdvertisementFill />
