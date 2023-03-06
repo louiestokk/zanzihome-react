@@ -5,11 +5,6 @@ import { ImHome } from "react-icons/im";
 export const navlinks = [
   { id: 1, text: "Home", url: "/" },
   {
-    id: 2,
-    text: "Find Property",
-    url: "/propertyzanzibar"
-  },
-  {
     id: 3,
     text: "Advertise Property",
     url: "/advertisepropertyzanzibar"

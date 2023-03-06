@@ -44,13 +44,20 @@ const Objects = () => {
               About,
               Size,
               uri,
-              Rooms
+              Rooms,
+              paid,
+              payerName,
+              imagesArray
             } = object;
 
             return (
               <div key={index} className="objects">
                 <Link to={`/propertys/property/${adId}`}>
-                  <img src={uri && uri} alt={Adress} loading={"lazy"} />
+                  <img
+                    src={uri !== "" ? uri : imagesArray[1]}
+                    alt={Adress}
+                    loading={"lazy"}
+                  />
                 </Link>
                 <div className="objects-footer-first">
                   <div className="objects-logo">
@@ -68,7 +75,7 @@ const Objects = () => {
                       </div>
                     </div>
                   </div>
-                  <p>
+                  <p style={{ color: Title === "SOLD" && "red" }}>
                     {category === "House" || category === "Apartment" ? (
                       <ImHome style={{ color: "#22c55e" }} />
                     ) : (

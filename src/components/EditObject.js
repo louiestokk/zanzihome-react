@@ -85,7 +85,6 @@ const EditObject = () => {
         // download url
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           imagesArray.push(url);
-          console.log(imagesArray);
         });
       }
     );
