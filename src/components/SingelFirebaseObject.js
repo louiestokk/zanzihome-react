@@ -128,12 +128,12 @@ const SingelFirebaseObject = () => {
                     </div>
                     <div>
                       <ul className="ul-besk">
-                        <li>{category}</li>
+                        <li>{category === "Hand" ? "Land" : category}</li>
                         <li>{Size} sq.m</li>
                         <li>{Rooms && Rooms}</li>
-                        <li>
+                        <li style={{ letterSpacing: "3px" }}>
                           {Sell === null && Rent === null
-                            ? `${Price}.000$`
+                            ? `${Price}.00$`
                             : `${Price}$/month`}
                         </li>
                       </ul>

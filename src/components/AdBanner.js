@@ -5,9 +5,9 @@ const AdBanner = () => {
   return (
     <Wrapper className="ooo">
       <div className="holder">
-        <h1>The beginning of something big</h1>
-        <p className="adbannerp">
-          Do you have a house, apartment or plot of land that you want to sell
+        <h1>Advertise your property</h1>
+        <p className="adbannerp" style={{ margin: "0.5rem 0" }}>
+          Do you have a house, apartment, plot or business that you want to sell
           or rent out?
         </p>
         <button

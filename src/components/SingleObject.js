@@ -198,7 +198,7 @@ const SingleObject = () => {
                           <li>
                             {to === "Rent"
                               ? `${price}$ / week`
-                              : `${price}.000$`}
+                              : `${price}.00$`}
                           </li>
                         </ul>
                       </div>
