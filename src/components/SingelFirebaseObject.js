@@ -99,7 +99,7 @@ const SingelFirebaseObject = () => {
               </div>
               <div className="singel-object-info">
                 <h2>
-                  {category} In {Area}
+                  {category === "Hand" ? "Land" : category} In {Area}
                 </h2>
                 <p>{Title}</p>
 
@@ -109,7 +109,7 @@ const SingelFirebaseObject = () => {
                 <h4 className="singel-object-price">
                   {Sell === null && Rent === null
                     ? `${Price}.00$`
-                    : `${Price}$/week`}
+                    : `${Price}$/month`}
                 </h4>
               </div>
               {/* <div className="bid-div">{bid && <Bid bid={bid} />}</div> */}
@@ -134,7 +134,7 @@ const SingelFirebaseObject = () => {
                         <li>
                           {Sell === null && Rent === null
                             ? `${Price}.000$`
-                            : `${Price}$/week`}
+                            : `${Price}$/month`}
                         </li>
                       </ul>
                     </div>

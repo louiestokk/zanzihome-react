@@ -97,7 +97,7 @@ const Objects = () => {
                     >
                       {Rent === null && Sell === null
                         ? `$${Price}.00`
-                        : `$${Price}/week`}
+                        : `$${Price}/month`}
                     </span>
                     <span
                       style={{

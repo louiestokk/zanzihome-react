@@ -35,7 +35,7 @@ const Checkcout = ({ logedinUser }) => {
             subtitle={"We have emailed you an order confirmation."}
             sub3={"The ad is now published on the page."}
             sub4={
-              "Log in with the same email you created the ad with. You can log in directly with Google and Facebook or create an account. When you are logged in, you can edit your ad and add more images."
+              "Log in with the same email you created the ad with. You can log in directly with Google and Facebook or create an account. When you are logged in, you can edit your ad and add more images. Sell property Zanzibar. Properties for sale in Zanzibar. Business for sale Zanzibar. Business for rent Zanzibar."
             }
             name={".contact-adress"}
           />

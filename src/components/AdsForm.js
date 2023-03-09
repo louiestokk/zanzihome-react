@@ -308,7 +308,7 @@ const AdsForm = ({ setActiveStep }) => {
               placeholder={
                 adsFormData.Sell === null && adsFormData.Rent === null
                   ? "Total selling price"
-                  : "Price per week"
+                  : "Price per month"
               }
               onChange={handleAdsFormChange}
             />

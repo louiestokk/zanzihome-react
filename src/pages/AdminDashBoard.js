@@ -10,6 +10,8 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { setFirestoreData } from "../redux-toolkit/firebaseDataSlice";
+import { useDispatch } from "react-redux";
+
 const useStyles = makeStyles({
   listItem: {
     display: "flex",
@@ -22,21 +24,35 @@ const useStyles = makeStyles({
   },
   root: {
     textAlign: "center",
-    width: "100%"
+    width: "100%",
+    height: "100%"
+  },
+  remove: {
+    background: "red",
+    color: "white",
+    cursor: "pointer"
+  },
+  update: {
+    background: "green",
+    color: "white",
+    cursor: "pointer"
   }
 });
 
 const AdminDashBoard = () => {
+  const dispatch = useDispatch();
   const classes = useStyles();
-  const [firestoreData, setfirestoreData] = useState();
+  const [firestoreData, setData] = useState();
   const [updated, setupDated] = useState(false);
+  const [userEmail, setuserEmail] = useState("");
+  const [price, setPrice] = useState(0);
   const fetchFirestoreData = async () => {
     await getDocs(collection(db, "newAd")).then((querySnapshot) => {
       const newData = querySnapshot.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id
       }));
-      setfirestoreData(newData);
+      setData(newData);
     });
   };
 
@@ -61,15 +77,62 @@ const AdminDashBoard = () => {
   };
 
   const handleSearch = (e) => {
+    console.log(e.target.value);
     const newItems = firestoreData?.map((el) => el.Name === e.target.value);
-    setFirestoreData(newItems);
   };
+
+  const handleRemoveObject = async (id) => {
+    const newArray = firestoreData.filter((el) => el.id != id);
+    dispatch(setFirestoreData(newArray));
+    setData(newArray);
+    try {
+      const objectRef = db.delete({ collection: "newAd", doc: `${id}` });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleUpdateObject = async (adId) => {
+    try {
+      const q = query(
+        collection(db, "newAd"),
+        where("adId", "==", Number(adId))
+      );
+      const querySnapshot = await getDocs(q);
+      let docId = "";
+      querySnapshot.forEach((doc) => (docId = doc.id));
+      const object = doc(db, "newAd", docId);
+      await updateDoc(object, {
+        Email: userEmail,
+        Price: price
+      });
+      console.log("updated");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchFirestoreData();
   }, []);
 
   return (
     <div className={classes.root}>
+      <div className={classes.modal}>
+        <input
+          placeholder={"Email"}
+          name="Email"
+          type={"email"}
+          className={classes.input}
+          onChange={(e) => setuserEmail(e.target.value)}
+        />
+        <input
+          placeholder={"Price"}
+          name="Price"
+          className={classes.input}
+          onChange={(e) => setPrice(e.target.value)}
+        />
+      </div>
       <div
         style={{
           display: "flex",
@@ -88,6 +151,8 @@ const AdminDashBoard = () => {
       </div>
       <table style={{ width: "100%" }}>
         <tr>
+          <th>Image</th>
+          <th>Price</th>
           <th>Name</th>
           <th>Email</th>
           <th>Area</th>
@@ -97,7 +162,11 @@ const AdminDashBoard = () => {
         {firestoreData &&
           firestoreData.map((el) => {
             return (
-              <tr>
+              <tr className="dash-tr">
+                <td>
+                  <img src={el.uri} style={{ height: "60px", width: "60px" }} />
+                </td>
+                <td>{el.Price}</td>
                 <td>{el.Name}</td>
                 <td>{el.Email}</td>
                 <td>{el.Area}</td>
@@ -113,6 +182,18 @@ const AdminDashBoard = () => {
                     {updated ? "Updated" : "   Not paid"}
                   </td>
                 )}
+                <td
+                  onClick={() => handleRemoveObject(el.id)}
+                  className={classes.remove}
+                >
+                  Remove
+                </td>
+                <td
+                  onClick={() => handleUpdateObject(el.adId)}
+                  className={classes.update}
+                >
+                  Update
+                </td>
               </tr>
             );
           })}
