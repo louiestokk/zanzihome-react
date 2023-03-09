@@ -8,8 +8,8 @@ const Payments = () => {
       <PageHero
         icon={<HiArrowCircleDown />}
         title={"Payment method"}
-        subtitle={"We accept card payments,"}
-        sub2={"apple pay, google pay and tigo pesa"}
+        subtitle={"We accept Mastercard and Visa,"}
+        sub2={"Paypal and Tigo pesa"}
         sub3={"mobile transfer"}
         sub4={"You are warmly welcome"}
         sub5={"to visit us or contact us"}
