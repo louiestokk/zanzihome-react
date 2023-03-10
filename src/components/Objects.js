@@ -10,7 +10,9 @@ const Objects = () => {
   const firestoreData = useSelector(getFirestoreData);
   return (
     <>
-      <h4 className="antal-objects">{firestoreData?.length} properties</h4>
+      <h4 className="antal-objects">
+        {firestoreData.filter((el) => !el.removed).length} properties
+      </h4>
       {firestoreData.length <= 0 && (
         <Audio
           height="80"
@@ -47,9 +49,11 @@ const Objects = () => {
               Rooms,
               paid,
               payerName,
-              imagesArray
+              imagesArray,
+              removed
             } = object;
             if (!paid) return;
+            if (removed) return;
             return (
               <div key={index} className="objects">
                 <Link to={`/propertys/property/${adId}`}>

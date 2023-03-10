@@ -81,12 +81,24 @@ const AdminDashBoard = () => {
     const newItems = firestoreData?.map((el) => el.Name === e.target.value);
   };
 
-  const handleRemoveObject = async (id) => {
-    const newArray = firestoreData.filter((el) => el.id != id);
+  const handleRemoveObject = async (adId) => {
+    const newArray = firestoreData.filter((el) => el.adId != adId);
     dispatch(setFirestoreData(newArray));
     setData(newArray);
     try {
-      const objectRef = db.delete({ collection: "newAd", doc: `${id}` });
+      const q = query(
+        collection(db, "newAd"),
+        where("adId", "==", Number(adId))
+      );
+      const querySnapshot = await getDocs(q);
+      let docId = "";
+      querySnapshot.forEach((doc) => (docId = doc.id));
+      const object = doc(db, "newAd", docId);
+      await updateDoc(object, {
+        removed: true
+      });
+      console.log("updated");
+      setupDated(true);
     } catch (error) {
       console.log(error);
     }
@@ -153,6 +165,7 @@ const AdminDashBoard = () => {
         <tr>
           <th>Image</th>
           <th>Price</th>
+          <th>id</th>
           <th>Name</th>
           <th>Email</th>
           <th>Area</th>
@@ -167,6 +180,7 @@ const AdminDashBoard = () => {
                   <img src={el.uri} style={{ height: "60px", width: "60px" }} />
                 </td>
                 <td>{el.Price}</td>
+                <td>{el.id}</td>
                 <td>{el.Name}</td>
                 <td>{el.Email}</td>
                 <td>{el.Area}</td>
@@ -183,10 +197,11 @@ const AdminDashBoard = () => {
                   </td>
                 )}
                 <td
-                  onClick={() => handleRemoveObject(el.id)}
+                  onClick={() => handleRemoveObject(el.adId)}
                   className={classes.remove}
+                  style={{ background: el.removed && "black" }}
                 >
-                  Remove
+                  {el.removed ? "REMOVED" : "Remove"}
                 </td>
                 <td
                   onClick={() => handleUpdateObject(el.adId)}
