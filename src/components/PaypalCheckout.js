@@ -11,6 +11,8 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { useFormContext } from "../form_ads_context";
+import tigo from "../utils/tigo.png";
+import worldremit from "../utils/worldremit.png";
 const initialOptions = {
   "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID,
   currency: "USD",
@@ -18,7 +20,6 @@ const initialOptions = {
 };
 
 const PaypalCheckout = ({ setActiveStep }) => {
-  console.log("test");
   const Checkout = () => {
     const { adId } = useFormContext();
     const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
@@ -63,7 +64,6 @@ const PaypalCheckout = ({ setActiveStep }) => {
         setActiveStep(2);
       });
     };
-
     return (
       <div
         style={{
@@ -90,6 +90,43 @@ const PaypalCheckout = ({ setActiveStep }) => {
         </p>
       </div>
       <Checkout />
+      <div
+        className="checkoutpayoptions"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          marginBottom: "2rem",
+          justifyContent: "center",
+          width: window.innerWidth > 950 && "70%"
+        }}
+      >
+        <button
+          onClick={() => (window.location.href = "/payments-instructions")}
+        >
+          <img
+            src={tigo}
+            alt="tigo pesa"
+            loading="lazy"
+            style={{
+              height: "3rem",
+              objectFit: "cover"
+            }}
+          />
+        </button>
+        <button
+          onClick={() => (window.location.href = "/payments-instructions")}
+        >
+          <img
+            src={worldremit}
+            alt="world remit"
+            loading="lazy"
+            style={{
+              height: "3rem",
+              objectFit: "cover"
+            }}
+          />
+        </button>
+      </div>
     </PayPalScriptProvider>
   );
 };

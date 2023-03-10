@@ -27,6 +27,7 @@ const ErrorPage = lazy(() => import("./pages/ErrorPage"));
 const SingelFirebaseObject = lazy(() =>
   import("./components/SingelFirebaseObject")
 );
+const PaymentInstructions = lazy(() => import("./pages/PaymentInstructions"));
 const EditObject = lazy(() => import("./components/EditObject"));
 function App() {
   const [logedinUser, setLogedinUser] = useState({});
@@ -67,6 +68,9 @@ function App() {
           </Route>
           <Route path="/propertyzanzibar">
             <Propertyzanzibar />
+          </Route>
+          <Route path="/payments-instructions">
+            <PaymentInstructions />
           </Route>
           <Route path="/payments">
             <Payments />
