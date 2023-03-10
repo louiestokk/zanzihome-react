@@ -36,6 +36,9 @@ const useStyles = makeStyles({
     background: "green",
     color: "white",
     cursor: "pointer"
+  },
+  modal: {
+    display: "flex"
   }
 });
 
@@ -77,8 +80,10 @@ const AdminDashBoard = () => {
   };
 
   const handleSearch = (e) => {
-    console.log(e.target.value);
-    const newItems = firestoreData?.map((el) => el.Name === e.target.value);
+    const newItems = firestoreData.filter((el) => el.Email === e.target.value);
+    if (newItems && newItems.length > 0) {
+      setData(newItems);
+    }
   };
 
   const handleRemoveObject = async (adId) => {
@@ -156,7 +161,7 @@ const AdminDashBoard = () => {
         <p>{`${firestoreData?.length} objects`}</p>
         <input
           type={"text"}
-          placeholder="Search by name"
+          placeholder="Search by Email"
           style={{ marginLeft: "2rem" }}
           onChange={handleSearch}
         />
