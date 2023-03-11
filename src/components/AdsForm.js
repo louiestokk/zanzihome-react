@@ -116,7 +116,7 @@ const AdsForm = ({ setActiveStep }) => {
               checked={company}
               onChange={handleChange}
             />
-            <label htmlFor="Privat">Privat</label>
+            <label htmlFor="Privat">Private</label>
             <input
               type="checkbox"
               value="Company"
@@ -190,17 +190,17 @@ const AdsForm = ({ setActiveStep }) => {
           >
             <input
               type="checkbox"
-              value={100}
+              value={60}
               name="rocket3"
-              onClick={() => setPrice(150)}
+              onClick={() => setPrice(60)}
               onChange={handleAdsFormChange}
             />
             <label htmlFor="Sell">Listed top 3 $50</label>
             <input
               type="checkbox"
-              value={50}
+              value={35}
               name="rocket10"
-              onClick={() => setPrice(100)}
+              onClick={() => setPrice(35)}
               onChange={handleAdsFormChange}
             />
             <label htmlFor="Rent">Listed top 10 - $25</label>

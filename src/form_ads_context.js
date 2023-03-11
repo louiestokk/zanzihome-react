@@ -5,7 +5,7 @@ const FormContext = React.createContext();
 const FormProvider = ({ children }) => {
   const [company, setCompany] = useState(true);
   const [sell, setSell] = useState(true);
-  const [price, setPrice] = useState(50);
+  const [price, setPrice] = useState(undefined);
   const [activeStep, setActiveStep] = useState(0);
   const [adId, setAdId] = useState(Math.floor(Math.random() * 1000000000));
 

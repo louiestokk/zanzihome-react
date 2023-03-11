@@ -8,6 +8,8 @@ const UserProvider = ({ children }) => {
   const [active, setActive] = useState(true);
   const [showUser, setShowUser] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [email, setemail] = useState("");
+  const [psw, setpsw] = useState(0);
   const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
 
   // sparade bostäder , mina annonser, mitt konto, logga ut
@@ -27,6 +29,10 @@ const UserProvider = ({ children }) => {
         setSaved,
         user,
         isAuthenticated,
+        email,
+        setemail,
+        psw,
+        setpsw
       }}
     >
       {children}

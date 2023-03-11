@@ -21,7 +21,7 @@ const initialOptions = {
 
 const PaypalCheckout = ({ setActiveStep }) => {
   const Checkout = () => {
-    const { adId } = useFormContext();
+    const { adId, price } = useFormContext();
     const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
     const [currency, setCurrency] = useState(options.currency);
 
@@ -50,7 +50,7 @@ const PaypalCheckout = ({ setActiveStep }) => {
         purchase_units: [
           {
             amount: {
-              value: "10.00"
+              value: price ? `${price.toString()}.00` : "10.00"
             }
           }
         ]
@@ -64,6 +64,7 @@ const PaypalCheckout = ({ setActiveStep }) => {
         setActiveStep(2);
       });
     };
+
     return (
       <div
         style={{
@@ -81,6 +82,7 @@ const PaypalCheckout = ({ setActiveStep }) => {
       </div>
     );
   };
+
   return (
     <PayPalScriptProvider options={initialOptions}>
       <div style={{ textAlign: "center", margin: "2rem 0" }}>
