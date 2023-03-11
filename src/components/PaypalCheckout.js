@@ -20,11 +20,10 @@ const initialOptions = {
 };
 
 const PaypalCheckout = ({ setActiveStep }) => {
-  const Checkout = () => {
-    const { adId, price } = useFormContext();
+  const { adId, price } = useFormContext();
+  const Checkout = ({ adId, price }) => {
     const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
     const [currency, setCurrency] = useState(options.currency);
-
     const updatePaymentStatus = async (name) => {
       try {
         const q = query(
@@ -73,6 +72,7 @@ const PaypalCheckout = ({ setActiveStep }) => {
         }}
       >
         <div>
+          {isPending && <p>...loading</p>}
           <PayPalButtons
             style={{ layout: "vertical" }}
             createOrder={(data, actions) => onCreateOrder(data, actions)}
@@ -88,10 +88,10 @@ const PaypalCheckout = ({ setActiveStep }) => {
       <div style={{ textAlign: "center", margin: "2rem 0" }}>
         <h4>Advertising</h4>
         <p>
-          Price: <strong>10$ </strong> for 12 month
+          Price: <strong>{price ? price : 10}$ </strong> for 12 month
         </p>
       </div>
-      <Checkout />
+      <Checkout adId={adId} price={price} />
       <div
         className="checkoutpayoptions"
         style={{

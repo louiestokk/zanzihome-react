@@ -11,10 +11,6 @@ const UserProvider = ({ children }) => {
   const [email, setemail] = useState("");
   const [psw, setpsw] = useState(0);
   const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
-
-  // sparade bostäder , mina annonser, mitt konto, logga ut
-  // knappar för varje och state för varje och om true returnera det man tryckt på annars retunera inget
-  // uppdatera nummer av sparade och annonser , ge dem state läge med start 0 och öka för varje
   return (
     <UserContext.Provider
       value={{

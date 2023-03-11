@@ -5,6 +5,7 @@ import { setFirestoreData } from "./redux-toolkit/firebaseDataSlice";
 import { collection, getDocs } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { db } from "./firebase";
+import { getPlacesData } from "./api/index";
 const Home = lazy(() => import("./pages/Home"));
 const Payments = lazy(() => import("./components/Payments"));
 const AdminDashBoard = lazy(() => import("./pages/AdminDashBoard"));

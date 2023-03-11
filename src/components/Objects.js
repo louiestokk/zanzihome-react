@@ -59,7 +59,7 @@ const Objects = () => {
                 <Link to={`/propertys/property/${adId}`}>
                   <img
                     src={uri !== "" ? uri : imagesArray[1]}
-                    alt={Adress}
+                    alt={Area}
                     loading={"lazy"}
                   />
                 </Link>
