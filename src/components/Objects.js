@@ -52,6 +52,8 @@ const Objects = () => {
               imagesArray,
               removed
             } = object;
+            if (rocket10 !== null) console.log(index);
+            if (rocket3 !== null) console.log(index);
             if (!paid) return;
             if (removed) return;
             return (

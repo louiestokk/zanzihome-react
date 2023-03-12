@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { AiFillHeart } from "react-icons/ai";
 import { FiUser } from "react-icons/fi";
 import SingelObjectInfo from "./SingelObjectInfo";
@@ -8,16 +8,18 @@ import { useUserContext } from "../user_context";
 import { useSelector } from "react-redux";
 import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 import Karusell from "./Karusell";
-let index = 0;
+import RelatedObjects from "./RelatedObjects";
+import { makeStyles } from "@material-ui/core";
+const useStyles = makeStyles({});
 const SingelFirebaseObject = () => {
+  const classes = useStyles();
   const location = useLocation();
   const firestoreData = useSelector(getFirestoreData);
   const { saved, setSaved, user, loginWithRedirect } = useUserContext();
   const [showModal, setShowModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [recivied, setRecivied] = useState(false);
-  const nextImage = (imagesArray) => {};
-  const prevImage = () => {};
+  const { adId } = useParams();
 
   return (
     <>
@@ -158,13 +160,13 @@ const SingelFirebaseObject = () => {
                 email={Email}
               />
             </div>
-
             {/* <h5 className="sameoffice">For sale from the same office</h5> */}
             <div className="divider-singel-object"></div>
             <div className="brokers-divider"></div>
           </div>
         );
       })}
+      <RelatedObjects adId={adId} />
     </>
   );
 };
