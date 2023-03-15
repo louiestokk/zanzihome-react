@@ -48,6 +48,7 @@ const AdminDashBoard = () => {
   const [firestoreData, setData] = useState();
   const [updated, setupDated] = useState(false);
   const [userEmail, setuserEmail] = useState("");
+  const [rent, setrent] = useState(false);
   const [price, setPrice] = useState(0);
   const fetchFirestoreData = async () => {
     await getDocs(collection(db, "newAd")).then((querySnapshot) => {
@@ -121,7 +122,8 @@ const AdminDashBoard = () => {
       const object = doc(db, "newAd", docId);
       await updateDoc(object, {
         Email: userEmail,
-        Price: price
+        Price: price,
+        Rent: rent
       });
       console.log("updated");
     } catch (error) {
@@ -148,6 +150,12 @@ const AdminDashBoard = () => {
           name="Price"
           className={classes.input}
           onChange={(e) => setPrice(e.target.value)}
+        />
+        <label>Rent</label>
+        <input
+          type={"checkbox"}
+          className={classes.input}
+          onClick={() => setrent(true)}
         />
       </div>
       <div
