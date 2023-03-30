@@ -42,76 +42,80 @@ const RelatedObjects = (adId) => {
 
   return (
     <div className={classes.root}>
-      <section>
-        <h5 style={{ marginLeft: "0.4rem", width: "100%" }}>
-          Other {currentCatgoryToUse && currentCatgoryToUse} in{" "}
-          {currentArea && currentArea}
-        </h5>
-        <div style={{ display: "flex", overflowX: "scroll" }}>
-          {objectssameAreaAndCategory?.map((el) => {
-            if (Number(el.adId) === Number(adId.adId)) return;
-            return (
-              <div
-                key={el.id}
-                onClick={() =>
-                  (window.location.href = `/propertys/property/${el.adId}`)
-                }
-              >
-                <div className={classes.card}>
-                  <img src={el.uri} alt={el.Area} className={classes.img} />
-                  <div
-                    style={{
-                      position: "absolute",
-                      zIndex: "10000",
-                      color: "white",
-                      top: "5%",
-                      left: "2%"
-                    }}
-                  >
-                    <h5>{el.Size}.sqm</h5>
-                    <h5>{el.Price}$</h5>
+      {objectssameAreaAndCategory?.length > 0 && (
+        <section>
+          <h5 style={{ marginLeft: "0.4rem", width: "100%" }}>
+            Other {currentCatgoryToUse && currentCatgoryToUse} in{" "}
+            {currentArea && currentArea}
+          </h5>
+          <div style={{ display: "flex", overflowX: "scroll" }}>
+            {objectssameAreaAndCategory?.map((el) => {
+              if (Number(el.adId) === Number(adId.adId)) return;
+              return (
+                <div
+                  key={el.id}
+                  onClick={() =>
+                    (window.location.href = `/propertys/property/${el.adId}`)
+                  }
+                >
+                  <div className={classes.card}>
+                    <img src={el.uri} alt={el.Area} className={classes.img} />
+                    <div
+                      style={{
+                        position: "absolute",
+                        zIndex: "10000",
+                        color: "white",
+                        top: "5%",
+                        left: "2%"
+                      }}
+                    >
+                      <h5>{el.Size}.sqm</h5>
+                      <h5>{el.Price}$</h5>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
-      <section className={classes.container}>
-        <h5 style={{ marginLeft: "0.4rem", width: "100%" }}>
-          Other properties in {currentArea && currentArea}
-        </h5>
-        <div style={{ display: "flex", overflowX: "scroll" }}>
-          {objectsInSameAreaNotSameCatgory?.map((el) => {
-            if (Number(el.adId) === Number(adId.adId)) return;
-            return (
-              <div
-                key={el.id}
-                onClick={() =>
-                  (window.location.href = `/propertys/property/${el.adId}`)
-                }
-              >
-                <div className={classes.card}>
-                  <img src={el.uri} alt={el.Area} className={classes.img} />
-                  <div
-                    style={{
-                      position: "absolute",
-                      zIndex: "10000",
-                      color: "white",
-                      top: "5%",
-                      left: "2%"
-                    }}
-                  >
-                    <h5>{el.Size}.sqm</h5>
-                    <h5>{el.Price}$</h5>
+      {objectsInSameAreaNotSameCatgory?.length > 0 && (
+        <section className={classes.container}>
+          <h5 style={{ marginLeft: "0.4rem", width: "100%" }}>
+            Other properties in {currentArea && currentArea}
+          </h5>
+          <div style={{ display: "flex", overflowX: "scroll" }}>
+            {objectsInSameAreaNotSameCatgory?.map((el) => {
+              if (Number(el.adId) === Number(adId.adId)) return;
+              return (
+                <div
+                  key={el.id}
+                  onClick={() =>
+                    (window.location.href = `/propertys/property/${el.adId}`)
+                  }
+                >
+                  <div className={classes.card}>
+                    <img src={el.uri} alt={el.Area} className={classes.img} />
+                    <div
+                      style={{
+                        position: "absolute",
+                        zIndex: "10000",
+                        color: "white",
+                        top: "5%",
+                        left: "2%"
+                      }}
+                    >
+                      <h5>{el.Size}.sqm</h5>
+                      <h5>{el.Price}$</h5>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
+              );
+            })}
+          </div>
+        </section>
+      )}
     </div>
   );
 };

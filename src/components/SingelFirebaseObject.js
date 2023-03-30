@@ -10,6 +10,7 @@ import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 import Karusell from "./Karusell";
 import RelatedObjects from "./RelatedObjects";
 import { makeStyles } from "@material-ui/core";
+import Faq from "./Faq";
 const useStyles = makeStyles({});
 const SingelFirebaseObject = () => {
   const classes = useStyles();
@@ -167,6 +168,7 @@ const SingelFirebaseObject = () => {
         );
       })}
       <RelatedObjects adId={adId} />
+      <Faq />
     </>
   );
 };
