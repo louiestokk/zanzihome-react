@@ -39,8 +39,7 @@ const RelatedObjects = (adId) => {
   const objectssameAreaAndCategory = objects?.filter(
     (el) => el?.category === currentCategory && el?.Area === currentArea
   );
-  console.log(objectssameAreaAndCategory);
-  console.log(objectsInSameAreaNotSameCatgory);
+
   return (
     <div className={classes.root}>
       <section>

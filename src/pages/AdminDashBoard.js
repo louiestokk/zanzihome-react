@@ -50,6 +50,7 @@ const AdminDashBoard = () => {
   const [userEmail, setuserEmail] = useState("");
   const [rent, setrent] = useState(false);
   const [price, setPrice] = useState(0);
+
   const fetchFirestoreData = async () => {
     await getDocs(collection(db, "newAd")).then((querySnapshot) => {
       const newData = querySnapshot.docs.map((doc) => ({
@@ -175,56 +176,61 @@ const AdminDashBoard = () => {
         />
       </div>
       <table style={{ width: "100%" }}>
-        <tr>
-          <th>Image</th>
-          <th>Price</th>
-          <th>id</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Area</th>
-          <th>Phone</th>
-          <th>Paid</th>
-        </tr>
-        {firestoreData &&
-          firestoreData.map((el) => {
-            return (
-              <tr className="dash-tr">
-                <td>
-                  <img src={el.uri} style={{ height: "60px", width: "60px" }} />
-                </td>
-                <td>{el.Price}</td>
-                <td>{el.id}</td>
-                <td>{el.Name}</td>
-                <td>{el.Email}</td>
-                <td>{el.Area}</td>
-                <td>{el.Phone}</td>
-                {el.paid && (
-                  <td style={{ color: "green", fontWeight: "bold" }}>Paid</td>
-                )}
-                {!el.paid && (
-                  <td
-                    style={{ cursor: "pointer" }}
-                    onDoubleClick={() => handleSetPaid(el.adId)}
-                  >
-                    {updated ? "Updated" : "   Not paid"}
+        <tbody>
+          <tr>
+            <th>Image</th>
+            <th>Price</th>
+            <th>id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Area</th>
+            <th>Phone</th>
+            <th>Paid</th>
+          </tr>
+          {firestoreData &&
+            firestoreData.map((el) => {
+              return (
+                <tr className="dash-tr">
+                  <td>
+                    <img
+                      src={el.uri}
+                      style={{ height: "60px", width: "60px" }}
+                    />
                   </td>
-                )}
-                <td
-                  onClick={() => handleRemoveObject(el.adId)}
-                  className={classes.remove}
-                  style={{ background: el.removed && "black" }}
-                >
-                  {el.removed ? "REMOVED" : "Remove"}
-                </td>
-                <td
-                  onClick={() => handleUpdateObject(el.adId)}
-                  className={classes.update}
-                >
-                  Update
-                </td>
-              </tr>
-            );
-          })}
+                  <td>{el.Price}</td>
+                  <td>{el.id}</td>
+                  <td>{el.Name}</td>
+                  <td>{el.Email}</td>
+                  <td>{el.Area}</td>
+                  <td>{el.Phone}</td>
+                  {el.paid && (
+                    <td style={{ color: "green", fontWeight: "bold" }}>Paid</td>
+                  )}
+                  {!el.paid && (
+                    <td
+                      style={{ cursor: "pointer" }}
+                      onDoubleClick={() => handleSetPaid(el.adId)}
+                    >
+                      {updated ? "Updated" : "   Not paid"}
+                    </td>
+                  )}
+                  <td
+                    onClick={() => handleRemoveObject(el.adId)}
+                    className={classes.remove}
+                    style={{ background: el.removed && "black" }}
+                  >
+                    {el.removed ? "REMOVED" : "Remove"}
+                  </td>
+                  <td
+                    onClick={() => handleUpdateObject(el.adId)}
+                    className={classes.update}
+                  >
+                    Update
+                  </td>
+                </tr>
+              );
+            })}
+        </tbody>
       </table>
     </div>
   );

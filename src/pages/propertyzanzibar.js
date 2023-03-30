@@ -4,6 +4,7 @@ import Objects from "../components/Objects";
 import MapPage from "./MapPage";
 import AdBanner from "../components/AdBanner";
 import { Helmet } from "react-helmet-async";
+import Faq from "../components/Faq";
 const propertyzanzibar = () => {
   return (
     <>
@@ -23,6 +24,7 @@ const propertyzanzibar = () => {
       </div>
       <MapPage />
       <Objects />
+      <Faq />
     </>
   );
 };
