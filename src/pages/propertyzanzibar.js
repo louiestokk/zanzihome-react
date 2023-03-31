@@ -6,6 +6,7 @@ import AdBanner from "../components/AdBanner";
 import { Helmet } from "react-helmet-async";
 import BannerSection from "../components/BannerSection";
 import Faq from "../components/Faq";
+import Abovefooter from "../components/Abovefooter";
 const propertyzanzibar = () => {
   return (
     <>
@@ -32,6 +33,7 @@ const propertyzanzibar = () => {
         <AdBanner />
       </div>
       <Faq />
+      <Abovefooter />
     </>
   );
 };
