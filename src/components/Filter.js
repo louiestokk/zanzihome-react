@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { FaBars } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { BsFillHouseDoorFill } from "react-icons/bs";
 import { MdApartment } from "react-icons/md";
 import { MdOutlineHouseSiding } from "react-icons/md";
 import { GiIsland } from "react-icons/gi";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import { MdKeyboardArrowUp } from "react-icons/md";
+
 import { objects } from "../utils/data";
 import styled from "styled-components";
 import { useGlobalContext } from "../context";
@@ -26,13 +24,9 @@ const Filter = () => {
   const firebaseData = useSelector(getFirestoreData);
   const allObjects = useSelector(getAllObjects);
   const dispatch = useDispatch();
-  const { loading } = useGlobalContext();
   const [rental, setRental] = useState(false);
-  const [size, setSize] = useState(0);
-  const [price, setprice] = useState(0);
   const [extendFilter, setExtendFilter] = useState(false);
   const [active, setActive] = useState(true);
-  const [query, setQuery] = useState();
   const [memo, setMemo] = useState([]);
   // rent null och sell null = sell
   const handleClick = (e) => {
@@ -82,21 +76,7 @@ const Filter = () => {
       dispatch(setFirestoreData(newitems));
     }
   };
-  const handleSizePrice = (e) => {
-    if (e.currentTarget.name === "size") {
-      const newitems = objects.filter(
-        (el) => +el.size >= Number(e.currentTarget.value)
-      );
 
-      dispatch(filterObjects(newitems));
-    }
-    if (e.currentTarget.name === "price") {
-      const newitems = allObjects.filter(
-        (el) => el.price * 1000 <= +e.currentTarget.value
-      );
-      dispatch(filterObjects(newitems));
-    }
-  };
   const fetchFirestoreData = async () => {
     await getDocs(collection(db, "newAd")).then((querySnapshot) => {
       const newData = querySnapshot.docs.map((doc) => ({
@@ -277,7 +257,7 @@ const Filter = () => {
             </span>
           </button>
         </article>
-        {extendFilter && (
+        {/* {extendFilter && (
           <article className="filters">
             <div className="choice">
               <label htmlFor="size">Minimum size sq.m</label>
@@ -311,9 +291,9 @@ const Filter = () => {
               </select>
             </div>
           </article>
-        )}
+        )} */}
 
-        {extendFilter && (
+        {/* {extendFilter && (
           <div className="query">
             <label htmlFor="query" style={{ marginLeft: "0.5rem" }}>
               Query
@@ -331,8 +311,8 @@ const Filter = () => {
               }}
             />
           </div>
-        )}
-        <p
+        )} */}
+        {/* <p
           className="extend"
           style={{
             textAlign: "center",
@@ -354,7 +334,7 @@ const Filter = () => {
               Reduce filter <MdKeyboardArrowUp />
             </>
           )}
-        </p>
+        </p> */}
 
         <button type="button" className="submit" onClick={() => handleSubmit()}>
           {rental ? "Find property for rent" : "Find properties for sale"}
@@ -366,7 +346,7 @@ const Filter = () => {
 
 export default Filter;
 const Wrapper = styled.section`
-  height: 510px;
+  height: 420px;
   width: 100%;
   transition: all 0.4s linear;
   .button {
@@ -376,7 +356,7 @@ const Wrapper = styled.section`
     font-weight: bold;
     background: white;
     font-size: 1rem;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     margin-bottom: 0rem;
     border: none;
     opacity: 0.82;
@@ -384,7 +364,7 @@ const Wrapper = styled.section`
   }
   .holder {
     background: white;
-    height: 380px;
+    height: 325px;
     width: 600px;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     border-radius: 5px 5px;
@@ -393,7 +373,7 @@ const Wrapper = styled.section`
     transition: all 0.4s linear;
   }
   .filter {
-    margin: 1rem 0.2rem;
+    margin: 0.5rem 0.2rem;
     width: 100%;
   }
   input {
@@ -470,6 +450,11 @@ const Wrapper = styled.section`
   @media only screen and (min-width: 600px) {
     select {
       width: 220px;
+    }
+  }
+  @media only screen and (min-width: 400px) {
+    .holder {
+      height: 300px;
     }
   }
 `;
