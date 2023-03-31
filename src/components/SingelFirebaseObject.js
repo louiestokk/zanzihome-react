@@ -10,6 +10,7 @@ import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 import Karusell from "./Karusell";
 import RelatedObjects from "./RelatedObjects";
 import { makeStyles } from "@material-ui/core";
+import Abovefooter from "./Abovefooter";
 import { Helmet } from "react-helmet-async";
 import Faq from "./Faq";
 const useStyles = makeStyles({});
@@ -184,6 +185,7 @@ const SingelFirebaseObject = () => {
       })}
       <RelatedObjects adId={adId} />
       <Faq />
+      <Abovefooter />
     </>
   );
 };
