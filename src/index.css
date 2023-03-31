@@ -1637,7 +1637,28 @@ input[type="textarea"] {
   .faq-root {
     max-width: 80%;
   }
+  .ajjemen-banner-section {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  .ajjemen-banner-section img {
+    width: 400px;
+  }
+  .ajjemen-banner-section p {
+    width: 400px;
+  }
+  .map-header-title {
+    text-align: center;
+    font-size: 1.4rem;
+  }
 }
+
 .faq-root {
   font-family: "Poppins", sans-serif;
+}
+.map-header-title {
+  font-family: "Poppins", sans-serif;
+  margin-left: 0.5rem;
+  margin-top: 2rem;
 }

@@ -4,6 +4,7 @@ import Objects from "../components/Objects";
 import MapPage from "./MapPage";
 import AdBanner from "../components/AdBanner";
 import { Helmet } from "react-helmet-async";
+import BannerSection from "../components/BannerSection";
 import Faq from "../components/Faq";
 const propertyzanzibar = () => {
   return (
@@ -23,11 +24,13 @@ const propertyzanzibar = () => {
         />
       </Helmet>
       <Filter />
+      <BannerSection />
+      <h4 className="map-header-title">Some selected properties!</h4>
+      <MapPage />
+      <Objects />
       <div className="adBanner-holder">
         <AdBanner />
       </div>
-      <MapPage />
-      <Objects />
       <Faq />
     </>
   );
