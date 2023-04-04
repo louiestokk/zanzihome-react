@@ -1,8 +1,25 @@
 import React from "react";
 import { pageData } from "./data";
 const BuyersGuide = () => {
+  const articleStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Guide: Buy property in Zanzibar",
+    description:
+      "We will summarize everything you need to know to make an informed decision about purchasing a property on the island Zanzibar. From understanding the buying process to navigating local regulations, we have got you covered. Read on to learn more.",
+    image:
+      "https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    datePublished: new Date("2023-04-04T09:25:01.340Z").toISOString(),
+    author: {
+      "@type": "Person",
+      name: "Louie Stokk"
+    }
+  };
   return (
     <div style={{ marginTop: "2rem", height: "100%" }} className="poppins">
+      <script type="application/ld+json">
+        {JSON.stringify(articleStructuredData)}
+      </script>
       <h1
         style={{
           fontSize: "1.3rem",
