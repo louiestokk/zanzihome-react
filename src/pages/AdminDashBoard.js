@@ -50,6 +50,7 @@ const AdminDashBoard = () => {
   const [userEmail, setuserEmail] = useState("");
   const [rent, setrent] = useState(false);
   const [price, setPrice] = useState(0);
+  const [area, setArea] = useState("");
 
   const fetchFirestoreData = async () => {
     await getDocs(collection(db, "newAd")).then((querySnapshot) => {
@@ -124,7 +125,8 @@ const AdminDashBoard = () => {
       await updateDoc(object, {
         Email: userEmail,
         Price: price,
-        Rent: rent
+        Rent: rent,
+        Area: area
       });
       console.log("updated");
     } catch (error) {
@@ -151,6 +153,12 @@ const AdminDashBoard = () => {
           name="Price"
           className={classes.input}
           onChange={(e) => setPrice(e.target.value)}
+        />
+        <input
+          placeholder={"Area"}
+          name="Area"
+          className={classes.input}
+          onChange={(e) => setArea(e.target.value)}
         />
         <label>Rent</label>
         <input
@@ -188,9 +196,9 @@ const AdminDashBoard = () => {
             <th>Paid</th>
           </tr>
           {firestoreData &&
-            firestoreData.map((el) => {
+            firestoreData.map((el, i) => {
               return (
-                <tr className="dash-tr">
+                <tr className="dash-tr" key={i}>
                   <td>
                     <img
                       src={el.uri}

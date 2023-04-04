@@ -68,12 +68,14 @@ const Filter = () => {
         el.Area === e.target.value.toUpperCase() ||
         el.Area === e.target.value
     );
-    dispatch(setFirestoreData(newItems));
+    if (newItems?.length > 0) dispatch(setFirestoreData(newItems));
     if ((e.currentTarget.className = "querys area")) {
       const query =
         e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
       const newitems = memo.filter((el) => el.Area === query);
-      dispatch(setFirestoreData(newitems));
+      if (newItems?.length > 0) {
+        dispatch(setFirestoreData(newitems));
+      }
     }
   };
 
@@ -152,7 +154,7 @@ const Filter = () => {
 
             <input
               type="text"
-              placeholder="Search area"
+              placeholder="Search area ex: Jambiani"
               onChange={handleChange}
               className="querys area"
             />

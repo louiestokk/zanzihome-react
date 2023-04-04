@@ -4,7 +4,7 @@ const Abovefooter = () => {
   return (
     <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
       <h2 className="poppins" style={{ maxWidth: "85%", margin: "1rem auto" }}>
-        Properties for Sale in Zanzibar
+        Properties for Sale & Rent in Zanzibar
       </h2>
       <p
         className="sans"
