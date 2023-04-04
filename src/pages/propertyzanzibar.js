@@ -24,9 +24,11 @@ const propertyzanzibar = () => {
   };
   return (
     <>
-      <script type="application/ld+json">
-        {JSON.stringify(articleStructuredData)}
-      </script>
+      <div>
+        <script type="application/ld+json">
+          {JSON.stringify(articleStructuredData)}
+        </script>
+      </div>
       <Helmet>
         <meta charSet="utf-8" />
         <title>
