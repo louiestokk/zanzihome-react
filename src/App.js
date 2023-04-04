@@ -30,6 +30,8 @@ const SingelFirebaseObject = lazy(() =>
 );
 const PaymentInstructions = lazy(() => import("./pages/PaymentInstructions"));
 const EditObject = lazy(() => import("./components/EditObject"));
+const BuyersGuide = lazy(() => import("./pages/guides/BuyersGuide"));
+//
 function App() {
   const [logedinUser, setLogedinUser] = useState({});
   const [loading, setLoading] = useState(false);
@@ -69,6 +71,9 @@ function App() {
           </Route>
           <Route path="/propertyzanzibar">
             <Propertyzanzibar />
+          </Route>
+          <Route path="/buy-property-zanzibar">
+            <BuyersGuide />
           </Route>
           <Route path="/payments-instructions">
             <PaymentInstructions />

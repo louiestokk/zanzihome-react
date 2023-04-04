@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { FaInstagram } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
+import { BsInfoSquare } from "react-icons/bs";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -64,6 +65,28 @@ const Footer = () => {
               </a>
               Instagram
             </li>
+          </ul>
+        </div>
+        <div
+          style={{
+            padding: "1rem",
+            fontFamily: "serif"
+          }}
+        >
+          <h2 style={{ borderBottom: "0.1px solid white" }}>Guides</h2>
+          <ul className="footer-ul">
+            <li>
+              <a href="/buy-property-zanzibar">Buyer's guide</a>
+            </li>
+            {/* <li>
+              <a href="/sell-property-zanzibar">Seller guide</a>
+            </li>
+            <li>
+              <a href="rentout-property-zanzibar">Rentout guide</a>
+            </li>
+            <li>
+              <a href="/rent-property-zanzibar">Rent guide</a>
+            </li> */}
           </ul>
         </div>
       </div>

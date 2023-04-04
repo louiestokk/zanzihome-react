@@ -606,7 +606,7 @@ button {
 }
 .footer {
   background: #013a17;
-  height: 400px;
+  height: 560px;
   display: column;
   color: white;
 }
@@ -1661,4 +1661,7 @@ input[type="textarea"] {
   font-family: "Poppins", sans-serif;
   margin-left: 0.5rem;
   margin-top: 2rem;
+}
+.poppins {
+  font-family: "Poppins", sans-serif;
 }
