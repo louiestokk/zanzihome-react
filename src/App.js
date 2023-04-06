@@ -108,7 +108,7 @@ function App() {
           <Route path="/buildhousezanzibar">
             <Build />
           </Route>
-          <Route path="/admin-dashboard">
+          <Route path="/admin-dashboard_user_admin_dash">
             <AdminDashBoard />
           </Route>
           <Route path="/foreginerpropertyzanzibar">
