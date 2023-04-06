@@ -39,8 +39,17 @@ const propertyzanzibar = () => {
         <meta
           name="description"
           content={
-            "Find Your Perfect Slice of Paradise: Properties for Sale in Zanzibar. Find properties in Zanzibar as houses, plots and apartments for sale or for rent. Looking for properties or businesses for sale or rent in Zanzibar? Zanzihome offers a wide selection of properties in Zanzibar to choose from, as well as an easy-to-use platform to advertise your own property or business. With our optimized search engine and user-friendly interface, finding or selling a property or business in Zanzibar has never been easier. Sign up today and start exploring the opportunities Zanzihome has to offer."
+            "Properties for Sale in Zanzibar. Find properties in Zanzibar as houses, plots and apartments for sale or for rent. Looking for properties or businesses for sale or rent in Zanzibar? Zanzihome offers a wide selection of properties in Zanzibar to choose from, as well as an easy-to-use platform to advertise your own property or business. With our user-friendly interface, finding or selling a property or business in Zanzibar has never been easier."
           }
+        />
+        <meta property="og:url" content="https://zanzihome.com" />
+        <meta
+          property="og:description"
+          content="One-Stop Property Marketplace. Wide selection of properties for sale and rent in Zanzibar to choose from, as well as an easy-to-use platform to advertise your own property or business."
+        />
+        <meta
+          property="og:image"
+          content="https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
         />
       </Helmet>
       <Filter />
