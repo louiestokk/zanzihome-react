@@ -5,14 +5,9 @@ import { BsFillHouseDoorFill } from "react-icons/bs";
 import { MdApartment } from "react-icons/md";
 import { MdOutlineHouseSiding } from "react-icons/md";
 import { GiIsland } from "react-icons/gi";
-
 import { objects } from "../utils/data";
 import styled from "styled-components";
-import { useGlobalContext } from "../context";
-import {
-  getAllObjects,
-  filterObjects
-} from "../redux-toolkit/objects/objectSlice";
+import { filterObjects } from "../redux-toolkit/objects/objectSlice";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getFirestoreData,
@@ -22,7 +17,6 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 const Filter = () => {
   const firebaseData = useSelector(getFirestoreData);
-  const allObjects = useSelector(getAllObjects);
   const dispatch = useDispatch();
   const [rental, setRental] = useState(false);
   const [extendFilter, setExtendFilter] = useState(false);
@@ -30,23 +24,28 @@ const Filter = () => {
   const [memo, setMemo] = useState([]);
   // rent null och sell null = sell
   const handleClick = (e) => {
+    e.currentTarget.style.border = "1px solid green";
     if (e.currentTarget.className === "btn") {
       if (e.currentTarget.textContent === "Plot") {
-        const newItems = memo && memo.filter((el) => el.category === "Hand");
+        const newItems =
+          firebaseData && firebaseData.filter((el) => el.category === "Hand");
         dispatch(setFirestoreData(newItems));
       }
       if (e.currentTarget.textContent === "House") {
-        const newItems = memo && memo.filter((el) => el.category === "House");
+        const newItems =
+          firebaseData && firebaseData.filter((el) => el.category === "House");
         dispatch(setFirestoreData(newItems));
       }
       if (e.currentTarget.textContent === "Apartment") {
         const newItems =
-          memo && memo.filter((el) => el.category === "Apartment");
+          firebaseData &&
+          firebaseData.filter((el) => el.category === "Apartment");
         dispatch(setFirestoreData(newItems));
       }
       if (e.currentTarget.textContent === "Business") {
         const newItems =
-          memo && memo.filter((el) => el.category === "Business");
+          firebaseData &&
+          firebaseData.filter((el) => el.category === "Business");
         dispatch(setFirestoreData(newItems));
       }
     }
