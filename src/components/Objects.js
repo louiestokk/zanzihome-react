@@ -3,7 +3,7 @@ import { ImHome } from "react-icons/im";
 import { BsSquare } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Audio, Oval } from "react-loader-spinner";
+import { Audio } from "react-loader-spinner";
 import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 
 const Objects = () => {

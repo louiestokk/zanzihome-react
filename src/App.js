@@ -5,7 +5,6 @@ import { setFirestoreData } from "./redux-toolkit/firebaseDataSlice";
 import { collection, getDocs } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { db } from "./firebase";
-import { getPlacesData } from "./api/index";
 const Home = lazy(() => import("./pages/Home"));
 const Payments = lazy(() => import("./components/Payments"));
 const AdminDashBoard = lazy(() => import("./pages/AdminDashBoard"));
@@ -31,6 +30,7 @@ const SingelFirebaseObject = lazy(() =>
 const PaymentInstructions = lazy(() => import("./pages/PaymentInstructions"));
 const EditObject = lazy(() => import("./components/EditObject"));
 const BuyersGuide = lazy(() => import("./pages/guides/BuyersGuide"));
+const AllPropertiesPage = lazy(() => import("./pages/AllPropertiesPage"));
 //
 function App() {
   const [logedinUser, setLogedinUser] = useState({});
@@ -71,6 +71,9 @@ function App() {
           </Route>
           <Route path="/propertyzanzibar">
             <Propertyzanzibar />
+          </Route>
+          <Route path="/properties-zanzibar">
+            <AllPropertiesPage />
           </Route>
           <Route path="/buy-property-zanzibar">
             <BuyersGuide />
