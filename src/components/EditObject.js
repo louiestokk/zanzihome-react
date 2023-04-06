@@ -89,8 +89,6 @@ const EditObject = () => {
       }
     );
   };
-
-  // om den redan har en array med bilder så kan inte imagesArray vara uri utan den måste vara images array
   const uploadNewImages = async (e) => {
     e.preventDefault();
     try {
@@ -118,14 +116,8 @@ const EditObject = () => {
         <h4 style={{ marginBottom: "0.5rem" }}>Add images</h4>
         <div className="edit-object-file">
           <input type={"file"} accept="image/*" onChange={handleImageChange} />
-          <input type={"file"} accept="image/*" onChange={handleImageChange} />
         </div>
         <div className="edit-object-file">
-          <input type={"file"} accept="image/*" onChange={handleImageChange} />
-          <input type={"file"} accept="image/*" onChange={handleImageChange} />
-        </div>
-        <div className="edit-object-file">
-          <input type={"file"} accept="image/*" onChange={handleImageChange} />
           <input type={"file"} accept="image/*" onChange={handleImageChange} />
         </div>
         <div>
