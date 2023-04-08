@@ -14,7 +14,8 @@ const BannerSection = () => {
         }}
       >
         <img
-          alt="Beach and property for sale in Zanzibar"
+          alt="Properties for sale in Zanzibar"
+          title="Properties for sale in Zanzibar"
           src="https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
         />
         <h4
@@ -101,6 +102,7 @@ const BannerSection = () => {
       >
         <img
           alt="Advertise property for sale or rent in Zanzibar"
+          title="Advertise property for sale or rent in Zanzibar"
           src="https://www.shadowsofafrica.com/media/catalog/product/cache/1/image/650x/040ec09b1e35df139433887a97daa66f/3/_/3_stone_town_.jpg"
         />
         <h4

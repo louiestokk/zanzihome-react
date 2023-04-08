@@ -3,6 +3,7 @@ import { makeStyles, Card } from "@material-ui/core";
 import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 import { useSelector } from "react-redux";
 const useStyles = makeStyles({
+  root: { margin: "1rem 0" },
   card: {
     width: "80%",
     height: "210px",
@@ -23,6 +24,10 @@ const useStyles = makeStyles({
   }
 });
 const RelatedObjects = (adId) => {
+  const current = Number(
+    window.location.pathname.split("/propertys/property/")[1]
+  );
+
   const objects = useSelector(getFirestoreData);
   const classes = useStyles();
   const currentArea = objects?.filter(
@@ -42,12 +47,19 @@ const RelatedObjects = (adId) => {
 
   return (
     <div className={classes.root}>
-      {objectssameAreaAndCategory?.length > 0 && (
+      {objectssameAreaAndCategory?.length > 0 && current !== Number(adId.adId) && (
         <section>
-          <h5 style={{ marginLeft: "0.4rem", width: "100%" }}>
+          <h3
+            style={{
+              marginLeft: "0.5rem",
+              width: "100%",
+              color: "#334155",
+              fontSize: "1rem"
+            }}
+          >
             Other {currentCatgoryToUse && currentCatgoryToUse} in{" "}
             {currentArea && currentArea}
-          </h5>
+          </h3>
           <div style={{ display: "flex", overflowX: "scroll" }}>
             {objectssameAreaAndCategory?.map((el) => {
               if (Number(el.adId) === Number(adId.adId)) return;
@@ -82,9 +94,16 @@ const RelatedObjects = (adId) => {
 
       {objectsInSameAreaNotSameCatgory?.length > 0 && (
         <section className={classes.container}>
-          <h5 style={{ marginLeft: "0.4rem", width: "100%" }}>
+          <h3
+            style={{
+              marginLeft: "0.5rem",
+              width: "100%",
+              color: "#334155",
+              fontSize: "1rem"
+            }}
+          >
             Other properties in {currentArea && currentArea}
-          </h5>
+          </h3>
           <div style={{ display: "flex", overflowX: "scroll" }}>
             {objectsInSameAreaNotSameCatgory?.map((el) => {
               if (Number(el.adId) === Number(adId.adId)) return;

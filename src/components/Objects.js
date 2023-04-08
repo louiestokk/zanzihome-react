@@ -52,7 +52,6 @@ const Objects = () => {
               imagesArray,
               removed
             } = object;
-
             if (!paid) return;
             if (removed) return;
             return (
@@ -60,7 +59,8 @@ const Objects = () => {
                 <Link to={`/propertys/property/${adId}`}>
                   <img
                     src={uri !== "" ? uri : imagesArray[1]}
-                    alt={Area}
+                    alt={`Properties for sale in ${Area}, Zanzibar`}
+                    title={`Properties for sale in ${Area}, Zanzibar`}
                     loading={"lazy"}
                   />
                 </Link>

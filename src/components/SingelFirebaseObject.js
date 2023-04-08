@@ -13,6 +13,8 @@ import { makeStyles } from "@material-ui/core";
 import Abovefooter from "./Abovefooter";
 import { Helmet } from "react-helmet-async";
 import Faq from "./Faq";
+import SingelPageMap from "./SingelPageMap";
+import SingeldefaultMapMapPage from "./SingeldefaultMapMapPage";
 const useStyles = makeStyles({});
 const SingelFirebaseObject = () => {
   const classes = useStyles();
@@ -23,7 +25,20 @@ const SingelFirebaseObject = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [recivied, setRecivied] = useState(false);
   const { adId } = useParams();
-
+  const articleStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Properties for Sale and Rent in Zanzibar",
+    description:
+      "Properties for Sale and Rent in Zanzibar. Discover Your Dream Property for Sale in Zanzibar. Advertise Your Property on Zanzihome Today! Your One-Stop Property Marketplace!",
+    image:
+      "https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    datePublished: new Date("2023-04-04T09:25:01.340Z").toISOString(),
+    author: {
+      "@type": "Person",
+      name: "Louie Stokk"
+    }
+  };
   return (
     <>
       <Helmet>
@@ -36,7 +51,7 @@ const SingelFirebaseObject = () => {
         <meta
           name="description"
           content={
-            "Find Your Perfect Slice of Paradise: Properties for Sale in Zanzibar. Find properties in Zanzibar as houses, plots and apartments for sale or for rent. Looking for properties or businesses for sale or rent in Zanzibar? Zanzihome offers a wide selection of properties in Zanzibar to choose from, as well as an easy-to-use platform to advertise your own property or business. With our optimized search engine and user-friendly interface, finding or selling a property or business in Zanzibar has never been easier. Sign up today and start exploring the opportunities Zanzihome has to offer."
+            "Find properties for sale in Zanzibar as houses, plots, apartments and businesses for sale or for rent. Looking for properties or businesses for sale or rent in Zanzibar? Zanzihome offers a wide selection of properties in Zanzibar to choose from, as well as an easy-to-use platform to advertise your own property or business."
           }
         />
       </Helmet>
@@ -61,6 +76,8 @@ const SingelFirebaseObject = () => {
           adId,
           About,
           Size,
+          lat,
+          lng,
           Rooms,
           uri,
           imagesArray
@@ -68,6 +85,9 @@ const SingelFirebaseObject = () => {
         if (!location.pathname.includes(adId)) return;
         return (
           <div className="singel-object-container" key={adId}>
+            <script type="application/ld+json">
+              {JSON.stringify(articleStructuredData)}
+            </script>
             <div className="singel-object">
               <div className="single-object-img-container">
                 {imagesArray && imagesArray.length > 1 ? (
@@ -81,6 +101,8 @@ const SingelFirebaseObject = () => {
                       objectFit: "cover",
                       maxWidth: "700px"
                     }}
+                    alt={`Properties for sale in ${Area}, Zanzibar`}
+                    title={`Properties for sale in ${Area}, Zanzibar`}
                   />
                 )}
               </div>
@@ -180,6 +202,15 @@ const SingelFirebaseObject = () => {
             {/* <h5 className="sameoffice">For sale from the same office</h5> */}
             <div className="divider-singel-object"></div>
             <div className="brokers-divider"></div>
+            <SingelPageMap
+              Area={Area}
+              userCoords={[Number(lat), Number(lng)]}
+              Title={Title}
+            />
+            <SingeldefaultMapMapPage
+              Area={Area}
+              userCoords={[Number(lat), Number(lng)]}
+            />
           </div>
         );
       })}
