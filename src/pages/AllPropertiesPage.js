@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiMap } from "react-icons/bi";
 import { GiHouse } from "react-icons/gi";
 import Objects from "../components/Objects";
@@ -6,6 +6,11 @@ import MapPage from "./MapPage";
 import Faq from "../components/Faq";
 import Abovefooter from "../components/Abovefooter";
 import Checkbox from "@material-ui/core/Checkbox";
+import {
+  setFirestoreData,
+  getFirestoreData
+} from "../redux-toolkit/firebaseDataSlice";
+import { useDispatch, useSelector } from "react-redux";
 const villages = [
   "Bondeni",
   "Bububu",
@@ -58,11 +63,33 @@ const villages = [
 ];
 const types = ["House", "Apartment", "Plot", "Business"];
 const AllPropertiesPage = () => {
-  const [checked, setChecked] = React.useState(true);
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
+  const [rent, setrent] = useState(false);
+  const [sale, setsale] = useState(false);
+  const firestoreData = useSelector(getFirestoreData);
+  const disptach = useDispatch();
+  const handleRentclick = () => {
+    const newItems = firestoreData?.filter((el) => el.Rent === "Rent");
+    disptach(setFirestoreData(newItems));
+    setrent(true);
+    setsale(false);
   };
-  const handleClick = (e) => {};
+  const handleSaleClick = () => {
+    const newItems = firestoreData?.filter(
+      (el) => el.Sell === null && el.Rent === null
+    );
+    disptach(setFirestoreData(newItems));
+    setsale(true);
+    setrent(false);
+  };
+  const handleAreaChange = (e) => {
+    console.log(e.target.value.toUpperCase());
+    const newItems = firestoreData?.filter(
+      (el) =>
+        el.Area === e.target.value || el.Area === e.target.value.toUpperCase()
+    );
+    disptach(setFirestoreData(newItems));
+  };
+  const handleTypeChange = (e) => {};
   return (
     <section>
       <div
@@ -72,30 +99,31 @@ const AllPropertiesPage = () => {
           background: "#013a17"
         }}
       >
+        {/* #22c55e */}
         <button
           style={{
             width: "50%",
-            background: "#0b8b3a",
+            background: sale ? "#22c55e " : "#0b8b3a",
             height: "2.2rem",
             marginTop: "1rem",
             color: "white",
             letterSpacing: "1px"
           }}
-          onClick={handleClick}
+          onClick={handleSaleClick}
         >
           <p>Sale</p>
         </button>
         <button
           style={{
             width: "50%",
-            background: "#0b8b3a",
+            background: rent ? "#22c55e " : "#0b8b3a",
             height: "2.2rem",
             marginTop: "1rem",
             color: "white",
 
             letterSpacing: "1px"
           }}
-          onClick={handleClick}
+          onClick={handleRentclick}
         >
           Rent
         </button>
@@ -129,6 +157,7 @@ const AllPropertiesPage = () => {
                 borderBottom: "0.5px solid white",
                 width: "130px"
               }}
+              onChange={handleAreaChange}
             >
               <option>Hole Zanzibar</option>
               {villages?.map((el, i) => (
@@ -154,6 +183,7 @@ const AllPropertiesPage = () => {
                 borderBottom: "0.5px solid white",
                 borderRadius: "0"
               }}
+              onChange={handleTypeChange}
             >
               <option>All Types</option>
               {types?.map((el, i) => (
@@ -163,7 +193,8 @@ const AllPropertiesPage = () => {
           </section>
         </section>
       </div>
-      <div style={{ height: "240px", overflow: "hidden" }}>
+      <h1>properties for sale / rent area</h1>
+      <div style={{ height: "300px", overflow: "hidden" }}>
         <MapPage />
       </div>
 

@@ -171,7 +171,7 @@ const AdsForm = ({ setActiveStep }) => {
               onClick={handleChange}
               onChange={handleAdsFormChange}
             />
-            <label htmlFor="Sell">Sell $10 1year</label>
+            <label htmlFor="Sell">Sell</label>
             <input
               type="checkbox"
               value="Rent"
@@ -182,10 +182,10 @@ const AdsForm = ({ setActiveStep }) => {
               onChange={handleAdsFormChange}
             />
 
-            <label htmlFor="Rent">Rent out $10 1 year</label>
+            <label htmlFor="Rent">Rent out</label>
           </div>
-          <h5>Adons</h5>
-          <div
+          {/* <h5>Adons</h5> */}
+          {/* <div
             className="form-div form-company"
             style={{ margin: "1.4rem 1rem" }}
           >
@@ -205,7 +205,7 @@ const AdsForm = ({ setActiveStep }) => {
               onChange={handleAdsFormChange}
             />
             <label htmlFor="Rent">Listed top 10 - $25</label>
-          </div>
+          </div> */}
           {/* <div className="form-control form-select-category">
             <p>Ad package</p>
             <select name="package" onChange={packageChange}>
