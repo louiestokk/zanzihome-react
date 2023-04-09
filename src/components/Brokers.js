@@ -92,11 +92,12 @@ const Brokers = ({ agency, number, contact, logo, email }) => {
             type={"submit"}
             onClick={handleSubmit}
             style={{
-              background: "#dfe6d8",
+              background: "#0b8b3a",
               height: "2.4rem",
               fontWeight: "bold",
               letterSpacing: "1px",
-              fontSize: "0.9rem"
+              fontSize: "0.9rem",
+              color: "white"
             }}
           >
             {sending
