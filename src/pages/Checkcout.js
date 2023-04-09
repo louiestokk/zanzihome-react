@@ -8,7 +8,7 @@ import PageHero from "../components/PageHero";
 import { HiArrowCircleDown } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import PaypalCheckout from "../components/PaypalCheckout";
-const steps = ["Ads", "Payment", "Confirmation"];
+const steps = ["Ad", "Confirmation"];
 
 const Checkcout = ({ logedinUser }) => {
   const { activeStep, setActiveStep } = useFormContext();
@@ -27,15 +27,15 @@ const Checkcout = ({ logedinUser }) => {
         </Stepper>
       </Paper>
       {activeStep === 0 && <AdsForm setActiveStep={setActiveStep} />}
-      {activeStep === 1 && <PaypalCheckout setActiveStep={setActiveStep} />}
-      {activeStep === 2 && (
+      {/* {activeStep === 1 && <PaypalCheckout setActiveStep={setActiveStep} />} */}
+      {activeStep === 1 && (
         <main>
           <PageHero
-            title={"Thank you for your ad and payment"}
-            subtitle={"We have emailed you an order confirmation."}
+            title={"Thank you for your ad!"}
+            subtitle={"We have emailed you an confirmation."}
             sub3={"The ad is now published on the page."}
             sub4={
-              "Log in with the same email you created the ad with. You can log in directly with Google and Facebook or create an account. When you are logged in, you can edit your ad and add more images. Sell property Zanzibar. Properties for sale in Zanzibar. Business for sale Zanzibar. Business for rent Zanzibar."
+              "Log in with the same email you created the ad with. You can log in directly with Google and Facebook or create an account. When you are logged in, you can edit your ad and add more images."
             }
             name={".contact-adress"}
           />

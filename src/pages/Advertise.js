@@ -35,15 +35,78 @@ function Advertise() {
         title={"Advertise your property on ZanziHome"}
         subtitle={"ZanziHome is one of the"}
         sub2={"largest"}
-        sub3={"platforms for buying and selling properties."}
-        sub4={"Advertise with ZanziHome"}
-        sub5={"ad package"}
+        sub3={
+          "as an easy-to-use platform for advertise and explore properties in Zanzibar."
+        }
+        sub4={"Advertise for"}
+        sub5={"Free"}
         name={".ads-prices-text-btn"}
       />
 
       <div className="ads-prices-container">
-        <h2 className="ads-prices-text-btn">Prices</h2>
-        <div className="ads-package premium">
+        <h1 className="ads-prices-text-btn">How to use</h1>
+        <section
+          style={{ display: "flex", alignItems: "center", margin: "0.4rem 0" }}
+        >
+          <div
+            style={{
+              background: "#013a17",
+              height: "2rem",
+              width: "2rem",
+              borderRadius: "50%",
+              color: "white",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <h4>1</h4>
+          </div>
+          <p style={{ marginLeft: "0.3rem", fontWeight: "bold" }}>
+            Fill out the form
+          </p>
+        </section>
+        <section
+          style={{ display: "flex", alignItems: "center", margin: "0.4rem 0" }}
+        >
+          <div
+            style={{
+              background: "#013a17",
+              height: "2rem",
+              width: "2rem",
+              borderRadius: "50%",
+              color: "white",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <h4>2</h4>
+          </div>
+          <p style={{ marginLeft: "0.5rem", fontWeight: "bold" }}>
+            Review your ad
+          </p>
+        </section>
+        <section style={{ display: "flex", alignItems: "center" }}>
+          <div
+            style={{
+              background: "#013a17",
+              height: "2rem",
+              width: "2rem",
+              borderRadius: "50%",
+              color: "white",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <h4>3</h4>
+          </div>
+          <p style={{ marginLeft: "0.8rem", fontWeight: "bold" }}>
+            Publish the ad
+          </p>
+        </section>
+        {/* <div className="ads-package premium">
           <div className="dagar-div">Sell</div>
           <div>
             <h4>
@@ -68,8 +131,8 @@ function Advertise() {
               Searchable for sale
             </p>
           </div>
-        </div>
-
+        </div> */}
+        {/* 
         <div className="ads-package rentout">
           <div className="dagar-div">Rent out</div>
           <div>
@@ -90,9 +153,9 @@ function Advertise() {
               Searchable for rent
             </p>
           </div>
-        </div>
-        <h2 className="ads-prices-text-btn">Adons</h2>
-        <div className="ads-holder-con">
+        </div> */}
+        {/* <h2 className="ads-prices-text-btn">Adons</h2> */}
+        {/* <div className="ads-holder-con">
           <div className="adons-container">
             <IoIosRocket style={{ fontSize: "1.4rem", color: "green" }} />
             <p>
@@ -114,7 +177,7 @@ function Advertise() {
               <h5>$25</h5>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="ads-btn-container">
           {/* {user?.nickname ? (
             <button type="button" onClick={() => history.push("/checkout")}>
@@ -125,7 +188,11 @@ function Advertise() {
               Log in & get started
             </button>
           )} */}
-          <button type="button" onClick={() => history.push("/checkout")}>
+          <button
+            type="button"
+            onClick={() => history.push("/checkout")}
+            style={{ width: "12rem" }}
+          >
             Create new ad
           </button>
         </div>

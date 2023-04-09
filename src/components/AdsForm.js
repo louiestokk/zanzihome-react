@@ -39,7 +39,8 @@ const AdsForm = ({ setActiveStep }) => {
     uri: "",
     Rooms: null,
     lat: null,
-    lng: null
+    lng: null,
+    paid: true
   });
   const form = useRef();
   const history = useHistory();
@@ -369,9 +370,9 @@ const AdsForm = ({ setActiveStep }) => {
           <div className="lllll">
             <RiAdvertisementFill />
             <p style={{ marginLeft: "0.2rem" }}>
-              Review all information. The ad will be published as soon as
-              payment for the ad is made. Login and edit your ad like adding
-              more images.
+              Review all information and place the ad. After that your ad will
+              be published. Then you can login and edit your ad like adding more
+              images.
             </p>
           </div>
         </div>

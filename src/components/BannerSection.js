@@ -67,7 +67,7 @@ const BannerSection = () => {
             <h1
               style={{ color: "white", fontSize: "5rem", letterSpacing: "1px" }}
             >
-              10$
+              Free
             </h1>
           </div>
         </div>
@@ -88,9 +88,8 @@ const BannerSection = () => {
             letterSpacing: "1px"
           }}
         >
-          It only costs $10 to advertise and there are no other fees. Get
-          started today, it's super easy. Advertise your own property or
-          business today.
+          It is for free to advertise on Zanzihome.com. Get started today, it's
+          super easy. Advertise your own property or business today.
         </p>
       </section>
       <section

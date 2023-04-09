@@ -453,9 +453,9 @@ const Wrapper = styled.section`
       width: 220px;
     }
   }
-  @media only screen and (min-width: 400px) {
+  @media only screen and (min-width: 412px) {
     .holder {
-      height: 300px;
+      height: 320px;
     }
   }
 `;
