@@ -41,51 +41,15 @@ const MapComp = () => {
             }
 
             return (
-              <Marker position={coords} key={index}>
-                <Popup>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      flexDirection: "column",
-                      cursor: "pointer"
-                    }}
-                    onClick={() =>
-                      (window.location.href = `/propertys/property/${el.adId}`)
-                    }
-                  >
-                    <h4 style={{ color: "black" }}>{el.Title}</h4>
-                    <img
-                      style={{
-                        height: "50px",
-                        width: "100%",
-                        objectFit: "cover"
-                      }}
-                      src={el.uri}
-                    />
-                    <div>
-                      <p>
-                        <strong>Area:</strong> {el.Area}
-                      </p>
-                    </div>
-                    <a
-                      href={`/propertys/property/${el.adId}`}
-                      title={`Properties for sale zanzibar, ${el.Title}`}
-                      style={{
-                        border: "1px solid blue",
-                        marginTop: "0.5rem",
-                        width: "100%",
-                        textAlign: "center",
-                        borderRadius: "3px",
-                        padding: "0.3rem",
-                        cursor: "pointer"
-                      }}
-                    >
-                      Se property
-                    </a>
-                  </div>
-                </Popup>
-              </Marker>
+              <Marker
+                position={coords}
+                key={index}
+                eventHandlers={{
+                  click: () => {
+                    history.push(`/propertys/property/${el.adId}`);
+                  }
+                }}
+              ></Marker>
             );
           })}
       </MapContainer>
