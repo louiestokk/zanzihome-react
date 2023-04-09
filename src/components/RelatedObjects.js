@@ -3,10 +3,10 @@ import { makeStyles, Card } from "@material-ui/core";
 import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 import { useSelector } from "react-redux";
 const useStyles = makeStyles({
-  root: { margin: "1rem 0" },
+  root: { margin: "3rem 0" },
   card: {
-    width: "80%",
-    height: "210px",
+    width: "100%",
+    height: "240px",
     margin: "1rem 0.4rem",
     borderRadius: "5px",
     position: "relative",
@@ -14,10 +14,9 @@ const useStyles = makeStyles({
     position: "relative"
   },
   img: {
-    height: "200px",
-    minWidth: "340px",
-    borderRadius: "5px",
-    boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+    height: "240px",
+    width: "340px",
+    borderRadius: "2px",
     cursor: "pointer",
     objectFit: "cover",
     backgroundPosition: "center"
