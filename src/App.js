@@ -5,6 +5,7 @@ import { setFirestoreData } from "./redux-toolkit/firebaseDataSlice";
 import { collection, getDocs } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { db } from "./firebase";
+const PrivateRoute = lazy(() => import("./pages/PrivateRoute"));
 const Home = lazy(() => import("./pages/Home"));
 const Payments = lazy(() => import("./components/Payments"));
 const AdminDashBoard = lazy(() => import("./pages/AdminDashBoard"));
@@ -109,7 +110,9 @@ function App() {
             <Build />
           </Route>
           <Route path="/admin-dashboard_user_admin_dash">
-            <AdminDashBoard />
+            <PrivateRoute>
+              <AdminDashBoard />
+            </PrivateRoute>
           </Route>
           <Route path="/foreginerpropertyzanzibar">
             <Foreginer />
