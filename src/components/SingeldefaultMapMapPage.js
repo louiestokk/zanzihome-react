@@ -26,7 +26,7 @@ const SingeldefaultMapMapPage = ({ Area, userCoords }) => {
           <section style={{ height: "100%", width: "100%" }}>
             <MapContainer
               center={respData && respData}
-              zoom={12}
+              zoom={8}
               scrollWheelZoom={false}
               style={{ width: "100%", height: "340px" }}
             >

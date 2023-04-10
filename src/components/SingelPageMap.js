@@ -5,7 +5,7 @@ const SingelPageMap = ({ Area, userCoords, Title }) => {
   if (userCoords[0] === 0 && userCoords[1] === 0) return <></>;
   return (
     <div style={{ marginBottom: "3rem" }}>
-      {Area && <h3>Location: {Area}</h3>}
+      {Area && <h3>Location: {"Property"}</h3>}
       <section style={{ height: "100%", width: "100%" }}>
         <MapContainer
           center={userCoords}
