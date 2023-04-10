@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import { FaInstagram } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
-import { BsInfoSquare } from "react-icons/bs";
+import { AiOutlineFacebook } from "react-icons/ai";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -59,11 +58,30 @@ const Footer = () => {
                 href="https://www.instagram.com/zanzihome2021/?igshid=YmMyMTA2M2Y%3D"
                 className="insta-fot"
                 title="zanzihome2021 instagram profile"
-                target={"_blank"}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center"
+                }}
               >
                 <FaInstagram />
               </a>
               Instagram
+            </li>
+            <li>
+              <a
+                href="https://www.facebook.com/profile.php?id=100091371297270&mibextid=LQQJ4d"
+                className="insta-fot"
+                title="Facebook https://zanzihome.com"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center"
+                }}
+              >
+                <AiOutlineFacebook style={{ fontSize: "1.2rem" }} />
+              </a>
+              Facebook
             </li>
           </ul>
         </div>

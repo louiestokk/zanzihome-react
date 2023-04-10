@@ -258,7 +258,7 @@ const AdsForm = ({ setActiveStep }) => {
             <input
               type="text"
               name="Adress"
-              placeholder="ex: exampleroad 22"
+              placeholder="exampleroad 22 (optional)"
               onChange={handleAdsFormChange}
             />
           </div>
@@ -267,7 +267,7 @@ const AdsForm = ({ setActiveStep }) => {
             <input
               type="text"
               name="Zip"
-              placeholder="ex: 71000"
+              placeholder="71000 (optional)"
               onChange={handleAdsFormChange}
             />
           </div>
@@ -292,6 +292,7 @@ const AdsForm = ({ setActiveStep }) => {
           <div className="form-control">
             <label htmlFor="Text">Text / Info</label>
             <textarea
+              placeholder="Describe your property little more please"
               style={{ borderradius: "5px 5px" }}
               type="text"
               name="Text"
