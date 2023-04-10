@@ -4,7 +4,7 @@ import { objects } from "../utils/data";
 import { useHistory } from "react-router-dom";
 import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 import { useSelector } from "react-redux";
-const MapComp = () => {
+const MapComp = ({ zoom }) => {
   const firebaseData = useSelector(getFirestoreData);
   const history = useHistory();
   const zanizbar = [-6.0084, 39.2401];
@@ -12,7 +12,7 @@ const MapComp = () => {
     <div className="map-holder">
       <MapContainer
         center={zanizbar}
-        zoom={8}
+        zoom={zoom ? zoom : 8}
         scrollWheelZoom={false}
         className="map-container"
       >

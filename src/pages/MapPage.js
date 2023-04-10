@@ -1,10 +1,10 @@
 import React from "react";
 import MapComp from "../components/Map";
 
-const MapPage = () => {
+const MapPage = ({ zoom }) => {
   return (
     <div className="map-page-container">
-      <MapComp />
+      <MapComp zoom={zoom} />
     </div>
   );
 };

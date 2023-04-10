@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 import { BiMap } from "react-icons/bi";
 import { GiHouse } from "react-icons/gi";
 import Objects from "../components/Objects";
 import MapPage from "./MapPage";
 import Faq from "../components/Faq";
 import Abovefooter from "../components/Abovefooter";
-import Checkbox from "@material-ui/core/Checkbox";
 import {
   setFirestoreData,
   getFirestoreData
@@ -61,37 +62,66 @@ const villages = [
   "Uroa",
   "Zanzibar City"
 ];
-const types = ["House", "Apartment", "Plot", "Business"];
+const types = ["House", "Apartment", "Hand", "Business"];
 const AllPropertiesPage = () => {
   const [rent, setrent] = useState(false);
   const [sale, setsale] = useState(false);
+  const [area, setArea] = useState(false);
+  const [type, setType] = useState(false);
+  const [memo, setMemo] = useState([]);
   const firestoreData = useSelector(getFirestoreData);
   const disptach = useDispatch();
+
   const handleRentclick = () => {
-    const newItems = firestoreData?.filter((el) => el.Rent === "Rent");
-    disptach(setFirestoreData(newItems));
+    disptach(setFirestoreData(memo?.filter((el) => el.Rent === "Rent")));
     setrent(true);
     setsale(false);
   };
+
   const handleSaleClick = () => {
-    const newItems = firestoreData?.filter(
-      (el) => el.Sell === null && el.Rent === null
-    );
-    disptach(setFirestoreData(newItems));
+    disptach(setFirestoreData(memo?.filter((el) => el.Rent !== "Rent")));
     setsale(true);
     setrent(false);
   };
+
   const handleAreaChange = (e) => {
-    console.log(e.target.value.toUpperCase());
+    setArea(e.target.value);
     const newItems = firestoreData?.filter(
       (el) =>
         el.Area === e.target.value || el.Area === e.target.value.toUpperCase()
     );
     disptach(setFirestoreData(newItems));
   };
-  const handleTypeChange = (e) => {};
+
+  const handleTypeChange = (e) => {
+    setType(e.target.value);
+    const newItems = firestoreData?.filter(
+      (el) => el.category === e.target.value
+    );
+    disptach(setFirestoreData(newItems));
+  };
+
+  const fetchFirestoreData = async () => {
+    await getDocs(collection(db, "newAd")).then((querySnapshot) => {
+      const newData = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id
+      }));
+      setMemo(newData);
+    });
+  };
+  useEffect(() => {
+    fetchFirestoreData();
+  }, [rent, sale, type, area]);
+
   return (
     <section>
+      <div
+        style={{ width: "100%", height: "120px", background: "#013a17" }}
+      ></div>
+      <div style={{ height: "250px", overflow: "hidden" }}>
+        <MapPage zoom={5} />
+      </div>
       <div
         style={{
           display: "flex",
@@ -193,11 +223,23 @@ const AllPropertiesPage = () => {
           </section>
         </section>
       </div>
-      <h1>properties for sale / rent area</h1>
-      <div style={{ height: "300px", overflow: "hidden" }}>
-        <MapPage />
-      </div>
-
+      {(sale || rent) && type && area ? (
+        <h1>{`${type === "Hand" ? "Land" : type} for ${
+          sale ? "Sale" : "Rent"
+        } in ${area}, Zanzibar`}</h1>
+      ) : (
+        <h1
+          style={{
+            fontSize: "1rem",
+            marginTop: "1rem",
+            marginLeft: "0.5rem",
+            color: "#013a17",
+            letterSpacing: "1px"
+          }}
+        >
+          Properties for Sale & Rent in Zanzibar
+        </h1>
+      )}
       <Objects />
       <Faq />
       <Abovefooter />
