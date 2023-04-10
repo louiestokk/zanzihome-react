@@ -162,7 +162,7 @@ const EditObject = () => {
           className={classes.input}
           onChange={handleAdsFormChange}
         />
-        <label htmlFor="Title">Ad Title</label>
+        <label htmlFor="Title">Title</label>
         <input
           placeholder={currentObject?.[0]?.Title}
           name="Title"
