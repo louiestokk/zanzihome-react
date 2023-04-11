@@ -116,9 +116,6 @@ const AllPropertiesPage = () => {
 
   return (
     <section>
-      <div
-        style={{ width: "100%", height: "120px", background: "#013a17" }}
-      ></div>
       <div style={{ height: "250px", overflow: "hidden" }}>
         <MapPage zoom={5} />
       </div>
