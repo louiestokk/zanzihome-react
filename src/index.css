@@ -914,10 +914,8 @@ button {
 }
 @media screen and (min-width: 500px) {
   .singel-object-container {
-    max-width: 700px;
-    margin: 1rem auto;
     border: 1px solid rgb(221, 215, 215);
-    overflow: hidden;
+
     border-top-left-radius: 4px;
     border-top-right-radius: 3px;
   }
@@ -964,6 +962,7 @@ button {
     flex-direction: column;
   }
 }
+
 @media screen and (min-width: 705px) {
   .adBanner-image-container {
     width: 350px;
@@ -973,6 +972,19 @@ button {
   .adBanner-image-container {
     width: 450px;
     margin-right: 0.5rem;
+  }
+  .new-singel-obj-width {
+    display: flex;
+  }
+  .related-item-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .singel-object-container {
+    margin-left: 1rem;
   }
 }
 @media screen and (min-width: 1100px) {
@@ -1675,4 +1687,8 @@ input[type="textarea"] {
 }
 .poppins {
   font-family: "Poppins", sans-serif;
+}
+.related-item-container {
+  display: flex;
+  overflow-x: scroll;
 }

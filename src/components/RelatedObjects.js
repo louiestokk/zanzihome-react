@@ -48,18 +48,18 @@ const RelatedObjects = (adId) => {
     <div className={classes.root}>
       {objectssameAreaAndCategory?.length > 0 && current !== Number(adId.adId) && (
         <section>
-          <h3
-            style={{
-              marginLeft: "0.5rem",
-              width: "100%",
-              color: "#334155",
-              fontSize: "1rem"
-            }}
-          >
-            Other {currentCatgoryToUse && currentCatgoryToUse} in{" "}
-            {currentArea && currentArea}
-          </h3>
-          <div style={{ display: "flex", overflowX: "scroll" }}>
+          <div className="related-item-container">
+            <h3
+              style={{
+                marginLeft: "0.5rem",
+                width: "100%",
+                color: "#334155",
+                fontSize: "1rem"
+              }}
+            >
+              Other {currentCatgoryToUse && currentCatgoryToUse} in{" "}
+              {currentArea && currentArea}
+            </h3>
             {objectssameAreaAndCategory?.map((el) => {
               if (Number(el.adId) === Number(adId.adId)) return;
               return (
@@ -98,12 +98,13 @@ const RelatedObjects = (adId) => {
               marginLeft: "0.5rem",
               width: "100%",
               color: "#334155",
-              fontSize: "1rem"
+              fontSize: "1rem",
+              textAlign: window.innerWidth > 900 && "center"
             }}
           >
             Other properties in {currentArea && currentArea}
           </h3>
-          <div style={{ display: "flex", overflowX: "scroll" }}>
+          <div className="related-item-container">
             {objectsInSameAreaNotSameCatgory?.map((el) => {
               if (Number(el.adId) === Number(adId.adId)) return;
               return (
