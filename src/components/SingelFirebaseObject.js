@@ -54,6 +54,15 @@ const SingelFirebaseObject = () => {
             "Find properties for sale in Zanzibar as houses, plots, apartments and businesses for sale or for rent. Looking for properties or businesses for sale or rent in Zanzibar? Zanzihome offers a wide selection of properties in Zanzibar to choose from, as well as an easy-to-use platform to advertise your own property or business."
           }
         />
+        <meta property="og:url" content="https://zanzihome.com" />
+        <meta
+          property="og:description"
+          content="One-Stop Property Marketplace. Wide selection of properties for sale and rent in Zanzibar to choose from, as well as an easy-to-use platform to advertise your own property or business."
+        />
+        <meta
+          property="og:image"
+          content="https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        />
       </Helmet>
       {firestoreData.map((object) => {
         const {
