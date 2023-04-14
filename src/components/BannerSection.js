@@ -7,7 +7,7 @@ const BannerSection = () => {
       style={{ height: "100%", boxShadow: "none" }}
     >
       <section
-        onClick={() => (window.location.href = "/")}
+        onClick={() => (window.location.href = "/properties-zanzibar")}
         style={{
           padding: "0.8rem",
           boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
