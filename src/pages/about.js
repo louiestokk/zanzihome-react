@@ -8,16 +8,17 @@ const About = () => {
     <main style={{ background: "#dfe6d8" }} className="call-main">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>
-          {
-            "Properties for Sale and Rent in Zanzibar. Discover Your Dream Property for Sale in Zanzibar. Advertise Your Property on Zanzihome Today! Your One-Stop Property Marketplace!"
-          }
-        </title>
+        <title>{"Discover Your Dream Property for Sale in Zanzibar."}</title>
         <meta
           name="description"
           content={
-            "Find Your Perfect Slice of Paradise: Properties for Sale in Zanzibar. Find properties in Zanzibar as houses, plots and apartments for sale or for rent. Looking for properties or businesses for sale or rent in Zanzibar? Zanzihome offers a wide selection of properties in Zanzibar to choose from, as well as an easy-to-use platform to advertise your own property or business. With our optimized search engine and user-friendly interface, finding or selling a property or business in Zanzibar has never been easier. Sign up today and start exploring the opportunities Zanzihome has to offer."
+            "Looking for properties or businesses for sale or rent in Zanzibar? Zanzihome offers a wide selection of properties in Zanzibar to choose from,"
           }
+        />
+        <link
+          hrefLang="sv"
+          rel="canonical"
+          href="https://www.zanzihome.com/about"
         />
       </Helmet>
       <PageHero

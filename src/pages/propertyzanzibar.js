@@ -11,9 +11,9 @@ const propertyzanzibar = () => {
   const articleStructuredData = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "Properties for Sale and Rent in Zanzibar",
+    headline: "Discover Your Dream Property in Zanzibar",
     description:
-      "Properties for Sale and Rent in Zanzibar. Discover Your Dream Property for Sale in Zanzibar. Advertise Your Property on Zanzihome Today! Your One-Stop Property Marketplace!",
+      "Properties for Sale and Rent in Zanzibar. Find a Property for Sale in Zanzibar.",
     image:
       "https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     datePublished: new Date("2023-04-04T09:25:01.340Z").toISOString(),
@@ -31,21 +31,17 @@ const propertyzanzibar = () => {
       </div>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>
-          {
-            "Properties for Sale and Rent in Zanzibar. Discover Your Dream Property for Sale in Zanzibar. Advertise Your Property on Zanzihome Today! Your One-Stop Property Marketplace!"
-          }
-        </title>
+        <title>{"Discover Your Dream Property in Zanzibar"}</title>
         <meta
           name="description"
           content={
-            "Properties for Sale in Zanzibar. Find properties in Zanzibar as houses, plots and apartments for sale or for rent. Looking for properties or businesses for sale or rent in Zanzibar? Zanzihome offers a wide selection of properties in Zanzibar to choose from, as well as an easy-to-use platform to advertise your own property or business. With our user-friendly interface, finding or selling a property or business in Zanzibar has never been easier."
+            "Discover Your Dream Property in Zanzibar - Properties for Sale and Rent"
           }
         />
         <meta property="og:url" content="https://zanzihome.com" />
         <meta
           property="og:description"
-          content="One-Stop Property Marketplace. Wide selection of properties for sale and rent in Zanzibar to choose from, as well as an easy-to-use platform to advertise your own property or business."
+          content="Discover Your Dream Property in Zanzibar - Properties for Sale and Rent"
         />
         <meta
           property="og:image"
