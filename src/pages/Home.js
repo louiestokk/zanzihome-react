@@ -22,7 +22,7 @@ const Home = () => {
             "Find properties in Zanzibar as houses, plots and apartments for sale or for rent. ZanziHome.com will help you find your next or first home."
           }
         />
-        <link hrefLang="sv" rel="canonical" href="https://www.zanzihome.com" />
+        <link rel="canonical" href="https://www.zanzihome.com" />
       </Helmet>
       {/* <AdBanner /> */}
       <Propertyzanzibar />

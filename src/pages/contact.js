@@ -15,11 +15,7 @@ const contact = () => {
             "Find properties in Zanzibar as houses, plots and apartments for sale or for rent."
           }
         />
-        <link
-          hrefLang="sv"
-          rel="canonical"
-          href="https://www.zanzihome.com/contact"
-        />
+        <link rel="canonical" href="https://www.zanzihome.com/contact" />
       </Helmet>
       <PageHero
         icon={<HiArrowCircleDown />}

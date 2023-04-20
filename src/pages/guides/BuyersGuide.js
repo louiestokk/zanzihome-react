@@ -6,7 +6,7 @@ const BuyersGuide = () => {
     "@type": "Article",
     headline: "Guide: Buy property in Zanzibar",
     description:
-      "We will summarize everything you need to know to make an informed decision about purchasing a property on the island Zanzibar. From understanding the buying process to navigating local regulations, we have got you covered. Read on to learn more.",
+      "We will summarize everything you need to know to make an informed decision about purchasing a property on the island Zanzibar. From understanding the buying process to navigating local regulations, we have got you covered.",
     image:
       "https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     datePublished: new Date("2023-04-04T09:25:01.340Z").toISOString(),

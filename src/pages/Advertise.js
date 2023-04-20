@@ -26,7 +26,6 @@ function Advertise() {
           }
         />
         <link
-          hrefLang="sv"
           rel="canonical"
           href="https://www.zanzihome.com/advertisepropertyzanzibar"
         />

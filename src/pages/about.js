@@ -15,11 +15,7 @@ const About = () => {
             "Looking for properties or businesses for sale or rent in Zanzibar? Zanzihome offers a wide selection of properties in Zanzibar to choose from,"
           }
         />
-        <link
-          hrefLang="sv"
-          rel="canonical"
-          href="https://www.zanzihome.com/about"
-        />
+        <link rel="canonical" href="https://www.zanzihome.com/about" />
       </Helmet>
       <PageHero
         icon={<HiArrowCircleDown />}
