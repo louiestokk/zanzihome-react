@@ -50,8 +50,12 @@ const Objects = () => {
               paid,
               payerName,
               imagesArray,
-              removed
+              removed,
+              adType
             } = object;
+            if (adType === "Vehicle") return;
+            if (adType === "Tours") return;
+            if (adType === "Taxi") return;
             if (!paid) return;
             if (removed) return;
             return (
