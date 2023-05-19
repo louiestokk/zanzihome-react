@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
+import { Helmet } from "react-helmet-async";
 import { db } from "../firebase";
 import { BiMap } from "react-icons/bi";
 import { GiHouse } from "react-icons/gi";
@@ -7,61 +8,14 @@ import Objects from "../components/Objects";
 import MapPage from "./MapPage";
 import Faq from "../components/Faq";
 import Abovefooter from "../components/Abovefooter";
+import AdBanner from "../components/AdBanner";
 import {
   setFirestoreData,
   getFirestoreData
 } from "../redux-toolkit/firebaseDataSlice";
 import { useDispatch, useSelector } from "react-redux";
-const villages = [
-  "Bondeni",
-  "Bububu",
-  "Bumbwini",
-  "Bwejuu",
-  "Chuini",
-  "Chukwani",
-  "Chwaka",
-  "Dimbani",
-  "Fukuchani",
-  "Fumba",
-  "Fuoni",
-  "Jambiani",
-  "Jendele",
-  "Jozani",
-  "Kae",
-  "Kendwa",
-  "Kibaoni",
-  "Kibweni",
-  "Kinyasini",
-  "Kitogani",
-  "Kiwengwa",
-  "Kizimkazi",
-  "Koani",
-  "Mahonda",
-  "Makunduchi",
-  "Mangapwani",
-  "Matemwe",
-  "Mbweni",
-  "Mchangani",
-  "Michenzani",
-  "Mkokotoni",
-  "Mtoni",
-  "Mwana Kwerekwe",
-  "Mwembe Ladu",
-  "Mwera",
-  "Mzambarauni",
-  "Nungwi",
-  "Paje",
-  "Pete",
-  "Pemba",
-  "Pingwe",
-  "Pongwe",
-  "Regezo Mwendo",
-  "Stone Town",
-  "Tunguu",
-  "Unguja Ukuu",
-  "Uroa",
-  "Zanzibar City"
-];
+import { villages } from "../utils/data";
+import { faqdata } from "../utils/faq";
 const types = ["House", "Apartment", "Hand", "Business"];
 const AllPropertiesPage = () => {
   const [rent, setrent] = useState(false);
@@ -71,6 +25,21 @@ const AllPropertiesPage = () => {
   const [memo, setMemo] = useState([]);
   const firestoreData = useSelector(getFirestoreData);
   const disptach = useDispatch();
+
+  const articleStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Perfect Slice in Paradise - Properties for Sale and Rent",
+    description:
+      "Discover Your Dream Property in Zanzibar - Properties for Sale and Rent",
+    image:
+      "https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    datePublished: new Date("2023-05-01T09:25:01.340Z").toISOString(),
+    author: {
+      "@type": "Person",
+      name: "Louie Stokk"
+    }
+  };
 
   const handleRentclick = () => {
     disptach(setFirestoreData(memo?.filter((el) => el.Rent === "Rent")));
@@ -110,14 +79,46 @@ const AllPropertiesPage = () => {
       setMemo(newData);
     });
   };
+
   useEffect(() => {
     fetchFirestoreData();
   }, [rent, sale, type, area]);
 
   return (
     <section>
+      <script type="application/ld+json">
+        {JSON.stringify(articleStructuredData)}
+      </script>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>
+          {"Perfect Slice in Paradise - Properties for Sale and Rent"}
+        </title>
+        <meta
+          name="description"
+          content={
+            "Discover Your Dream Property in Zanzibar - Properties for Sale and Rent"
+          }
+        />
+        <meta
+          property="og:url"
+          content="https://www.zanzihome.com/properties-zanzibar"
+        />
+        <meta
+          property="og:description"
+          content="Discover Your Dream Property in Zanzibar - Properties for Sale and Rent"
+        />
+        <meta
+          property="og:image"
+          content="https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        />
+        <link
+          rel="canonical"
+          href="https://www.zanzihome.com/properties-zanzibar"
+        />
+      </Helmet>
       <div style={{ height: "250px", overflow: "hidden" }}>
-        <MapPage zoom={5} />
+        <MapPage zoom={7} />
       </div>
       <div
         style={{
@@ -126,11 +127,10 @@ const AllPropertiesPage = () => {
           background: "#013a17"
         }}
       >
-        {/* #22c55e */}
         <button
           style={{
             width: "50%",
-            background: sale ? "#22c55e " : "#0b8b3a",
+            background: sale ? "#22c55e" : "#0b8b3a",
             height: "2.2rem",
             marginTop: "1rem",
             color: "white",
@@ -143,7 +143,7 @@ const AllPropertiesPage = () => {
         <button
           style={{
             width: "50%",
-            background: rent ? "#22c55e " : "#0b8b3a",
+            background: rent ? "#22c55e" : "#0b8b3a",
             height: "2.2rem",
             marginTop: "1rem",
             color: "white",
@@ -186,7 +186,7 @@ const AllPropertiesPage = () => {
               }}
               onChange={handleAreaChange}
             >
-              <option>Hole Zanzibar</option>
+              <option>Whole Zanzibar</option>
               {villages?.map((el, i) => (
                 <option key={i}>{el}</option>
               ))}
@@ -238,7 +238,10 @@ const AllPropertiesPage = () => {
         </h1>
       )}
       <Objects />
-      <Faq />
+      <div className="adBanner-holder">
+        <AdBanner />
+      </div>
+      <Faq data={faqdata} />
       <Abovefooter />
     </section>
   );

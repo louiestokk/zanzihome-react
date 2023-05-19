@@ -43,7 +43,7 @@ const Abovefooter = () => {
       <div style={{ margin: "2rem 0" }}>
         <h2 className="best-airmax-text">Very good</h2>
         <p>
-          Based on <strong> 3540 reviews</strong>
+          Based on <strong> 1540 reviews</strong>
         </p>
         <img
           src="https://www.snijpunt.com/files/thumbnails/trustpilot-logo-snijpunt.1600x680x1.png"

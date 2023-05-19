@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import { useDispatch } from "react-redux";
+import {
+  setRentalPerson,
+  setPaymentConfirmation
+} from "../redux-toolkit/carRentalSlice";
 import {
   doc,
   collection,
@@ -19,10 +24,17 @@ const initialOptions = {
   intent: "capture"
 };
 
-const PaypalCheckout = ({ setActiveStep }) => {
-  const { adId, price } = useFormContext();
+const PaypalCheckout = ({
+  setActiveStep,
+  period,
+  price,
+  periodType,
+  payFor
+}) => {
+  const { adId } = useFormContext();
   const Checkout = ({ adId, price }) => {
-    const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
+    const dispatch = useDispatch();
+    const [{ options, isPending }] = usePayPalScriptReducer();
     const [currency, setCurrency] = useState(options.currency);
     const updatePaymentStatus = async (name) => {
       try {
@@ -60,10 +72,11 @@ const PaypalCheckout = ({ setActiveStep }) => {
       return actions.order.capture().then((details) => {
         const name = details.payer.name.given_name;
         updatePaymentStatus(name);
-        setActiveStep(2);
+        dispatch(setRentalPerson(details.payer));
+        dispatch(setPaymentConfirmation(true));
       });
     };
-
+    console.log(price.toString());
     return (
       <div
         style={{
@@ -86,9 +99,9 @@ const PaypalCheckout = ({ setActiveStep }) => {
   return (
     <PayPalScriptProvider options={initialOptions}>
       <div style={{ textAlign: "center", margin: "2rem 0" }}>
-        <h4>Advertising</h4>
-        <p>
-          Price: <strong>{price ? price : 10}$ </strong> for 12 month
+        <h3>{payFor}</h3>
+        <p style={{ fontSize: "1.1rem" }}>
+          Price: <strong>{price}$ </strong> for {period} {periodType}
         </p>
       </div>
       <Checkout adId={adId} price={price} />

@@ -194,6 +194,7 @@ const AdminDashBoard = () => {
             <th>Area</th>
             <th>Phone</th>
             <th>Paid</th>
+            <th>Title</th>
           </tr>
           {firestoreData &&
             firestoreData.map((el, i) => {
@@ -211,6 +212,7 @@ const AdminDashBoard = () => {
                   <td>{el.Email}</td>
                   <td>{el.Area}</td>
                   <td>{el.Phone}</td>
+                  <td>{el.Title}</td>
                   {el.paid && (
                     <td style={{ color: "green", fontWeight: "bold" }}>Paid</td>
                   )}

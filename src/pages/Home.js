@@ -15,11 +15,13 @@ const Home = () => {
     <div>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{"Zanzihome Properties in Zanzibar"}</title>
+        <title>
+          {"Discover Zanzibar - Properties, Vehicles, Tours, Safaris And Taxis"}
+        </title>
         <meta
           name="description"
           content={
-            "Find properties in Zanzibar as houses, plots and apartments for sale or for rent. ZanziHome.com will help you find your next or first home."
+            "Find properties, accommodation, rent vehicles or book tours, taxis and safaris in Zanzibar!"
           }
         />
         <link rel="canonical" href="https://www.zanzihome.com" />

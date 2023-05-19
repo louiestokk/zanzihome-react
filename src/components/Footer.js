@@ -28,8 +28,8 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link to="/advertisepropertyzanzibar" className="footer-links">
-                Advertise property
+              <Link to="/checkout" className="footer-links">
+                Advertise for free
               </Link>
             </li>
             <li>

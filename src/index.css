@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Fuzzy+Bubbles:wght@400;700&family=Source+Sans+Pro:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Fuzzy+Bubbles:wght@400;700&family=Roboto+Condensed:wght@400;700&family=Source+Sans+Pro:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,300&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -42,6 +43,7 @@ body {
     font-size: 16px;
   }
 }
+
 img {
   background-position: cover;
 }
@@ -54,6 +56,7 @@ textarea:focus,
 input:focus {
   outline: none;
 }
+
 .ring {
   color: var(--logoColor);
   border-bottom: 1px solid var(--heroTextColor);
@@ -1257,7 +1260,7 @@ button {
 }
 .ad-page h1 {
   font-size: 2.6rem;
-  width: 96%;
+  width: 100%;
   color: #064e3b;
   margin-bottom: 1.2rem;
   letter-spacing: 1px;
@@ -1691,4 +1694,11 @@ input[type="textarea"] {
 .related-item-container {
   display: flex;
   overflow-x: scroll;
+}
+.newfilter-p {
+  margin-left: 0.5rem;
+  font-family: "Source Sans Pro", sans-serif;
+  color: rgb(121, 120, 120);
+  /* max-width: 90%; */
+  max-width: 80%;
 }

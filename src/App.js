@@ -5,6 +5,8 @@ import { setFirestoreData } from "./redux-toolkit/firebaseDataSlice";
 import { collection, getDocs } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { db } from "./firebase";
+const RentalOwner = lazy(() => import("./pages/RentalOwner"));
+const VehicleDetails = lazy(() => import("./pages/VehicleDetails"));
 const PrivateRoute = lazy(() => import("./pages/PrivateRoute"));
 const Home = lazy(() => import("./pages/Home"));
 const Payments = lazy(() => import("./components/Payments"));
@@ -32,20 +34,26 @@ const PaymentInstructions = lazy(() => import("./pages/PaymentInstructions"));
 const EditObject = lazy(() => import("./components/EditObject"));
 const BuyersGuide = lazy(() => import("./pages/guides/BuyersGuide"));
 const AllPropertiesPage = lazy(() => import("./pages/AllPropertiesPage"));
+const Tours = lazy(() => import("./pages/Tours"));
+const Taxi = lazy(() => import("./pages/Taxi"));
+const Vehicle = lazy(() => import("./pages/Vehicle"));
 //
 function App() {
   const [logedinUser, setLogedinUser] = useState({});
   const [loading, setLoading] = useState(false);
-
+  const [allVehicle, setallVehicle] = useState([]);
   const dispatch = useDispatch();
 
   const fetchFirestoreData = async () => {
+    setLoading(true);
     await getDocs(collection(db, "newAd")).then((querySnapshot) => {
       const newData = querySnapshot.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id
       }));
       dispatch(setFirestoreData(newData));
+      setLoading(false);
+      setallVehicle(newData.filter((el) => el.adType === "Vehicle"));
     });
   };
 
@@ -72,6 +80,25 @@ function App() {
           </Route>
           <Route path="/propertyzanzibar">
             <Propertyzanzibar />
+          </Route>
+          <Route path="/rental-owner">
+            <RentalOwner />
+          </Route>
+          <Route path="/tours-zanzibar">
+            <Tours />
+          </Route>
+          <Route path="/taxi-zanzibar">
+            <Taxi />
+          </Route>
+          <Route path="/car-rental-zanzibar">
+            <Vehicle
+              loading={loading}
+              allVehicle={allVehicle}
+              setallVehicle={setallVehicle}
+            />
+          </Route>
+          <Route path="/cars/:id">
+            <VehicleDetails />
           </Route>
           <Route path="/properties-zanzibar">
             <AllPropertiesPage />
@@ -110,9 +137,9 @@ function App() {
             <Build />
           </Route>
           <Route path="/admin-dashboard_user_admin_dash">
-            <PrivateRoute>
-              <AdminDashBoard />
-            </PrivateRoute>
+            {/* <PrivateRoute> */}
+            <AdminDashBoard />
+            {/* </PrivateRoute> */}
           </Route>
           <Route path="/foreginerpropertyzanzibar">
             <Foreginer />

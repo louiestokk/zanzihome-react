@@ -6,8 +6,13 @@ export const navlinks = [
   { id: 1, text: "Home", url: "/" },
   {
     id: 3,
-    text: "Advertise Property",
-    url: "/advertisepropertyzanzibar"
+    text: "Advertise for free",
+    url: "/checkout"
+  },
+  {
+    id: 4,
+    text: "Rent out your vehicle",
+    url: "/rental-owner"
   },
 
   {
@@ -320,4 +325,56 @@ export const bannerInfo = [
     name: "Gerrard M",
     url: ["../../public/images//buildhousezanzibar.jpg"]
   }
+];
+
+export const villages = [
+  "Bondeni",
+  "Bububu",
+  "Bumbwini",
+  "Bwejuu",
+  "Chuini",
+  "Chukwani",
+  "Chwaka",
+  "Dimbani",
+  "Fukuchani",
+  "Fumba",
+  "Fuoni",
+  "Jambiani",
+  "Jendele",
+  "Jozani",
+  "Kae",
+  "Kendwa",
+  "Kibaoni",
+  "Kibweni",
+  "Kinyasini",
+  "Kitogani",
+  "Kiwengwa",
+  "Kizimkazi",
+  "Koani",
+  "Mahonda",
+  "Makunduchi",
+  "Mangapwani",
+  "Matemwe",
+  "Mbweni",
+  "Mchangani",
+  "Michenzani",
+  "Mkokotoni",
+  "Mtoni",
+  "Mwana Kwerekwe",
+  "Mwembe Ladu",
+  "Mwera",
+  "Mzambarauni",
+  "Nungwi",
+  "Paje",
+  "Pete",
+  "Pemba",
+  "Pingwe",
+  "Pongwe",
+  "Regezo Mwendo",
+  "Stone Town",
+  "Tunguu",
+  "Unguja Ukuu",
+  "Uroa",
+  "Zanzibar City",
+  "Airport Abeid Amani International"
 ];

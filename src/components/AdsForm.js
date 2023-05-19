@@ -2,20 +2,26 @@ import React, { useState, useRef } from "react";
 import { useFormContext } from "../form_ads_context";
 import { RiAdvertisementFill } from "react-icons/ri";
 import emailjs from "@emailjs/browser";
-import { BsFillCameraFill } from "react-icons/bs";
+import { villages } from "../utils/data";
 import { useHistory } from "react-router-dom";
 import { useGlobalContext } from "../context";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import SendImages from "./SendImages";
-
-const AdsForm = ({ setActiveStep }) => {
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+const AdsForm = ({ setActiveStep, adType }) => {
   const { company, sell, handleChange, setPrice, adId } = useFormContext();
   const [accept, setAccept] = useState(true);
   const [loading, setLoading] = useState(false);
   const [sended, setSended] = useState(false);
   const [progress, setProgress] = useState(0);
   const [formData, setformData] = useState("");
+  const [open, setOpen] = useState(false);
   const [adsFormData, setadsFormData] = useState({
     Name: "",
     Email: "",
@@ -24,12 +30,7 @@ const AdsForm = ({ setActiveStep }) => {
     Area: "",
     Adress: "",
     Rent: null,
-    top3: null,
-    rocket3: null,
-    rocket10: null,
-    top10: null,
-    category: "House",
-    Zip: null,
+    category: adType === "Vehicle" ? "Car" : "House",
     Title: "",
     Text: "",
     Price: "",
@@ -40,7 +41,14 @@ const AdsForm = ({ setActiveStep }) => {
     Rooms: null,
     lat: null,
     lng: null,
-    paid: true
+    paid: true,
+    adType: adType,
+    Gear: "Automatic",
+    Doors: "",
+    tourTime: "",
+    People: "",
+    AC: null,
+    WhatsApp: null
   });
   const form = useRef();
   const history = useHistory();
@@ -59,7 +67,7 @@ const AdsForm = ({ setActiveStep }) => {
           if (result.text === "OK") {
             setLoading(false);
             setSended(true);
-            setActiveStep(1);
+            setActiveStep(2);
           }
         },
         (error) => {
@@ -69,6 +77,7 @@ const AdsForm = ({ setActiveStep }) => {
   };
 
   const handleAdsFormChange = (e) => {
+    console.log(e.target.name);
     setadsFormData({ ...adsFormData, [e.target.name]: e.target.value });
   };
   const addNewAdToFirebase = async () => {
@@ -84,7 +93,15 @@ const AdsForm = ({ setActiveStep }) => {
       console.error("Error adding document: ", e);
     }
   };
-
+  const handleAccept = () => {
+    setAccept(!accept);
+    if (adsFormData.Name === "" && adsFormData.Phone === null) {
+      setOpen(true);
+    }
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <>
       <form
@@ -105,6 +122,9 @@ const AdsForm = ({ setActiveStep }) => {
               x
             </button>
           </div>
+          <h3 style={{ marginLeft: "1rem", marginBottom: "1.5rem" }}>
+            {adType} in Zanzibar
+          </h3>
           <div
             className="form-div form-company"
             style={{ margin: "1.2rem 1rem" }}
@@ -144,7 +164,6 @@ const AdsForm = ({ setActiveStep }) => {
               name="Email"
               required
               value={formData.email}
-              placeholder="Email"
               onChange={handleAdsFormChange}
             />
           </div>
@@ -157,120 +176,201 @@ const AdsForm = ({ setActiveStep }) => {
               onChange={handleAdsFormChange}
             />
           </div>
-          <h5>Ad</h5>
-          <div
-            className="form-div form-company"
-            style={{ margin: "1.4rem 1rem" }}
-          >
-            <input
-              type="checkbox"
-              value="Sell"
-              name="Sell"
-              id="checkad"
-              checked={sell}
-              onClick={handleChange}
-              onChange={handleAdsFormChange}
-            />
-            <label htmlFor="Sell">Sell</label>
-            <input
-              type="checkbox"
-              value="Rent"
-              name="Rent"
-              id="checkad"
-              checked={!sell}
-              onClick={handleChange}
-              onChange={handleAdsFormChange}
-            />
-
-            <label htmlFor="Rent">Rent out</label>
-          </div>
-          {/* <h5>Adons</h5> */}
-          {/* <div
-            className="form-div form-company"
-            style={{ margin: "1.4rem 1rem" }}
-          >
-            <input
-              type="checkbox"
-              value={60}
-              name="rocket3"
-              onClick={() => setPrice(60)}
-              onChange={handleAdsFormChange}
-            />
-            <label htmlFor="Sell">Listed top 3 $50</label>
-            <input
-              type="checkbox"
-              value={35}
-              name="rocket10"
-              onClick={() => setPrice(35)}
-              onChange={handleAdsFormChange}
-            />
-            <label htmlFor="Rent">Listed top 10 - $25</label>
-          </div> */}
-          {/* <div className="form-control form-select-category">
-            <p>Ad package</p>
-            <select name="package" onChange={packageChange}>
-              {sell && <option value="Premium-50">Premium 60 days $50</option>}
-              {sell && <option value="Plus-30">Plus 45 days $30</option>}
-              {sell && <option value="Base-10">Base 30 days $10</option>}
-              {!sell && <option value="Rent-50">Rent out 12 months $50</option>}
-            </select>
-          </div> */}
-          <div className="form-control form-select-category">
-            <p>Category</p>
-            <select name="category" onChange={handleAdsFormChange}>
-              <option value="House">House</option>
-              <option value="Hand">Land / Plot</option>
-              <option value="Apartment">Apartment</option>
-              <option value="Business">Businesss</option>
-            </select>
-          </div>
           <div className="form-control">
-            <label htmlFor="Area">Size</label>
+            <label htmlFor="WhatsApp">WhatsApp</label>
             <input
               type="text"
-              name="Size"
-              placeholder="sqm"
+              name="WhatsApp"
               required
               onChange={handleAdsFormChange}
             />
           </div>
-          <div className="form-control">
-            <label htmlFor="Area">Rooms</label>
-            <input
-              type="text"
-              name="Rooms"
-              placeholder="how many rooms?"
-              onChange={handleAdsFormChange}
-            />
-          </div>
+          {(adType === "Properties" || adType === "Vehicle") && (
+            <div className="form-control form-select-category">
+              <p>Category</p>
+              <select name="category" onChange={handleAdsFormChange}>
+                {adType === "Properties" && (
+                  <>
+                    <option value="House">House</option>
+                    <option value="Hand">Plot</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Business">Businesss</option>
+                  </>
+                )}
+                {adType === "Vehicle" && (
+                  <>
+                    <option value="Car">Car</option>
+                    <option value="Motorcycle">Motorbike</option>
+                    <option value="Scooter">Scooter</option>
+                    <option value="Bicycle">Bicycle</option>
+                  </>
+                )}
+              </select>
+            </div>
+          )}
+
           <div className="form-control">
             <label htmlFor="Area">Area</label>
-            <input
-              type="text"
-              name="Area"
-              placeholder="ex: Paje"
-              required
-              onChange={handleAdsFormChange}
-            />
+            <select name="Area" onChange={handleAdsFormChange}>
+              <option value="choose">-Select area-</option>
+              {villages.map((el, i) => (
+                <option key={i} value={el}>
+                  {el}
+                </option>
+              ))}
+            </select>
           </div>
-          <div className="form-control">
-            <label htmlFor="Adress">Adress / Street</label>
-            <input
-              type="text"
-              name="Adress"
-              placeholder="exampleroad 22 (optional)"
-              onChange={handleAdsFormChange}
-            />
-          </div>
-          <div className="form-control">
-            <label htmlFor="Zip">Zip code</label>
-            <input
-              type="text"
-              name="Zip"
-              placeholder="71000 (optional)"
-              onChange={handleAdsFormChange}
-            />
-          </div>
+          {adType === "Properties" && (
+            <div
+              className="form-div form-company"
+              style={{ margin: "1.4rem 1rem" }}
+            >
+              <input
+                type="checkbox"
+                value="Sell"
+                name="Sell"
+                id="checkad"
+                checked={sell}
+                onClick={handleChange}
+                onChange={handleAdsFormChange}
+              />
+              <label htmlFor="Sell">Sell</label>
+              <input
+                type="checkbox"
+                value="Rent"
+                name="Rent"
+                id="checkad"
+                checked={!sell}
+                onClick={handleChange}
+                onChange={handleAdsFormChange}
+              />
+
+              <label htmlFor="Rent">Rent out</label>
+            </div>
+          )}
+          {adType === "Vehicle" && (
+            <div
+              className="form-div form-company"
+              style={{ margin: "1.4rem 1rem" }}
+            >
+              <input
+                type="checkbox"
+                value="Sell"
+                name="Sell"
+                id="checkad"
+                checked={sell}
+                onClick={handleChange}
+                onChange={handleAdsFormChange}
+              />
+              <label htmlFor="Sell">Sell</label>
+              <input
+                type="checkbox"
+                value="Rent"
+                name="Rent"
+                id="checkad"
+                checked={!sell}
+                onClick={handleChange}
+                onChange={handleAdsFormChange}
+              />
+
+              <label htmlFor="Rent">Rent out</label>
+            </div>
+          )}
+          {adType === "Vehicle" && (
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <label htmlFor="AC">Aircondition?</label>
+              <section
+                style={{
+                  display: "flex",
+                  alignItems: "center"
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center"
+                  }}
+                >
+                  <p style={{ marginRight: "0.3rem" }}>Yes</p>
+                  <input
+                    type="checkbox"
+                    value="Yes"
+                    name="AC"
+                    id="checkad"
+                    onClick={handleAdsFormChange}
+                    onChange={handleAdsFormChange}
+                  />
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <p style={{ marginRight: "0.3rem" }}>No</p>
+                  <input
+                    type="checkbox"
+                    value="No"
+                    name="AC"
+                    id="checkad"
+                    onClick={handleAdsFormChange}
+                    onChange={handleAdsFormChange}
+                  />
+                </div>
+              </section>
+            </div>
+          )}
+          {adType === "Vehicle" && (
+            <div className="form-control">
+              <label htmlFor="Gear">Gear</label>
+              <select name="Gear" onChange={handleAdsFormChange}>
+                <option value="Automatic">Automatic</option>
+                <option value="Manual">Manual</option>
+              </select>
+            </div>
+          )}
+
+          {adType === "Vehicle" && (
+            <div className="form-control">
+              <label htmlFor="Doors">Doors</label>
+              <input
+                type="text"
+                placeholder="How many doors?"
+                name="Doors"
+                onChange={handleAdsFormChange}
+              />
+            </div>
+          )}
+          {adType === "Vehicle" && (
+            <div className="form-control">
+              <label htmlFor="People">How many people?</label>
+              <input
+                type="text"
+                placeholder="The car holds how many?"
+                name="People"
+                onChange={handleAdsFormChange}
+              />
+            </div>
+          )}
+          {adType === "Properties" && (
+            <div className="form-control">
+              <label htmlFor="Area">Size</label>
+              <input
+                type="text"
+                name="Size"
+                placeholder="sqm"
+                required
+                onChange={handleAdsFormChange}
+              />
+            </div>
+          )}
+          {adType === "Properties" && (
+            <div className="form-control">
+              <label htmlFor="Area">Rooms</label>
+              <input
+                type="text"
+                name="Rooms"
+                placeholder="how many rooms?"
+                onChange={handleAdsFormChange}
+              />
+            </div>
+          )}
+
           <div className="form-control">
             <h2
               style={{
@@ -280,19 +380,35 @@ const AdsForm = ({ setActiveStep }) => {
             >
               Ad content
             </h2>
-            <label htmlFor="Title">Title</label>
+            <label htmlFor="Title">
+              {adType === "Vehicle" ? "Vehicle model" : "Title"}
+            </label>
             <input
+              placeholder={adType === "Vehicle" ? "Example: Toyota Rav4" : ""}
               type="text"
               name="Title"
               onChange={handleAdsFormChange}
-              placeholder="ex: House for sale in Paje close by beach"
               required
             />
+
+            {adType === "Tours" && (
+              <>
+                <label htmlFor="tourTime" style={{ marginTop: "1rem" }}>
+                  How long does it last?
+                </label>
+                <input
+                  type="text"
+                  placeholder="Hours"
+                  name="tourTime"
+                  onChange={handleAdsFormChange}
+                />
+              </>
+            )}
           </div>
           <div className="form-control">
             <label htmlFor="Text">Text / Info</label>
             <textarea
-              placeholder="Describe your property little more please"
+              placeholder="Describe little more please"
               style={{ borderradius: "5px 5px" }}
               type="text"
               name="Text"
@@ -307,11 +423,6 @@ const AdsForm = ({ setActiveStep }) => {
               type="text"
               name="Price"
               required
-              placeholder={
-                adsFormData.Sell === null && adsFormData.Rent === null
-                  ? "Total selling price"
-                  : "Price per month"
-              }
               onChange={handleAdsFormChange}
             />
           </div>
@@ -349,11 +460,7 @@ const AdsForm = ({ setActiveStep }) => {
           </div>
           <div className="form-ad-btn-cont-sub">
             <div>
-              <input
-                type="checkbox"
-                name="accept"
-                onClick={() => setAccept(!accept)}
-              />
+              <input type="checkbox" name="accept" onClick={handleAccept} />
               <label htmlFor="accept" style={{ marginLeft: "0.5rem" }}>
                 I have checked that all information is correct
               </label>
@@ -378,6 +485,29 @@ const AdsForm = ({ setActiveStep }) => {
           </div>
         </div>
       </form>
+      <div>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"You forgot to fill in important information!"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Check that you have filled in your Name, Email and Phone number.
+              Do you have WhatsApp? Please fill it in as well.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary" autoFocus>
+              OK
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
     </>
   );
 };

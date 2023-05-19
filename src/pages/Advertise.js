@@ -2,13 +2,8 @@ import React from "react";
 import PageHero from "../components/PageHero";
 import { useUserContext } from "../user_context";
 import { HiArrowCircleDown } from "react-icons/hi";
-import { SiAdobepremierepro } from "react-icons/si";
 import { Helmet } from "react-helmet-async";
-import { BsCheck } from "react-icons/bs";
-import { IoIosRocket } from "react-icons/io";
-import { FiRotateCw } from "react-icons/fi";
-import { Link, useHistory } from "react-router-dom";
-import userEvent from "@testing-library/user-event";
+import { useHistory } from "react-router-dom";
 
 function Advertise() {
   const { loginWithRedirect, user } = useUserContext();
@@ -32,11 +27,11 @@ function Advertise() {
       </Helmet>
       <PageHero
         icon={<HiArrowCircleDown />}
-        title={"Advertise your property on ZanziHome"}
+        title={"Advertise For Free "}
         subtitle={"ZanziHome is one of the"}
         sub2={"largest"}
         sub3={
-          "as an easy-to-use platform for advertise and explore properties in Zanzibar."
+          "as an easy-to-use platform for advertise and explore properties, tours & safaris, vehicles and taxis in Zanzibar."
         }
         sub4={"Advertise for"}
         sub5={"Free"}

@@ -5,7 +5,6 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { faqdata } from "../utils/faq";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%"
@@ -16,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "0.5px"
   }
 }));
-const Faq = () => {
+const Faq = ({ data }) => {
   const classes = useStyles();
   return (
     <div style={{ margin: "2rem auto" }} className="faq-root">
@@ -24,7 +23,7 @@ const Faq = () => {
         <h2 style={{ marginLeft: "0.5rem", marginBottom: "0.5rem" }}>
           Common questions
         </h2>
-        {faqdata?.map((el, i) => {
+        {data?.map((el, i) => {
           return (
             <Accordion key={i}>
               <AccordionSummary
