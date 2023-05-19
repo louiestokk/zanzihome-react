@@ -139,7 +139,7 @@ const NewFilter = () => {
                   height: "2.6rem",
                   borderRadius: "5px",
                   border: "1px solid gray",
-                  padding: "0.5rem"
+                  padding: "0.4rem"
                 }}
                 {...params}
                 placeholder="      What do you want to search for?"
