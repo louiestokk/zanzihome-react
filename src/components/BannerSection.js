@@ -159,9 +159,11 @@ const BannerSection = () => {
           }}
         >
           It is for <strong>free</strong> to advertise on Zanzihome.com!
-          Advertise your own property or your vehicle. Or maybe you drive taxi,
+          Advertise your own property or your vehicle. Get started today, it's
+          super easy.
+          {/* Advertise your own property or your vehicle. Or maybe you drive taxi,
           arrange tours and safaris and want more customers. Get started today,
-          it's super easy.
+          it's super easy. */}
         </p>
       </section>
 
