@@ -138,7 +138,7 @@ function App() {
           </Route>
           <Route path="/admin-dashboard_user_admin_dash">
             {/* <PrivateRoute> */}
-            <AdminDashBoard />
+            {/* <AdminDashBoard /> */}
             {/* </PrivateRoute> */}
           </Route>
           <Route path="/foreginerpropertyzanzibar">
