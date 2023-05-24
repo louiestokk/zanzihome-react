@@ -169,6 +169,38 @@ const VehicleDetails = () => {
               {currentVehicle?.[0]?.Text}
             </p>
           </div>
+          <div style={{ margin: "1rem 1rem" }}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img
+                loading="lazy"
+                style={{ width: "25px", height: "25px", color: "blue" }}
+                src="https://www.svgrepo.com/show/308467/car-rental-app-phone-smartphone.svg"
+                alt="car rental Zanzibar"
+                title="car rental Zanzibar"
+              />
+              <h5>Book the vehicle</h5>
+            </div>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img
+                loading="lazy"
+                style={{ width: "25px", height: "25px", color: "blue" }}
+                src="https://www.svgrepo.com/show/486616/contact-details.svg"
+                alt="car rental Zanzibar"
+                title="car rental Zanzibar"
+              />
+              <h5 style={{ width: "165px" }}>Contact details are shared</h5>
+            </div>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img
+                loading="lazy"
+                style={{ width: "25px", height: "25px", color: "blue" }}
+                src="https://www.svgrepo.com/show/500652/place.svg"
+                alt="car rental Zanzibar"
+                title="car rental Zanzibar"
+              />
+              <h5>Meet by the owner</h5>
+            </div>
+          </div>
           <section
             style={{
               border: "1px solid lightgray",

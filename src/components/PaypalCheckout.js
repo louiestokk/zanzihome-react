@@ -76,7 +76,7 @@ const PaypalCheckout = ({
         dispatch(setPaymentConfirmation(true));
       });
     };
-    console.log(price.toString());
+
     return (
       <div
         style={{
