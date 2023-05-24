@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   top: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "center",
     textAlign: "center",
     marginBottom: "0.7rem"
   },
@@ -52,9 +52,9 @@ const Popular = ({ title, images }) => {
   return (
     <section className={classes.root}>
       <div className={classes.top}>
-        <div className={classes.line}></div>
+        <div className={classes.line} style={{ marginRight: "1rem" }}></div>
         <h3>{title}</h3>
-        <div className={classes.line}></div>
+        <div className={classes.line} style={{ marginLeft: "1rem" }}></div>
       </div>
       <div className={classes.tours}>
         {images?.map((tour, i) => (
