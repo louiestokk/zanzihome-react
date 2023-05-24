@@ -24,7 +24,11 @@ const useStyles = makeStyles({
     height: "125px",
     width: "165px",
     objectFit: "cover",
-    borderRadius: "5px"
+    borderRadius: "5px",
+    "@media (min-width: 780px)": {
+      width: "300px",
+      height: "225px"
+    }
   },
   tours: {
     display: "flex",
