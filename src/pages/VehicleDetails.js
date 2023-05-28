@@ -6,6 +6,7 @@ import { getRentalData } from "../redux-toolkit/carRentalSlice";
 import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 import { useSelector } from "react-redux";
 import { FaPhoneSquareAlt } from "react-icons/fa";
+import { MdArrowForwardIos } from "react-icons/md";
 import PaypalCheckout from "../components/PaypalCheckout";
 import PaymentConfirmation from "./PaymentConfirmation";
 const useStyles = makeStyles({
@@ -16,9 +17,32 @@ const useStyles = makeStyles({
     width: "100%",
     height: "220px",
     objectFit: "cover"
+  },
+  imgContainer: {
+    position: "relative"
+  },
+  left: {
+    position: "absolute",
+    zIndex: "999",
+    color: "white",
+    top: "40%",
+    left: "1%",
+    fontSize: "1.5rem",
+    cursor: "pointer"
+  },
+  right: {
+    position: "absolute",
+    zIndex: "999",
+    color: "white",
+    top: "40%",
+    right: "1%",
+    fontSize: "1.5rem",
+    cursor: "pointer"
   }
 });
+
 const VehicleDetails = () => {
+  const [index, setindex] = useState(0);
   const [showPaypal, setshowPaypal] = useState(false);
   const rentalData = useSelector(getRentalData);
   const fireStoreData = useSelector(getFirestoreData);
@@ -29,19 +53,32 @@ const VehicleDetails = () => {
   const numRentDays = Math.floor(
     (rentalData.rentTodate - rentalData.rentFromDate) / (24 * 3600 * 1000)
   );
-
+  const nextImage = () => {
+    setindex(index + 1);
+    if (index >= currentVehicle?.[0]?.imagesArray?.length - 1) setindex(0);
+  };
   return (
     <section className={classes.root}>
       {!rentalData.showPaymentConfirmation && (
         <>
-          <div>
+          <div className={classes.imgContainer}>
             <img
               className={classes.img}
-              src={currentVehicle?.[0]?.uri}
+              src={
+                currentVehicle?.[0]?.imagesArray
+                  ? currentVehicle?.[0]?.imagesArray[index]
+                  : currentVehicle?.[0]?.uri
+              }
               alt="car rental Zanzibar"
               title="car rental Zanzibar"
               loading="lazy"
             />
+            {currentVehicle?.[0]?.imagesArray && (
+              <MdArrowForwardIos
+                className={classes.right}
+                onClick={nextImage}
+              />
+            )}
           </div>
           <div>
             <div
@@ -158,6 +195,7 @@ const VehicleDetails = () => {
                 )}
             </section>
           </div>
+
           <div style={{ marginLeft: "1rem", marginBottom: "0.5rem" }}>
             <p style={{ marginBottom: "0.5rem" }}>
               You rent from: <strong>{currentVehicle?.[0]?.Name}</strong>
