@@ -106,7 +106,7 @@ const Navbar = ({ logedinUser, loading }) => {
             className="user-account"
           >
             <Link
-              to={`/profile/${logedinUser.email}`}
+              to={`/profile/${user.email}`}
               className="user-modal-link"
               onClick={() => setShowUser(false)}
             >

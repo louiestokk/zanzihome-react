@@ -96,6 +96,7 @@ const Profile = () => {
             .filter((el) => el.Email === user?.email)
             .map((el, ind) => {
               const { adId, uri } = el;
+              console.log(el);
               return (
                 <Link to={`/edit/property/user/${adId}`} key={adId}>
                   <div key={adId} className={classes.container}>
