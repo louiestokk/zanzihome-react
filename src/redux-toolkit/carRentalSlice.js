@@ -4,7 +4,7 @@ const month = new Date().getMonth();
 const year = new Date().getFullYear();
 const initialState = {
   rentFromDate: new Date(`${month + 1}/${day}/${year}`),
-  rentTodate: new Date(`${month + 1}/${day + 7}/${year}`),
+  rentTodate: new Date(`${month + 2}/${day}/${year}`),
   pickupTime: new Date("2023-05-02T10:00:00"),
   leaveTime: new Date("2023-05-02T10:00:00"),
   rentalArea: "",

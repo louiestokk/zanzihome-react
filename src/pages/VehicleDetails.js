@@ -29,6 +29,7 @@ const VehicleDetails = () => {
   const numRentDays = Math.floor(
     (rentalData.rentTodate - rentalData.rentFromDate) / (24 * 3600 * 1000)
   );
+
   return (
     <section className={classes.root}>
       {!rentalData.showPaymentConfirmation && (
