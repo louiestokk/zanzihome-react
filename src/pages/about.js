@@ -22,7 +22,7 @@ const About = () => {
         title={"ZanziHome"}
         subtitle={"ZanziHome is one of the"}
         sub2={"largest"}
-        sub3={"platforms for buying, selling and rent properties."}
+        sub3={"platforms for buying, selling and rent properties & vehicle."}
         sub4={"You are warmly welcome"}
         sub5={"to visit us or contact us"}
         name={".contact-adress"}
@@ -38,17 +38,17 @@ const About = () => {
             <h4>Call us</h4>
 
             <a href="tel:+255773749776" className="ring">
-              +255 713 288 772
+              +46 31 753 90 60
             </a>
           </div>
           <div className="contact-adress" style={{ marginTop: "1rem" }}>
-            <h4>Advertise property</h4>
+            <h4>Advertise for free</h4>
 
             <Link to="/advertisepropertyzanzibar" className="ring">
               Advertise now, price and information
             </Link>
           </div>
-          <div
+          {/* <div
             className="contact-adress"
             style={{ marginTop: "1rem", marginBottom: "2rem" }}
           >
@@ -56,7 +56,7 @@ const About = () => {
             <Link to="/advertisepropertyzanzibar" className="ring">
               Banner advertising, price and information
             </Link>
-          </div>
+          </div> */}
         </article>
         <div className="contact-adress" style={{ marginTop: "1rem" }}>
           <h4>Send us email</h4>
