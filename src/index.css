@@ -1701,3 +1701,41 @@ input[type="textarea"] {
   /* max-width: 90%; */
   max-width: 80%;
 }
+
+.titletoprated{
+margin-top: 1rem;
+padding: 0.5rem;
+font-size: 1.5rem;
+}
+.toprateditem{
+  width: 100%;
+  max-width: 400px;
+  background: white;
+  height: 100%;
+  margin: 0.75rem 1rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 5px;
+}
+
+.topratedImage{
+  width: 100%;
+object-fit: cover;
+height: 200px;
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+}
+
+.topratedstarsCont{
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+.topratedstars{
+  color: #00BF93;
+  font-size: 1rem;
+}
+.starIcon{
+  color: #00BF93;
+  font-size: 1rem;
+  margin-right: 0.25rem;
+}

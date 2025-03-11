@@ -49,27 +49,31 @@ const propertyzanzibar = () => {
       <NewFilter />
       <CategoryImageIcons />
       <BannerSection />
-      {/* <Popular
+      <Popular
         title={"Popular Tours & Safaris"}
         images={[
           {
             url: "https://imgs.mongabay.com/wp-content/uploads/sites/20/2019/05/17064151/ZanzibarRedColobus_JozaniTanzania_HasinShakurWikicommonsGFDL1.2-768x512.jpg",
-            imgText: "Jozani Forest"
+            imgText: "Jozani Forest",
+            type:'Tours'
           },
           {
             url: "https://tuliazanzibar.com/wp-content/uploads/2019/09/IMG_0698.jpg",
-            imgText: "Prison Island"
+            imgText: "Prison Island",
+              type:'Tours'
           },
           {
-            url: "https://zantrips.com/uploads/package_banner/111574160139.jpg",
-            imgText: "Dolphin Tour"
+            url: "https://i.ibb.co/fV1cLNPS/snorkeling-mneba.jpg",
+            imgText: "Dolphin Tour",
+              type:'Tours'
           },
           {
             url: "https://www.focuseastafricatours.com/wp-content/uploads/zanzibar-spice1.jpg",
-            imgText: "Spice Tour"
+            imgText: "Spice Tour",
+              type:'Tours'
           }
         ]}
-      /> */}
+      />
       <Popular
         title={"Featured Vehicle"}
         images={[

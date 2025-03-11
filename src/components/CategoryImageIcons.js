@@ -53,7 +53,7 @@ const CategoryImageIcons = () => {
         />
         <p className={classes.imgp}>Vehicle</p>
       </div>
-      {/* <div
+      <div
         className={classes.imgHolder}
         onClick={() => history.push("/tours-zanzibar")}
       >
@@ -63,20 +63,8 @@ const CategoryImageIcons = () => {
           alt="Safari & Tours Zanzibar"
           className={classes.img}
         />
-        <p className={classes.imgp}>Tours</p>
-      </div> */}
-      {/* <div
-        className={classes.imgHolder}
-        onClick={() => history.push("/taxi-zanzibar")}
-      >
-        <img
-          loading="lazy"
-          src="https://www.svgrepo.com/show/398448/taxi.svg"
-          alt="Taxi Zanzibar"
-          className={classes.img}
-        />
-        <p className={classes.imgp}>Taxi</p>
-      </div> */}
+        <p className={classes.imgp}>Tours & Safari</p>
+      </div>
     </div>
   );
 };

@@ -68,9 +68,12 @@ const Popular = ({ title, images }) => {
             onClick={() => {
               if (tour.type === "Properties") {
                 history.push(`/propertys/property/${tour.adId}`);
+              } else if(tour.type === "Tours"){
+               history.push('/tours-zanzibar')
               } else {
                 history.push(`/cars/${tour.id}`);
               }
+            
             }}
           >
             <img
