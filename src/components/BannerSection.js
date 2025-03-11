@@ -76,7 +76,7 @@ const BannerSection = () => {
           services.
         </p>
       </section>
-      {/* <section
+      <section
         onClick={() => history.push("/tours-zanzibar")}
         style={{
           padding: "0.8rem",
@@ -109,7 +109,7 @@ const BannerSection = () => {
           safaris. Explore the coastline, visit national parks, and see wildlife
           in their natural habitats. Book your dream trip today!
         </p>
-      </section> */}
+      </section>
       <section
         onClick={() => history.push("/checkout")}
         style={{
