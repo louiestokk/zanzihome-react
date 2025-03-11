@@ -84,7 +84,7 @@ const Objects = () => {
                       </div>
                     </div>
                   </div>
-                  <p style={{ color: Title === "SOLD" && "red" }}>
+                  <p style={{ color: Title === "SOLD" && "red" , margin:'0 0.25rem',lineHeight:'24px'}}>
                     {category === "House" || category === "Apartment" ? (
                       <ImHome style={{ color: "#22c55e" }} />
                     ) : (

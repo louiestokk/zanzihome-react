@@ -9,9 +9,9 @@ const propertyzanzibar = () => {
   const articleStructuredData = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "Discover Properties or Rent a Vehicle in Zanzibar ",
+    headline: "Zanzihome - Buy, Sell & Rent Property, Vehicles & Tours in Zanzibar",
     description:
-      "Discover Properties in Zanzibar. Browse our listings for rental and sale properties, and explore the island with ease by renting a vehicle from us.",
+      "Find properties, accommodation, rent vehicles or book tours, taxis and safaris in Zanzibar! - Real Estate Zanzibar",
     image:
       "https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     datePublished: new Date("2023-04-04T09:25:01.340Z").toISOString(),
@@ -29,17 +29,17 @@ const propertyzanzibar = () => {
       </div>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{"Discover Properties or Rent a Vehicle in Zanzibar "}</title>
+        <title>{"Zanzihome - Buy, Sell & Rent Property, Vehicles & Tours in Zanzibar"}</title>
         <meta
           name="description"
           content={
-            "Discover Properties in Zanzibar. Browse our listings for rental and sale properties, and explore the island with ease by renting a vehicle from us."
+            "Find properties, accommodation, rent vehicles or book tours, taxis and safaris in Zanzibar! - Real Estate Zanzibar"
           }
         />
         <meta property="og:url" content="https://zanzihome.com" />
         <meta
           property="og:description"
-          content="Discover Properties in Zanzibar. Browse our listings for rental and sale properties, and explore the island with ease by renting a vehicle from us."
+          content="Find properties, accommodation, rent vehicles or book tours, taxis and safaris in Zanzibar! - Real Estate Zanzibar"
         />
         <meta
           property="og:image"

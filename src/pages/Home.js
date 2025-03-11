@@ -16,7 +16,7 @@ const Home = () => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>
-          {"Discover Zanzibar - Properties, Vehicles, Tours, Safaris And Taxis"}
+          {"Zanzihome - Buy, Sell & Rent Property, Vehicles & Tours in Zanzibar"}
         </title>
         <meta
           name="description"

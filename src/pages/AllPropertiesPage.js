@@ -29,9 +29,9 @@ const AllPropertiesPage = () => {
   const articleStructuredData = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "Perfect Slice in Paradise - Properties for Sale and Rent",
+    headline: "Perfect Slice in Paradise - Properties for Sale and Rent in Zanzibar",
     description:
-      "Discover Your Dream Property in Zanzibar - Properties for Sale and Rent",
+      "Discover Your Dream Property in Zanzibar - Properties for Sale and Rent in Zanzibar - Real Estate Zanzibar",
     image:
       "https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     datePublished: new Date("2023-05-01T09:25:01.340Z").toISOString(),
@@ -92,12 +92,12 @@ const AllPropertiesPage = () => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>
-          {"Perfect Slice in Paradise - Properties for Sale and Rent"}
+          {"Perfect Slice in Paradise - Properties for Sale and Rent in Zanzibar"}
         </title>
         <meta
           name="description"
           content={
-            "Discover Your Dream Property in Zanzibar - Properties for Sale and Rent"
+            "Discover Your Dream Property in Zanzibar - Properties for Sale and Rent in Zanzibar - Real Estate Zanzibar"
           }
         />
         <meta
@@ -106,7 +106,7 @@ const AllPropertiesPage = () => {
         />
         <meta
           property="og:description"
-          content="Discover Your Dream Property in Zanzibar - Properties for Sale and Rent"
+          content="Discover Your Dream Property in Zanzibar - Properties for Sale and Rent in Zanzibar - Real Estate Zanzibar"
         />
         <meta
           property="og:image"
