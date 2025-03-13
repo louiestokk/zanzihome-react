@@ -56,10 +56,15 @@ const Tours = () => {
         <link rel="canonical" href="https://www.zanzihome.com/tours-zanzibar" />
       </Helmet>
       <div id='toptoprated'>
+      <div style={{textAlign:'center'}}>
       <h1 className={'titletoprated'}>Tours & Safari in Zanzibar</h1>
-      <h2 style={{marginLeft:'0.5rem',marginRight:'0.5rem',fontSize:'1.1rem'}}>Discover the Breathtaking Beauty of Zanzibar with Our Exclusive Tours!</h2>
-      <p style={{fontSize:'0.9rem',padding:'0.5rem',marginRight:'0.5rem'}}>Explore  and book tours & safari, exclusive and personalized safari and tour experiences.</p>
-      <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center'}}>
+      <a style={{color:'inherit'}} href="https://huba-tours.com/" title="Huba Tours & Safari in Zanzibar">
+        <img style={{objectFit:'cover',height:'100px'}} src="https://huba-tours.com/_next/image?url=https%3A%2F%2Fi.ibb.co%2F8DsN29v2%2Fhuba-tours-zanzibar.png&w=256&q=75"/>
+      </a>
+      {/* <h2 style={{marginLeft:'0.5rem',marginRight:'0.5rem',fontSize:'1.1rem',lineHeight:'30px'}}>Discover the Beauty of Zanzibar with <a style={{color:'inherit',textDecoration:'underline',fontWeight:'100'}} href="https://huba-tours.com/" title="Huba Tours & Safari Zanzibar">Huba Tours & Safari in Zanzibar</a> Exclusive Tours!</h2> */}
+      <p style={{fontSize:'0.9rem',lineHeight:'23px',textAlign:'center',padding:'0.5rem',width:'90%',margin:'0 auto'}}>Explore  and <a style={{color:'inherit',textDecoration:'underline'}} href="https://huba-tours.com/" title="book tours & safari">book tours & safaris in Zanzibar</a>, exclusive and personalized safari and tour experiences with our <strong>partner</strong> <a style={{color:'inherit',textDecoration:'underline',fontWeight:'100'}} href="https://huba-tours.com/" title="Huba Tours & Safari Zanzibar">Huba Tours & Safari in Zanzibar</a>.</p>
+      </div>
+      <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center',marginTop:'1rem'}}>
         {topratedsafar.map((el,i)=>(
           <div key={i} className={'toprateditem'}>
             <img loading='lazy' src={el.imgUrl} alt={el.title} className={'topratedImage'}/>
@@ -93,13 +98,17 @@ const Tours = () => {
             </div>
             <div style={{display:'flex',justifyContent:'center',margin:'1rem 0'}}>
             <a href={el.path} title={el.title}>
-            <Button style={{width:'280px',color:'#00BF93',border:'0.5px solid #00BF93',padding:'0.5rem'}} variant='outlined'>Explore tour <BsArrowRightShort style={{marginLeft:'1rem'}}/></Button>
+            <Button style={{width:'280px',color:'#00BF93',border:'0.5px solid #00BF93',padding:'0.5rem'}} variant='outlined'>Explore tour <BsArrowRightShort style={{marginLeft:'1rem'}}/>
+            </Button>
            </a>
             </div>
            
           </div>
         ))}
       </div>
+    </div>
+    <div style={{display:'flex',justifyContent:'center',margin:'1rem 0'}}>
+      <a style={{color:'inherit',textDecoration:'underline',fontWeight:'bold'}} href="https://huba-tours.com/" title="Tours & Safari in Zanzibar">Explore more tours</a>
     </div>
     </div>
   );
@@ -117,7 +126,7 @@ const topratedsafar = [
     subTitle:'Safari Blue Zanzibar, Blue horizon experience with lunch',
     desc:'Safari Blue trip is a full day tour along Menai bay, which is one of the best coralreefs in Zanzibar. Main activities in the tour includes visit to naturally occurring sandbanks, Swimming & Snorkeling in the crystal clear waters, visiting Kwale island with its natural green lagoon and Climbing the old Baobab tree for spectacular view of the Island.',
     desched:'Safari Blue Zanzibar -  Boat Trip and Snorkling Adventure with Lunch',
-    path:'/tours/zanzibar/safari-blue-menai-bay',
+    path:'https://huba-tours.com/tours/zanzibar/safari-blue-menai-bay',
     subdesc:'Explore the Mnemba conservation area by snorkeling around the vibrant coral reef. See a variety of colorful fish and swim with dolphins on this fascinating boat trip departing from Kendwa.',
     price:'75',
     reviews:{
@@ -141,7 +150,7 @@ const topratedsafar = [
     desc:'Nakupenda Sandbank is located just off Stone Town. Around 20 minutes local boat riding from Stone Town. Once on the sandbank, you will be provided with snorkeling equipment such as masks for Snorkeling purposes. The underwater world at Nakupenda Sandbank is unbelievably spectacular. There are countless colorful fishes and other sea creatures.',
     desched:'From Stone Town to Nakupenda Sandbank Boat Trip and Snorkling Adventure',
     subdesc:'Explore the Nakupenda area by snorkeling around the vibrant coral reef. See a variety of colorful fish and swim with dolphins on this fascinating boat trip.',
-    path:'/tours/zanzibar/nakuependa-sandbank',
+    path:'https://huba-tours.com/tours/zanzibar/nakuependa-sandbank',
     price:'50',
     reviews:{
       num:'211',
@@ -164,7 +173,7 @@ const topratedsafar = [
     subdesc:'Explore the Mnemba conservation area by snorkeling around the vibrant coral reef. See a variety of colorful fish and swim with dolphins on this fascinating boat trip departing from Kendwa.',
     desc:'Mnemba Dolphins & Snorkeling Tour is an exciting trip that we designed for your best holiday experience in the paradise islands of Zanzibar. In this tour, you will start with swimming with wild dolphins, and then to Snorkeling in the shallow water near Mnemba Island. Explore this best snorkeling spot in Zanzibar with us by speedboat from Kigomani beach at Matemwe,',
     desched:'From Stone Town to Kamzikazi Boat Trip and Snorkling Adventure',
-    path:'/tours/zanzibar/mnemba-dolphin-snorkling',
+    path:'https://huba-tours.com/tours/zanzibar/mnemba-dolphin-snorkling',
     price:'55',
     reviews:{
       num:'323',
@@ -183,7 +192,7 @@ const topratedsafar = [
     identifyer:'Stone Town Walking Tour',
     type:'WALKING ACTIVITY',
       title:'Stone Town Walking Tour with Guide',
-      path:'/tours/zanzibar/stone-town',
+      path:'https://huba-tours.com/tours/zanzibar/stone-town',
       imgUrl:'https://i.ibb.co/1t614B9f/stone-town-zanzibar.jpg',
         desc:'Discover the fascinating history and culture of Stone Town on a guided walking tour. Explore the narrow streets and visit the Anglican Cathedral, the House of Wonders, and the Palace Museum. Explore the food and restaurant as the market for fruit, spice, seafood and shopping areas. Discover how to buy fresh groceries daily and where to find the best coffe to drink. Stone Town offer a night life with bars and restaurants.',
         subdesc:'Stone town is UNESCO wold heritage site is history culture and religion influences exploring wild of ther street icons market sultans palece house of wonderland and Elizabeth tower in night market like as jubilee of woman also is meating point.',
@@ -206,7 +215,7 @@ const topratedsafar = [
     duration:'4 hours',
     type:'WALKING ACTIVITY',
       title:'From Stone Town: Spice Tour of Zanzibar with Guide',
-      path:'/tours/zanzibar/spice-tours',
+      path:'https://huba-tours.com/tours/zanzibar/spice-tours',
       imgUrl:'https://i.ibb.co/ZRbW1Mqj/Zanzibar-Spice-Tour.jpg',
         desc:'Discover spice plants, herbs, and all kinds tropical fruits on a small spice plantation. Learn why Zanzibar is known as "spice island" and buy spices to take home with you.Learn what herbs and spices were originally used for, Explore the magic of the coconut climber Discover and taste some fresh tropical fruits. ',
         subdesc:'Discover spice plants, herbs, and all kinds tropical fruits on a small spice plantation. Learn why Zanzibar is known as "spice island" and buy spices to take home with you.Learn what herbs and spices were originally used for',
@@ -229,7 +238,7 @@ const topratedsafar = [
     duration:'4 hours',
     type:'WALKING ACTIVITY',
       title:'Zanzibar: Jozani Forest National Park Nature Walk and Wildlife',
-      path:'/tours/zanzibar/jozani-forest',
+      path:'https://huba-tours.com/tours/zanzibar/jozani-forest',
       imgUrl:'https://i.ibb.co/FLmPcnfV/jozani-forest-zanzibar.png',
         desc:'Explore Jozani Forest like a Zanzibar insider! Well skip the crowds and find the coolest red colobus monkeys, secret trails, and hidden wonders. Jozani Forest is the largest area of indigenous forest on Zanzibar Island. On our Jozani Forest tour, youll get a chance to explore and play with red colobus monkeys.',
         subdesc:'Explore Jozani Forest like a Zanzibar insider! Well skip the crowds and find the coolest red colobus monkeys, secret trails, and hidden wonders. Jozani Forest is the largest area of indigenous forest on Zanzibar Island.',
@@ -252,7 +261,7 @@ const topratedsafar = [
     duration:'6 hours',
     type:'WATER ACTIVITY',
       title:'Deep Sea Fishing in Latham Island Zanzibar with MotorBoat',
-      path:'/tours/zanzibar/deep-sea-fishing',
+      path:'https://huba-tours.com/tours/zanzibar/deep-sea-fishing',
       imgUrl:'https://i.ibb.co/21vr1636/deep-sea-fisihing-zanzibar.jpg',
         desc:'DEEP SEA Fishing in Latham Island Zanzibar under water on half day exploring coral reef swiming among color of deferent fish book now for camping and netur of beautiful in nectur. Get your biggest fish in Zanzibar and view the amazing sea. We have all you ned to get your fish and cool off and snorkel to view all different fishes.',
         subdesc:'DEEP SEA Fishing in Latham Island Zanzibar under water on half day exploring coral reef swiming among color of deferent fish book now for camping and netur of beautiful in nectur. Get your biggest fish in Zanzibar',
@@ -275,7 +284,7 @@ const topratedsafar = [
     duration:'7 hours',
     type:'ACTIVITY',
       title:'Zanzibar: Stone Town, Spice Tour and Prison Island Day Trip',
-      path:'/tours/zanzibar/prison-island-day-trip',
+      path:'https://huba-tours.com/tours/zanzibar/prison-island-day-trip',
       imgUrl:'https://i.ibb.co/TxpBXLNW/turtle-prison-island-zanzibar.jpg',
         desc:'Stone Town & Prison Island – A Must-See Zanzibar Tour Explore the historic Stone Town, a UNESCO-listed gem filled with rich culture, vibrant markets, and stunning architecture. Learn why Zanzibar is called the "Spice Island" as you visit a spice farm and experience the island’s famous aromas. Then, set sail for Prison Island.',
         subdesc:'Discover Stone Town & Prison Island – A Must-See Zanzibar Tour Explore the historic Stone Town, a UNESCO-listed gem filled with rich culture, vibrant markets, and stunning architecture.',
@@ -298,7 +307,7 @@ const topratedsafar = [
     duration:'3 hours',
     type:'SKYDIVE ACTIVITY',
       title:'Skydiving over Zanzibar - Tandem Skydiving',
-      path:'/tours/zanzibar/skydiving-zanzibar',
+      path:'https://huba-tours.com/tours/zanzibar/skydiving-zanzibar',
       imgUrl:'https://i.ibb.co/TBpYQhLM/Ska-rmavbild-2025-03-04-kl-20-33-09.png',
         desc:'Discover Zanzibar from a whole new perspective and feel the adrenaline rush with a tandem skydiving experience! Before takeoff, a professional instructor will provide a thorough briefing to ensure you are fully prepared for a safe and unforgettable jump. As soon as you land, you’ll receive free photos and videos of your experience, allowing you to relive the thrill for years to come.',
         subdesc:'Discover Zanzibar from a whole new perspective and feel the adrenaline rush with a tandem skydiving experience! Before takeoff, a professional instructor will provide a thorough briefing to ensure you are fully prepared for a safe and unforgettable jump.',
@@ -321,7 +330,7 @@ const topratedsafar = [
     duration:'3 hours',
     type:'COOKING ACTIVITY',
       title:'Tradition Cooking Lesson - Spice Farm & Fruit Garden',
-      path:'/tours/zanzibar/cooking-spice-farm-zanzibar',
+      path:'https://huba-tours.com/tours/zanzibar/cooking-spice-farm-zanzibar',
       imgUrl:'https://i.ibb.co/DFrY5hN/cooking-swahili-food.jpg',
         desc:'Discover the vibrant world of Zanzibar’s spice farms on an immersive and sensory-rich adventure. Walk through lush plantations where exotic spices thrive, and engage your senses as you see, touch, and inhale the fragrant aromas of freshly grown cloves, cinnamon, vanilla, nutmeg, and more. Then, elevate your experience with an authentic Swahili cooking lesson, where you’ll learn to prepare flavorful local dishes using freshly harvested ingredients. ',
         subdesc:'Discover the vibrant world of Zanzibar’s spice farms on an immersive and sensory-rich adventure. Walk through lush plantations where exotic spices thrive, and engage your senses as you see, touch, and inhale the fragrant aromas of freshly grown spices.',
@@ -344,7 +353,7 @@ const topratedsafar = [
     duration:'4 hours',
     type:'SNORKELING ACTIVITY',
       title:'Blue Lagoon Snorkeling Trip Zanzibar',
-      path:'/tours/zanzibar/blue-lagoon-snorkeling',
+      path:'https://huba-tours.com/tours/zanzibar/blue-lagoon-snorkeling',
       imgUrl:'https://i.ibb.co/pjyT2mfR/blue-lagoon-huba-tours.jpg',
         desc:'Nestled along Zanzibar’s stunning coastline, Blue Lagoon is a true tropical paradise, renowned for its crystal-clear waters that shimmer in mesmerizing shades of blue and turquoise. The tranquil lagoon is set against a backdrop of soft, powdery white sand and swaying palm trees, creating an idyllic escape for nature lovers and adventure seekers alike. What makes Blue Lagoon truly special is its natural coral reef barrier, which protects the waters from strong ocean currents.',
         subdesc:'Nestled along Zanzibar’s stunning coastline, Blue Lagoon is a true tropical paradise, renowned for its crystal-clear waters that shimmer in mesmerizing shades of blue and turquoise. The tranquil lagoon is set against a backdrop of soft, powdery white sand and swaying palm trees.',
@@ -367,7 +376,7 @@ const topratedsafar = [
     duration:'3 hours',
     type:'WATER ACTIVITY',
       title:'Kayak Tour Mangroves of Michamvi - Kayaking Adventure',
-      path:'/tours/zanzibar/kayak-mangroves-michamvi',
+      path:'https://huba-tours.com/tours/zanzibar/kayak-mangroves-michamvi',
       imgUrl:'https://i.ibb.co/BdffV34/kayak-adventure-zanzibar.jpg',
         desc:'Explore the serene beauty of Michamvi, Zanzibar, on our Mangrove Kayak Tour. Paddle through lush mangrove forests, guided by experts who share insights into this unique ecosystem. Spot diverse wildlife, including exotic birds and marine life, while learning about the local culture. The tour lasts about 3 hours, with departures based on tide schedules. We provide kayaks, safety gear, a professional guide, and refreshments.',
         subdesc:'Explore the serene beauty of Michamvi, Zanzibar, on our Mangrove Kayak Tour. Paddle through lush mangrove forests, guided by experts who share insights into this unique ecosystem. Spot diverse wildlife, including exotic birds and marine life, while learning about the local culture',
@@ -390,7 +399,7 @@ const topratedsafar = [
     duration:'4 hours',
     type:'WATER ACTIVITY',
       title:'Salaam Cave Swimming With Sea Turtles In Kizimkazi',
-      path:'/tours/zanzibar/salaam-cave-kizimkazi',
+      path:'https://huba-tours.com/tours/zanzibar/salaam-cave-kizimkazi',
       imgUrl:'https://i.ibb.co/xt1SZJgC/salaam-cave-swimming-with-sea-turles-in-kizimkazi.jpg',
         desc:'Discover the magic of Salaam Cave in Kizimkazi, where you can swim alongside sea turtles in crystal-clear waters. This unique experience lets you observe and feed these gentle creatures while learning about local conservation efforts. The tour includes hotel pickup, entrance fees, a professional guide, and seaweed for feeding. Lasting about 4 hours, it offers a serene and unforgettable encounter with nature. Just bring your swimwear, towel, sunscreen, and a waterproof camera to capture the moment!',
         subdesc:'Discover the magic of Salaam Cave in Kizimkazi, where you can swim alongside sea turtles in crystal-clear waters. This unique experience lets you observe and feed these gentle creatures while learning about local conservation efforts.',
@@ -413,7 +422,7 @@ const topratedsafar = [
     duration:'9 hours',
     type:'WATER ACTIVITY',
       title:'Mnemba Island with Lunch, Kuza Cave, Salaam Cave & The Rock',
-      path:'/tours/zanzibar/mnemba-kuza-salaam-the-rock',
+      path:'https://huba-tours.com/tours/zanzibar/mnemba-kuza-salaam-the-rock',
       imgUrl:'https://i.ibb.co/Vc91rp8c/Mnemba-Island-Tanzania.jpg',
         desc:'Embark on a 3-hour snorkeling tour at Mnemba Island Atoll, Zanzibar, a marine reserve teeming with lionfish, moray eels, stingrays, and turtles. Swim alongside sea turtles and visit Salaam Cave at Kizimkazi Beach to interact with these creatures and explore limestone formations. End your day with a romantic 2-hour sunset dinner at The Rocks Restaurant near Michamvi Pingwe. Enjoy African traditional music, a glass of sparkling wine, and a delicious 3-course meal of seafood or Swahili specialties while admiring the breathtaking ocean view.',
         subdesc:'Embark on a 3-hour snorkeling tour at Mnemba Island Atoll, Zanzibar, a marine reserve teeming with lionfish, moray eels, stingrays, and turtles. Swim alongside sea turtles and visit Salaam Cave at Kizimkazi Beach to interact with these creatures and explore limestone formations. End your day with a romantic 2-hour sunset dinner at The Rocks Restaurant near Michamvi Pingwe. Enjoy African traditional music, a glass of sparkling wine, and a delicious 3-course meal of seafood or Swahili specialties while admiring the breathtaking ocean view.',
