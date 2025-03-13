@@ -15,6 +15,7 @@ const Footer = () => {
             fontFamily: "serif"
           }}
         >
+        <div style={{height:'30px'}}></div>
           <h2 style={{ borderBottom: "0.1px solid white" }}>Contact</h2>
           <ul className="footer-ul">
             <li>
@@ -124,8 +125,8 @@ const Footer = () => {
           </button>
         </div>
         <div>
-          <span>Stokk Tech Limited &copy;</span>
-          <span> {year} ZanziHome</span>
+          <span> {year}  &copy; 'ZanziHome' Stokk Tech Limited, Zanzibar </span>
+       
         </div>
       </div>
     </>
