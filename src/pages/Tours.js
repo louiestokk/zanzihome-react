@@ -6,6 +6,7 @@ import { BsCashCoin } from "react-icons/bs";
 import { BsCalendar4Week } from "react-icons/bs";
 import { BsClock } from "react-icons/bs";
 import { BsArrowRightShort } from "react-icons/bs";
+import Faq from "../components/Faq";
 const Tours = () => {
 
   const articleStructuredData = {
@@ -107,9 +108,47 @@ const Tours = () => {
         ))}
       </div>
     </div>
+  
     <div style={{display:'flex',justifyContent:'center',margin:'1rem 0'}}>
       <a style={{color:'inherit',textDecoration:'underline',fontWeight:'bold'}} href="https://huba-tours.com/" title="Tours & Safari in Zanzibar">Explore more tours</a>
     </div>
+    <div style={{height:'50px'}}></div>
+    <Faq data={faqToursSafari} />
+    <div style={{height:'15px'}}></div>
+    <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
+      <h2 className="poppins" style={{ maxWidth: "85%", margin: "1rem auto" }}>
+        Discover the Best Tours & Safaris in Zanzibar and Tanzania
+      </h2>
+      <p
+        className="sans"
+        style={{
+          maxWidth: "90%",
+          margin: "0rem auto",
+          lineHeight: "25px",
+          color: "black"
+        }}
+      >
+        Welcome to ZanziHome Adventures, your ultimate gateway to unforgettable experiences in Zanzibar and Tanzania! Whether you dream of exploring the historic streets of Stone Town, diving into the crystal-clear waters of Mnemba Atoll, or embarking on a thrilling safari through the Serengeti, we have the perfect adventure for you.
+        
+        Our platform offers a handpicked selection of the best tours and safaris, designed to showcase the beauty, culture, and wildlife of this extraordinary region. Experience the magic of the Spice Tour, the wonder of Jozani Forest, and the breathtaking sights of Ngorongoro Crater. Looking for something truly unique? Witness the Great Migration or take a hot air balloon safari over the Serengeti!
+        
+        We prioritize high-quality service, expert local guides, and seamless bookings to ensure a stress-free adventure. Whether you're a solo traveler, a couple, or a family, we provide customized tour packages that fit every interest and budget. Explore, discover, and experience the best of Zanzibar and Tanzania with ZanziAdventures!
+      </p>
+
+      <div style={{ margin: "2rem 0" }}>
+        <h2 className="best-airmax-text">Highly Rated</h2>
+        <p>
+          Based on <strong> 1540 reviews</strong>
+        </p>
+        <img
+          src="https://www.snijpunt.com/files/thumbnails/trustpilot-logo-snijpunt.1600x680x1.png"
+          alt="trustpilot"
+          style={{ height: "120px", width: "300px", objectFit: "cover" }}
+        />
+      </div>
+    </div>
+
+
     </div>
   );
 };
@@ -440,3 +479,30 @@ const topratedsafar = [
         imagesArray:['https://i.ibb.co/Vc91rp8c/Mnemba-Island-Tanzania.jpg', 'https://i.ibb.co/Psw8pFBL/kuza-cave-jambiani-huba.jpg' ,'https://i.ibb.co/LdFSB0mQ/salaam-cave-swimming-huba.jpg','https://i.ibb.co/Z65MtZTD/the-rock-zanzibar.jpg','https://i.ibb.co/hRhzyW3h/grilled-seafood-bbq.webp']
   }
 ]
+
+export const faqToursSafari = [
+  {
+    title: "What are the best tours to do in Zanzibar?",
+    text: "Zanzibar offers a variety of exciting tours that showcase its rich history, culture, and natural beauty. Some of the most popular tours include:\n- **Stone Town Tour** – Discover the history, architecture, and vibrant culture of Zanzibar’s UNESCO-listed old town.\n- **Spice Tour** – Visit local spice farms and learn about the island’s famous spices such as cloves, cinnamon, and vanilla.\n- **Prison Island Tour** – Meet the giant tortoises and enjoy snorkeling in crystal-clear waters.\n- **Dolphin Tour** – Swim with dolphins in their natural habitat off the coast of Kizimkazi.\n- **Jozani Forest Tour** – Explore Zanzibar’s only national park and see the rare Red Colobus Monkeys.\n- **Safari Blue Tour** – A full-day adventure including snorkeling, dhow sailing, and seafood feasts on remote sandbanks."
+  },
+  {
+    title: "What are the best safaris in Tanzania?",
+    text: "Tanzania is home to some of the world's most spectacular safaris. Top safari destinations include:\n- **Serengeti National Park** – Witness the Great Migration, where millions of wildebeest and zebras travel across the plains.\n- **Ngorongoro Crater** – A UNESCO World Heritage site with incredible wildlife viewing inside a massive volcanic caldera.\n- **Tarangire National Park** – Famous for large elephant herds and breathtaking baobab trees.\n- **Lake Manyara National Park** – Known for tree-climbing lions and diverse birdlife.\n- **Selous Game Reserve** – One of Africa’s largest game reserves, perfect for boat safaris and walking safaris.\n- **Ruaha National Park** – A remote safari experience with fewer tourists and diverse wildlife."
+  },
+  {
+    title: "What is the best time to go on a safari in Tanzania?",
+    text: "The best time for a safari in Tanzania depends on what you want to see:\n- **June to October** (Dry Season) – Best time for general wildlife viewing, as animals gather around water sources.\n- **January to February** – Great time to witness the calving season in the Serengeti.\n- **March to May** (Rainy Season) – Fewer tourists and lush landscapes, but some roads may be difficult to access.\n- **July to September** – Best time to witness the Great Migration river crossings in the Serengeti."
+  },
+  {
+    title: "How much does a safari in Tanzania cost?",
+    text: "Safari prices vary based on duration, accommodation, and parks visited:\n- **Budget Safari** – Starts from $150-$250 per person per day (camping or budget lodges).\n- **Mid-Range Safari** – Costs around $300-$600 per person per day (comfortable lodges and tented camps).\n- **Luxury Safari** – Ranges from $700-$2,500+ per person per day (luxury lodges and private tours).\n- **Private vs. Group Safaris** – Private safaris are more expensive but offer a customized experience, while group safaris are more affordable and great for solo travelers."
+  },
+  {
+    title: "Can I combine a Zanzibar holiday with a Tanzania safari?",
+    text: "Absolutely! Many travelers combine a thrilling wildlife safari in Tanzania with a relaxing beach holiday in Zanzibar. Popular safari and beach combinations include:\n- **Serengeti + Zanzibar** – Experience the Great Migration, then relax on Zanzibar’s beaches.\n- **Ngorongoro Crater + Zanzibar** – Explore a natural wildlife wonder before unwinding in paradise.\n- **Southern Tanzania (Selous & Ruaha) + Zanzibar** – A quieter, off-the-beaten-path safari experience followed by a tropical getaway.\nFlights between mainland Tanzania (Arusha or Dar es Salaam) and Zanzibar take only about 1-2 hours, making the combination easy and convenient."
+  },
+  {
+    title: "What should I pack for a safari in Tanzania?",
+    text: "For a comfortable safari, pack:\n- **Clothing**: Light, breathable fabrics in neutral colors, long sleeves for sun and insect protection, and a warm jacket for chilly mornings.\n- **Footwear**: Comfortable walking shoes or hiking boots.\n- **Accessories**: Hat, sunglasses, sunscreen, and insect repellent.\n- **Gear**: Binoculars, camera with extra batteries, and a flashlight.\n- **Documents**: Passport, visa, travel insurance, and necessary vaccinations (Yellow Fever certificate if required)."
+  }
+];

@@ -1696,10 +1696,12 @@ input[type="textarea"] {
 }
 .newfilter-p {
   margin-left: 0.5rem;
+  margin-top: 0.15rem;
   font-family: "Source Sans Pro", sans-serif;
   color: rgb(121, 120, 120);
   /* max-width: 90%; */
-  max-width: 80%;
+  max-width: 90%;
+  line-height: 23px;
 }
 
 .titletoprated{

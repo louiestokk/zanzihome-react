@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   root: {
     width: "94%",
     maxWidth: "700px",
-    height: "220px",
+    height: "230px",
     background: "white",
     marginTop: "2rem",
     borderRadius: "5px",
@@ -101,15 +101,15 @@ const NewFilter = () => {
             marginLeft: "0.5rem",
             fontSize: "1.3rem",
             letterSpacing: "0.5px",
-            marginTop: "0.3rem"
+            marginTop: "0.75rem"
           }}
         >
           Explore Zanzibar
         </h3>
         <p className="newfilter-p">
-          {/* Find properties, accommodation, rent vehicles or book tours, taxis and
-          safaris! */}
-          Find properties, accommodation or rent and book vehicles!
+          Find properties, accommodation, rent vehicles or book tours &
+          safaris!
+       
         </p>
 
         <div className={classes.container}>

@@ -21,7 +21,7 @@ const propertyzanzibar = () => {
     }
   };
   return (
-    <>
+    <div>
       <div>
         <script type="application/ld+json">
           {JSON.stringify(articleStructuredData)}
@@ -132,7 +132,40 @@ const propertyzanzibar = () => {
           }
         ]}
       />
-    </>
+      <div style={{height:'30px'}}></div>
+         <div style={{ textAlign: "center"}}>
+      <h2 className="poppins" style={{ maxWidth: "85%", margin: "1rem auto" }}>
+        Your All-in-One Platform for Zanzibar – Properties, Rentals & Activities
+      </h2>
+      <p
+        className="sans"
+        style={{
+          maxWidth: "90%",
+          margin: "0rem auto",
+          lineHeight: "25px",
+          color: "black"
+        }}
+      >
+        Welcome to ZanziHome, your ultimate destination for everything you need in Zanzibar! Whether you're looking to buy or rent a property, find the perfect business space, or lease a vehicle, ZanziHome has you covered. Our platform offers a diverse range of listings, including houses, apartments, commercial properties, and land for sale or rent. 
+        
+        But that's not all—ZanziHome goes beyond real estate. We also provide an easy way to rent out or lease vehicles, making transportation seamless for locals and visitors alike. Additionally, explore the beauty of Zanzibar with our curated selection of safari experiences, exciting activities, and adventure bookings. From pristine beaches to cultural heritage sites, we help you make the most of your time on this breathtaking island.
+        
+        Our team is dedicated to making your property search, rentals, and bookings hassle-free. Whether you're an investor, a homeowner, a traveler, or a business owner, ZanziHome connects you with the best opportunities Zanzibar has to offer. Discover, book, and invest with confidence—welcome to ZanziHome!
+      </p>
+
+      <div style={{ margin: "2rem 0" }}>
+        <h2 className="best-airmax-text">Highly Rated</h2>
+        <p>
+          Based on <strong> 1540 reviews</strong>
+        </p>
+        <img
+          src="https://www.snijpunt.com/files/thumbnails/trustpilot-logo-snijpunt.1600x680x1.png"
+          alt="trustpilot"
+          style={{ height: "120px", width: "300px", objectFit: "cover" }}
+        />
+      </div>
+    </div>
+    </div>
   );
 };
 
