@@ -108,7 +108,7 @@ const NewFilter = () => {
         </h3>
         <p className="newfilter-p">
           Find properties, accommodation, rent vehicles or book tours &
-          safaris!
+          safaris in Zanzibar!
        
         </p>
 

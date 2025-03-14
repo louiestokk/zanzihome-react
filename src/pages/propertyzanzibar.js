@@ -4,7 +4,9 @@ import BannerSection from "../components/BannerSection";
 import NewFilter from "../components/newfilter/NewFilter";
 import CategoryImageIcons from "../components/CategoryImageIcons";
 import Popular from "../components/Popular";
-
+import Faq from "../components/Faq";
+import { faqdata } from "../utils/faq";
+import { topratedsafar } from "../utils/lankar";
 const propertyzanzibar = () => {
   const articleStructuredData = {
     "@context": "https://schema.org",
@@ -132,8 +134,44 @@ const propertyzanzibar = () => {
           }
         ]}
       />
-      <div style={{height:'30px'}}></div>
-         <div style={{ textAlign: "center"}}>
+        <div className={'testmRoot'}>
+    <h2 style={{marginBottom:'0.7rem'}}>Recently Booked Tours</h2>
+        <div className={'testmiCont'}>
+            {topratedsafar?.map((el,i)=>(
+                <div key={i}>
+                <a className={'tesmoLinks'} href={el.path} title={el.identifyer}>
+                    {el.identifyer} |
+                </a>
+                </div>
+            ))}
+        </div>
+        {/* <div style={{height:'50px'}}></div>
+        <h2 style={{marginBottom:'0.7rem'}}>Popular Accommodation</h2>
+        <div className={'testmiCont'}>
+            {topratedsafar?.map((el,i)=>(
+                <div key={i}>
+                <a style={{color:'#1d3a3c'}} className={'tesmoLinks'} href={el.path} title={el.identifyer}>
+                    {el.identifyer} |
+                </a>
+                </div>
+            ))}
+        </div>
+        <div style={{height:'50px'}}></div>
+        <h2 style={{marginBottom:'0.7rem'}}>Car/Scooter Rental</h2>
+        <div className={'testmiCont'}>
+            {topratedsafar?.map((el,i)=>(
+                <div key={i}>
+                <a className={'tesmoLinks'} href={el.path} title={el.identifyer}>
+                    {el.identifyer} |
+                </a>
+                </div>
+            ))}
+        </div> */}
+    </div>
+      <div style={{height:'15px'}}></div>
+       <Faq data={faqdata} />
+       <div style={{height:'20px'}}></div>
+         <div style={{ textAlign: "center",marginTop:'1rem'}}>
       <h2 className="poppins" style={{ maxWidth: "85%", margin: "1rem auto" }}>
         Your All-in-One Platform for Zanzibar – Properties, Rentals & Activities
       </h2>
@@ -142,11 +180,11 @@ const propertyzanzibar = () => {
         style={{
           maxWidth: "90%",
           margin: "0rem auto",
-          lineHeight: "25px",
+          lineHeight: "26px",
           color: "black"
         }}
       >
-        Welcome to ZanziHome, your ultimate destination for everything you need in Zanzibar! Whether you're looking to buy or rent a property, find the perfect business space, or lease a vehicle, ZanziHome has you covered. Our platform offers a diverse range of listings, including houses, apartments, commercial properties, and land for sale or rent. 
+        Welcome to ZanziHome, your ultimate destination for everything you need in Zanzibar! Whether you're looking to buy or rent a property in Zanzibar, find the perfect business space, or rent a car, ZanziHome has you covered. Our platform offers a diverse range of listings, including houses, apartments, commercial properties, and land for sale or rent. 
         
         But that's not all—ZanziHome goes beyond real estate. We also provide an easy way to rent out or lease vehicles, making transportation seamless for locals and visitors alike. Additionally, explore the beauty of Zanzibar with our curated selection of safari experiences, exciting activities, and adventure bookings. From pristine beaches to cultural heritage sites, we help you make the most of your time on this breathtaking island.
         
@@ -165,6 +203,8 @@ const propertyzanzibar = () => {
         />
       </div>
     </div>
+
+
     </div>
   );
 };
