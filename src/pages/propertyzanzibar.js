@@ -135,7 +135,7 @@ const propertyzanzibar = () => {
         ]}
       />
         <div className={'testmRoot'}>
-    <h2 style={{marginBottom:'0.7rem'}}>Recently Booked Tours</h2>
+    <h2 className="yepyeptitle" style={{marginBottom:'0.7rem'}}>Recently Booked Tours</h2>
         <div className={'testmiCont'}>
             {topratedsafar?.map((el,i)=>(
                 <div key={i}>

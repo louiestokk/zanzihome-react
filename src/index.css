@@ -969,6 +969,14 @@ button {
   .adBanner-image-container {
     width: 350px;
   }
+  .testmiCont{
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .yepyeptitle{
+    text-align: center;
+  }
 }
 @media screen and (min-width: 900px) {
   .adBanner-image-container {
