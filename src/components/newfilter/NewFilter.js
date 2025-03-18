@@ -88,6 +88,8 @@ const NewFilter = () => {
       searchData.searchQuery === "Business"
     ) {
       history.push("/properties-zanzibar");
+    } else if(searchData.searchQuery === "Tours & Safari"){
+      history.push("/tours-zanzibar");
     } else {
       history.push("/car-rental-zanzibar");
     }

@@ -25,5 +25,8 @@ export const searchOptioons = [
   },
   {
     option: "Bicycle"
+  },
+  {
+    option: "Tours & Safari"
   }
 ];
