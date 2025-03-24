@@ -468,8 +468,8 @@ const topratedsafar = [
         desched:'Mnemba Island with Lunch, Kuza Cave, Salaam Cave & The Rock',
         location:'Zanzibar Island',
         reviews:{
-          num:'118',
-          stars:'4.8'
+          num:'224',
+          stars:'4.9'
         },
         bestTime:'Jun to Feb',
         highSeason:'August to December',
