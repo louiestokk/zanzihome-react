@@ -351,23 +351,19 @@ const Vehicle = ({ loading, allVehicle, setallVehicle }) => {
                     style={{
                       display: "flex",
                       justifyContent: "space-between",
-                      margin: "0.5rem 1.2rem"
+                      margin: "1rem 1.2rem"
                     }}
                   >
                     <h3>{el.Title}</h3>
                     <div
                       style={{
                         display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        background: "#22c55e",
-                        width: "4rem",
-                        borderRadius: "15px",
-                        padding: "0.3rem"
+                        alignItems: "center"
+                      
                       }}
                     >
-                      <h3>{el.Price}</h3>
-                      <p>$/day</p>
+                      <h3 style={{marginLeft:'0.2rem'}}>{el.Price}</h3>
+                      <p style={{marginLeft:'0.2rem'}}>$/day</p>
                     </div>
                   </div>
 
@@ -376,7 +372,7 @@ const Vehicle = ({ loading, allVehicle, setallVehicle }) => {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      margin: "1rem 0"
+                      margin: "2rem 0"
                     }}
                   >
                     <div
@@ -458,6 +454,7 @@ const Vehicle = ({ loading, allVehicle, setallVehicle }) => {
                     )}
                   </section>
                 </div>
+                <Button style={{background:'#22c55e',color:'white', width:'100%',margin:'1rem 0'}} variant="contained">Book Now Pay Later</Button>
               </Link>
             </div>
           );

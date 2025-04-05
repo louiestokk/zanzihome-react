@@ -95,7 +95,7 @@ const BannerSection = () => {
             fontSize: "0.95rem"
           }}
         >
-          Explore Zanzibar - Book your tour or safari today!
+          Explore Zanzibar - Book your Tour or Safari today!
         </h4>
         <p
           style={{
@@ -105,8 +105,8 @@ const BannerSection = () => {
             letterSpacing: "1px"
           }}
         >
-          Discover the best of Zanzibar's natural beauty with our tours and
-          safaris. Explore the coastline, visit national parks, and see wildlife
+          Discover the best of Zanzibar's natural beauty with our <strong>tours </strong> and
+          <strong> safaris</strong>. Explore the coastline, visit national parks, and see wildlife
           in their natural habitats. Book your dream trip today!
         </p>
       </section>

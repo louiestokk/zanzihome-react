@@ -319,13 +319,22 @@ const VehicleDetails = () => {
         <p style={{ maxWidth: "90%", margin: "0.5rem 0" }}>
           You can call us and we will help you directly with the booking.
         </p>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div style={{ display: "flex", alignItems: "center",marginTop:'0.5rem' }}>
           <FaPhoneSquareAlt />
           <a
-            href="tel:+46317539060"
+            href="tel:+46704276963"
             style={{ color: "#09366d", marginLeft: "0.75rem" }}
           >
-            +46 31 753 90 60
+           WhatsApp +46 704 27 69 63
+          </a>
+        </div>
+        <div style={{ display: "flex", alignItems: "center",marginTop:'1rem' }}>
+          <FaPhoneSquareAlt />
+          <a
+            href="tel:+255655912498"
+            style={{ color: "#09366d", marginLeft: "0.75rem" }}
+          >
+           Local +255 655 912 498
           </a>
         </div>
       </div>
