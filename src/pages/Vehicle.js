@@ -160,7 +160,7 @@ const Vehicle = ({ loading, allVehicle, setallVehicle }) => {
   const articleStructuredData = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "Rent Cars and Motorcycles in Zanzibar | Affordable Rentals",
+    headline: "Rent Cars and Motorcycles in Zanzibar | Affordable Rentals in Zanzibar",
     description:
       "Car Rental Zanzibar. Explore Zanzibar with our affordable car and motorcycle rentals. From scooters to SUVs, we have the perfect vehicle to fit your needs.",
     image:
@@ -184,7 +184,7 @@ const Vehicle = ({ loading, allVehicle, setallVehicle }) => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>
-          {"Rent Cars and Motorcycles in Zanzibar | Affordable Rentals"}
+          {"Rent Cars and Motorcycles in Zanzibar | Affordable Rentals in Zanzibar"}
         </title>
         <meta
           name="description"
@@ -462,53 +462,38 @@ const Vehicle = ({ loading, allVehicle, setallVehicle }) => {
           );
         })}
       </div>
-      <div style={{ padding: "1rem" }}>
-        <h2 style={{ marginLeft: "1rem", maxWidth: "85%", marginTop: "5rem" }}>
-          We want to reduce the number of cars in Zanzibar
-        </h2>
-        <p style={{ margin: "1rem 1rem", fontSize: "1.15rem" }}>
-          Zanzibar is filled with parked cars. It stands unused 70% of its time
-          and on average they are only used by 1.3 people.
-        </p>
-        <p style={{ margin: "1rem 1rem", fontSize: "1.15rem" }}>
-          Cars account for a large part of carbon dioxide emissions. If we get
-          better at car sharing in Zanzibar, we could quickly reduce the number
-          of cars and at the same time take better care of our planet.
-        </p>
-        <p style={{ margin: "1rem 1rem", fontSize: "1.15rem" }}>
-          That's why we at Zanzihome.com want to help people share cars and at
-          the same time protect the environment.
-        </p>
-      </div>
+      <div style={{height:'30px'}}></div>
       <div style={{ background: "#F8F8F8", padding: "1rem" }}>
-        <h2 style={{ margin: "2rem auto", maxWidth: "85%" }}>
-          Rent a car in Zanzibar or rent out your car when you are not using it.
+        <h2 style={{ margin: "1rem auto", maxWidth: "85%" }}>
+          Rent a car in Zanzibar Eazy and Secure. We deliver the vehicle to you!
         </h2>
         <div
           style={{
             marginLeft: "1.5rem",
             marginBottom: "1rem",
-            marginTop: "3rem"
+            marginTop: "2rem"
           }}
         >
           <h3>All rental periods are insured</h3>
-          <p>All rental periods are insured 24/7.</p>
+          <p style={{marginTop:'0.15rem'}}>All rental periods are insured 24/7.</p>
         </div>
         <div style={{ marginLeft: "1.5rem", marginBottom: "1rem" }}>
           <h3>Cars for all occasions</h3>
-          <p style={{ maxWidth: "90%" }}>
+          <p style={{ maxWidth: "90%",marginTop:'0.15rem' }}>
             There are all types of cars and models. From SUVs to spacious family
             cars, then cars and station wagons.
           </p>
         </div>
         <div style={{ marginLeft: "1.5rem", marginBottom: "1rem" }}>
-          <h3>Meet the owner</h3>
-          <p style={{ maxWidth: "90%" }}>
-            Meet the owner and get instructions about the car and get keys to
-            the car.
+          <h3>We deliver the vehicle</h3>
+          <p style={{ maxWidth: "90%",marginTop:'0.15rem' }}>
+            We will deliver the vehicle to your hotel or airport.
           </p>
         </div>
       </div>
+      <div style={{height:'30px'}}></div>
+      <Faq data={faqVehicle} />
+      <div style={{height:'10px'}}></div>
       <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
         <h1
           className="poppins"
@@ -565,7 +550,7 @@ const Vehicle = ({ loading, allVehicle, setallVehicle }) => {
           />
         </div>
       </div>
-      <Faq data={faqVehicle} />
+     
     </section>
   );
 };

@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import { useParams } from "react-router-dom";
 import MaterialUIPickers from "../components/MaterialUIPickers";
+import Faq from "../components/Faq";
 import StegStegComp from "../components/StegStegComp";
 import { getRentalData } from "../redux-toolkit/carRentalSlice";
 import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 import { useSelector } from "react-redux";
 import { FaPhoneSquareAlt } from "react-icons/fa";
 import { MdArrowForwardIos } from "react-icons/md";
-
+import {faqVehicle} from '../utils/faq'
 const useStyles = makeStyles({
   root: {
     color: "#09366d"
@@ -332,7 +333,94 @@ const VehicleDetails = () => {
           </a>
         </div>
       </div>
-      
+      <div style={{height:'30px'}}></div>
+      <div style={{ background: "#F8F8F8", padding: "1rem" }}>
+        <h2 style={{ margin: "1rem auto", maxWidth: "85%" }}>
+          Rent a car in Zanzibar Eazy and Secure. We deliver the vehicle to you!
+        </h2>
+        <div
+          style={{
+            marginLeft: "1.5rem",
+            marginBottom: "1rem",
+            marginTop: "2rem"
+          }}
+        >
+          <h3>All rental periods are insured</h3>
+          <p style={{marginTop:'0.15rem'}}>All rental periods are insured 24/7.</p>
+        </div>
+        <div style={{ marginLeft: "1.5rem", marginBottom: "1rem" }}>
+          <h3>Cars for all occasions</h3>
+          <p style={{ maxWidth: "90%",marginTop:'0.15rem' }}>
+            There are all types of cars and models. From SUVs to spacious family
+            cars, then cars and station wagons.
+          </p>
+        </div>
+        <div style={{ marginLeft: "1.5rem", marginBottom: "1rem" }}>
+          <h3>We deliver the vehicle</h3>
+          <p style={{ maxWidth: "90%",marginTop:'0.15rem' }}>
+            We will deliver the vehicle to your hotel or airport.
+          </p>
+        </div>
+      </div>
+      <div style={{height:'15px'}}></div>
+      <Faq data={faqVehicle} />
+      <div style={{height:'30px'}}></div>
+      <div style={{ textAlign: "center", marginTop: "1rem" }}>
+        <h1
+          className="poppins"
+          style={{ maxWidth: "85%", margin: "1rem auto" }}
+        >
+          Rent a Car in Zanzibar and Explore the Island with Ease - Book Now for
+          the Best Deals!
+        </h1>
+        <p
+          className="sans"
+          style={{
+            maxWidth: "90%",
+            margin: "0rem auto",
+            lineHeight: "25px",
+            color: "black"
+          }}
+        >
+          Experience the beauty and culture of Zanzibar at your own pace with a
+          rental car. With stunning beaches, historic architecture, and unique
+          culture, Zanzibar is a destination that demands exploration. By
+          renting a car, you can easily travel from one site to the next and get
+          off the beaten path to discover hidden gems. At Zanzihome.com, we
+          offer a wide range of rental cars to suit your needs and budget. From
+          economy to luxury vehicles, our fleet is well-maintained and regularly
+          serviced for your safety and comfort. Our rental process is quick and
+          easy, so you can spend less time worrying about logistics and more
+          time enjoying your trip. Driving in Zanzibar is generally safe,
+          although it's important to be aware of local driving habits and road
+          conditions. Many roads are unpaved and can be bumpy, but they are
+          generally passable with a standard vehicle. We recommend staying alert
+          and driving defensively, especially in more populated areas. When you
+          rent a car with Zanzihome.com, you have the freedom to explore the
+          island at your leisure. Drive along the coastline and stop at some of
+          the island's beautiful beaches, such as Nungwi or Paje. Head inland to
+          explore the Jozani Chwaka Bay National Park, home to the red colobus
+          monkey and other wildlife. Or, visit Stone Town, a UNESCO World
+          Heritage site that offers a glimpse into Zanzibar's rich history and
+          culture. Renting a car in Zanzibar is an affordable and convenient way
+          to make the most of your trip. With Zanzihome.com, you can enjoy peace
+          of mind knowing you're getting a quality rental car at a fair price.
+          Book your rental car today and get ready for an unforgettable
+          adventure in Zanzibar!
+        </p>
+
+        <div style={{ margin: "2rem 0" }}>
+          <h2 className="best-airmax-text">Very good</h2>
+          <p>
+            Based on <strong> 379 reviews</strong>
+          </p>
+          <img
+            src="https://www.snijpunt.com/files/thumbnails/trustpilot-logo-snijpunt.1600x680x1.png"
+            alt="trustpilot"
+            style={{ height: "120px", width: "300px", objectFit: "cover" }}
+          />
+        </div>
+      </div>
     </section>
   );
 };

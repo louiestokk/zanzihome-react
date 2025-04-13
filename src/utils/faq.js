@@ -32,10 +32,6 @@ export const faqdata = [
 
 export const faqVehicle = [
   {
-    title: "How does private car rental work?",
-    text: "Choose a car that suits you and your needs. We have all types of cars. Book the car via direct booking or send a request to the car owner. Pick up the car and before you drive away, together with the car owner, note the car's condition and fuel level. Refuel and return the car in the same condition as when you picked it up. And return the car keys."
-  },
-  {
     title: "How do you get around Zanzibar?",
     text: "Zanzibar is a beautiful island off the coast of Tanzania that offers visitors a variety of things to see and do. But how do you get around Zanzibar? Here are some of the transportation options available to help you explore the island: Taxi: Taxis are widely available in Zanzibar and can be a convenient way to get around, especially if you're not comfortable driving or navigating on your own. Taxis are generally safe and affordable, but be sure to negotiate the fare before getting in the car to avoid overcharging.Dala-dala: Dala-dala is the local term for shared taxis or minibusses that run on set routes throughout the island. This is a budget-friendly option for getting around, but be aware that dala-dalas can be crowded and uncomfortable, and may not run on a fixed schedule. Car rental: Renting a car can be a great option if you want the freedom and flexibility to explore Zanzibar on your own terms. Many rental car companies are available on the island, and prices can vary depending on the type of car you choose, the duration of your rental, and the time of year you're traveling. Motorbike: If you're comfortable riding a motorbike, this can be a fun and adventurous way to explore Zanzibar. Motorbikes are available for rent, but be sure to wear a helmet and be cautious on the roads, as they can be busy and chaotic. Bicycle: Bicycles can be rented in many areas of Zanzibar and can be a great way to explore the island at a slower pace. This is a budget-friendly option, but be aware that some roads can be bumpy or unpaved. At Zanzihome.com, we offer rental cars, motorbikes, and bicycles to help you get around Zanzibar in comfort and style. Our vehicles are well-maintained and regularly serviced to ensure your safety and comfort. We also offer optional insurance coverage for your peace of mind. No matter which transportation option you choose, be sure to stay safe and aware of your surroundings while exploring Zanzibar. With so much to see and do on the island, getting around is just part of the adventure!"
   },
@@ -55,5 +51,29 @@ export const faqVehicle = [
   {
     title: "Is Zanzibar cheap or expensive?",
     text: "If you're planning a trip to Zanzibar, one of the first questions you might ask is whether it's a cheap or expensive destination. The answer depends on a number of factors, including your travel style, accommodation preferences, and the activities you plan to do. Here are some things to keep in mind when considering the cost of a trip to Zanzibar: Accommodation: Zanzibar offers a range of accommodation options, from budget-friendly hostels to luxurious resorts. Prices can vary widely depending on the time of year and location. If you're looking to save money, consider staying in a guesthouse or Airbnb instead of a hotel. Food and drink: Zanzibar's cuisine is a mix of African, Indian, and Arabic influences, with plenty of fresh seafood and spices. Eating out can be relatively inexpensive, especially if you stick to local restaurants and street food. Be sure to try Zanzibar's famous spice tea and fresh fruit juices. Transportation: Getting around Zanzibar can be affordable if you opt for public transportation, such as dala-dalas or shared taxis. Renting a car or motorbike can be more expensive, but may be worth it if you want more freedom to explore the island on your own. Activities: Zanzibar offers a variety of activities, including snorkeling, scuba diving, and visiting historical sites. Prices can vary depending on the activity and the provider, so be sure to shop around for the best deals. Overall, Zanzibar can be a relatively affordable destination if you're willing to do some research and plan ahead. By choosing budget-friendly accommodation, eating at local restaurants, and taking advantage of public transportation, you can experience the beauty and culture of this island without breaking the bank."
+  },
+  {
+    title: "Do I need an international driver’s license to drive in Zanzibar?",
+    text: "Yes, tourists are required to have an international driving permit (IDP) along with their original driver’s license to rent and drive a vehicle in Zanzibar. Most rental companies also assist in issuing a local driving permit for a small fee. It is advisable to confirm the exact documentation required with the rental company in advance."
+  },
+  {
+    title: "Is driving in Zanzibar safe?",
+    text: "Driving in Zanzibar is generally safe, but there are some things to keep in mind. Roads outside the main areas can be narrow, poorly lit, and have potholes. Local driving habits may be different than what you're used to. Always drive cautiously, avoid driving at night when possible, and follow local traffic laws. Renting from a reliable company and having insurance adds extra peace of mind."
+  },
+  {
+    title: "What side of the road do they drive on in Zanzibar?",
+    text: "In Zanzibar, as in the rest of Tanzania, driving is on the left-hand side of the road. Most rental cars are right-hand drive vehicles. Be mindful of this when overtaking, navigating roundabouts, or entering intersections."
+  },
+  {
+    title: "Can I rent a car directly at Zanzibar Airport?",
+    text: "Yes, many car rental agencies have counters at Abeid Amani Karume International Airport (ZNZ) in Zanzibar. It's possible to book a car in advance and pick it up upon arrival, which is convenient if you're flying in. Make sure to confirm the details with your rental company before your trip."
+  },
+  {
+    title: "What kind of cars are available for rent in Zanzibar?",
+    text: "You can rent a wide variety of vehicles in Zanzibar, from compact economy cars and sedans to 4x4 SUVs and vans. If you're planning to visit remote areas or beaches, an SUV is recommended. Scooters and motorbikes are also popular options for solo travelers or couples."
+  },
+  {
+    title: "Do rental cars in Zanzibar come with insurance?",
+    text: "Basic insurance is typically included in car rentals in Zanzibar, but the coverage can vary. It’s common to have the option to purchase additional coverage, such as collision damage waiver (CDW) or theft protection. Check the terms of the rental agreement and clarify what's covered before driving off."
   }
 ];

@@ -100,7 +100,7 @@ const handleClose = () => {
              setActiveStep(2)
              setTimeout(()=>{
               history.push('/')
-             },5000)
+             },6000)
             }
           },
           (error) => {
