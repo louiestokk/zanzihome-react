@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { db } from "./firebase";
 const RentalOwner = lazy(() => import("./pages/RentalOwner"));
 const VehicleDetails = lazy(() => import("./pages/VehicleDetails"));
-const PrivateRoute = lazy(() => import("./pages/PrivateRoute"));
+const BookingVehiclePage = lazy(() => import("./pages/BookingVehiclePage"));
 const Home = lazy(() => import("./pages/Home"));
 const Payments = lazy(() => import("./components/Payments"));
 const AdminDashBoard = lazy(() => import("./pages/AdminDashBoard"));
@@ -83,6 +83,9 @@ function App() {
           </Route>
           <Route path="/rental-owner">
             <RentalOwner />
+          </Route>
+          <Route path='/booking-vehicle-page'>
+            <BookingVehiclePage />
           </Route>
           <Route path="/tours-zanzibar">
             <Tours />

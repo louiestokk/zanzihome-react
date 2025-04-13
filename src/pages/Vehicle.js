@@ -87,6 +87,7 @@ const useStyles = makeStyles({
     marginTop: "0.5rem"
   },
   vehicleItem: {
+    position:'relative',
     background: "rgb(241, 238, 238)",
     cursor: "pointer",
     display: "flex",
@@ -304,7 +305,7 @@ const Vehicle = ({ loading, allVehicle, setallVehicle }) => {
           Search
         </Button>
       </div>
-      <div container spacing={4} className={classes.allVehiclesContainer}>
+      <div className={classes.allVehiclesContainer}>
         {loading && (
           <Oval
             height={80}
@@ -334,7 +335,8 @@ const Vehicle = ({ loading, allVehicle, setallVehicle }) => {
             if (el.category !== "Bicycle") return;
           }
           return (
-            <div item key={i} className={classes.vehicleItem}>
+            <div key={i} className={classes.vehicleItem}>
+           <h5 style={{width:'96%'}}>20% discount monthly rent</h5>
               <Link to={`/cars/${el.id}`}>
                 <div style={{ display: "flex", justifyContent: "center" }}>
                   <img

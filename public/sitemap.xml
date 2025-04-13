@@ -14,8 +14,15 @@
 	</url>
 		<url>
 		<loc>https://www.zanzihome.com/tours-zanzibar</loc>
-		<priority>0.8</priority>
+		<priority>0.9</priority>
 		<lastmod>2025-03-14</lastmod>
+	
+	</url>
+		</url>
+		<url>
+		<loc>https://www.zanzihome.com/car-rental-zanzibar</loc>
+		<priority>0.9</priority>
+		<lastmod>2025-04-13</lastmod>
 	
 	</url>
 </urlset>

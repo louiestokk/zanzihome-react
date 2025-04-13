@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import { useParams } from "react-router-dom";
 import MaterialUIPickers from "../components/MaterialUIPickers";
+import StegStegComp from "../components/StegStegComp";
 import { getRentalData } from "../redux-toolkit/carRentalSlice";
 import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 import { useSelector } from "react-redux";
 import { FaPhoneSquareAlt } from "react-icons/fa";
 import { MdArrowForwardIos } from "react-icons/md";
-import PaypalCheckout from "../components/PaypalCheckout";
-import PaymentConfirmation from "./PaymentConfirmation";
+
 const useStyles = makeStyles({
   root: {
     color: "#09366d"
@@ -43,9 +43,9 @@ const useStyles = makeStyles({
 
 const VehicleDetails = () => {
   const [index, setindex] = useState(0);
-  const [showPaypal, setshowPaypal] = useState(false);
   const rentalData = useSelector(getRentalData);
   const fireStoreData = useSelector(getFirestoreData);
+  const [showStepper, setShowStepper] = useState(false)
   const classes = useStyles();
   const { id } = useParams();
   const currentVehicle = fireStoreData.filter((el) => el.id === id);
@@ -57,6 +57,7 @@ const VehicleDetails = () => {
     setindex(index + 1);
     if (index >= currentVehicle?.[0]?.imagesArray?.length - 1) setindex(0);
   };
+
   return (
     <section className={classes.root}>
       {!rentalData.showPaymentConfirmation && (
@@ -263,11 +264,14 @@ const VehicleDetails = () => {
                   margin: "0.5rem 1rem"
                 }}
               >
-                <p>Total price for {numRentDays} days</p>
-                <h3>{currentDayPrice * numRentDays} $</h3>
+                <h3 style={{marginBottom:'0.5rem'}}>Total price for {numRentDays} days</h3>
+                {numRentDays> 27 && <h3 style={{display:'flex',alignItems:'center'}}>{Math.round((currentDayPrice*0.80)*numRentDays)} $ <p style={{fontSize:'0.8rem',marginLeft:'0.5rem',fontWeight:'100',color:'green'}}>20% Discount</p></h3>}
+               {numRentDays<28 &&  <h3>{currentDayPrice * numRentDays} $</h3>}
               </div>
-              <button
-                onClick={() => setshowPaypal(!showPaypal)}
+              {!showStepper &&  <button
+              onClick={()=> {
+                setShowStepper(true)
+              }}
                 style={{
                   display: "flex",
                   flexDirection: "column",
@@ -281,30 +285,20 @@ const VehicleDetails = () => {
                 }}
               >
                 Book now
-              </button>
+              </button>}
+             
+        
+          
             </div>
+            {showStepper && <div style={{margin:'1rem 0'}}>
+              <StegStegComp hyrData={rentalData} fordonet={currentVehicle} dagar={numRentDays}/>
+            </div>}
           </section>
-          <div style={{ display: showPaypal ? "block" : "none" }}>
-            <PaypalCheckout
-              price={currentDayPrice * numRentDays}
-              period={numRentDays}
-              periodType={"days"}
-              payFor={"Rental"}
-            />
-          </div>
+     
+        
         </>
       )}
 
-      {rentalData.showPaymentConfirmation && (
-        <div>
-          <PaymentConfirmation
-            rentalData={rentalData}
-            currentVehicle={currentVehicle}
-            price={currentDayPrice * numRentDays}
-            period={numRentDays}
-          />
-        </div>
-      )}
       <div
         style={{
           display: "flex",
@@ -338,6 +332,7 @@ const VehicleDetails = () => {
           </a>
         </div>
       </div>
+      
     </section>
   );
 };

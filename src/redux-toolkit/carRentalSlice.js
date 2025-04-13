@@ -9,6 +9,7 @@ const initialState = {
   leaveTime: new Date("2023-05-02T10:00:00"),
   rentalArea: "",
   vehicleType: "",
+  currentVehicleChoose:[''],
   totalPrice: 0,
   rentalPerson: null,
   showPaymentConfirmation: false,
@@ -45,6 +46,9 @@ const carRentalSlice = createSlice({
     },
     setPaymentConfirmation: (state = initialState, { payload }) => {
       state.showPaymentConfirmation = payload;
+    },
+    setWitchVehicle: (state = initialState, { payload }) => {
+      state.currentVehicleChoose = payload;
     }
   }
 });
@@ -59,7 +63,8 @@ export const {
   setVehicleType,
   setVehicleTotPrice,
   setRentalPerson,
-  setPaymentConfirmation
+  setPaymentConfirmation,
+  setWitchVehicle
 } = carRentalSlice.actions;
 
 export default carRentalSlice.reducer;
