@@ -50,7 +50,7 @@ const VehicleDetails = () => {
   const classes = useStyles();
   const { id } = useParams();
   const currentVehicle = fireStoreData.filter((el) => el.id === id);
-  const currentDayPrice = currentVehicle?.[0]?.Price;
+  const currentDayPrice = Number(currentVehicle?.[0]?.Price?.split('$')[0]);
   const numRentDays = Math.floor(
     (rentalData.rentTodate - rentalData.rentFromDate) / (24 * 3600 * 1000)
   );
@@ -198,20 +198,21 @@ const VehicleDetails = () => {
             </section>
           </div>
 
-          <div style={{ marginLeft: "1rem", marginBottom: "0.5rem" }}>
+          <div style={{ marginLeft: "1rem", marginBottom: "1.5rem" }}>
             <p style={{ marginBottom: "0.5rem" }}>
-              You rent from: <strong>{currentVehicle?.[0]?.Name}</strong>
-              {currentVehicle?.[0]?.Area && `  in ${currentVehicle?.[0]?.Area}`}
+              You rent from: <strong>EuroCar Zanzibar</strong>
+             
             </p>
-            <p style={{ marginBottom: "0.2rem" }}>
-              <strong>{currentVehicle?.[0]?.Name} says:</strong>
+            <p style={{ marginBottom: "0.3rem",marginTop:'1rem' }}>
+              <strong>Info about the vehicle</strong>
             </p>
-            <p style={{ maxWidth: "320px", fontSize: "0.9rem" }}>
+            <p style={{ maxWidth: "320px", fontSize: "0.9rem",lineHeight:'22px' }}>
               {currentVehicle?.[0]?.Text}
             </p>
           </div>
+       
           <div style={{ margin: "1rem 1rem" }}>
-            <div style={{ display: "flex", alignItems: "center" }}>
+            <div style={{ display: "flex", alignItems: "center",marginBottom:'0.7rem' }}>
               <img
                 loading="lazy"
                 style={{ width: "25px", height: "25px", color: "blue" }}
@@ -221,7 +222,7 @@ const VehicleDetails = () => {
               />
               <h5>Book the vehicle</h5>
             </div>
-            <div style={{ display: "flex", alignItems: "center" }}>
+            <div style={{ display: "flex", alignItems: "center",marginBottom:'0.7rem' }}>
               <img
                 loading="lazy"
                 style={{ width: "25px", height: "25px", color: "blue" }}
@@ -229,7 +230,7 @@ const VehicleDetails = () => {
                 alt="car rental Zanzibar"
                 title="car rental Zanzibar"
               />
-              <h5 style={{ width: "165px" }}>Contact details are shared</h5>
+              <h5>Email confirmation</h5>
             </div>
             <div style={{ display: "flex", alignItems: "center" }}>
               <img
@@ -239,7 +240,7 @@ const VehicleDetails = () => {
                 alt="car rental Zanzibar"
                 title="car rental Zanzibar"
               />
-              <h5>Meet by the owner</h5>
+              <h5 style={{height:'100%'}}>We deliver the vehicle for free</h5>
             </div>
           </div>
           <section
