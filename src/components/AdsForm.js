@@ -77,7 +77,6 @@ const AdsForm = ({ setActiveStep, adType }) => {
   };
 
   const handleAdsFormChange = (e) => {
-    console.log(e.target.name);
     setadsFormData({ ...adsFormData, [e.target.name]: e.target.value });
   };
   const addNewAdToFirebase = async () => {

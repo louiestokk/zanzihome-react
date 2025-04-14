@@ -59,6 +59,7 @@ const useStyles = makeStyles({
     color: "gray"
   },
   typeIcons: {
+    margin:'1rem 0',
     display: "flex",
     alignItems: "center",
     justifyContent: "center"
@@ -209,7 +210,7 @@ const Vehicle = ({ loading, allVehicle, setallVehicle }) => {
           href="https://www.zanzihome.com/car-rental-zanzibar"
         />
       </Helmet>
-      <div
+      {/* <div
         className={classes.bookingBox}
         onClick={() => setshowModal(!showModal)}
       >
@@ -219,6 +220,13 @@ const Vehicle = ({ loading, allVehicle, setallVehicle }) => {
         <div className={classes.bookingBoxText}>
           <p className={classes.bookingBoxH}>Add location</p>
           <p className={classes.bookingBoxp}>Add date and time</p>
+        </div>
+      </div> */}
+      <div style={{position:'relative',background:'black',overflow:'hidden',height:'160px'}}>
+        <img src="https://i.ibb.co/wrykMRBk/zanzihome-car-rental-zanzibar.webp" alt="rent cars and motorbikes in Zanzibar" loading="lazy" style={{objectFit:'cover',width:'100%',height:'160px',background:'black',opacity:'0.5'}}/>
+        <div style={{position:'absolute',zIndex:'9999',top:'10%',left:'1%',color:'white',textAlign:'center',padding:'0.5rem'}}>
+          <h2 style={{marginTop:'0.5rem',marginBottom:'0.2rem'}}>Our Partner <strong style={{color:'#22c55e'}}>EuroCar</strong> in Zanzibar</h2>
+          <p style={{lineHeight:'24px'}}>Get the vehicle <strong>delivered</strong> to your hotel or airport for free in all <strong>Zanzibar</strong>.</p>
         </div>
       </div>
       <div className={classes.typeIcons}>
@@ -541,7 +549,7 @@ const Vehicle = ({ loading, allVehicle, setallVehicle }) => {
         <div style={{ margin: "2rem 0" }}>
           <h2 className="best-airmax-text">Very good</h2>
           <p>
-            Based on <strong> 379 reviews</strong>
+            Based on <strong> 979 reviews</strong>
           </p>
           <img
             src="https://www.snijpunt.com/files/thumbnails/trustpilot-logo-snijpunt.1600x680x1.png"
