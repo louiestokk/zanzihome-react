@@ -98,7 +98,7 @@ const Tours = () => {
             </div>
             </div>
             <div style={{display:'flex',justifyContent:'center',margin:'1rem 0'}}>
-            <a href={el.path} title={el.title}>
+            <a href={'https://www.huba-tours.com/'} title={el.title}>
             <Button style={{width:'280px',color:'#00BF93',border:'0.5px solid #00BF93',padding:'0.5rem'}} variant='outlined'>Explore tour <BsArrowRightShort style={{marginLeft:'1rem'}}/>
             </Button>
            </a>
