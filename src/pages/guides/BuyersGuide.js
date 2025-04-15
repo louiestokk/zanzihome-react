@@ -1,5 +1,6 @@
 import React from "react";
 import { pageData } from "./data";
+import { Helmet } from "react-helmet-async";
 const BuyersGuide = () => {
   const articleStructuredData = {
     "@context": "https://schema.org",
@@ -20,6 +21,34 @@ const BuyersGuide = () => {
       <script type="application/ld+json">
         {JSON.stringify(articleStructuredData)}
       </script>
+        <Helmet>
+              <meta charSet="utf-8" />
+              <title>
+                {"Buy property Zanzibar - Properties for Sale and Rent in Zanzibar. Real Estate Zanzibar"}
+              </title>
+              <meta
+                name="description"
+                content={
+                  "Discover Your Dream Property in Zanzibar - Properties for Sale and Rent in Zanzibar - Real Estate Zanzibar"
+                }
+              />
+              <meta
+                property="og:url"
+                content="https://www.zanzihome.com/buy-property-zanzibar"
+              />
+              <meta
+                property="og:description"
+                content="Discover Your Dream Property in Zanzibar - Properties for Sale and Rent in Zanzibar - Real Estate Zanzibar"
+              />
+              <meta
+                property="og:image"
+                content="https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              />
+              <link
+                rel="canonical"
+                href="https://www.zanzihome.com/buy-property-zanzibar"
+              />
+            </Helmet>
       <h1
         style={{
           fontSize: "1.3rem",
