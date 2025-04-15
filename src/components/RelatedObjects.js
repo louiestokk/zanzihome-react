@@ -95,14 +95,14 @@ const RelatedObjects = (adId) => {
         <section className={classes.container}>
           <h3
             style={{
-              marginLeft: "0.5rem",
+              marginLeft: "1rem",
+              fontSize:'1.4rem',
               width: "100%",
               color: "#334155",
-              fontSize: "1rem",
               textAlign: window.innerWidth > 900 && "center"
             }}
           >
-            Other properties in {currentArea && currentArea}
+            Other objects in {currentArea && currentArea}
           </h3>
           <div className="related-item-container">
             {objectsInSameAreaNotSameCatgory?.map((el) => {

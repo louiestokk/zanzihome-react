@@ -38,7 +38,7 @@ const propertyzanzibar = () => {
             "Find properties in Zanzibar, accommodation, rent scooter and car in Zanzibar or book tours, taxis and safaris in Zanzibar! - Real Estate Zanzibar"
           }
         />
-        <meta property="og:url" content="https://zanzihome.com" />
+        <meta property="og:url" content="https://www.zanzihome.com" />
         <meta
           property="og:description"
           content="Find properties in Zanzibar, accommodation, rent scooter and car in Zanzibar or book tours, taxis and safaris in Zanzibar! - Real Estate Zanzibar"
