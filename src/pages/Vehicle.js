@@ -161,9 +161,9 @@ const Vehicle = ({ loading, allVehicle, setallVehicle }) => {
   const articleStructuredData = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "Rent Cars and Motorcycles in Zanzibar | Affordable Rentals in Zanzibar",
+    title: "Rent Cars and Motorcycles in Zanzibar",
     description:
-      "Car Rental Zanzibar. Explore Zanzibar with our affordable car and motorcycle rentals. From scooters to SUVs, we have the perfect vehicle to fit your needs.",
+      "Car Rental Zanzibar. Explore Zanzibar with our affordable car and motorcycle rentals. From scooters to SUVs",
     image:
       "https://images.pexels.com/photos/787472/pexels-photo-787472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     datePublished: new Date("2023-04-04T09:25:01.340Z").toISOString(),
@@ -185,12 +185,12 @@ const Vehicle = ({ loading, allVehicle, setallVehicle }) => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>
-          {"Rent Cars and Motorcycles in Zanzibar | Affordable Rentals in Zanzibar"}
+          {"Rent Cars and Motorcycles in Zanzibar"}
         </title>
         <meta
           name="description"
           content={
-            "Car Rental Zanzibar. Explore Zanzibar with our affordable car and motorcycle rentals. From scooters to SUVs, we have the perfect vehicle to fit your needs."
+            "Car Rental Zanzibar. Explore Zanzibar with our affordable car and motorcycle rentals. From scooters to SUVs"
           }
         />
         <meta
@@ -199,7 +199,7 @@ const Vehicle = ({ loading, allVehicle, setallVehicle }) => {
         />
         <meta
           property="og:description"
-          content="Car Rental Zanzibar. Explore Zanzibar with our affordable car and motorcycle rentals. From scooters to SUVs, we have the perfect vehicle to fit your needs."
+          content="Car Rental Zanzibar. Explore Zanzibar with our affordable car and motorcycle rentals. From scooters to SUVs"
         />
         <meta
           property="og:image"

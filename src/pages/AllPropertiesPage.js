@@ -30,7 +30,7 @@ const AllPropertiesPage = () => {
   const articleStructuredData = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "Buy property Zanzibar - Properties for Sale and Rent in Zanzibar. Real Estate Zanzibar",
+    title: "Properties Sale & Rent - Real Estate Zanzibar",
     description:
       "Discover Your Dream Property in Zanzibar - Properties for Sale and Rent in Zanzibar - Real Estate Zanzibar",
     image:
@@ -93,7 +93,7 @@ const AllPropertiesPage = () => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>
-          {"Buy property Zanzibar - Properties for Sale and Rent in Zanzibar. Real Estate Zanzibar"}
+          {"Properties Sale & Rent - Real Estate Zanzibar"}
         </title>
         <meta
           name="description"
