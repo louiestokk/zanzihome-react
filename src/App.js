@@ -37,6 +37,7 @@ const AllPropertiesPage = lazy(() => import("./pages/AllPropertiesPage"));
 const Tours = lazy(() => import("./pages/Tours"));
 const Taxi = lazy(() => import("./pages/Taxi"));
 const Vehicle = lazy(() => import("./pages/Vehicle"));
+const Realestate = lazy(() => import("./pages/realestate/page"));
 //
 function App() {
   const [logedinUser, setLogedinUser] = useState({});
@@ -80,6 +81,9 @@ function App() {
           </Route>
           <Route path="/propertyzanzibar">
             <Propertyzanzibar />
+          </Route>
+           <Route path="/real-estate-zanzibar">
+            <Realestate />
           </Route>
           <Route path="/rental-owner">
             <RentalOwner />
