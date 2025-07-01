@@ -1674,12 +1674,16 @@ input[type="textarea"] {
     align-items: center;
     display: flex;
     justify-content: center;
+    margin-top: 1.5rem;
   }
   .ajjemen-banner-section img {
-    width: 400px;
+    width: 250px;
   }
   .ajjemen-banner-section p {
-    width: 400px;
+    width: 250px;
+  }
+  .abbas{
+    height: 443px;
   }
   .map-header-title {
     text-align: center;

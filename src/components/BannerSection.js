@@ -8,10 +8,12 @@ const BannerSection = () => {
       style={{ height: "100%", boxShadow: "none" }}
     >
       <section
+      className="abbas"
         onClick={() => history.push("/properties-zanzibar")}
         style={{
           padding: "0.8rem",
-          boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
+          boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
+      
         }}
       >
         <img
@@ -42,6 +44,7 @@ const BannerSection = () => {
         </p>
       </section>
       <section
+       className="abbas"
         onClick={() => history.push("/car-rental-zanzibar")}
         style={{
           padding: "0.8rem",
@@ -77,6 +80,7 @@ const BannerSection = () => {
         </p>
       </section>
       <section
+       className="abbas"
         onClick={() => history.push("/tours-zanzibar")}
         style={{
           padding: "0.8rem",
@@ -111,6 +115,7 @@ const BannerSection = () => {
         </p>
       </section>
       <section
+       className="abbas"
         onClick={() => history.push("/checkout")}
         style={{
           padding: "0.8rem",
