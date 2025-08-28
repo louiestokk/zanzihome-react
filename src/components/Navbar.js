@@ -9,6 +9,7 @@ import { FaWindowClose } from "react-icons/fa";
 import { useGlobalContext } from "../context";
 import { useUserContext } from "../user_context";
 import { useHistory } from "react-router-dom";
+import FoodDelivery from "./FoodDelivery";
 const Navbar = ({ logedinUser, loading }) => {
   const history = useHistory();
   const { show, setShow } = useGlobalContext();
@@ -20,6 +21,7 @@ const Navbar = ({ logedinUser, loading }) => {
 
   return (
     <>
+    <FoodDelivery/>
       <div className={`${show ? "nav-menu show-menu" : "nav-menu"}`}>
         <ul>
           <li className="nav-list close-nav-btn" onClick={() => setShow(!show)}>
