@@ -62,7 +62,7 @@ const Objects = () => {
               <div key={index} className="objects">
                 <Link to={`/propertys/property/${adId}`}>
                   <img
-                    src={uri !== "" ? uri : imagesArray[1]}
+                    src={uri !== "" ? uri : imagesArray?.[1]}
                     alt={`Properties for sale in ${Area}, Zanzibar`}
                     title={`Properties for sale in ${Area}, Zanzibar`}
                     loading={"lazy"}
