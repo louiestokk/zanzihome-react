@@ -174,7 +174,7 @@ const BannerSection = () => {
 
        <section
        className="abbas"
-        onClick={() => history.push("/checkout")}
+        onClick={() => history.push("/properties-zanzibar")}
         style={{
           padding: "0.8rem",
           boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
