@@ -56,9 +56,7 @@ const Popular = ({ title, images }) => {
   return (
     <section className={classes.root}>
       <div className={classes.top}>
-        <div className={classes.line} style={{ marginRight: "1rem" }}></div>
-        <h3>{title}</h3>
-        <div className={classes.line} style={{ marginLeft: "1rem" }}></div>
+        <h2 style={{marginBottom:'0.3rem'}}>{title}</h2>
       </div>
       <div className={classes.tours}>
         {images?.map((tour, i) => (

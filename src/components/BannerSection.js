@@ -89,26 +89,31 @@ const BannerSection = () => {
         }}
       >
         {/* ✅ PROPERTY BANNER */}
-        <section
-          onClick={() => history.push("/properties-zanzibar")}
-          style={{
-            padding: "1rem",
-            cursor: "pointer",
-            borderRadius: "8px",
-            boxShadow: "rgba(0,0,0,0.08) 0px 4px 12px"
-          }}
-        >
-          <h2 style={{ fontSize: "1.2rem", marginBottom: "0.5rem" }}>
-            Buy & Rent Real Estate in Zanzibar
-          </h2>
+      <section
+  className="zanzibar-real-estate-section"
+  onClick={() => history.push("/properties-zanzibar")}
+>
+  <div className="content">
+    <span className="badge">Updated Monthly • 10,000+ Users</span>
 
-          <p style={{ fontSize: "0.9rem", lineHeight: "24px" }}>
-            Explore verified listings including beachfront villas, apartments,
-            plots and commercial properties across Zanzibar. Find your perfect
-            property today with ZanziHome.
-          </p>
-        </section>
+    <h2 style={{margin: '0.5rem 0'}}>
+      Buy & Rent Real Estate in Zanzibar – Villas, Apartments & Land
+    </h2>
 
+    <p style={{lineHeight:'24px'}}>
+      Discover premium and verified real estate listings across Zanzibar,
+      including beachfront villas, modern apartments, land plots and
+      commercial properties. Thousands of buyers and investors trust
+      ZanziHome every month to find their perfect property in Zanzibar.
+    </p>
+
+    <div className="cta">
+      Explore Properties →
+    </div>
+  </div>
+</section>
+
+   
        <section
        className="abbas"
         onClick={() => history.push("/checkout")}
@@ -134,11 +139,11 @@ const BannerSection = () => {
               justifyContent: "center"
             }}
           >
-            <h1
+            <h2
               style={{ color: "white", fontSize: "5rem", letterSpacing: "1px" }}
             >
               Free
-            </h1>
+            </h2>
           </div>
         </div>
         <h4
@@ -161,6 +166,57 @@ const BannerSection = () => {
           It is for <strong>free</strong> to advertise on Zanzihome.com!
           Advertise your own property or your vehicle. Get started today, it's
           super easy.
+          {/* Advertise your own property or your vehicle. Or maybe you drive taxi,
+          arrange tours and safaris and want more customers. Get started today,
+          it's super easy. */}
+        </p>
+      </section>
+
+       <section
+       className="abbas"
+        onClick={() => history.push("/checkout")}
+        style={{
+          padding: "0.8rem",
+          boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
+        }}
+      >
+        <div
+          className="filter-filter-holder-second"
+          style={{
+            borderRadius: "5px"
+          }}
+        >
+          <div
+            style={{
+              height: "200px",
+              width: "400px",
+              marginBottom: "0.3rem",
+              borderRadius: "5px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+          </div>
+        </div>
+        <h4
+          style={{
+            letterSpacing: "1px",
+            margin: "0.5rem 0",
+            fontSize: "0.95rem"
+          }}
+        >
+          Discover Your Dream Property for Sale in Zanzibar!
+        </h4>
+        <p
+          style={{
+            fontSize: "0.85rem",
+            maxWidth: "90%",
+            lineHeight: "23px",
+            letterSpacing: "1px"
+          }}
+        >
+        Find properties in Zanzibar as houses, plots and apartments for sale or for rent. Zanzihome offers a wide selection of properties in Zanzibar to choose from.
           {/* Advertise your own property or your vehicle. Or maybe you drive taxi,
           arrange tours and safaris and want more customers. Get started today,
           it's super easy. */}

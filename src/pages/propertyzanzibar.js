@@ -151,8 +151,8 @@ const structuredData = {
 
       <NewFilter />
       <BannerSection />
-
-      <Popular
+<div style={{marginTop:'50px'}}>
+     <Popular
         title={"Featured Properties in Zanzibar"}
         images={[
           {
@@ -181,6 +181,8 @@ const structuredData = {
           }
         ]}
       />
+</div>
+ 
 
       <div style={{ height: "15px" }}></div>
 
