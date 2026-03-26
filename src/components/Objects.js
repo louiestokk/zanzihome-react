@@ -59,7 +59,7 @@ const Objects = () => {
             if (!paid) return;
             if (removed) return;
             return (
-              <div key={index} className="objects">
+              <div key={index} className="objects" style={{padding:'1rem'}}>
                 <Link to={`/propertys/property/${adId}`}>
                   <img
                     src={uri !== "" ? uri : imagesArray?.[1]}

@@ -11,8 +11,8 @@ const Karusell = ({ imagesArray }) => {
             }
             style={{
               backgroundPosition: "center",
-              maxHeight: "500px",
-              objectFit: "cover",
+              maxHeight: "300px",
+              objectFit: "contain",
               maxWidth: "700px"
             }}
             loading="lazy"
