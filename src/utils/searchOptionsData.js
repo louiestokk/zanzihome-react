@@ -14,19 +14,4 @@ export const searchOptioons = [
   {
     option: "Business"
   },
-  {
-    option: "Cars"
-  },
-  {
-    option: "Motorcycle"
-  },
-  {
-    option: "Scooter"
-  },
-  {
-    option: "Bicycle"
-  },
-  {
-    option: "Tours & Safari"
-  }
 ];

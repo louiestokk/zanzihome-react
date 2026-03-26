@@ -44,7 +44,8 @@ const useStyles = makeStyles({
     right: "33%"
   },
   icon: {
-    fontSize: "1.2rem"
+    fontSize: "1.2rem",
+    marginRight:'1rem'
   },
   search: {
     background: "#0b8b3a",
@@ -80,19 +81,8 @@ const NewFilter = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (
-      searchData.searchQuery === "Properties" ||
-      searchData.searchQuery === "House" ||
-      searchData.searchQuery === "Apartment" ||
-      searchData.searchQuery === "Plot" ||
-      searchData.searchQuery === "Business"
-    ) {
-      history.push("/properties-zanzibar");
-    } else if(searchData.searchQuery === "Tours & Safari"){
-      history.push("/tours-zanzibar");
-    } else {
-      history.push("/car-rental-zanzibar");
-    }
+    history.push("/properties-zanzibar");
+   
   };
 
   return (
@@ -124,7 +114,6 @@ const NewFilter = () => {
           <Autocomplete
             onChange={(e) => {
               setfiltering(true);
-              e.preventDefault();
               dispatch(setSearchQuery(e.target.innerText));
             }}
             background="white"
@@ -141,7 +130,8 @@ const NewFilter = () => {
                   height: "2.6rem",
                   borderRadius: "5px",
                   border: "1px solid gray",
-                  padding: "0.4rem"
+                  padding: "0.4rem",
+                  paddingLeft:'2.5rem'
                 }}
                 {...params}
                 placeholder="      What do you want to search for?"

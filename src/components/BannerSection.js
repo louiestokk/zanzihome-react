@@ -1,120 +1,115 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+
 const BannerSection = () => {
   const history = useHistory();
+
   return (
-    <div
-      className="objects ajjemen-banner-section"
-      style={{ height: "100%", boxShadow: "none" }}
-    >
+    <div>
+
+      {/* ✅ HERO SECTION (H1 + SEARCH FEEL + SEO) */}
       <section
-      className="abbas"
-        onClick={() => history.push("/properties-zanzibar")}
         style={{
-          padding: "0.8rem",
-          boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
-      
+          position: "relative",
+          height: "320px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+          color: "white",
+          marginBottom: "2rem"
         }}
       >
+        {/* Background */}
         <img
-          alt="Properties for sale in Zanzibar"
-          title="Properties for sale in Zanzibar"
           src="https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          alt="Real estate in Zanzibar - houses, villas, apartments and land"
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            top: 0,
+            left: 0,
+            zIndex: 0
+          }}
         />
-        <h4
+
+        {/* Overlay */}
+        <div
           style={{
-            letterSpacing: "1px",
-            margin: "0.5rem 0",
-            fontSize: "0.95rem"
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            background: "rgba(0,0,0,0.45)",
+            zIndex: 1
           }}
-        >
-          Discover Your Dream Property for Sale in Zanzibar!
-        </h4>
-        <p
-          style={{
-            fontSize: "0.85rem",
-            maxWidth: "90%",
-            lineHeight: "23px",
-            letterSpacing: "1px"
-          }}
-        >
-          Find properties in Zanzibar as houses, plots and apartments for sale
-          or for rent. Zanzihome offers a wide selection of properties in
-          Zanzibar to choose from.
-        </p>
+        />
+
+        {/* Content */}
+        <div style={{ zIndex: 2, padding: "1rem" }}>
+          {/* ✅ H1 (SUPER VIKTIG SEO) */}
+          <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>
+            Property for Sale & Rent in Zanzibar
+          </h1>
+
+          <p style={{ maxWidth: "600px", margin: "0 auto", lineHeight: "26px" }}>
+            Find houses, villas, apartments and land for sale or rent in Zanzibar.
+            Discover beachfront properties, investment opportunities and your dream home today.
+          </p>
+
+          {/* CTA BUTTON */}
+          <button
+            onClick={() => history.push("/properties-zanzibar")}
+            style={{
+              marginTop: "1.5rem",
+              background: "#0b8b3a",
+              color: "white",
+              border: "none",
+              padding: "0.8rem 1.6rem",
+              borderRadius: "5px",
+              fontWeight: "bold",
+              cursor: "pointer"
+            }}
+          >
+            Browse Properties
+          </button>
+        </div>
       </section>
-      <section
-       className="abbas"
-        onClick={() => history.push("/car-rental-zanzibar")}
+
+      {/* ✅ MAIN CONTENT (CENTERED LIKE HEMNET) */}
+      <div
         style={{
-          padding: "0.8rem",
-          boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
+          maxWidth: "900px",
+          margin: "0 auto",
+          padding: "0 1rem",
+          display: "flex",
+          flexDirection: "column",
+          gap: "1.5rem"
         }}
       >
-        <img
-          alt="Rent a Car or Motorbike in Zanzibar!"
-          title="Rent a Car or Motorbike in Zanzibar!"
-          src="https://images.pexels.com/photos/787472/pexels-photo-787472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-        />
-        <h4
+        {/* ✅ PROPERTY BANNER */}
+        <section
+          onClick={() => history.push("/properties-zanzibar")}
           style={{
-            letterSpacing: "1px",
-            margin: "0.5rem 0",
-            fontSize: "0.95rem"
+            padding: "1rem",
+            cursor: "pointer",
+            borderRadius: "8px",
+            boxShadow: "rgba(0,0,0,0.08) 0px 4px 12px"
           }}
         >
-          Rent a Car or Motorbike in Zanzibar!
-        </h4>
-        <p
-          style={{
-            fontSize: "0.85rem",
-            maxWidth: "90%",
-            lineHeight: "23px",
-            letterSpacing: "1px"
-          }}
-        >
-          Looking to explore Zanzibar on four wheels or two? Book a car or
-          motorcycle rental with us today and hit the road in style. Discover
-          the island's beauty at your own pace with our convenient booking
-          services.
-        </p>
-      </section>
-      <section
-       className="abbas"
-        onClick={() => history.push("/tours-zanzibar")}
-        style={{
-          padding: "0.8rem",
-          boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
-        }}
-      >
-        <img
-          alt="Book tours and safaris in Zanzibar"
-          title="Book tours and safaris in Zanzibar"
-          src="https://media.tacdn.com/media/attractions-splice-spp-674x446/0b/fe/13/eb.jpg"
-        />
-        <h4
-          style={{
-            letterSpacing: "1px",
-            margin: "0.5rem 0",
-            fontSize: "0.95rem"
-          }}
-        >
-          Explore Zanzibar - Book your Tour or Safari today!
-        </h4>
-        <p
-          style={{
-            fontSize: "0.85rem",
-            maxWidth: "90%",
-            lineHeight: "23px",
-            letterSpacing: "1px"
-          }}
-        >
-          Discover the best of Zanzibar's natural beauty with our <strong>tours </strong> and
-          <strong> safaris</strong>. Explore the coastline, visit national parks, and see wildlife
-          in their natural habitats. Book your dream trip today!
-        </p>
-      </section>
-      <section
+          <h2 style={{ fontSize: "1.2rem", marginBottom: "0.5rem" }}>
+            Buy & Rent Real Estate in Zanzibar
+          </h2>
+
+          <p style={{ fontSize: "0.9rem", lineHeight: "24px" }}>
+            Explore verified listings including beachfront villas, apartments,
+            plots and commercial properties across Zanzibar. Find your perfect
+            property today with ZanziHome.
+          </p>
+        </section>
+
+       <section
        className="abbas"
         onClick={() => history.push("/checkout")}
         style={{
@@ -171,42 +166,8 @@ const BannerSection = () => {
           it's super easy. */}
         </p>
       </section>
+      </div>
 
-      {/* 
-      <section
-        onClick={() => history.push("/taxi-zanzibar")}
-        style={{
-          padding: "0.8rem",
-          boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
-        }}
-      >
-        <img
-          alt="Taxi Zanzibar!"
-          title="Taxi Zanzibar!"
-          src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/0e/ee/89/23.jpg"
-        />
-        <h4
-          style={{
-            letterSpacing: "1px",
-            margin: "0.5rem 0",
-            fontSize: "0.95rem"
-          }}
-        >
-          Book Your Zanzibar Taxi or Airport Transfer Today!
-        </h4>
-        <p
-          style={{
-            fontSize: "0.85rem",
-            maxWidth: "90%",
-            lineHeight: "23px",
-            letterSpacing: "1px"
-          }}
-        >
-          Arriving in Zanzibar and need a ride? Or just looking to explore the
-          island with ease? Book your taxi or airport transfer with us and
-          experience hassle-free travel.
-        </p>
-      </section> */}
     </div>
   );
 };

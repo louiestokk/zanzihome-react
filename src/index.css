@@ -940,11 +940,6 @@ button {
   .singel-object-infotext {
     max-width: 300px;
   }
-  .objects-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    grid-template-rows: 1fr;
-  }
   .onpage-buttons span {
     font-size: 1rem;
   }
@@ -985,6 +980,7 @@ button {
   }
   .new-singel-obj-width {
     display: flex;
+    flex-direction: column;
   }
   .related-item-container {
     display: flex;
@@ -997,17 +993,13 @@ button {
     margin-left: 1rem;
   }
 }
-@media screen and (min-width: 1100px) {
-  .objects-container {
-    grid-template-columns: repeat(3, 1fr);
-  }
+
   @media screen and (min-width: 700px) {
     .adBanner-image-container {
       width: 550px;
       margin-right: 0.5rem;
     }
   }
-}
 
 .brokers-comp-div {
   margin-top: 2rem;
@@ -1688,6 +1680,9 @@ input[type="textarea"] {
   .map-header-title {
     text-align: center;
     font-size: 1.4rem;
+  }
+    .objects-container {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

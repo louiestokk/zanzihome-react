@@ -4,52 +4,57 @@ const Abovefooter = () => {
   return (
     <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
       <h2 className="poppins" style={{ maxWidth: "85%", margin: "1rem auto" }}>
-        Properties for Sale & Rent in Zanzibar
+        Buy, Rent & Invest in Zanzibar Real Estate – Villas, Apartments & Land
       </h2>
       <p
         className="sans"
         style={{
           maxWidth: "90%",
-          margin: "0rem auto",
-          lineHeight: "25px",
+          margin: "0 auto",
+          lineHeight: "26px",
           color: "black"
         }}
       >
-        If you're in the market for properties for sale in Zanzibar, then look
-        no further than Zanzihome. With a vast selection of properties
-        available, you're sure to find the perfect property to suit your needs
-        and budget. Zanzibar is a beautiful island off the coast of Tanzania,
-        and it's becoming an increasingly popular destination for property
-        buyers. Whether you're looking for a holiday home or an investment
-        property, Zanzibar has something for everyone. At Zanzihome, we pride
-        ourselves on offering a wide range of properties for sale in Zanzibar,
-        including beachfront villas, apartments, and townhouses. We have
-        something to suit every taste and budget, and our team of experienced
-        agents is here to help you every step of the way. Our properties are
-        located in some of the most sought-after areas of Zanzibar, including
-        Stone Town, Jambiani, and Paje. With stunning views of the Indian Ocean
-        and easy access to the island's best attractions, our properties are
-        perfect for anyone looking to experience the beauty and culture of
-        Zanzibar. We understand that buying a property can be a daunting task,
-        which is why we offer a range of services to make the process as smooth
-        and stress-free as possible. From helping you to find the perfect
-        property to arranging viewings and negotiating the best price, we're
-        here to support you every step of the way. So if you're looking for
-        properties for sale in Zanzibar, don't hesitate to get in touch with
-        Zanzihome. We're here to help you find your dream property in this
-        stunning island paradise.
+        Discover the best <strong>Zanzibar properties for sale</strong> and <strong>rental properties in Zanzibar</strong> with ZanziHome. Whether you’re looking to <strong>buy a villa in Zanzibar</strong>, <strong>rent an apartment in Paje</strong>, or invest in commercial property, we provide a curated selection of high-quality listings across the island.  
+
+        Our extensive portfolio includes <strong>beachfront villas</strong>, <strong>luxury apartments</strong>, <strong>townhouses</strong>, <strong>plots of land</strong>, and <strong>investment properties</strong> in prime locations such as <strong>Stone Town</strong>, <strong>Jambiani</strong>, <strong>Paje</strong>, and <strong>Nungwi</strong>. Each property listing comes with detailed descriptions, pricing, images, and location information to make your search fast and easy.  
+
+        ZanziHome connects you with verified sellers and real estate agents, ensuring a secure and transparent property transaction. Our team offers personalized guidance for buying, renting, or investing in Zanzibar real estate, including legal advice, property inspections, and negotiation support.  
+
+        Whether you are a foreign investor, local resident, or holiday home seeker, ZanziHome makes it simple to find your ideal property. Start your journey today to <strong>buy your dream home in Zanzibar</strong>, <strong>rent a luxury villa</strong>, or <strong>invest in the booming Zanzibar real estate market</strong>.  
+
+        Don’t miss the opportunity to own or rent in one of the most beautiful and sought-after locations in East Africa.
       </p>
 
-      <div style={{ margin: "2rem 0" }}>
-        <h2 className="best-airmax-text">Very good</h2>
-        <p>
-          Based on <strong> 1540 reviews</strong>
+      <div style={{ margin: "2rem 0",padding:'1rem' }}>
+        <h2 className="best-airmax-text">Trusted by Our Clients</h2>
+        <p style={{lineHeight:'26px',marginTop:'0.5rem'}}>
+          Join over <strong>1,540 satisfied clients</strong> who have found their ideal property in Zanzibar with ZanziHome. Our platform is your ultimate guide to <strong>Zanzibar real estate</strong>, offering both local and international buyers a reliable, user-friendly marketplace.
         </p>
         <img
           src="https://www.snijpunt.com/files/thumbnails/trustpilot-logo-snijpunt.1600x680x1.png"
-          alt="trustpilot"
+          alt="Trustpilot reviews ZanziHome – properties for sale and rent in Zanzibar"
           style={{ height: "120px", width: "300px", objectFit: "cover" }}
         />
+      </div>
+
+      <div style={{ marginTop: "2rem" }}>
+        <h3>Why Choose ZanziHome for Zanzibar Real Estate?</h3>
+        <ul style={{ maxWidth: "800px", margin: "0.5rem auto", textAlign: "center", lineHeight: "24px",padding:'1rem' }}>
+          <li>Extensive listings of <strong>villas, apartments, townhouses, and plots</strong>.</li>
+          <li>Properties in prime Zanzibar locations like <strong>Stone Town, Paje, Jambiani, Nungwi</strong>.</li>
+          <li>Verified and trusted real estate agents and sellers.</li>
+          <li>Guidance for foreigners to buy property in Zanzibar legally and safely.</li>
+          <li>Comprehensive support: viewings, negotiations, legal checks, and financing tips.</li>
+          <li>User-friendly search filters for price, area, property type, and size.</li>
+          <li>Investment opportunities in the growing Zanzibar property market.</li>
+        </ul>
+      </div>
+
+      <div style={{ marginTop: "1rem",padding:'1rem' }}>
+        <p style={{lineHeight:'26px'}}>
+          Explore our listings and find your perfect Zanzibar property today. From <strong>beachfront homes</strong> to <strong>investment plots</strong>, ZanziHome is the most trusted platform for real estate in Zanzibar.
+        </p>
       </div>
     </div>
   );
