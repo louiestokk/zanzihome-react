@@ -28,7 +28,7 @@ const SingeldefaultMapMapPage = ({ Area, userCoords }) => {
               center={respData && respData}
               zoom={8}
               scrollWheelZoom={false}
-              style={{ width: "100%", height: "340px" }}
+              style={{ width: "100%", height: "240px" }}
             >
               <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

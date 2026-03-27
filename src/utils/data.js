@@ -10,12 +10,6 @@ export const navlinks = [
     url: "/checkout"
   },
   {
-    id: 4,
-    text: "Rent out your vehicle",
-    url: "/rental-owner"
-  },
-
-  {
     id: 9,
     text: "About Us",
     url: "/about"

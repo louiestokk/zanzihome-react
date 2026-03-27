@@ -698,6 +698,8 @@ button {
   position: relative;
   margin-top: 1rem;
   height: auto;
+  max-width: 1000px;
+  margin:  auto;
 }
 .objects-link {
   color: var(--logoColor);
@@ -987,10 +989,6 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-
-  .singel-object-container {
-    margin-left: 1rem;
   }
 }
 

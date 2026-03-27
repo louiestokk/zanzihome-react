@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import AdsForm from "../components/AdsForm";
+import Faq from "../components/Faq";
 import { Paper, Stepper, Step, StepLabel } from "@material-ui/core";
 import { useFormContext } from "../form_ads_context";
 import PageHero from "../components/PageHero";
+import { faqdata } from "../utils/faq";
 const steps = ["Category", "Ad", "Confirmation"];
 
 const Checkcout = ({ logedinUser }) => {
@@ -17,11 +19,11 @@ const Checkcout = ({ logedinUser }) => {
         description:
           "For example, houses, apartments, plots, bungalows or businesses"
       },
-      {
-        title: "Vehicle",
-        icon: "https://www.svgrepo.com/show/397650/oncoming-automobile.svg",
-        description: "For example, cars, motorbikes, scooters or bicycles"
-      }
+      // {
+      //   title: "Vehicle",
+      //   icon: "https://www.svgrepo.com/show/397650/oncoming-automobile.svg",
+      //   description: "For example, cars, motorbikes, scooters or bicycles"
+      // }
       // {
       //   title: "Tours",
       //   icon: "https://www.svgrepo.com/show/368341/speedboat.svg",
@@ -121,6 +123,9 @@ const Checkcout = ({ logedinUser }) => {
           />
         </main>
       )}
+      <div style={{marginTop:'50px'}}>
+    <Faq data={faqdata} />
+      </div>
     </Wrapper>
   );
 };

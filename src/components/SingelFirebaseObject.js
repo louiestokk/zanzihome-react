@@ -283,10 +283,10 @@ const SingelFirebaseObject = () => {
         })}
 
         {/* Related Objects & FAQ */}
-        <div style={{ margin: "1rem 0" }}>
+        {/* <div style={{ margin: "1rem 0" }}>
           <RelatedObjects adId={adId} />
           <Faq data={faqdata} />
-        </div>
+        </div> */}
 
         {/* Page Content */}
         <div style={{ marginTop: "1.5rem", padding: "1rem" }}>

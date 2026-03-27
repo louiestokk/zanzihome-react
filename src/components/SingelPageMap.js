@@ -11,7 +11,7 @@ const SingelPageMap = ({ Area, userCoords, Title }) => {
           center={userCoords}
           zoom={12}
           scrollWheelZoom={false}
-          style={{ width: "100%", height: "340px" }}
+          style={{ width: "100%", height: "240px" }}
         >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

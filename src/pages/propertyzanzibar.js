@@ -14,7 +14,7 @@ const structuredData = {
     {
       "@type": "WebSite",
       "name": "ZanziHome",
-      "url": "https://www.zanzihome.com",
+      "url": "https://www.zanzihome.com/",
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://www.zanzihome.com/properties?search={search_term_string}",
@@ -24,7 +24,7 @@ const structuredData = {
     {
       "@type": "Organization",
       "name": "ZanziHome",
-      "url": "https://www.zanzihome.com",
+      "url": "https://www.zanzihome.com/",
       "logo": "https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "sameAs": [
         "https://www.facebook.com/zanzihome",
@@ -41,7 +41,7 @@ const structuredData = {
     {
       "@type": "RealEstateAgent",
       "name": "ZanziHome Real Estate Zanzibar",
-      "url": "https://www.zanzihome.com",
+      "url": "https://www.zanzihome.com/",
       "logo": "https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "description": "Find houses, apartments, land and real estate for sale or rent in Zanzibar.",
       "areaServed": {
@@ -123,7 +123,7 @@ const structuredData = {
         />
 
         {/* Open Graph */}
-        <meta property="og:url" content="https://www.zanzihome.com" />
+        <meta property="og:url" content="https://www.zanzihome.com/" />
         <meta
           property="og:title"
           content="Real Estate Zanzibar | Houses for Sale & Rent"
