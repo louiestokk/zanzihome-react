@@ -1,87 +1,152 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-const useStyles = makeStyles({
-  root: {
-    display: "flex",
-    flexDirection: "column",
-    background: "white",
-    margin: "2rem 0"
-  },
-  top: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    marginBottom: "0.7rem"
-  },
-  line: {
-    width: "70px",
-    height: "2px",
-    background: "black"
-  },
-  tourImg: {
-    height: "125px",
-    width: "165px",
-    objectFit: "cover",
-    borderRadius: "5px",
-    "@media (min-width: 780px)": {
-      width: "300px",
-      height: "225px"
-    }
-  },
-  tours: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center"
-  },
-  imgContainer: {
-    margin: "0.3rem 0.3rem",
-    position: "relative",
-    cursor: "pointer",
-    boxShadow:
-      "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)"
-  },
-  imgText: {
-    position: "absolute",
-    bottom: "10%",
-    left: "3%",
-    color: "white"
-  }
-});
+
 const Popular = ({ title, images }) => {
-  const classes = useStyles();
   const history = useHistory();
 
   return (
-    <section className={classes.root}>
-      <div className={classes.top}>
-        <h2 style={{marginBottom:'0.3rem'}}>{title}</h2>
+    <section
+      style={{
+        width: "100%",
+        padding: "20px 10px",
+        background: "#fff"
+      }}
+    >
+      {/* 🔥 TITLE */}
+      <div style={{ textAlign: "center", marginBottom: "20px" }}>
+        <h2 style={{ fontSize: "26px", fontWeight: "700" }}>
+          {title}
+        </h2>
+        <p style={{ fontSize: "14px", color: "#666",marginTop:'0.2rem' }}>
+          Featured listings get more <strong>views</strong> and <strong>buyers</strong>
+        </p>
       </div>
-      <div className={classes.tours}>
+
+      {/* 🔥 GRID */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+          gap: "16px",
+          maxWidth: "1200px",
+          margin: "0 auto"
+        }}
+      >
         {images?.map((tour, i) => (
           <div
             key={i}
-            className={classes.imgContainer}
             onClick={() => {
               if (tour.type === "Properties") {
                 history.push(`/propertys/property/${tour.adId}`);
-              } else if(tour.type === "Tours"){
-               history.push('/tours-zanzibar')
+              } else if (tour.type === "Tours") {
+                history.push("/tours-zanzibar");
               } else {
                 history.push(`/cars/${tour.id}`);
               }
-            
+            }}
+            style={{
+              cursor: "pointer",
+              borderRadius: "12px",
+              overflow: "hidden",
+              background: "#fff",
+              boxShadow: "0 8px 20px rgba(0,0,0,0.12)",
+              transition: "0.3s"
             }}
           >
-            <img
-              loading="lazy"
-              src={tour.url}
-              alt={`${tour.imgText} Zanzibar`}
-              title={`${tour.imgText} Zanzibar`}
-              className={classes.tourImg}
-            />
-            <h4 className={classes.imgText}>{tour.imgText}</h4>
+            {/* 🔥 IMAGE CONTAINER */}
+            <div style={{ position: "relative", height: "200px" }}>
+              <img
+                loading="lazy"
+                src={tour.url}
+                alt={`${tour.imgText} Zanzibar`}
+                title={`${tour.imgText} Zanzibar`}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover"
+                }}
+              />
+
+              {/* 🔥 BADGES */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: "10px",
+                  left: "10px",
+                  display: "flex",
+                  gap: "6px"
+                }}
+              >
+                <span
+                  style={{
+                    background: "#FFD700",
+                    color: "#000",
+                    padding: "4px 8px",
+                    fontSize: "11px",
+                    borderRadius: "6px",
+                    fontWeight: "700"
+                  }}
+                >
+                  ⭐ Featured
+                </span>
+
+                {i % 2 === 0 && (
+                  <span
+                    style={{
+                      background: "#ff4d4f",
+                      color: "#fff",
+                      padding: "4px 8px",
+                      fontSize: "11px",
+                      borderRadius: "6px"
+                    }}
+                  >
+                    🔥 Hot
+                  </span>
+                )}
+              </div>
+
+              {/* 🔥 GRADIENT */}
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: "70%",
+                  background:
+                    "linear-gradient(to top, rgba(0,0,0,0.75), transparent)"
+                }}
+              />
+            </div>
+
+            {/* 💬 CONTENT (HEMNET STYLE) */}
+            <div style={{ padding: "12px" }}>
+              <h3
+                style={{
+                  fontSize: "15px",
+                  fontWeight: "600",
+                  marginBottom: "6px",
+                  lineHeight: "20px"
+                }}
+              >
+                {tour.imgText}
+              </h3>
+
+              {/* 🔥 FAKE PRICE / INFO (VIKTIGT FÖR KÄNSLA) */}
+              <p
+                style={{
+                  fontSize: "14px",
+                  fontWeight: "700",
+                  marginBottom: "4px"
+                }}
+              >
+                $120,000
+              </p>
+
+              <p style={{ fontSize: "12px", color: "#777" }}>
+                Zanzibar • {tour.type}
+              </p>
+            </div>
           </div>
         ))}
       </div>

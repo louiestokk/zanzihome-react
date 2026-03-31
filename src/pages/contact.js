@@ -33,12 +33,19 @@ const contact = () => {
           <div className="contact-adress">
             <h4>Visiting address</h4>
             <p>ZanziHome.com / Stokk Tech Limited</p>
-            <p>Paje njia ya mshez, Zanzibar</p>
+            <p>Paje, Zanzibar</p>
           </div>
           <div className="contact-adress" style={{ marginTop: "1rem" }}>
             <h4>Call us</h4>
 
-            <a href="tel:+255773749776" className="ring">
+            <a href="tel:+255655912498" className="ring">
+              Local +255 655 912 498
+            </a>
+          </div>
+          <div className="contact-adress" style={{ marginTop: "1rem" }}>
+            <h4>Whatsapp</h4>
+
+            <a href="tel:+46704276963" className="ring">
              Whatsapp +46 704 27 69 63
             </a>
           </div>

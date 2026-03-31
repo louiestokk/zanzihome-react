@@ -5,406 +5,346 @@ import { db } from "../firebase";
 import { BiMap } from "react-icons/bi";
 import { GiHouse } from "react-icons/gi";
 import Objects from "../components/Objects";
+import Popular from "../components/Popular";
 import MapPage from "./MapPage";
 import Faq from "../components/Faq";
 import Abovefooter from "../components/Abovefooter";
 import AdBanner from "../components/AdBanner";
-import {
-  setFirestoreData,
-  getFirestoreData
-} from "../redux-toolkit/firebaseDataSlice";
+import { setFirestoreData, getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { villages } from "../utils/data";
 import { faqdata } from "../utils/faq";
-import {pageData} from '../pages/guides/data'
-const types = ["House", "Apartment", "Hand", "Business"];
+import { pageData } from '../pages/guides/data';
+
+const types = ["House", "Apartment", "Land", "Business"];
+
 const AllPropertiesPage = () => {
-  const [rent, setrent] = useState(false);
-  const [sale, setsale] = useState(false);
-  const [area, setArea] = useState(false);
-  const [type, setType] = useState(false);
+  const [rent, setRent] = useState(false);
+  const [sale, setSale] = useState(false);
+  const [area, setArea] = useState("Whole Zanzibar");
+  const [type, setType] = useState("All Types");
   const [memo, setMemo] = useState([]);
   const firestoreData = useSelector(getFirestoreData);
-  const disptach = useDispatch();
+  const dispatch = useDispatch();
 
   const articleStructuredData = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    title: "Properties Sale & Rent - Real Estate Zanzibar",
-    description:
-      "Discover Your Dream Property in Zanzibar - Properties for Sale and Rent in Zanzibar - Real Estate Zanzibar",
-    image:
-      "https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    datePublished: new Date("2023-05-01T09:25:01.340Z").toISOString(),
-    author: {
-      "@type": "Person",
-      name: "Louie Stokk"
-    }
-  };
-
-  const handleRentclick = () => {
-    disptach(setFirestoreData(memo?.filter((el) => el.Rent === "Rent")));
-    setrent(true);
-    setsale(false);
-  };
-
-  const handleSaleClick = () => {
-    disptach(setFirestoreData(memo?.filter((el) => el.Rent !== "Rent")));
-    setsale(true);
-    setrent(false);
-  };
-
-  const handleAreaChange = (e) => {
-    setArea(e.target.value);
-    const newItems = firestoreData?.filter(
-      (el) =>
-        el.Area === e.target.value || el.Area === e.target.value.toUpperCase()
-    );
-    disptach(setFirestoreData(newItems));
-  };
-
-  const handleTypeChange = (e) => {
-    setType(e.target.value);
-    const newItems = firestoreData?.filter(
-      (el) => el.category === e.target.value
-    );
-    disptach(setFirestoreData(newItems));
+    "@type": "RealEstateListing",
+    "name": "ZanziHome Properties - Sale & Rent in Zanzibar",
+    "url": "https://www.zanzihome.com/properties-zanzibar",
+    "description": "Browse and find houses, apartments, villas, land and commercial properties for sale or rent in Zanzibar. Get featured listings and boost your property visibility with ZanziHome.",
+    "image": "https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "author": {
+      "@type": "Organization",
+      "name": "ZanziHome"
+    },
+    "mainEntityOfPage": "https://www.zanzihome.com/properties-zanzibar"
   };
 
   const fetchFirestoreData = async () => {
-    await getDocs(collection(db, "newAd")).then((querySnapshot) => {
-      const newData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id
-      }));
-      setMemo(newData);
-    });
+    const querySnapshot = await getDocs(collection(db, "newAd"));
+    const newData = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+    setMemo(newData);
+    dispatch(setFirestoreData(newData));
   };
 
   useEffect(() => {
     fetchFirestoreData();
-  }, [rent, sale, type, area]);
+  }, []);
+
+  const handleRentClick = () => {
+    dispatch(setFirestoreData(memo.filter(el => el.Rent === "Rent")));
+    setRent(true);
+    setSale(false);
+  };
+
+  const handleSaleClick = () => {
+    dispatch(setFirestoreData(memo.filter(el => el.Rent !== "Rent")));
+    setSale(true);
+    setRent(false);
+  };
+
+  const handleAreaChange = e => {
+    setArea(e.target.value);
+    const newItems = firestoreData.filter(el =>
+      el.Area === e.target.value || el.Area === e.target.value.toUpperCase()
+    );
+    dispatch(setFirestoreData(newItems));
+  };
+
+  const handleTypeChange = e => {
+    setType(e.target.value);
+    const newItems = firestoreData.filter(el => el.category === e.target.value);
+    dispatch(setFirestoreData(newItems));
+  };
 
   return (
-    <section>
+    <section style={{ fontFamily: "Poppins, sans-serif" }}>
+      {/* SCHEMA */}
       <script type="application/ld+json">
         {JSON.stringify(articleStructuredData)}
       </script>
+
+      {/* SEO */}
       <Helmet>
         <meta charSet="utf-8" />
-        <title>
-          {"Properties Sale & Rent - Real Estate Zanzibar"}
-        </title>
-        <meta
-          name="description"
-          content={
-            "Discover Your Dream Property in Zanzibar - Properties for Sale and Rent in Zanzibar - Real Estate Zanzibar"
-          }
-        />
-        <meta
-          property="og:url"
-          content="https://www.zanzihome.com/properties-zanzibar"
-        />
-        <meta
-          property="og:description"
-          content="Discover Your Dream Property in Zanzibar - Properties for Sale and Rent in Zanzibar - Real Estate Zanzibar"
-        />
-        <meta
-          property="og:image"
-          content="https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-        />
-        <link
-          rel="canonical"
-          href="https://www.zanzihome.com/properties-zanzibar"
-        />
+        <title>Properties for Sale & Rent in Zanzibar | ZanziHome</title>
+        <meta name="description" content="Discover houses, villas, apartments, land and commercial properties for sale or rent in Zanzibar. Get featured listings and boost your property visibility." />
+        <meta property="og:url" content="https://www.zanzihome.com/properties-zanzibar" />
+        <meta property="og:title" content="Properties for Sale & Rent in Zanzibar | ZanziHome" />
+        <meta property="og:description" content="Browse Zanzibar real estate including beachfront villas, apartments, land and commercial properties. Featured listings available." />
+        <meta property="og:image" content="https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg" />
+        <link rel="canonical" href="https://www.zanzihome.com/properties-zanzibar" />
       </Helmet>
-      <div style={{ height: "250px", overflow: "hidden" }}>
+ <h1 style={{ fontSize: "1.3rem", color: "#013a17",marginTop:'20px',marginLeft:'1rem',marginBottom:'0.2rem' }}>
+  {type !== "All Types" || area !== "Whole Zanzibar" || sale || rent
+    ? `${type !== "All Types" ? type : "Properties"} ${
+        sale ? "for Sale" : rent ? "for Rent" : "for Sale & Rent"
+      } in ${area !== "Whole Zanzibar" ? area : "Zanzibar"}`
+    : "Properties for Sale & Rent in Zanzibar"}
+</h1>
+<p style={{marginLeft:'1rem',fontSize:'0.9rem',marginRight:'1rem'}}>Explore real estate in Zanzibar including houses, villas, apartments, land and commercial properties for sale and rent.</p>
+      {/* MAP */}
+      <div style={{ height: "300px", overflow: "hidden" }}>
         <MapPage zoom={7} />
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          background: "#013a17"
-        }}
-      >
+
+      {/* SALE / RENT FILTER */}
+      <div style={{ display: "flex", justifyContent: "center", background: "#013a17" }}>
         <button
           style={{
             width: "50%",
             background: sale ? "#22c55e" : "#0b8b3a",
-            height: "2.2rem",
+            height: "2.5rem",
             marginTop: "1rem",
             color: "white",
-            letterSpacing: "1px"
+            letterSpacing: "1px",
+            fontWeight: "600"
           }}
           onClick={handleSaleClick}
         >
-          <p>Sale</p>
+          Sale
         </button>
         <button
           style={{
             width: "50%",
             background: rent ? "#22c55e" : "#0b8b3a",
-            height: "2.2rem",
+            height: "2.5rem",
             marginTop: "1rem",
             color: "white",
-
-            letterSpacing: "1px"
+            letterSpacing: "1px",
+            fontWeight: "600"
           }}
-          onClick={handleRentclick}
+          onClick={handleRentClick}
         >
           Rent
         </button>
       </div>
-      <div style={{ height: "100%", margin: "0 0" }}>
-        <section
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-evenly",
-            height: "4.5rem",
-            color: "white",
-            background: "#013a17"
-          }}
-        >
-          <section style={{ display: "flex", alignItems: "center" }}>
-            <div>
-              <BiMap style={{ fontSize: "1.1rem" }} />
-            </div>
-            <select
-              name="Area"
-              style={{
-                background: "transparent",
-                border: "none",
-                borderRadius: "0",
-                height: "100%",
-                color: "white",
-                margin: "0 0.5rem",
-                fontSize: "0.9rem",
-                borderBottom: "0.5px solid white",
-                width: "130px"
-              }}
-              onChange={handleAreaChange}
-            >
-              <option>Whole Zanzibar</option>
-              {villages?.map((el, i) => (
-                <option key={i}>{el}</option>
-              ))}
-            </select>
-          </section>
-          <section style={{ display: "flex", alignItems: "center" }}>
-            <div>
-              <GiHouse />
-            </div>
-            <select
-              name="Area"
-              style={{
-                background: "transparent",
-                border: "none",
-                color: "white",
-                height: "100%",
-                margin: "0 0.5rem",
-                fontSize: "0.9rem",
-                width: "130px",
-                fontSize: "0.9rem",
-                borderBottom: "0.5px solid white",
-                borderRadius: "0"
-              }}
-              onChange={handleTypeChange}
-            >
-              <option>All Types</option>
-              {types?.map((el, i) => (
-                <option key={i}>{el}</option>
-              ))}
-            </select>
-          </section>
-        </section>
+
+      {/* AREA + TYPE FILTER */}
+      <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center", background: "#013a17", height: "4.5rem", color: "white" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <BiMap style={{ fontSize: "1.2rem", marginRight: "0.3rem" }} />
+          <select value={area} onChange={handleAreaChange} style={{ background: "transparent", border: "none", color: "white", height: "100%", fontSize: "0.9rem", borderBottom: "0.5px solid white", marginRight: "1rem", width: "140px" }}>
+            <option>Whole Zanzibar</option>
+            {villages.map((el, i) => <option key={i}>{el}</option>)}
+          </select>
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <GiHouse style={{ fontSize: "1.2rem", marginRight: "0.3rem" }} />
+          <select value={type} onChange={handleTypeChange} style={{ background: "transparent", border: "none", color: "white", height: "100%", fontSize: "0.9rem", borderBottom: "0.5px solid white", width: "140px" }}>
+            <option>All Types</option>
+            {types.map((el, i) => <option key={i}>{el}</option>)}
+          </select>
+        </div>
       </div>
-      {(sale || rent) && type && area ? (
-        <h1>{`${type === "Hand" ? "Land" : type} for ${
-          sale ? "Sale" : "Rent"
-        } in ${area}, Zanzibar`}</h1>
-      ) : (
-        <h1
+
+      {/* DYNAMIC H1 */}
+ 
+<div style={{marginTop:'50px'}}>
+     <Popular
+        title={"Featured Properties in Zanzibar"}
+        images={[
+          {
+            url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2F44E71F23-2098-4D81-B2E4-116345638B9E.jpeg?alt=media&token=7714cb00-23b7-4f23-bdb1-98bcef7ecf53",
+            imgText: "Beachfront plot for sale in Zanzibar",
+            adId: Number(624688142),
+            type: "Plot"
+          },
+          {
+            url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2Fmichamvi.jpg?alt=media&token=5d8e4bb0-d3e7-4253-97c0-0ee2133bf4b6",
+            imgText: "Plot for sale in Michamvi Zanzibar",
+            adId: Number(801410),
+            type: "Plot"
+          },
+          {
+            url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2FFE741E1B-C0CF-46D2-B772-162CF9A28BBD.jpeg?alt=media&token=6144208c-93ee-46ab-9449-658234545b22",
+            imgText: "Hotel property for rent in Zanzibar",
+            adId: Number(382045),
+            type: "Business"
+          },
+          {
+            url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2Fyhouse2.jpg?alt=media&token=4b06691f-8afd-418f-bce7-f972cc5143a5",
+            imgText: "Villa for rent in Zanzibar",
+            adId: Number(338429),
+            type: "Rent"
+          }
+        ]}
+      />
+</div>
+     <h2 style={{ fontSize: "1.3rem", margin: "1rem 1rem", color: "#013a17" }}>
+  {type !== "All Types" || area !== "Whole Zanzibar" || sale || rent
+    ? `${type !== "All Types" ? type : "Properties"} ${
+        sale ? "for Sale" : rent ? "for Rent" : "for Sale & Rent"
+      } in ${area !== "Whole Zanzibar" ? area : "Zanzibar"}`
+    : "Properties for Sale & Rent in Zanzibar"}
+</h2>
+      <Objects />
+
+      {/* BOOST CTA MID-LIST */}
+      <div style={{ background: "#ffeeba", padding: "1.5rem", textAlign: "center", margin: "2rem 0", borderRadius: "8px" }}>
+        <h2 style={{ marginBottom: "0.5rem" }}>Sell or Rent Faster!</h2>
+        <p style={{ marginBottom: "1rem" }}>Boost your property listing and get maximum visibility on ZanziHome.</p>
+        <button onClick={() => window.location.href = "/contact"} style={{ padding: "0.8rem 1.5rem", background: "#013a17", color: "white", border: "none", borderRadius: "5px", fontWeight: "600", cursor: "pointer" }}>
+          Boost Your Listing
+        </button>
+      </div>
+
+      {/* AD BANNER */}
+
+      {/* FAQ SECTION */}
+      <Faq data={faqdata} />
+
+      {/* SEO CONTENT */}
+      <div
+  style={{
+    padding: "2rem 1rem",
+    maxWidth: "1100px",
+    margin: "0 auto",
+    fontFamily: "Poppins, sans-serif"
+  }}
+>
+  <h2
+    style={{
+      fontSize: "1.8rem",
+      fontWeight: "700",
+      marginBottom: "0.5rem",
+      color: "#013a17"
+    }}
+  >
+    Zanzibar Real Estate Listings
+  </h2>
+
+  <p
+    style={{
+      fontSize: "1rem",
+      color: "#555",
+      lineHeight: "1.8",
+      maxWidth: "750px"
+    }}
+  >
+    Explore houses, villas, apartments, land and commercial properties across Zanzibar. 
+    Find your dream home or investment property quickly with ZanziHome.
+  </p>
+
+  {/* GRID */}
+    <h3 style={{marginTop:'20px'}}>Why Choose ZanziHome?</h3>
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+      gap: "16px",
+      marginTop: "2rem"
+    }}
+  >
+    {[
+      "Verified properties with real photos",
+      "Direct contact with owners & agents",
+      "Boosted listings = faster sales",
+      "Full coverage of Zanzibar hotspots"
+    ].map((text, i) => (
+      <div
+        key={i}
+        style={{
+          background: "white",
+          padding: "1.2rem",
+          borderRadius: "12px",
+          boxShadow: "0 10px 25px rgba(0,0,0,0.06)",
+          display: "flex",
+          alignItems: "flex-start",
+          gap: "10px"
+        }}
+      >
+        {/* CHECK ICON */}
+        <div
           style={{
-            fontSize: "1rem",
-            marginTop: "1rem",
-            marginLeft: "0.5rem",
-            color: "#013a17",
-            letterSpacing: "1px"
+            minWidth: "26px",
+            height: "26px",
+            borderRadius: "50%",
+            background: "#22c55e",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "white",
+            fontWeight: "bold",
+            fontSize: "14px"
           }}
         >
-          Properties for Sale & Rent in Zanzibar
-        </h1>
-      )}
-      <Objects />
-      <div className="adBanner-holder">
+          ✓
+        </div>
+
+        <p
+          style={{
+            margin: 0,
+            fontSize: "0.95rem",
+            color: "#333",
+            lineHeight: "1.6"
+          }}
+        >
+          {text}
+        </p>
+      </div>
+    ))}
+  </div>
+
+  {/* CTA TEXT */}
+  <div
+    style={{
+      marginTop: "2.5rem",
+      padding: "1.5rem",
+      background: "#f8faf8",
+      borderRadius: "12px",
+      textAlign: "center",
+      boxShadow: "0 5px 15px rgba(0,0,0,0.05)"
+    }}
+  >
+    <p
+      style={{
+        fontSize: "1rem",
+        color: "#444",
+        marginBottom: "0.5rem"
+      }}
+    >
+      Start your property search today
+    </p>
+
+    <h3
+      style={{
+        fontSize: "1.4rem",
+        fontWeight: "700",
+        color: "#013a17"
+      }}
+    >
+      Discover why ZanziHome is the #1 real estate platform in Zanzibar
+    </h3>
+  </div>
+</div>
+
+      {/* ABOVE FOOTER */}
+        <div style={{ margin: "1rem 0" }}>
         <AdBanner />
       </div>
-      <Faq data={faqdata} />
-      <div style={{height:'35px'}}></div>
-         <h1
-              style={{
-                fontSize: "1.5rem",
-                marginBottom: "0.5rem",
-                marginLeft: "0.5rem"
-              }}
-            >
-              {pageData.pageTitel}
-            </h1>
-            <div style={{ position: "relative" }}>
-              <img
-                src="https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                alt="buy property in Zanzibar"
-                loading="lazy"
-                style={{ width: "100%", height: "200px", objectFit: "cover" }}
-              />
-              <article style={{ position: "absolute", top: "20%", left: "1.5%" }}>
-                <h4
-                  style={{
-                    background: "white",
-                    padding: "0.5rem",
-                    borderRadius: "5px",
-                    boxShadow: "rgba(17, 12, 46, 0.15) 0px 48px 100px 0px"
-                  }}
-                >
-                  {pageData.whitebannerText}
-                </h4>
-                <button
-                  onClick={() => (window.location.href = "/")}
-                  style={{
-                    background: "black",
-                    color: "white",
-                    width: "10rem",
-                    height: "2.2rem",
-                    fontWeight: "bold"
-                  }}
-                >
-                  {pageData.btntext}
-                </button>
-              </article>
-            </div>
-            <p
-              style={{
-                fontSize: "0.85rem",
-                maxWidth: "1000px",
-                margin: "0.5rem 0.5rem",
-                lineHeight: "23px"
-              }}
-            >
-              {pageData.underImgText}
-            </p>
-            <div
-              style={{
-                margin: "1rem 0.5rem"
-              }}
-            >
-              <h3>{pageData.titleOne}</h3>
-              <p
-                style={{
-                  fontSize: "0.85rem",
-                  maxWidth: "1000px",
-                  margin: "0.5rem 0rem",
-                  lineHeight: "23px"
-                }}
-              >
-                {pageData.textOne}
-              </p>
-            </div>
-            <div
-              style={{
-                margin: "1rem 0.5rem"
-              }}
-            >
-              <h3>{pageData.titleTwo}</h3>
-              <p
-                style={{
-                  fontSize: "0.85rem",
-                  maxWidth: "1000px",
-                  margin: "0.5rem 0rem",
-                  lineHeight: "23px"
-                }}
-              >
-                {pageData.textTwo}
-              </p>
-              <article style={{ maxWidth: "1000px" }}>
-                <h3 style={{ marginTop: "1rem" }}>
-                  Step-by-step guide explaining what foreigners need to do to purchase
-                  property in Zanzibar.
-                </h3>
-                <ul>
-                  <li>
-                    <strong>1. </strong>
-                    Identify a reputable local real estate agent or lawyer who is
-                    familiar with the buying process and can guide you through the
-                    necessary steps.
-                  </li>
-                  <li>
-                    <strong>2. </strong> Research the local real estate market and
-                    identify suitable properties that meet your needs and budget.
-                  </li>
-                  <li>
-                    <strong>3. </strong> Contact the seller and negotiate the purchase
-                    price and terms of the sale.
-                  </li>
-                  <li>
-                    <strong>4. </strong> Obtain a certificate of 'no objection' from
-                    the Zanzibar Investment Promotion Authority (ZIPA) before
-                    purchasing any property. This certificate confirms that the
-                    property does not pose any security or other concerns, and is
-                    typically obtained through your lawyer or agent.
-                  </li>
-                  <li>
-                    <strong>5. </strong> Sign a Sales Agreement with the seller and
-                    pay a deposit, typically 10% of the purchase price.
-                  </li>
-                  <li>
-                    <strong>6. </strong> Hire a surveyor to conduct a property survey
-                    and verify the boundaries and other details of the property.
-                  </li>
-                  <li>
-                    <strong>7. </strong> Obtain an official valuation report of the
-                    property from a licensed valuer, which is required by the Zanzibar
-                    Revenue Board.
-                  </li>
-                  <li>
-                    <strong>8. </strong> Apply for a Land Lease, which grants the
-                    right to use the land on which the property is located for a
-                    specified period of time. This lease is typically obtained through
-                    your lawyer or agent.
-                  </li>
-                  <li>
-                    <strong>9. </strong> Pay the 5% stamp duty fee on the purchase
-                    price of the property, which is payable to the Zanzibar Revenue
-                    Board and is typically collected by the seller on behalf of the
-                    buyer.
-                  </li>
-                  <li>
-                    <strong>10. </strong> Complete the purchase by paying the
-                    remaining balance to the seller and transferring ownership of the
-                    property to your name.
-                  </li>
-                </ul>
-                <p
-                  style={{
-                    fontSize: "0.85rem",
-                    maxWidth: "1000px",
-                    margin: "0.5rem 0.5rem",
-                    lineHeight: "23px"
-                  }}
-                >
-                  Overall, purchasing property in Zanzibar as a foreigner involves
-                  working with a local lawyer or real estate agent, obtaining a
-                  certificate of no objection, paying stamp duty fees, and complying
-                  with local regulations related to property ownership and use. With
-                  careful research and guidance, however, buying real estate in
-                  Zanzibar can be a rewarding investment opportunity.
-                </p>
-              </article>
-            </div>
-            <div style={{height:'30px'}}></div>
-      <Abovefooter />
+ <Abovefooter />
     </section>
   );
 };
