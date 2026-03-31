@@ -125,15 +125,7 @@ const Popular = ({ title, images }) => {
               </h3>
 
               {/* 🔥 FAKE PRICE / INFO (VIKTIGT FÖR KÄNSLA) */}
-              <p
-                style={{
-                  fontSize: "14px",
-                  fontWeight: "700",
-                  marginBottom: "4px"
-                }}
-              >
-                $120,000
-              </p>
+             
 
               <p style={{ fontSize: "12px", color: "#777" }}>
                 Zanzibar • {tour.type}
