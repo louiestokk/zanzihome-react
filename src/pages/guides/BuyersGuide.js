@@ -129,7 +129,7 @@ topAreas.forEach((area) =>
  <div style={{ background: "#ffeeba", padding: "1.5rem", textAlign: "center", margin: "2rem 0", borderRadius: "8px" }}>
         <h2 style={{ marginBottom: "0.5rem" }}>Advertise your property 🚀</h2>
         <p style={{ marginBottom: "1rem" }}>Do you have a house, apartment, plot or business to sell or rent out? List it on ZanziHome and reach thousands of active buyers and renters searching for properties in Zanzibar every day.</p>
-        <button onClick={() => window.location.href = "/contact"} style={{ padding: "0.8rem 1.5rem", background: "#013a17", color: "white", border: "none", borderRadius: "5px", fontWeight: "600", cursor: "pointer" }}>
+        <button onClick={() => window.location.href = "/checkout"} style={{ padding: "0.8rem 1.5rem", background: "#013a17", color: "white", border: "none", borderRadius: "5px", fontWeight: "600", cursor: "pointer" }}>
           Add your property
         </button>
       </div>
