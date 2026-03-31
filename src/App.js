@@ -5,6 +5,7 @@ import { setFirestoreData } from "./redux-toolkit/firebaseDataSlice";
 import { collection, getDocs } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { db } from "./firebase";
+const SeoPages = lazy(() => import("./pages/SeoPages"));
 const RentalOwner = lazy(() => import("./pages/RentalOwner"));
 const VehicleDetails = lazy(() => import("./pages/VehicleDetails"));
 const BookingVehiclePage = lazy(() => import("./pages/BookingVehiclePage"));
@@ -79,11 +80,11 @@ function App() {
           <Route path="/" exact>
             <Home />
           </Route>
+            <Route path="/buy/:type/:area" >
+            <SeoPages />
+            </Route>
           <Route path="/propertyzanzibar">
             <Propertyzanzibar />
-          </Route>
-           <Route path="/real-estate-zanzibar">
-            <Realestate />
           </Route>
           <Route path="/rental-owner">
             <RentalOwner />

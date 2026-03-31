@@ -103,7 +103,7 @@ const AllPropertiesPage = () => {
       } in ${area !== "Whole Zanzibar" ? area : "Zanzibar"}`
     : "Properties for Sale & Rent in Zanzibar"}
 </h1>
-<p style={{marginLeft:'1rem',fontSize:'0.9rem',marginRight:'1rem'}}>Explore real estate in Zanzibar including houses, villas, apartments, land and commercial properties for sale and rent.</p>
+<p style={{marginLeft:'1rem',fontSize:'0.9rem',marginRight:'1rem'}}>Explore real estate in Zanzibar including houses, villas, apartments, plot and commercial properties for sale and rent.</p>
       {/* MAP */}
       <div style={{ height: "300px", overflow: "hidden" }}>
         <MapPage zoom={7} />
