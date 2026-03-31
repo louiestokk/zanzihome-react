@@ -35,15 +35,7 @@ const Popular = ({ title, images }) => {
         {images?.map((tour, i) => (
           <div
             key={i}
-            onClick={() => {
-              if (tour.type === "Properties") {
-                history.push(`/propertys/property/${tour.adId}`);
-              } else if (tour.type === "Tours") {
-                history.push("/tours-zanzibar");
-              } else {
-                history.push(`/cars/${tour.id}`);
-              }
-            }}
+            onClick={() => {history.push(`/propertys/property/${tour.adId}`)}}
             style={{
               cursor: "pointer",
               borderRadius: "12px",

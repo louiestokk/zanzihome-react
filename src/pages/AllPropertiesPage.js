@@ -96,7 +96,7 @@ const AllPropertiesPage = () => {
         <meta property="og:image" content="https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg" />
         <link rel="canonical" href="https://www.zanzihome.com/properties-zanzibar" />
       </Helmet>
- <h1 style={{ fontSize: "1.3rem", color: "#013a17",marginTop:'20px',marginLeft:'1rem',marginBottom:'0.2rem' }}>
+ <h1 style={{ fontSize: "1.3rem", color: "#013a17",marginTop:'20px',marginLeft:'1rem',marginBottom:'0.2rem',marginRight:'1rem' }}>
   {type !== "All Types" || area !== "Whole Zanzibar" || sale || rent
     ? `${type !== "All Types" ? type : "Properties"} ${
         sale ? "for Sale" : rent ? "for Rent" : "for Sale & Rent"
