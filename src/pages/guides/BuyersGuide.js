@@ -75,7 +75,7 @@ topAreas.forEach((area) =>
       {/* SEO */}
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Buy property Zanzibar - ZanziHome | Real Estate Zanzibar</title>
+        <title>Buy property Zanzibar | Real Estate Zanzibar</title>
         <meta name="description" content={pageData.underImgText} />
         <link rel="canonical" href="https://www.zanzihome.com/buy-property-zanzibar/" />
 
