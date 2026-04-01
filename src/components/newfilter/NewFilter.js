@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   root: {
     width: "94%",
     maxWidth: "700px",
-    height: "230px",
+    height: "240px",
     background: "white",
     marginTop: "2rem",
     borderRadius: "5px",
@@ -99,8 +99,7 @@ const NewFilter = () => {
           Explore Zanzibar
         </h3>
         <p className="newfilter-p">
-          Find properties, accommodation, rent vehicles or book tours &
-          safaris in Zanzibar!
+        Discover the best real estate in Zanzibar! Browse houses, villas, and apartments for sale or rent in Zanzibar.
        
         </p>
 

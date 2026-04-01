@@ -1721,8 +1721,9 @@ input[type="textarea"] {
   font-family: "Source Sans Pro", sans-serif;
   color: rgb(121, 120, 120);
   /* max-width: 90%; */
-  max-width: 90%;
+  max-width: 500px;
   line-height: 23px;
+
 }
 
 .titletoprated{
