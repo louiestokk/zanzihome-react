@@ -165,6 +165,12 @@ const AllPropertiesPage = () => {
      <Popular
         title={"Featured Properties in Zanzibar"}
         images={[
+            {
+            url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2FIMG_3080.jpeg?alt=media&token=49589f26-6b0a-4736-98c6-396dc681dc9d",
+            imgText: "Central Apartment Paje",
+            adId: Number(498610417),
+            type: "Apartment"
+          },
           {
             url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2F44E71F23-2098-4D81-B2E4-116345638B9E.jpeg?alt=media&token=7714cb00-23b7-4f23-bdb1-98bcef7ecf53",
             imgText: "Beachfront plot for sale in Zanzibar",
@@ -176,12 +182,6 @@ const AllPropertiesPage = () => {
             imgText: "Plot for sale in Michamvi Zanzibar",
             adId: Number(801410),
             type: "Plot"
-          },
-          {
-            url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2FFE741E1B-C0CF-46D2-B772-162CF9A28BBD.jpeg?alt=media&token=6144208c-93ee-46ab-9449-658234545b22",
-            imgText: "Hotel property for rent in Zanzibar",
-            adId: Number(382045),
-            type: "Business"
           },
           {
             url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2Fyhouse2.jpg?alt=media&token=4b06691f-8afd-418f-bce7-f972cc5143a5",
