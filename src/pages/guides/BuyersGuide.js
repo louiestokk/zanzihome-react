@@ -8,57 +8,127 @@ const BuyersGuide = () => {
   const formattedDate = new Date("2023-04-04T09:25:01.340Z").toISOString();
 
   // Structured Data
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@graph": [
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
       {
-        "@type": "WebPage",
-        "name": "Buy Property Zanzibar | ZanziHome",
-        "url": "https://www.zanzihome.com/buy-property-zanzibar/",
-        "description": pageData.underImgText,
-        "breadcrumb": {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.zanzihome.com/" },
-            { "@type": "ListItem", "position": 2, "name": "Buy Property Zanzibar", "item": "https://www.zanzihome.com/buy-property-zanzibar/" }
-          ]
-        }
+        "@type": "Organization",
+        "name": "ZanziHome",
+        "url": "https://www.zanzihome.com",
+        "logo": "https://www.zanzihome.com/logo.png"
       },
-      {
-        "@type": "Article",
-        "headline": "Guide: Buy property in Zanzibar",
-        "description": pageData.underImgText,
-        "author": { "@type": "Person", "name": "Louie Stokk" },
-        "datePublished": formattedDate,
-        "image": "https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg"
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Can foreigners buy property in Zanzibar?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, foreigners can buy property in Zanzibar, usually through leasehold agreements approved by ZIPA."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What is the property buying process in Zanzibar?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "It involves working with a local agent, obtaining a certificate of no objection, paying stamp duty fees, and signing the sales agreement."
-            }
-          }
+    {
+      "@type": "WebPage",
+      "name": "Buy Property Zanzibar Guide | ZanziHome",
+      "url": "https://www.zanzihome.com/buy-property-zanzibar/",
+      "description": pageData.underImgText,
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.zanzihome.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Buy Property Zanzibar", "item": "https://www.zanzihome.com/buy-property-zanzibar/" }
         ]
       }
-    ]
-  };
+    },
+    {
+      "@type": "Article",
+      "headline": "Guide: Buy property in Zanzibar",
+      "description": pageData.underImgText,
+      "author": { "@type": "Person", "name": "Louie Stokk" },
+      "datePublished": formattedDate,
+      "image": "https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can foreigners buy property in Zanzibar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, foreigners can buy property in Zanzibar, typically through leasehold agreements approved by ZIPA."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the property buying process in Zanzibar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The process includes finding a property, working with an agent or lawyer, obtaining a certificate of no objection, paying fees, and signing a sales agreement."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does it cost to buy property in Zanzibar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Costs vary depending on property type and location, but buyers should also budget for stamp duty (around 5%), legal fees, and valuation costs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Zanzibar a good place to invest in property?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Zanzibar is a growing real estate market with increasing tourism, making it attractive for both rental income and long-term investment."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a lawyer to buy property in Zanzibar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, it is highly recommended to work with a local lawyer to ensure all legal requirements are followed and documents are verified."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What taxes do I pay when buying property?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Buyers typically pay stamp duty of around 5%, along with legal and registration fees."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I rent out my property in Zanzibar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, many property owners rent out their homes to tourists or long-term tenants, especially in popular areas like Paje, Nungwi, and Jambiani."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to complete a property purchase?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The process can take a few weeks to a few months depending on approvals, paperwork, and negotiations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a certificate of no objection?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is a required approval from the government that allows foreigners to legally acquire property in Zanzibar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which areas are best to buy property in Zanzibar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Popular areas include Paje, Nungwi, Kendwa, Jambiani, and Stone Town depending on whether you want beach property, investment potential, or city living."
+          }
+        }
+      ]
+    }
+  ]
+};
 
   // Create all internal links dynamically
 const topAreas = ["Paje", "Nungwi", "Jambiani", "Stone Town", "Kendwa"];
-const topTypes = ["house", "villa", "apartment", "land", "beachfront"];
+const topTypes = ["house", "villa", "apartment", "land", "beachfront",'plot'];
 
 const internalLinks = [];
 topAreas.forEach((area) =>
@@ -96,8 +166,12 @@ topAreas.forEach((area) =>
       </Helmet>
 
       {/* Header */}
-      <h1 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>{pageData.pageTitel}</h1>
-
+      <h1 style={{ fontSize: "1.5rem", marginBottom: "0.3rem" }}>{pageData.pageTitel}</h1>
+<p style={{ lineHeight: 1.4 ,fontSize:'0.9rem',marginBottom:'0.5rem'}}>
+        Buying property in Zanzibar is becoming increasingly popular among international investors.
+        With growing tourism, strong rental demand, and beautiful coastal locations,
+        Zanzibar offers excellent opportunities for both lifestyle buyers and investors.
+      </p>
       <div style={{ position: "relative", marginBottom: "1rem" }}>
         <img
           src="https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg"
@@ -165,6 +239,107 @@ topAreas.forEach((area) =>
           </a>
         ))}
       </div>
+      <div style={{
+  marginTop: "60px",
+  padding: "30px",
+  background: "#f8fafc",
+  borderRadius: "16px",
+  boxShadow: "0 10px 30px rgba(0,0,0,0.06)"
+}}>
+  <h2 style={{
+    fontSize: "28px",
+    marginBottom: "20px",
+    textAlign: "center"
+  }}>
+    Frequently Asked Questions
+  </h2>
+
+  {[
+    {
+      q: "Can foreigners buy property in Zanzibar?",
+      a: "Yes, foreigners can buy property in Zanzibar, typically through leasehold agreements approved by ZIPA."
+    },
+    {
+      q: "What is the property buying process in Zanzibar?",
+      a: "The process includes finding a property, working with an agent or lawyer, obtaining a certificate of no objection, paying fees, and signing a sales agreement."
+    },
+    {
+      q: "How much does it cost to buy property in Zanzibar?",
+      a: "Costs vary depending on property type and location, but buyers should also budget for stamp duty (around 5%), legal fees, and valuation costs."
+    },
+    {
+      q: "Is Zanzibar a good place to invest in property?",
+      a: "Yes, Zanzibar is a growing real estate market with increasing tourism, making it attractive for both rental income and long-term investment."
+    },
+    {
+      q: "Do I need a lawyer to buy property in Zanzibar?",
+      a: "Yes, it is highly recommended to work with a local lawyer to ensure all legal requirements are followed and documents are verified."
+    },
+    {
+      q: "What taxes do I pay when buying property?",
+      a: "Buyers typically pay stamp duty of around 5%, along with legal and registration fees."
+    },
+    {
+      q: "Can I rent out my property in Zanzibar?",
+      a: "Yes, many property owners rent out their homes to tourists or long-term tenants, especially in popular areas like Paje, Nungwi, and Jambiani."
+    },
+    {
+      q: "How long does it take to complete a property purchase?",
+      a: "The process can take a few weeks to a few months depending on approvals, paperwork, and negotiations."
+    },
+    {
+      q: "What is a certificate of no objection?",
+      a: "It is a required approval from the government that allows foreigners to legally acquire property in Zanzibar."
+    },
+    {
+      q: "Which areas are best to buy property in Zanzibar?",
+      a: "Popular areas include Paje, Nungwi, Kendwa, Jambiani, and Stone Town depending on whether you want beach property, investment potential, or city living."
+    }
+  ].map((item, i) => (
+    <details key={i} style={{
+      marginBottom: "12px",
+      borderRadius: "12px",
+      overflow: "hidden",
+      background: "#ffffff",
+      border: "1px solid #e5e7eb"
+    }}>
+      <summary style={{
+        padding: "16px 18px",
+        cursor: "pointer",
+        fontWeight: "600",
+        fontSize: "16px",
+        listStyle: "none"
+      }}>
+        {item.q}
+      </summary>
+      <div style={{
+        padding: "0 18px 16px 18px",
+        fontSize: "14px",
+        lineHeight: "1.6",
+        color: "#555"
+      }}>
+        {item.a}
+      </div>
+    </details>
+  ))}
+
+  <div style={{ textAlign: "center", marginTop: "20px" }}>
+    <a
+      href="/checkout"
+      style={{
+        display: "inline-block",
+        padding: "1rem 2rem",
+        backgroundColor: "#22c55e",
+        color: "#fff",
+        fontWeight: "700",
+        borderRadius: "9999px",
+        textDecoration: "none"
+      }}
+    >
+      List your property
+    </a>
+  </div>
+</div>
         <div style={{ margin: "2rem 0",padding:'1rem',textAlign:'center',maxWidth:'1000px' }}>
         <h2 className="best-airmax-text">Trusted by Our Clients</h2>
         <p style={{lineHeight:'26px',marginTop:'0.5rem'}}>
