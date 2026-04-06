@@ -301,41 +301,52 @@ const structuredData = {
       textAlign: "center"
     }}
   >
-    <div onClick={() => window.location.href = "/properties-zanzibar"} style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
+    <a title="real estate Paje" href="/properties-zanzibar" style={{textDecoration:'none',color:'inherit'}}>
+     <div style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
       <img src="https://i.ibb.co/Xxz2sDwV/real-estate-paje.webp" alt="real estate Paje" style={{ borderRadius: "8px", marginBottom: "10px", width: "100%", height: "120px", objectFit: "cover" }} />
       <h3 style={{ fontSize: "20px", fontWeight: "600", marginBottom: "8px" }}>Paje</h3>
       <p style={{ fontSize: "15px", color: "#555" }}>Ideal for beachfront villas and kite-surfing rentals.</p>
     </div>
-
-    <div onClick={() => window.location.href = "/properties-zanzibar"} style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
+    </a>
+   
+    <a title="real estate Nungwi" href="/properties-zanzibar" style={{textDecoration:'none',color:'inherit'}}>
+      <div style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
       <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=200&h=120" alt="real estate Nungwi" style={{ borderRadius: "8px", marginBottom: "10px", width: "100%", height: "120px", objectFit: "cover" }} />
       <h3 style={{ fontSize: "20px", fontWeight: "600", marginBottom: "8px" }}>Nungwi</h3>
       <p style={{ fontSize: "15px", color: "#555" }}>Popular tourist destination with high rental demand.</p>
     </div>
-
-    <div onClick={() => window.location.href = "/properties-zanzibar"} style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
+    </a>
+   <a title="real estate Stone Town" href="/properties-zanzibar" style={{textDecoration:'none',color:'inherit'}}>
+    <div style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
       <img src="https://i.ibb.co/MkQqpbB1/real-estate-stone-town.jpg" alt="Real Estate Stone Town" style={{ borderRadius: "8px", marginBottom: "10px", width: "100%", height: "120px", objectFit: "cover" }} />
       <h3 style={{ fontSize: "20px", fontWeight: "600", marginBottom: "8px" }}>Stone Town</h3>
       <p style={{ fontSize: "15px", color: "#555" }}>Cultural center with historic properties and charming streets.</p>
     </div>
-
-    <div onClick={() => window.location.href = "/properties-zanzibar"} style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
+   </a>
+   
+<a title="real estate Jambiani" href="/properties-zanzibar" style={{textDecoration:'none',color:'inherit'}}>
+ <div style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
       <img src="https://i.ibb.co/DgKcK2hF/real-estate-jambiani.jpg" alt="Real Estate Jambiani" style={{ borderRadius: "8px", marginBottom: "10px", width: "100%", height: "120px", objectFit: "cover" }} />
       <h3 style={{ fontSize: "20px", fontWeight: "600", marginBottom: "8px" }}>Jambiani</h3>
       <p style={{ fontSize: "15px", color: "#555" }}>Peaceful village, perfect for holiday rentals and beachfront homes.</p>
     </div>
-
-    <div onClick={() => window.location.href = "/properties-zanzibar"} style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
+</a>
+   
+<a title="real estate Kendwa" href="/properties-zanzibar" style={{textDecoration:'none',color:'inherit'}}>
+  <div style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
       <img src="https://i.ibb.co/Nn2cSgCj/real-estate-kendwa.jpg" alt="Real Estate Kendwa" style={{ borderRadius: "8px", marginBottom: "10px", width: "100%", height: "120px", objectFit: "cover" }} />
       <h3 style={{ fontSize: "20px", fontWeight: "600", marginBottom: "8px" }}>Kendwa</h3>
       <p style={{ fontSize: "15px", color: "#555" }}>Vibrant nightlife and beautiful beaches attract investors and tourists.</p>
     </div>
-
-    <div onClick={() => window.location.href = "/properties-zanzibar"} style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
+</a>
+<a title="real estate Bwejuu" href="/properties-zanzibar" style={{textDecoration:'none',color:'inherit'}}>
+   <div style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
       <img src="https://i.ibb.co/mFqDnf6L/real-estate-bwejuu.webp" alt="Real Estate Bwejuu" style={{ borderRadius: "8px", marginBottom: "10px", width: "100%", height: "120px", objectFit: "cover" }} />
       <h3 style={{ fontSize: "20px", fontWeight: "600", marginBottom: "8px" }}>Bwejuu</h3>
       <p style={{ fontSize: "15px", color: "#555" }}>Quiet area, ideal for families and long-term rentals.</p>
     </div>
+</a>
+ 
   </div>
 </section>
 <section style={{ maxWidth: "1000px", margin: "0 auto", padding: "40px 20px" }}>
@@ -488,9 +499,11 @@ const structuredData = {
        <div style={{ background: "#ffeeba", padding: "1.5rem", textAlign: "center", margin: "3rem 0", borderRadius: "8px" }}>
         <h2 style={{ marginBottom: "0.5rem" }}>Advertise your property 🚀</h2>
         <p style={{ marginBottom: "1rem",lineHeight:'24px' }}>Do you have a house, apartment, plot or business to sell or rent out? List it on ZanziHome and reach thousands of active buyers and renters searching for properties in Zanzibar every day.</p>
-        <button onClick={() => window.location.href = "/checkout"} style={{ padding: "0.8rem 1.5rem", background: "#013a17", color: "white", border: "none", borderRadius: "5px", fontWeight: "600", cursor: "pointer" }}>
+        <a href="/checkout" style={{textDecoration:'none',color:'inherit'}}>
+          <button style={{ padding: "0.8rem 1.5rem", background: "#013a17", color: "white", border: "none", borderRadius: "5px", fontWeight: "600", cursor: "pointer" }}>
           Add your property
         </button>
+        </a>
       </div>
  <div style={{width:'100%',textAlign:'center',padding:'1rem',marginTop:'40px',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
 <h2>Why Zanzibar Property is an Attractive Investment</h2>
