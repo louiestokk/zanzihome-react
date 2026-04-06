@@ -11,12 +11,12 @@ const BuyersGuide = () => {
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
-      {
-        "@type": "Organization",
-        "name": "ZanziHome",
-        "url": "https://www.zanzihome.com",
-        "logo": "https://www.zanzihome.com/logo.png"
-      },
+    {
+      "@type": "Organization",
+      "name": "ZanziHome",
+      "url": "https://www.zanzihome.com",
+      "logo": "https://www.zanzihome.com/logo.png"
+    },
     {
       "@type": "WebPage",
       "name": "Buy Property Zanzibar Guide | ZanziHome",
@@ -36,10 +36,18 @@ const structuredData = {
       "description": pageData.underImgText,
       "author": { "@type": "Person", "name": "Louie Stokk" },
       "datePublished": formattedDate,
-      "image": "https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg"
+      "image": "https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.zanzihome.com/buy-property-zanzibar/"
+      }
     },
     {
       "@type": "FAQPage",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.zanzihome.com/buy-property-zanzibar/"
+      },
       "mainEntity": [
         {
           "@type": "Question",
@@ -162,7 +170,10 @@ topAreas.forEach((area) =>
         <meta name="twitter:description" content={pageData.underImgText} />
         <meta name="twitter:image" content="https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg" />
 
-        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+      <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+/>
       </Helmet>
 
       {/* Header */}

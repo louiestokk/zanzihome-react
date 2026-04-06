@@ -29,7 +29,31 @@ const SingelFirebaseObject = () => {
   );
   const currentObject = selectedObjects[0];
   const Area = currentObject?.Area;
-
+const currentUrl = typeof window !== "undefined" ? window.location.href : "";
+const faqs = [
+  {
+    q: `How to buy property in ${Area}?`,
+    a: "Browse listings, contact agents, and complete the legal process with assistance from local experts."
+  },
+  {
+    q: `Can foreigners buy property in ${Area}, Zanzibar?`,
+    a: "Yes, foreigners can buy property through leasehold agreements approved by the Zanzibar government."
+  },
+  {
+    q: `Can I rent in ${Area}?`,
+    a: "Yes, both rental and sale properties are available across Zanzibar."
+  },
+  {
+    q: `Is ${Area} a good investment area?`,
+    a: `${Area} is one of the most attractive locations in Zanzibar with strong tourism demand and rental income potential.`
+  },
+  {
+    q: `What is the average price of property in ${Area}?`,
+    a: "Prices vary depending on property type, location and proximity to the beach."
+  }
+];
+console.log(currentUrl)
+const [openIndex, setOpenIndex] = useState(null);
   return (
     <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "1rem" }}>
       {selectedObjects.map((object) => {
@@ -69,15 +93,15 @@ const SingelFirebaseObject = () => {
   <title>{`${Title} in ${Area} | Real Estate ${Area} Zanzibar`}</title>
   <meta
     name="description"
-    content={`Looking for ${category.toLowerCase()} in ${Area}, Zanzibar? Explore ${Title} with ${Rooms} rooms, ${Size} m², priced at $${Price}. View photos, map location, and contact brokers now.`}
+    content={`Looking for ${category?.toLowerCase()} in ${Area}, Zanzibar? Explore ${Title} with ${Rooms} rooms, ${Size} m², priced at $${Price}. View photos, map location, and contact brokers now.`}
   />
-  <link rel="canonical" href={window.location.href} />
+ <link rel="canonical" href={currentUrl} />
 
   {/* Open Graph */}
   <meta property="og:title" content={`${Title} in ${Area} | ZanziHome`} />
-  <meta property="og:description" content={`Explore this ${category.toLowerCase()} in ${Area}, Zanzibar. ${Rooms} rooms, ${Size} m², priced at $${Price}. Contact brokers today.`} />
+  <meta property="og:description" content={`Explore this ${category?.toLowerCase()} in ${Area}, Zanzibar. ${Rooms} rooms, ${Size} m², priced at $${Price}. Contact brokers today.`} />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content={window.location.href} />
+  <meta property="og:url" content={currentUrl} />
   <meta property="og:image" content={imagesArray?.[0] || uri} />
   <meta property="og:site_name" content="ZanziHome" />
 
@@ -106,7 +130,7 @@ const SingelFirebaseObject = () => {
         {
           "@type": "WebPage",
           "name": `${Title} in ${Area}`,
-          "url": window.location.href,
+          "url": currentUrl,
           "description": Text,
           "breadcrumb": {
             "@id": `${window.location.href}#breadcrumb`
@@ -115,7 +139,7 @@ const SingelFirebaseObject = () => {
             "@type": "SingleFamilyResidence",
             "name": Title,
             "description": Text,
-            "url": window.location.href,
+            "url": currentUrl,
             "image": imagesArray || [uri],
             "address": {
               "@type": "PostalAddress",
@@ -137,7 +161,7 @@ const SingelFirebaseObject = () => {
               "@type": "Offer",
               "price": Price,
               "priceCurrency": "USD",
-              "url": window.location.href,
+              "url": currentUrl,
               "availability": "https://schema.org/InStock",
               "seller": {
                 "@type": "RealEstateAgent",
@@ -180,7 +204,7 @@ const SingelFirebaseObject = () => {
             },
             {
               "@type": "Question",
-              "name": `Can I rent ${category.toLowerCase()} in ${Area}?`,
+              "name": `Can I rent ${category?.toLowerCase()} in ${Area}?`,
               "acceptedAnswer": { "@type": "Answer", "text": `Yes, ZanziHome lists both rental and sale properties in ${Area}, Zanzibar.` }
             }
           ]
@@ -485,7 +509,47 @@ const SingelFirebaseObject = () => {
     alt="buy property in Zanzibar"
     style={{ width: "100%", height: "440px", objectFit: "cover" }}
   />
+<div style={{ marginTop: "3rem", maxWidth: "800px", marginInline: "auto" }}>
+  <h2 style={{ fontSize: "28px", fontWeight: "700", marginBottom: "20px", textAlign: "center" }}>
+    Frequently Asked Questions
+  </h2>
 
+  {faqs.map((faq, i) => (
+    <div
+      key={i}
+      style={{
+        borderBottom: "1px solid #e5e7eb",
+        padding: "15px 0",
+        cursor: "pointer"
+      }}
+      onClick={() => setOpenIndex(openIndex === i ? null : i)}
+    >
+      <div style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center"
+      }}>
+        <h3 style={{ fontSize: "16px", fontWeight: "600" }}>
+          {faq.q}
+        </h3>
+        <span style={{ fontSize: "20px" }}>
+          {openIndex === i ? "−" : "+"}
+        </span>
+      </div>
+
+      {openIndex === i && (
+        <p style={{
+          marginTop: "10px",
+          color: "#555",
+          lineHeight: "1.6",
+          fontSize: "14px"
+        }}>
+          {faq.a}
+        </p>
+      )}
+    </div>
+  ))}
+</div>
   {/* Overlay med text och knapp */}
   <div style={{
     position: "absolute",
@@ -506,7 +570,7 @@ const SingelFirebaseObject = () => {
       Guide: Buy property in {Area} Zanzibar
     </h2>
     <p style={{ fontSize: "1rem", lineHeight: "1.4", maxWidth: "600px", marginBottom: "1rem" }}>
-      {pageData.underImgText}
+      {pageData?.underImgText}
     </p>
     <a href="/buy-property-zanzibar" style={{ textDecoration: "none" }}>
       <button
