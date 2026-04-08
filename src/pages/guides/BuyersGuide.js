@@ -20,13 +20,13 @@ const structuredData = {
     {
       "@type": "WebPage",
       "name": "Buy Property Zanzibar Guide | ZanziHome",
-      "url": "https://www.zanzihome.com/buy-property-zanzibar/",
+      "url": "https://www.zanzihome.com/buy-property-zanzibar",
       "description": pageData.underImgText,
       "breadcrumb": {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.zanzihome.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Buy Property Zanzibar", "item": "https://www.zanzihome.com/buy-property-zanzibar/" }
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.zanzihome.com" },
+          { "@type": "ListItem", "position": 2, "name": "Buy Property Zanzibar", "item": "https://www.zanzihome.com/buy-property-zanzibar" }
         ]
       }
     },
@@ -39,14 +39,14 @@ const structuredData = {
       "image": "https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg",
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://www.zanzihome.com/buy-property-zanzibar/"
+        "@id": "https://www.zanzihome.com/buy-property-zanzibar"
       }
     },
     {
       "@type": "FAQPage",
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://www.zanzihome.com/buy-property-zanzibar/"
+        "@id": "https://www.zanzihome.com/buy-property-zanzibar"
       },
       "mainEntity": [
         {
@@ -153,15 +153,15 @@ topAreas.forEach((area) =>
       {/* SEO */}
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Buy property Zanzibar | Real Estate Zanzibar</title>
+        <title>Buy Property Zanzibar Guide | Real Estate Zanzibar</title>
         <meta name="description" content={pageData.underImgText} />
-        <link rel="canonical" href="https://www.zanzihome.com/buy-property-zanzibar/" />
+        <link rel="canonical" href="https://www.zanzihome.com/buy-property-zanzibar" />
 
         {/* Open Graph */}
         <meta property="og:title" content="Buy property Zanzibar - ZanziHome" />
         <meta property="og:description" content={pageData.underImgText} />
         <meta property="og:image" content="https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg" />
-        <meta property="og:url" content="https://www.zanzihome.com/buy-property-zanzibar/" />
+        <meta property="og:url" content="https://www.zanzihome.com/buy-property-zanzibar" />
         <meta property="og:type" content="article" />
 
         {/* Twitter */}
