@@ -4,6 +4,7 @@ import BannerSection from "../components/BannerSection";
 import NewFilter from "../components/newfilter/NewFilter";
 import Popular from "../components/Popular";
 import Faq from "../components/Faq";
+import AdBanner from "../components/AdBanner";
 import { faqdata } from "../utils/faq";
 
 const propertyzanzibar = () => {
@@ -265,25 +266,35 @@ const structuredData = {
             url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2FIMG_3080.jpeg?alt=media&token=49589f26-6b0a-4736-98c6-396dc681dc9d",
             imgText: "Central Apartment Paje",
             adId: Number(498610417),
-            type: "Apartment"
+            type: "Apartment",
+            price: "$550/month",
+            size: "55",
+            rooms: 2
           },
           {
             url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2F44E71F23-2098-4D81-B2E4-116345638B9E.jpeg?alt=media&token=7714cb00-23b7-4f23-bdb1-98bcef7ecf53",
             imgText: "Beachfront plot for sale in Zanzibar",
             adId: Number(624688142),
-            type: "Plot"
+            type: "Plot",
+            price: "$120,000",
+            size: "1200"
           },
           {
             url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2Fmichamvi.jpg?alt=media&token=5d8e4bb0-d3e7-4253-97c0-0ee2133bf4b6",
             imgText: "Plot for sale in Michamvi Zanzibar",
             adId: Number(801410),
-            type: "Plot"
+            type: "Plot",
+            price: "$85,000",
+            size: "900"
           },
           {
             url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2Fyhouse2.jpg?alt=media&token=4b06691f-8afd-418f-bce7-f972cc5143a5",
             imgText: "Villa for rent in Zanzibar",
             adId: Number(338429),
-            type: "Rent"
+            type: "Rent",
+            price: "$1,800/month",
+            size: "300",
+            rooms: 4
           }
         ]}
       />
@@ -301,7 +312,7 @@ const structuredData = {
       textAlign: "center"
     }}
   >
-    <a title="real estate Paje" href="/properties-zanzibar" style={{textDecoration:'none',color:'inherit'}}>
+    <a title="real estate Paje" href="/properties/area/paje" style={{textDecoration:'none',color:'inherit'}}>
      <div style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
       <img src="https://i.ibb.co/Xxz2sDwV/real-estate-paje.webp" alt="real estate Paje" style={{ borderRadius: "8px", marginBottom: "10px", width: "100%", height: "120px", objectFit: "cover" }} />
       <h3 style={{ fontSize: "20px", fontWeight: "600", marginBottom: "8px" }}>Paje</h3>
@@ -309,14 +320,14 @@ const structuredData = {
     </div>
     </a>
    
-    <a title="real estate Nungwi" href="/properties-zanzibar" style={{textDecoration:'none',color:'inherit'}}>
+    <a title="real estate Nungwi" href="/properties/area/nungwi" style={{textDecoration:'none',color:'inherit'}}>
       <div style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
       <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=200&h=120" alt="real estate Nungwi" style={{ borderRadius: "8px", marginBottom: "10px", width: "100%", height: "120px", objectFit: "cover" }} />
       <h3 style={{ fontSize: "20px", fontWeight: "600", marginBottom: "8px" }}>Nungwi</h3>
       <p style={{ fontSize: "15px", color: "#555" }}>Popular tourist destination with high rental demand.</p>
     </div>
     </a>
-   <a title="real estate Stone Town" href="/properties-zanzibar" style={{textDecoration:'none',color:'inherit'}}>
+   <a title="real estate Stone Town" href="/properties/area/stone-town" style={{textDecoration:'none',color:'inherit'}}>
     <div style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
       <img src="https://i.ibb.co/MkQqpbB1/real-estate-stone-town.jpg" alt="Real Estate Stone Town" style={{ borderRadius: "8px", marginBottom: "10px", width: "100%", height: "120px", objectFit: "cover" }} />
       <h3 style={{ fontSize: "20px", fontWeight: "600", marginBottom: "8px" }}>Stone Town</h3>
@@ -324,29 +335,28 @@ const structuredData = {
     </div>
    </a>
    
-<a title="real estate Jambiani" href="/properties-zanzibar" style={{textDecoration:'none',color:'inherit'}}>
+<a title="real estate Jambiani" href="/properties/area/jambiani" style={{textDecoration:'none',color:'inherit'}}>
  <div style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
       <img src="https://i.ibb.co/DgKcK2hF/real-estate-jambiani.jpg" alt="Real Estate Jambiani" style={{ borderRadius: "8px", marginBottom: "10px", width: "100%", height: "120px", objectFit: "cover" }} />
       <h3 style={{ fontSize: "20px", fontWeight: "600", marginBottom: "8px" }}>Jambiani</h3>
       <p style={{ fontSize: "15px", color: "#555" }}>Peaceful village, perfect for holiday rentals and beachfront homes.</p>
     </div>
-</a>
+ </a>
    
-<a title="real estate Kendwa" href="/properties-zanzibar" style={{textDecoration:'none',color:'inherit'}}>
+<a title="real estate Kendwa" href="/properties/area/kendwa" style={{textDecoration:'none',color:'inherit'}}>
   <div style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
       <img src="https://i.ibb.co/Nn2cSgCj/real-estate-kendwa.jpg" alt="Real Estate Kendwa" style={{ borderRadius: "8px", marginBottom: "10px", width: "100%", height: "120px", objectFit: "cover" }} />
       <h3 style={{ fontSize: "20px", fontWeight: "600", marginBottom: "8px" }}>Kendwa</h3>
       <p style={{ fontSize: "15px", color: "#555" }}>Vibrant nightlife and beautiful beaches attract investors and tourists.</p>
     </div>
-</a>
-<a title="real estate Bwejuu" href="/properties-zanzibar" style={{textDecoration:'none',color:'inherit'}}>
+ </a>
+<a title="real estate Bwejuu" href="/properties/area/bwejuu" style={{textDecoration:'none',color:'inherit'}}>
    <div style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
       <img src="https://i.ibb.co/mFqDnf6L/real-estate-bwejuu.webp" alt="Real Estate Bwejuu" style={{ borderRadius: "8px", marginBottom: "10px", width: "100%", height: "120px", objectFit: "cover" }} />
       <h3 style={{ fontSize: "20px", fontWeight: "600", marginBottom: "8px" }}>Bwejuu</h3>
       <p style={{ fontSize: "15px", color: "#555" }}>Quiet area, ideal for families and long-term rentals.</p>
     </div>
 </a>
- 
   </div>
 </section>
 <section style={{ maxWidth: "1000px", margin: "0 auto", padding: "40px 20px" }}>
@@ -496,15 +506,7 @@ const structuredData = {
           </a>
         </div>
       </section>
-       <div style={{ background: "#ffeeba", padding: "1.5rem", textAlign: "center", margin: "3rem 0", borderRadius: "8px" }}>
-        <h2 style={{ marginBottom: "0.5rem" }}>Advertise your property 🚀</h2>
-        <p style={{ marginBottom: "1rem",lineHeight:'24px' }}>Do you have a house, apartment, plot or business to sell or rent out? List it on ZanziHome and reach thousands of active buyers and renters searching for properties in Zanzibar every day.</p>
-        <a href="/checkout" style={{textDecoration:'none',color:'inherit'}}>
-          <button style={{ padding: "0.8rem 1.5rem", background: "#013a17", color: "white", border: "none", borderRadius: "5px", fontWeight: "600", cursor: "pointer" }}>
-          Add your property
-        </button>
-        </a>
-      </div>
+      <AdBanner />
  <div style={{width:'100%',textAlign:'center',padding:'1rem',marginTop:'40px',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
 <h2>Why Zanzibar Property is an Attractive Investment</h2>
 <p style={{marginTop:'0.3rem',lineHeight:'26px',maxWidth:'92%'}}>

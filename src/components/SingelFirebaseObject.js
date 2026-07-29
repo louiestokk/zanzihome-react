@@ -332,7 +332,7 @@ const [openIndex, setOpenIndex] = useState(null);
             <div style={{ background: "#ffeeba", padding: "1.5rem", textAlign: "center", margin: "2rem 0", borderRadius: "8px" }}>
               <h2 style={{ marginBottom: "0.5rem" }}>Sell or Rent Faster!</h2>
               <p style={{ marginBottom: "1rem" }}>Boost your property listing and get maximum visibility on ZanziHome.</p>
-              <button onClick={() => window.location.href = "/contact"} style={{ padding: "0.8rem 1.5rem", background: "#013a17", color: "white", border: "none", borderRadius: "5px", fontWeight: "600", cursor: "pointer" }}>
+              <button onClick={() => window.location.href = "/advertisepropertyzanzibar"} style={{ padding: "0.8rem 1.5rem", background: "#013a17", color: "white", border: "none", borderRadius: "5px", fontWeight: "600", cursor: "pointer" }}>
                 Boost Your Listing
               </button>
             </div>
@@ -480,7 +480,7 @@ const [openIndex, setOpenIndex] = useState(null);
             { title: "Kendwa", img: "https://i.ibb.co/Nn2cSgCj/real-estate-kendwa.jpg", desc: "Vibrant nightlife and beautiful beaches attract investors and tourists." },
             { title: "Bwejuu", img: "https://i.ibb.co/mFqDnf6L/real-estate-bwejuu.webp", desc: "Quiet area, ideal for families and long-term rentals." },
           ].map(area => (
-            <div key={area.title} onClick={() => window.location.href = "/properties-zanzibar"} style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
+            <div key={area.title} onClick={() => window.location.href = `/properties/area/${area.title.toLowerCase().replace(" ", "-")}`} style={{ padding: "20px", borderRadius: "10px", background: "#f9f9f9", transition: "transform 0.3s", cursor: "pointer" }}>
               <img src={area.img} alt={area.title} style={{ borderRadius: "8px", marginBottom: "10px", width: "100%", height: "120px", objectFit: "cover" }} />
               <h3 style={{ fontSize: "20px", fontWeight: "600", marginBottom: "8px" }}>{area.title}</h3>
               <p style={{ fontSize: "15px", color: "#555" }}>{area.desc}</p>

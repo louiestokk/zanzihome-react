@@ -1,30 +1,32 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { Helmet } from "react-helmet-async";
 import { db } from "../firebase";
 import { BiMap } from "react-icons/bi";
-import { GiHouse } from "react-icons/gi";
 import Objects from "../components/Objects";
 import Popular from "../components/Popular";
 import MapPage from "./MapPage";
 import Faq from "../components/Faq";
 import Abovefooter from "../components/Abovefooter";
 import AdBanner from "../components/AdBanner";
-import { setFirestoreData, getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { setFirestoreData } from "../redux-toolkit/firebaseDataSlice";
+import { useDispatch } from "react-redux";
 import { villages } from "../utils/data";
 import { faqdata } from "../utils/faq";
-import { pageData } from '../pages/guides/data';
 
 const types = ["House", "Apartment", "Land", "Business"];
 
 const AllPropertiesPage = () => {
-  const [rent, setRent] = useState(false);
-  const [sale, setSale] = useState(false);
-  const [area, setArea] = useState("Whole Zanzibar");
-  const [type, setType] = useState("All Types");
+  const queryParams = new URLSearchParams(window.location.search);
+  const initialOffer = queryParams.get("offer") || "All";
+  const initialType = queryParams.get("type") || "All";
+  const initialArea = queryParams.get("area") || "Whole Zanzibar";
+
+  const [offerType, setOfferType] = useState(initialOffer); // All, Sale, Rent
+  const [propertyType, setPropertyType] = useState(initialType); // All, House, Apartment, Land, Business
+  const [selectedArea, setSelectedArea] = useState(initialArea);
   const [memo, setMemo] = useState([]);
-  const firestoreData = useSelector(getFirestoreData);
   const dispatch = useDispatch();
 
   const articleStructuredData = {
@@ -41,45 +43,50 @@ const AllPropertiesPage = () => {
     "mainEntityOfPage": "https://www.zanzihome.com/properties-zanzibar"
   };
 
-  const fetchFirestoreData = async () => {
-    const querySnapshot = await getDocs(collection(db, "newAd"));
-    const newData = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-    setMemo(newData);
-    dispatch(setFirestoreData(newData));
-  };
-
   useEffect(() => {
+    const fetchFirestoreData = async () => {
+      const querySnapshot = await getDocs(collection(db, "newAd"));
+      const newData = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+      setMemo(newData);
+      dispatch(setFirestoreData(newData));
+    };
     fetchFirestoreData();
-  }, []);
+  }, [dispatch]);
 
-  const handleRentClick = () => {
-    dispatch(setFirestoreData(memo.filter(el => el.Rent === "Rent")));
-    setRent(true);
-    setSale(false);
-  };
+  // Filter effect: run filters sequentially whenever filter states or memo change
+  useEffect(() => {
+    if (memo.length === 0) return;
 
-  const handleSaleClick = () => {
-    dispatch(setFirestoreData(memo.filter(el => el.Rent !== "Rent")));
-    setSale(true);
-    setRent(false);
-  };
+    let filtered = [...memo];
 
-  const handleAreaChange = e => {
-    setArea(e.target.value);
-    const newItems = firestoreData.filter(el =>
-      el.Area === e.target.value || el.Area === e.target.value.toUpperCase()
-    );
-    dispatch(setFirestoreData(newItems));
-  };
+    // 1. Filter by Offer/Transaction Type
+    if (offerType === "Sale") {
+      filtered = filtered.filter(el => el.Rent !== "Rent");
+    } else if (offerType === "Rent") {
+      filtered = filtered.filter(el => el.Rent === "Rent");
+    }
 
-  const handleTypeChange = e => {
-    setType(e.target.value);
-    const newItems = firestoreData.filter(el => el.category === e.target.value);
-    dispatch(setFirestoreData(newItems));
-  };
+    // 2. Filter by Property Category
+    if (propertyType !== "All") {
+      filtered = filtered.filter(el => {
+        const cat = el.category === "Hand" ? "Land" : el.category;
+        return cat === propertyType;
+      });
+    }
+
+    // 3. Filter by Village/Area Location
+    if (selectedArea !== "Whole Zanzibar") {
+      const normalize = (str) => str?.toLowerCase().replace(/[-\s]/g, "") || "";
+      const targetAreaNormalized = normalize(selectedArea);
+      filtered = filtered.filter(el => normalize(el.Area) === targetAreaNormalized);
+    }
+
+    // Update Redux state so that Objects component and Map automatically display the correct subset
+    dispatch(setFirestoreData(filtered));
+  }, [offerType, propertyType, selectedArea, memo, dispatch]);
 
   return (
-    <section style={{ fontFamily: "Poppins, sans-serif" }}>
+    <section style={{ fontFamily: "Poppins, sans-serif", background: "#fafbfa", paddingBottom: "40px" }}>
       {/* SCHEMA */}
       <script type="application/ld+json">
         {JSON.stringify(articleStructuredData)}
@@ -96,255 +103,459 @@ const AllPropertiesPage = () => {
         <meta property="og:image" content="https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg" />
         <link rel="canonical" href="https://www.zanzihome.com/properties-zanzibar" />
       </Helmet>
- <h1 style={{ fontSize: "1.3rem", color: "#013a17",marginTop:'20px',marginLeft:'1rem',marginBottom:'0.2rem',marginRight:'1rem' }}>
-  {type !== "All Types" || area !== "Whole Zanzibar" || sale || rent
-    ? `${type !== "All Types" ? type : "Properties"} ${
-        sale ? "for Sale" : rent ? "for Rent" : "for Sale & Rent"
-      } in ${area !== "Whole Zanzibar" ? area : "Zanzibar"}`
-    : "Properties for Sale & Rent in Zanzibar"}
-</h1>
-<p style={{marginLeft:'1rem',fontSize:'0.9rem',marginRight:'1rem'}}>Explore real estate in Zanzibar including houses, villas, apartments, plot and commercial properties for sale and rent.</p>
+
+      {/* Custom Styles */}
+      <style>{`
+        .allprops-filter-wrapper {
+          background: #ffffff;
+          border-radius: 16px;
+          padding: 24px;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+          border: 1px solid rgba(0,0,0,0.05);
+          max-width: 1200px;
+          margin: -40px auto 30px auto;
+          position: relative;
+          z-index: 10;
+        }
+        .allprops-filter-row {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+        .filter-group-label {
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          font-weight: 700;
+          color: #6b7280;
+          margin-bottom: 8px;
+        }
+        .segmented-group {
+          display: inline-flex;
+          background: #f3f4f6;
+          padding: 4px;
+          border-radius: 30px;
+          gap: 4px;
+        }
+        .segmented-btn {
+          border: none;
+          background: transparent;
+          color: #4b5563;
+          padding: 8px 20px;
+          font-size: 14px;
+          font-weight: 600;
+          border-radius: 20px;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .segmented-btn.active {
+          background: #013a17;
+          color: #ffffff;
+          box-shadow: 0 2px 8px rgba(1, 58, 23, 0.2);
+        }
+        .tags-group {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+        .tag-btn {
+          border: 1px solid #e5e7eb;
+          background: #ffffff;
+          color: #374151;
+          padding: 8px 18px;
+          font-size: 13px;
+          font-weight: 500;
+          border-radius: 30px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+        .tag-btn:hover {
+          border-color: #013a17;
+          color: #013a17;
+        }
+        .tag-btn.active {
+          background: #e6ebe7;
+          border-color: #013a17;
+          color: #013a17;
+          font-weight: 600;
+        }
+        .select-group-container {
+          min-width: 220px;
+        }
+        .select-wrapper {
+          position: relative;
+          display: flex;
+          align-items: center;
+          background: #f3f4f6;
+          border-radius: 30px;
+          padding: 4px 16px;
+          border: 1px solid transparent;
+          transition: all 0.3s ease;
+        }
+        .select-wrapper:focus-within {
+          border-color: #013a17;
+          background: #ffffff;
+          box-shadow: 0 0 0 3px rgba(1, 58, 23, 0.1);
+        }
+        .select-icon {
+          font-size: 20px;
+          color: #013a17;
+          margin-right: 8px;
+        }
+        .select-field {
+          width: 100%;
+          border: none;
+          background: transparent;
+          color: #111827;
+          font-size: 14px;
+          font-weight: 600;
+          padding: 8px 0;
+          cursor: pointer;
+          outline: none;
+        }
+        /* Hero Banner */
+        .allprops-hero {
+          background: linear-gradient(135deg, #013a17 0%, #0d2818 100%);
+          color: #ffffff;
+          padding: 60px 20px;
+          text-align: center;
+          position: relative;
+        }
+        .allprops-hero::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 24px;
+          background: #fafbfa;
+          clip-path: ellipse(60% 100% at 50% 100%);
+          z-index: 1;
+        }
+        .allprops-breadcrumbs {
+          display: flex;
+          justify-content: center;
+          gap: 8px;
+          font-size: 13px;
+          color: #a3b899;
+          margin-bottom: 12px;
+        }
+        .allprops-breadcrumbs a {
+          color: #a3b899;
+          text-decoration: none;
+          transition: color 0.2s;
+        }
+        .allprops-breadcrumbs a:hover {
+          color: #ffffff;
+        }
+        .allprops-hero-title {
+          font-size: 38px;
+          font-weight: 700;
+          margin: 0;
+          letter-spacing: -0.5px;
+        }
+        .allprops-hero-subtitle {
+          font-size: 15px;
+          color: #d1e2c9;
+          max-width: 600px;
+          margin: 10px auto 0 auto;
+          font-weight: 300;
+        }
+        @media (min-width: 768px) {
+          .allprops-filter-row {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-end;
+          }
+        }
+      `}</style>
+
+      {/* Hero Header */}
+      <section className="allprops-hero">
+        <div className="allprops-breadcrumbs">
+          <Link to="/">Home</Link>
+          <span>/</span>
+          <span>Properties</span>
+        </div>
+        <h1 className="allprops-hero-title">
+          {propertyType !== "All" || selectedArea !== "Whole Zanzibar" || offerType !== "All"
+            ? `${propertyType !== "All" ? propertyType : "Properties"} ${
+                offerType === "Sale" ? "for Sale" : offerType === "Rent" ? "for Rent" : "for Sale & Rent"
+              } in ${selectedArea !== "Whole Zanzibar" ? selectedArea : "Zanzibar"}`
+            : "Properties for Sale & Rent in Zanzibar"}
+        </h1>
+        <p className="allprops-hero-subtitle">
+          Explore real estate in Zanzibar including houses, villas, apartments, plots and commercial properties for sale and rent.
+        </p>
+      </section>
+
       {/* MAP */}
-      <div style={{ height: "300px", overflow: "hidden" }}>
+      <div style={{ height: "340px", overflow: "hidden", marginBottom: "0" }}>
         <MapPage zoom={7} />
       </div>
 
-      {/* SALE / RENT FILTER */}
-      <div style={{ display: "flex", justifyContent: "center", background: "#013a17" }}>
-        <button
-          style={{
-            width: "50%",
-            background: sale ? "#22c55e" : "#0b8b3a",
-            height: "2.5rem",
-            marginTop: "1rem",
-            color: "white",
-            letterSpacing: "1px",
-            fontWeight: "600"
-          }}
-          onClick={handleSaleClick}
-        >
-          Sale
-        </button>
-        <button
-          style={{
-            width: "50%",
-            background: rent ? "#22c55e" : "#0b8b3a",
-            height: "2.5rem",
-            marginTop: "1rem",
-            color: "white",
-            letterSpacing: "1px",
-            fontWeight: "600"
-          }}
-          onClick={handleRentClick}
-        >
-          Rent
-        </button>
+      {/* NEW MODERN FILTER DASHBOARD */}
+      <div className="allprops-filter-wrapper">
+        <div className="allprops-filter-row">
+          
+          {/* Offer Type Segmented Control */}
+          <div>
+            <div className="filter-group-label">Offer Type</div>
+            <div className="segmented-group">
+              <button
+                className={`segmented-btn ${offerType === "All" ? "active" : ""}`}
+                onClick={() => setOfferType("All")}
+              >
+                All Offers
+              </button>
+              <button
+                className={`segmented-btn ${offerType === "Sale" ? "active" : ""}`}
+                onClick={() => setOfferType("Sale")}
+              >
+                For Sale
+              </button>
+              <button
+                className={`segmented-btn ${offerType === "Rent" ? "active" : ""}`}
+                onClick={() => setOfferType("Rent")}
+              >
+                For Rent
+              </button>
+            </div>
+          </div>
+
+          {/* Property Category Tags */}
+          <div>
+            <div className="filter-group-label">Property Type</div>
+            <div className="tags-group">
+              <button
+                className={`tag-btn ${propertyType === "All" ? "active" : ""}`}
+                onClick={() => setPropertyType("All")}
+              >
+                All Types
+              </button>
+              {types.map((t) => (
+                <button
+                  key={t}
+                  className={`tag-btn ${propertyType === t ? "active" : ""}`}
+                  onClick={() => setPropertyType(t)}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Village Selection Dropdown */}
+          <div className="select-group-container">
+            <div className="filter-group-label">Location</div>
+            <div className="select-wrapper">
+              <BiMap className="select-icon" />
+              <select
+                className="select-field"
+                value={selectedArea}
+                onChange={(e) => setSelectedArea(e.target.value)}
+              >
+                <option value="Whole Zanzibar">Whole Zanzibar</option>
+                {villages.map((village, idx) => (
+                  <option key={idx} value={village}>
+                    {village}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+        </div>
       </div>
 
-      {/* AREA + TYPE FILTER */}
-      <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center", background: "#013a17", height: "4.5rem", color: "white" }}>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <BiMap style={{ fontSize: "1.2rem", marginRight: "0.3rem" }} />
-          <select value={area} onChange={handleAreaChange} style={{ background: "transparent", border: "none", color: "white", height: "100%", fontSize: "0.9rem", borderBottom: "0.5px solid white", marginRight: "1rem", width: "140px" }}>
-            <option>Whole Zanzibar</option>
-            {villages.map((el, i) => <option key={i}>{el}</option>)}
-          </select>
-        </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <GiHouse style={{ fontSize: "1.2rem", marginRight: "0.3rem" }} />
-          <select value={type} onChange={handleTypeChange} style={{ background: "transparent", border: "none", color: "white", height: "100%", fontSize: "0.9rem", borderBottom: "0.5px solid white", width: "140px" }}>
-            <option>All Types</option>
-            {types.map((el, i) => <option key={i}>{el}</option>)}
-          </select>
-        </div>
-      </div>
-
-      {/* DYNAMIC H1 */}
- 
-<div style={{marginTop:'50px'}}>
-     <Popular
-        title={"Featured Properties in Zanzibar"}
-        images={[
+      {/* FEATURED PROPERTIES SECTION */}
+      <div style={{ marginTop: "30px" }}>
+        <Popular
+          title={"Featured Properties in Zanzibar"}
+          images={[
             {
-            url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2FIMG_3080.jpeg?alt=media&token=49589f26-6b0a-4736-98c6-396dc681dc9d",
-            imgText: "Central Apartment Paje",
-            adId: Number(498610417),
-            type: "Apartment"
-          },
-          {
-            url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2F44E71F23-2098-4D81-B2E4-116345638B9E.jpeg?alt=media&token=7714cb00-23b7-4f23-bdb1-98bcef7ecf53",
-            imgText: "Beachfront plot for sale in Zanzibar",
-            adId: Number(624688142),
-            type: "Plot"
-          },
-          {
-            url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2Fmichamvi.jpg?alt=media&token=5d8e4bb0-d3e7-4253-97c0-0ee2133bf4b6",
-            imgText: "Plot for sale in Michamvi Zanzibar",
-            adId: Number(801410),
-            type: "Plot"
-          },
-          {
-            url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2Fyhouse2.jpg?alt=media&token=4b06691f-8afd-418f-bce7-f972cc5143a5",
-            imgText: "Villa for rent in Zanzibar",
-            adId: Number(338429),
-            type: "Rent"
-          }
-        ]}
-      />
-</div>
-     <h2 style={{ fontSize: "1.3rem", margin: "1rem 1rem", color: "#013a17" }}>
-  {type !== "All Types" || area !== "Whole Zanzibar" || sale || rent
-    ? `${type !== "All Types" ? type : "Properties"} ${
-        sale ? "for Sale" : rent ? "for Rent" : "for Sale & Rent"
-      } in ${area !== "Whole Zanzibar" ? area : "Zanzibar"}`
-    : "Properties for Sale & Rent in Zanzibar"}
-</h2>
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2FIMG_3080.jpeg?alt=media&token=49589f26-6b0a-4736-98c6-396dc681dc9d",
+              imgText: "Central Apartment Paje",
+              adId: Number(498610417),
+              type: "Apartment",
+              price: "$550/month",
+              size: "55",
+              rooms: 2
+            },
+            {
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2F44E71F23-2098-4D81-B2E4-116345638B9E.jpeg?alt=media&token=7714cb00-23b7-4f23-bdb1-98bcef7ecf53",
+              imgText: "Beachfront plot for sale in Zanzibar",
+              adId: Number(624688142),
+              type: "Plot",
+              price: "$120,000",
+              size: "1200"
+            },
+            {
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2Fmichamvi.jpg?alt=media&token=5d8e4bb0-d3e7-4253-97c0-0ee2133bf4b6",
+              imgText: "Plot for sale in Michamvi Zanzibar",
+              adId: Number(801410),
+              type: "Plot",
+              price: "$85,000",
+              size: "900"
+            },
+            {
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2Fyhouse2.jpg?alt=media&token=4b06691f-8afd-418f-bce7-f972cc5143a5",
+              imgText: "Villa for rent in Zanzibar",
+              adId: Number(338429),
+              type: "Rent",
+              price: "$1,800/month",
+              size: "300",
+              rooms: 4
+            }
+          ]}
+        />
+      </div>
+
+      {/* PROPERTIES GRID OBJECTS */}
       <Objects />
 
       {/* BOOST CTA MID-LIST */}
-      <div style={{ background: "#ffeeba", padding: "1.5rem", textAlign: "center", margin: "2rem 0", borderRadius: "8px" }}>
+      <div style={{ background: "#ffeeba", padding: "1.5rem", textAlign: "center", margin: "2rem auto", borderRadius: "12px", maxWidth: "1200px" }}>
         <h2 style={{ marginBottom: "0.5rem" }}>Sell or Rent Faster!</h2>
         <p style={{ marginBottom: "1rem" }}>Boost your property listing and get maximum visibility on ZanziHome.</p>
-        <button onClick={() => window.location.href = "/contact"} style={{ padding: "0.8rem 1.5rem", background: "#013a17", color: "white", border: "none", borderRadius: "5px", fontWeight: "600", cursor: "pointer" }}>
+        <button onClick={() => window.location.href = "/advertisepropertyzanzibar"} style={{ padding: "0.8rem 1.5rem", background: "#013a17", color: "white", border: "none", borderRadius: "5px", fontWeight: "600", cursor: "pointer" }}>
           Boost Your Listing
         </button>
       </div>
-
-      {/* AD BANNER */}
 
       {/* FAQ SECTION */}
       <Faq data={faqdata} />
 
       {/* SEO CONTENT */}
       <div
-  style={{
-    padding: "2rem 1rem",
-    maxWidth: "1100px",
-    margin: "0 auto",
-    fontFamily: "Poppins, sans-serif"
-  }}
->
-  <h2
-    style={{
-      fontSize: "1.8rem",
-      fontWeight: "700",
-      marginBottom: "0.5rem",
-      color: "#013a17"
-    }}
-  >
-    Zanzibar Real Estate Listings
-  </h2>
-
-  <p
-    style={{
-      fontSize: "1rem",
-      color: "#555",
-      lineHeight: "1.8",
-      maxWidth: "750px"
-    }}
-  >
-    Explore houses, villas, apartments, land and commercial properties across Zanzibar. 
-    Find your dream home or investment property quickly with ZanziHome.
-  </p>
-
-  {/* GRID */}
-    <h3 style={{marginTop:'20px'}}>Why Choose ZanziHome?</h3>
-  <div
-    style={{
-      display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-      gap: "16px",
-      marginTop: "2rem"
-    }}
-  >
-    {[
-      "Verified properties with real photos",
-      "Direct contact with owners & agents",
-      "Boosted listings = faster sales",
-      "Full coverage of Zanzibar hotspots"
-    ].map((text, i) => (
-      <div
-        key={i}
         style={{
-          background: "white",
-          padding: "1.2rem",
-          borderRadius: "12px",
-          boxShadow: "0 10px 25px rgba(0,0,0,0.06)",
-          display: "flex",
-          alignItems: "flex-start",
-          gap: "10px"
+          padding: "2rem 1rem",
+          maxWidth: "1100px",
+          margin: "0 auto",
+          fontFamily: "Poppins, sans-serif"
         }}
       >
-        {/* CHECK ICON */}
-        <div
+        <h2
           style={{
-            minWidth: "26px",
-            height: "26px",
-            borderRadius: "50%",
-            background: "#22c55e",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "white",
-            fontWeight: "bold",
-            fontSize: "14px"
+            fontSize: "1.8rem",
+            fontWeight: "700",
+            marginBottom: "0.5rem",
+            color: "#013a17"
           }}
         >
-          ✓
-        </div>
+          Zanzibar Real Estate Listings
+        </h2>
 
         <p
           style={{
-            margin: 0,
-            fontSize: "0.95rem",
-            color: "#333",
-            lineHeight: "1.6"
+            fontSize: "1rem",
+            color: "#555",
+            lineHeight: "1.8",
+            maxWidth: "750px"
           }}
         >
-          {text}
+          Explore houses, villas, apartments, land and commercial properties across Zanzibar. 
+          Find your dream home or investment property quickly with ZanziHome.
         </p>
+
+        {/* GRID */}
+        <h3 style={{ marginTop: "20px" }}>Why Choose ZanziHome?</h3>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+            gap: "16px",
+            marginTop: "2rem"
+          }}
+        >
+          {[
+            "Verified properties with real photos",
+            "Direct contact with owners & agents",
+            "Boosted listings = faster sales",
+            "Full coverage of Zanzibar hotspots"
+          ].map((text, i) => (
+            <div
+              key={i}
+              style={{
+                background: "white",
+                padding: "1.2rem",
+                borderRadius: "12px",
+                boxShadow: "0 10px 25px rgba(0,0,0,0.06)",
+                display: "flex",
+                alignItems: "flex-start",
+                gap: "10px"
+              }}
+            >
+              {/* CHECK ICON */}
+              <div
+                style={{
+                  minWidth: "26px",
+                  height: "26px",
+                  borderRadius: "50%",
+                  background: "#22c55e",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "white",
+                  fontWeight: "bold",
+                  fontSize: "14px"
+                }}
+              >
+                ✓
+              </div>
+
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: "0.95rem",
+                  color: "#333",
+                  lineHeight: "1.6"
+                }}
+              >
+                {text}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA TEXT */}
+        <div
+          style={{
+            marginTop: "2.5rem",
+            padding: "1.5rem",
+            background: "#f8faf8",
+            borderRadius: "12px",
+            textAlign: "center",
+            boxShadow: "0 5px 15px rgba(0,0,0,0.05)"
+          }}
+        >
+          <p
+            style={{
+              fontSize: "1rem",
+              color: "#444",
+              marginBottom: "0.5rem"
+            }}
+          >
+            Start your property search today
+          </p>
+
+          <h3
+            style={{
+              fontSize: "1.4rem",
+              fontWeight: "700",
+              color: "#013a17"
+            }}
+          >
+            Discover why ZanziHome is the #1 real estate platform in Zanzibar
+          </h3>
+        </div>
       </div>
-    ))}
-  </div>
-
-  {/* CTA TEXT */}
-  <div
-    style={{
-      marginTop: "2.5rem",
-      padding: "1.5rem",
-      background: "#f8faf8",
-      borderRadius: "12px",
-      textAlign: "center",
-      boxShadow: "0 5px 15px rgba(0,0,0,0.05)"
-    }}
-  >
-    <p
-      style={{
-        fontSize: "1rem",
-        color: "#444",
-        marginBottom: "0.5rem"
-      }}
-    >
-      Start your property search today
-    </p>
-
-    <h3
-      style={{
-        fontSize: "1.4rem",
-        fontWeight: "700",
-        color: "#013a17"
-      }}
-    >
-      Discover why ZanziHome is the #1 real estate platform in Zanzibar
-    </h3>
-  </div>
-</div>
 
       {/* ABOVE FOOTER */}
-        <div style={{ margin: "1rem 0" }}>
+      <div style={{ margin: "1rem 0" }}>
         <AdBanner />
       </div>
- <Abovefooter />
+      <Abovefooter />
     </section>
   );
 };

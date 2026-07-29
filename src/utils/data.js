@@ -6,8 +6,18 @@ export const navlinks = [
   { id: 1, text: "Home", url: "/" },
   {
     id: 3,
-    text: "Advertise for free",
+    text: "List Property",
     url: "/checkout"
+  },
+  {
+    id: 4,
+    text: "Boost Listing",
+    url: "/advertisepropertyzanzibar"
+  },
+  {
+    id: 5,
+    text: "Pricing",
+    url: "/pricing"
   },
   {
     id: 9,

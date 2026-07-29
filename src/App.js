@@ -23,6 +23,7 @@ const Footer = lazy(() => import("./components/Footer"));
 const MapPage = lazy(() => import("./pages/MapPage"));
 const Profile = lazy(() => import("./pages/Profile"));
 const Advertise = lazy(() => import("./pages/Advertise"));
+const Pricing = lazy(() => import("./pages/Pricing"));
 const Price = lazy(() => import("./pages/Price"));
 const Guid = lazy(() => import("./pages/Guid"));
 const Build = lazy(() => import("./pages/Build"));
@@ -35,6 +36,7 @@ const PaymentInstructions = lazy(() => import("./pages/PaymentInstructions"));
 const EditObject = lazy(() => import("./components/EditObject"));
 const BuyersGuide = lazy(() => import("./pages/guides/BuyersGuide"));
 const AllPropertiesPage = lazy(() => import("./pages/AllPropertiesPage"));
+const AreaPropertiesPage = lazy(() => import("./pages/AreaPropertiesPage"));
 const Tours = lazy(() => import("./pages/Tours"));
 const Taxi = lazy(() => import("./pages/Taxi"));
 const Vehicle = lazy(() => import("./pages/Vehicle"));
@@ -111,6 +113,9 @@ function App() {
           <Route path="/properties-zanzibar">
             <AllPropertiesPage />
           </Route>
+          <Route path="/properties/area/:areaName">
+            <AreaPropertiesPage />
+          </Route>
           <Route path="/buy-property-zanzibar">
             <BuyersGuide />
           </Route>
@@ -134,6 +139,9 @@ function App() {
           </Route>
           <Route path="/advertisepropertyzanzibar">
             <Advertise />
+          </Route>
+          <Route path="/pricing">
+            <Pricing />
           </Route>
           <Route path="/priceadvertise">
             <Price />

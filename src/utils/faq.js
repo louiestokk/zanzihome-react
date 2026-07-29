@@ -1,7 +1,7 @@
 export const faqdata = [
   {
-    title: "Is it completely free to advertise?",
-    text: "Yes it is totally free to advertise. Looking to sell or rent out your property or business in Zanzibar? Look no further than our platform! We offer an affordable and effective way to reach potential buyers and renters in the region. You can list your property or business for free and connect with a wider audience and thousands of users searching for real estate in Zanzibar. Our platform is easy to use and completely free. Whether you're selling a house, renting out an apartment, or promoting your business in Zanzibar, our platform provides the perfect opportunity to reach the right people. With our platform, you can showcase your property or business with detailed descriptions, high-quality photos, and other essential details. Plus, our platform is optimized for search engines, so your listings have a greater chance of being discovered by potential buyers and renters. So why wait? Start advertising your property or business in Zanzibar totally free."
+    title: "How much does it cost to list a property?",
+    text: "It costs $20 for a 6-month listing or $30 for a 12-month listing on ZanziHome. We offer a simple and secure payment process. You can choose your preferred plan before starting to fill in your listing details. We accept PayPal, standard Credit/Debit cards, and local mobile money transfers (Tigo Pesa, WorldRemit)."
   },
   {
     title: "How does ZanziHome work?",

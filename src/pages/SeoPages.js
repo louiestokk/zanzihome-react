@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet-async";
 import { areas, propertyTypes } from "../utils/seoData";
 import { generateSeoText } from "../utils/generateSeoText";
 import Faq from "../components/Faq";
+import AdBanner from "../components/AdBanner";
 
 const SeoPage = () => {
   const { type, area } = useParams();
@@ -293,39 +294,7 @@ const faqSchema = {
       </div>
 
       {/* CTA */}
-      <div
-        style={{
-          margin: "3rem 0",
-          padding: "2rem",
-          background: "#f3f4f5",
-          borderRadius: "12px",
-          textAlign: "center"
-        }}
-      >
-        <h3 style={{ fontSize: "18px", fontWeight: "700" }}>
-          Advertise your property 🚀
-        </h3>
-        <p style={{ marginTop: "8px", color: "#555",lineHeight:'26px' }}>
-         Do you have a house, apartment, plot or business to sell or rent out? 
-List it on ZanziHome and reach thousands of active buyers and renters searching for properties in Zanzibar every day.
-        </p>
-        <a href="/checkout" style={{color:'white',textDecoration:'none'}}>
-         <button
-          style={{
-            marginTop: "15px",
-            background: "#22c55e",
-            color: "white",
-            padding: "10px 20px",
-            border: "none",
-            borderRadius: "6px",
-            fontWeight: "600",
-            cursor: "pointer"
-          }}
-        >
-          Post your property
-        </button>
-        </a>
-      </div>
+      <AdBanner />
 <div
   style={{
     maxWidth: "1000px",

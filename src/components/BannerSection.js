@@ -6,6 +6,84 @@ const BannerSection = () => {
 
   return (
     <div>
+      <style>{`
+        .home-promo-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          max-width: 1000px;
+          margin: 3rem auto;
+          padding: 0 1rem;
+        }
+
+        .home-promo-card {
+          flex: 1;
+          background: #ffffff;
+          border-radius: 16px;
+          padding: 24px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+          border: 1px solid rgba(0, 0, 0, 0.05);
+          cursor: pointer;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          display: flex;
+          flex-direction: column;
+        }
+
+        .home-promo-card:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
+        }
+
+        .promo-card-image-box {
+          height: 180px;
+          border-radius: 10px;
+          overflow: hidden;
+          margin-bottom: 18px;
+          position: relative;
+        }
+
+        .promo-card-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .promo-card-tag {
+          position: absolute;
+          top: 12px;
+          left: 12px;
+          background: #013a17;
+          color: #ffffff;
+          font-size: 11px;
+          font-weight: 700;
+          padding: 4px 10px;
+          border-radius: 30px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        .promo-card-title {
+          font-size: 18px;
+          font-weight: 700;
+          color: #1f2937;
+          margin: 0 0 8px 0;
+          line-height: 1.3;
+        }
+
+        .promo-card-desc {
+          font-size: 13.5px;
+          color: #4b5563;
+          line-height: 1.6;
+          margin: 0;
+          font-weight: 300;
+        }
+
+        @media (min-width: 768px) {
+          .home-promo-grid {
+            flex-direction: row;
+          }
+        }
+      `}</style>
 
       {/* ✅ HERO SECTION (H1 + SEARCH FEEL + SEO) */}
       <section
@@ -89,139 +167,66 @@ const BannerSection = () => {
         }}
       >
         {/* ✅ PROPERTY BANNER */}
-      <section
-  className="zanzibar-real-estate-section"
-  onClick={() => history.push("/properties-zanzibar")}
->
-  <div className="content">
-    <span className="badge">Updated Monthly • 10,000+ Users</span>
-
-    <h2 style={{margin: '0.5rem 0'}}>
-      Buy & Rent Real Estate in Zanzibar – Villas, Apartments & Land
-    </h2>
-
-    <p style={{lineHeight:'24px'}}>
-      Discover premium and verified real estate listings across Zanzibar,
-      including beachfront villas, modern apartments, land plots and
-      commercial properties. Thousands of buyers and investors trust
-      ZanziHome every month to find their perfect property in Zanzibar.
-    </p>
-
-    <div className="cta">
-      Explore Properties →
-    </div>
-  </div>
-</section>
-
-   
-       <section
-       className="abbas"
-        onClick={() => history.push("/checkout")}
-        style={{
-          padding: "0.8rem",
-          boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
-        }}
-      >
-        <div
-          className="filter-filter-holder"
-          style={{
-            borderRadius: "5px"
-          }}
+        <section
+          className="zanzibar-real-estate-section"
+          onClick={() => history.push("/properties-zanzibar")}
         >
-          <div
-            style={{
-              height: "200px",
-              width: "400px",
-              marginBottom: "0.3rem",
-              borderRadius: "5px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-            <h2
-              style={{ color: "white", fontSize: "5rem", letterSpacing: "1px" }}
-            >
-              Free
+          <div className="content">
+            <span className="badge">Updated Monthly • 10,000+ Users</span>
+
+            <h2 style={{margin: '0.5rem 0'}}>
+              Buy & Rent Real Estate in Zanzibar – Villas, Apartments & Land
             </h2>
-          </div>
-        </div>
-        <h4
-          style={{
-            letterSpacing: "1px",
-            margin: "0.5rem 0",
-            fontSize: "0.95rem"
-          }}
-        >
-          Yep you read that right!
-        </h4>
-        <p
-          style={{
-            fontSize: "0.85rem",
-            maxWidth: "90%",
-            lineHeight: "23px",
-            letterSpacing: "1px"
-          }}
-        >
-          It is for <strong>free</strong> to advertise on Zanzihome.com!
-          Advertise your own property or your vehicle. Get started today, it's
-          super easy.
-          {/* Advertise your own property or your vehicle. Or maybe you drive taxi,
-          arrange tours and safaris and want more customers. Get started today,
-          it's super easy. */}
-        </p>
-      </section>
 
-       <section
-       className="abbas"
-        onClick={() => history.push("/properties-zanzibar")}
-        style={{
-          padding: "0.8rem",
-          boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
-        }}
-      >
-        <div
-          className="filter-filter-holder-second"
-          style={{
-            borderRadius: "5px"
-          }}
-        >
-          <div
-            style={{
-              height: "200px",
-              width: "400px",
-              marginBottom: "0.3rem",
-              borderRadius: "5px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
+            <p style={{lineHeight:'24px'}}>
+              Discover premium and verified real estate listings across Zanzibar,
+              including beachfront villas, modern apartments, land plots and
+              commercial properties. Thousands of buyers and investors trust
+              ZanziHome every month to find their perfect property in Zanzibar.
+            </p>
+
+            <div className="cta">
+              Explore Properties →
+            </div>
           </div>
+        </section>
+      </div>
+
+      {/* Side-by-side promotional grid on Desktop */}
+      <div className="home-promo-grid">
+        
+        {/* Promotion block 1: List Property */}
+        <div className="home-promo-card" onClick={() => history.push("/checkout")}>
+          <div className="promo-card-image-box">
+            <img
+              src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=400&h=180"
+              alt="List Property Zanzibar"
+              className="promo-card-img"
+            />
+            <span className="promo-card-tag">List Listing</span>
+          </div>
+          <h3 className="promo-card-title">Promote your property listing</h3>
+          <p className="promo-card-desc">
+            Advertise your house, apartment or plot on ZanziHome. Starting from only <strong>$20 / 6 Months</strong> or <strong>$30 / 12 Months</strong>. Reach thousands of active property seekers daily.
+          </p>
         </div>
-        <h4
-          style={{
-            letterSpacing: "1px",
-            margin: "0.5rem 0",
-            fontSize: "0.95rem"
-          }}
-        >
-          Discover Your Dream Property for Sale in Zanzibar!
-        </h4>
-        <p
-          style={{
-            fontSize: "0.85rem",
-            maxWidth: "90%",
-            lineHeight: "23px",
-            letterSpacing: "1px"
-          }}
-        >
-        Find properties in Zanzibar as houses, plots and apartments for sale or for rent. Zanzihome offers a wide selection of properties in Zanzibar to choose from.
-          {/* Advertise your own property or your vehicle. Or maybe you drive taxi,
-          arrange tours and safaris and want more customers. Get started today,
-          it's super easy. */}
-        </p>
-      </section>
+
+        {/* Promotion block 2: Explore */}
+        <div className="home-promo-card" onClick={() => history.push("/properties-zanzibar")}>
+          <div className="promo-card-image-box">
+            <img
+              src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=400&h=180"
+              alt="Explore Real Estate Zanzibar"
+              className="promo-card-img"
+            />
+            <span className="promo-card-tag" style={{ background: "#0b8b3a" }}>Explore</span>
+          </div>
+          <h3 className="promo-card-title">Discover your dream property</h3>
+          <p className="promo-card-desc">
+            Browse through hundreds of verified houses, beachfront land plots, and vacation rentals for sale or rent across Zanzibar's top hotspots.
+          </p>
+        </div>
+
       </div>
 
     </div>

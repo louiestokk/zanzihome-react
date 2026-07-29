@@ -14,7 +14,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-const AdsForm = ({ setActiveStep, adType }) => {
+const AdsForm = ({ setActiveStep, adType, onFormSubmit }) => {
   const { company, sell, handleChange, setPrice, adId } = useFormContext();
   const [accept, setAccept] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -80,16 +80,20 @@ const AdsForm = ({ setActiveStep, adType }) => {
     setadsFormData({ ...adsFormData, [e.target.name]: e.target.value });
   };
   const addNewAdToFirebase = async () => {
-    sendEmail();
-    setLoading(true);
-    try {
-      const docRef = await addDoc(collection(db, "newAd"), adsFormData);
-      console.log("Document written with ID: ", docRef.id);
-      setLoading(false);
-      setSended(true);
-      setActiveStep(1);
-    } catch (e) {
-      console.error("Error adding document: ", e);
+    if (onFormSubmit) {
+      onFormSubmit(adsFormData);
+    } else {
+      sendEmail();
+      setLoading(true);
+      try {
+        const docRef = await addDoc(collection(db, "newAd"), adsFormData);
+        console.log("Document written with ID: ", docRef.id);
+        setLoading(false);
+        setSended(true);
+        setActiveStep(1);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
     }
   };
   const handleAccept = () => {

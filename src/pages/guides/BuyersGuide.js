@@ -2,6 +2,7 @@
 import React from "react";
 import { pageData } from "./data";
 import { Helmet } from "react-helmet-async";
+import AdBanner from "../../components/AdBanner";
 import { areas, propertyTypes } from "../../utils/seoData";
 
 const BuyersGuide = () => {
@@ -211,13 +212,7 @@ topAreas.forEach((area) =>
           <p style={{ fontSize: "0.9rem", lineHeight: "1.6" }}>{section.text}</p>
         </div>
       ))}
- <div style={{ background: "#ffeeba", padding: "1.5rem", textAlign: "center", margin: "2rem 0", borderRadius: "8px" }}>
-        <h2 style={{ marginBottom: "0.5rem" }}>Advertise your property 🚀</h2>
-        <p style={{ marginBottom: "1rem" }}>Do you have a house, apartment, plot or business to sell or rent out? List it on ZanziHome and reach thousands of active buyers and renters searching for properties in Zanzibar every day.</p>
-        <button onClick={() => window.location.href = "/checkout"} style={{ padding: "0.8rem 1.5rem", background: "#013a17", color: "white", border: "none", borderRadius: "5px", fontWeight: "600", cursor: "pointer" }}>
-          Add your property
-        </button>
-      </div>
+      <AdBanner />
       {/* Step-by-step Guide */}
       <div style={{ marginBottom: "2rem" }}>
         <h3>Step-by-step guide to purchasing property in Zanzibar</h3>

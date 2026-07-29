@@ -1,5 +1,11 @@
 [build]
-functions = "./functions"
+  functions = "./functions"
 
- [[plugins]]
- package = "@netlify/plugin-functions-install-core"
+[[plugins]]
+  package = "@netlify/plugin-functions-install-core"
+
+[dev]
+  command = "react-scripts start"
+
+[dev.environment]
+  NODE_OPTIONS = "--openssl-legacy-provider"
