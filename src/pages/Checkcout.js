@@ -51,24 +51,24 @@ const Checkcout = ({ logedinUser }) => {
     const queryParams = new URLSearchParams(window.location.search);
     const planParam = queryParams.get("plan");
     if (planParam === "basic") {
-       setadType("Properties");
-       setSelectedPackage({
-         name: "Basic Listing",
-         price: 1,
-         durationMonths: 6,
-         description: "Standard property listing."
-       });
-       setActiveStep(2);
-     } else if (planParam === "premium") {
-       setadType("Properties");
-       setSelectedPackage({
-         name: "Premium Listing",
-         price: 2,
-         durationMonths: 12,
-         description: "Double duration exposure."
-       });
-       setActiveStep(2);
-     }
+      setadType("Properties");
+      setSelectedPackage({
+        name: "Basic Listing",
+        price: 20,
+        durationMonths: 6,
+        description: "Standard property listing."
+      });
+      setActiveStep(2);
+    } else if (planParam === "premium") {
+      setadType("Properties");
+      setSelectedPackage({
+        name: "Premium Listing",
+        price: 30,
+        durationMonths: 12,
+        description: "Double duration exposure."
+      });
+      setActiveStep(2);
+    }
   }, [setActiveStep]);
 
   const handleAdFormSubmit = (formData) => {
@@ -269,13 +269,13 @@ Price: $${adsData.Price}
     const packages = [
       {
         name: "Basic Listing",
-        price: 1,
+        price: 20,
         durationMonths: 6,
         description: "Standard property listing. Perfect for private sellers and agents wishing to list a single house or plot."
       },
       {
         name: "Premium Listing",
-        price: 2,
+        price: 30,
         durationMonths: 12,
         description: "Double duration exposure. Best value listing for commercial developments or premium beachfront villas."
       }
