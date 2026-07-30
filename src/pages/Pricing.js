@@ -852,7 +852,7 @@ Boost Validity: ${startStr} to ${endStr}
                             <h4 style={{ margin: "0 0 6px 0", color: "#013a17", fontSize: "14px" }}>Option 1: Pay with Tigo Pesa</h4>
                             <ul style={{ margin: 0, paddingLeft: "20px", fontSize: "13px", color: "#4b5563", lineHeight: "1.5" }}>
                               <li>Send: <strong>${selectedBoost.price} USD</strong> (or equivalent in TZS)</li>
-                              <li>Recipient Number: <strong>+255 713 288 772</strong></li>
+                              <li>Recipient Number: <strong>+255 0655 912 498</strong></li>
                               <li>Recipient Name: <strong>Mzee Muhammed</strong></li>
                             </ul>
                           </div>

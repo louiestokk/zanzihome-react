@@ -433,7 +433,7 @@ Price: $${adsData.Price}
               <h4 style={{ margin: "0 0 10px 0", color: "#013a17", fontSize: "15px" }}>Option 1: Pay with Tigo Pesa</h4>
               <ul style={{ margin: 0, paddingLeft: "20px", fontSize: "13.5px", color: "#4b5563", lineStyleType: "circle", lineHeight: "1.6" }}>
                 <li>Send: <strong>${selectedPackage.price} USD</strong> (or equivalent in TZS)</li>
-                <li>Recipient Number: <strong>+255 713 288 772</strong></li>
+                <li>Recipient Number: <strong>+255 0655 912 498</strong></li>
                 <li>Recipient Name: <strong>Mzee Muhammed</strong></li>
               </ul>
             </div>
@@ -446,7 +446,7 @@ Price: $${adsData.Price}
                 <li>Provider: <strong>Tigo Pesa</strong></li>
                 <li>Recipient Name: <strong>Mzee Muhammed</strong></li>
                 <li>City: <strong>Zanzibar</strong></li>
-                <li>Mobile Number: <strong>0713 288 772</strong></li>
+                <li>Mobile Number: <strong>0655 912 498</strong></li>
               </ul>
             </div>
 

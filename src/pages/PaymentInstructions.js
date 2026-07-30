@@ -23,11 +23,11 @@ const PaymentInstructions = () => {
         <h3>Pay with Tigo Pesa</h3>
         <img src={tigo} alt="tigo pesa" />
         <h4>1. Send: 22 000tzs or 10$ </h4>
-        <h4>2. Number: +255 713 288 772</h4>
+        <h4>2. Number: +255 0655 912 498</h4>
         <h4>3. Name: Mzee Muhammed</h4>
       </div>
       <div className={classes.option}>
-        <h3>Pay with WorldRemit</h3>
+        <h3>Pay with Remitly</h3>
         <img src={worldremit} alt="worldremit" />
         <h4>1. Send: 22 000tzs or 10$ </h4>
         <p>2. Country: Tanzania</p>
@@ -39,7 +39,7 @@ const PaymentInstructions = () => {
           Muhammed
         </p>
         <p>6. City/Town: Zanzibar</p>
-        <p>7. Mobil number: 0713 288 772</p>
+        <p>7. Mobil number: 0655 912 498</p>
         <p>7. Reason for sending: Purchase of services</p>
       </div>
       <div className={classes.option}></div>
