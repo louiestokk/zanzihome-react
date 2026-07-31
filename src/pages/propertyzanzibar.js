@@ -263,6 +263,15 @@ const structuredData = {
      <Popular
         title={"Featured Properties in Zanzibar"}
         images={[
+                  {
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2FIMG_0552.jpeg?alt=media&token=68935c61-785b-4baa-9016-65023f295afa",
+              imgText: "HIgh ROI Beachfront living in Paje",
+              adId: Number(788913793),
+              type: "Apartments",
+              price: "$210,000",
+              size: "110",
+              rooms: 3
+            },
                 {
               url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2FIMG_0965.jpeg?alt=media&token=4d3a0942-323f-4499-aede-38a458858827",
               imgText: "Prime Investment Plot - DONGWE",
