@@ -1,10 +1,27 @@
-import React, { useState, useEffect, Suspense, lazy } from "react";
+import React, { useState, useEffect, Suspense, lazy as reactLazy } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Audio } from "react-loader-spinner";
 import { setFirestoreData } from "./redux-toolkit/firebaseDataSlice";
 import { collection, getDocs } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { db } from "./firebase";
+
+// Custom lazy loading with automatic reload on ChunkLoadError (new deploy updates)
+const lazy = (componentImport) =>
+  reactLazy(async () => {
+    const pageHasRefreshed = localStorage.getItem("page-has-refreshed-after-chunk-error");
+    try {
+      return await componentImport();
+    } catch (error) {
+      if (!pageHasRefreshed) {
+        localStorage.setItem("page-has-refreshed-after-chunk-error", "true");
+        window.location.reload(true);
+        return new Promise(() => {});
+      }
+      throw error;
+    }
+  });
+
 const SeoPages = lazy(() => import("./pages/SeoPages"));
 const RentalOwner = lazy(() => import("./pages/RentalOwner"));
 const VehicleDetails = lazy(() => import("./pages/VehicleDetails"));
@@ -46,6 +63,10 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [allVehicle, setallVehicle] = useState([]);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    localStorage.removeItem("page-has-refreshed-after-chunk-error");
+  }, []);
 
   const fetchFirestoreData = async () => {
     setLoading(true);
