@@ -12,6 +12,7 @@ import SingelPageMap from "./SingelPageMap";
 import SingeldefaultMapMapPage from "./SingeldefaultMapMapPage";
 import AdBanner from "./AdBanner";
 import Abovefooter from "./Abovefooter";
+import MatchRequestStepper from "./MatchRequestStepper";
 import { Helmet } from "react-helmet-async";
 import { pageData } from "../pages/guides/data";
 
@@ -608,6 +609,10 @@ const [openIndex, setOpenIndex] = useState(null);
           </div>
         );
       })}
+
+      <div style={{ maxWidth: "1200px", margin: "2rem auto 0 auto" }}>
+        <MatchRequestStepper />
+      </div>
 
       {/* 🔥 RELATED PROPERTIES GRID */}
       <div style={{ marginTop: "3rem" }}>

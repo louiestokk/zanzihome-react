@@ -6,6 +6,7 @@ import { db } from "../firebase";
 import { ImHome } from "react-icons/im";
 import { BsSquare, BsCompass } from "react-icons/bs";
 import { Audio } from "react-loader-spinner";
+import MatchRequestStepper from "../components/MatchRequestStepper";
 
 const types = ["House", "Apartment", "Land", "Business"];
 
@@ -529,6 +530,10 @@ const AreaPropertiesPage = () => {
           Explore rental listings, plots, villas and premium real estate investment opportunities in {formattedAreaName}, Zanzibar.
         </p>
       </section>
+
+      <div style={{ maxWidth: "1200px", margin: "2rem auto 0 auto", padding: "0 16px" }}>
+        <MatchRequestStepper />
+      </div>
 
       <section className="area-content-container">
         {/* Loading Spinner */}

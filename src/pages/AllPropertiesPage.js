@@ -10,6 +10,7 @@ import MapPage from "./MapPage";
 import Faq from "../components/Faq";
 import Abovefooter from "../components/Abovefooter";
 import AdBanner from "../components/AdBanner";
+import MatchRequestStepper from "../components/MatchRequestStepper";
 import { setFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 import { useDispatch } from "react-redux";
 import { villages } from "../utils/data";
@@ -292,6 +293,10 @@ const AllPropertiesPage = () => {
       {/* MAP */}
       <div style={{ height: "340px", overflow: "hidden", marginBottom: "0" }}>
         <MapPage zoom={7} />
+      </div>
+
+      <div style={{ maxWidth: "1200px", margin: "2rem auto 0 auto", padding: "0 16px" }}>
+        <MatchRequestStepper />
       </div>
 
       {/* NEW MODERN FILTER DASHBOARD */}

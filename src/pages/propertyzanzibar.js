@@ -5,6 +5,7 @@ import NewFilter from "../components/newfilter/NewFilter";
 import Popular from "../components/Popular";
 import Faq from "../components/Faq";
 import AdBanner from "../components/AdBanner";
+import MatchRequestStepper from "../components/MatchRequestStepper";
 import { faqdata } from "../utils/faq";
 
 const propertyzanzibar = () => {
@@ -299,6 +300,9 @@ const structuredData = {
         ]}
       />
 </div>
+<div style={{ padding: "0 15px 40px 15px" }}>
+  <MatchRequestStepper />
+</div>
 <section style={{ maxWidth: "1000px", margin: "0 auto", padding: "40px 20px" }}>
   <h2 style={{ fontSize: "32px", fontWeight: "700", marginBottom: "20px", textAlign: "center" }}>
     Explore Top Zanzibar Areas
@@ -507,8 +511,8 @@ const structuredData = {
         </div>
       </section>
       <AdBanner />
- <div style={{width:'100%',textAlign:'center',padding:'1rem',marginTop:'40px',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
-<h2>Why Zanzibar Property is an Attractive Investment</h2>
+      <div style={{width:'100%',textAlign:'center',padding:'1rem',marginTop:'40px',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
+        <h2>Why Zanzibar Property is an Attractive Investment</h2>
 <p style={{marginTop:'0.3rem',lineHeight:'26px',maxWidth:'92%'}}>
   Zanzibar’s real estate market has seen strong growth due to increasing tourism,
   infrastructure improvements, and rising demand for holiday homes and rentals.
