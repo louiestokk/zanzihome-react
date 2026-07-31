@@ -263,6 +263,15 @@ const structuredData = {
      <Popular
         title={"Featured Properties in Zanzibar"}
         images={[
+                {
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2FIMG_0965.jpeg?alt=media&token=4d3a0942-323f-4499-aede-38a458858827",
+              imgText: "Prime Investment Plot - DONGWE",
+              adId: Number(64383849),
+              type: "Plot",
+              price: "$275,000",
+              size: "11000",
+              rooms: 0
+            },
              {
             url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2FIMG_3080.jpeg?alt=media&token=49589f26-6b0a-4736-98c6-396dc681dc9d",
             imgText: "Central Apartment Paje",
