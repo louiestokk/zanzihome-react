@@ -97,20 +97,23 @@ const Footer = () => {
             fontFamily: "serif"
           }}
         >
-          <h2 style={{ borderBottom: "0.1px solid white" }}>Guides</h2>
+          <h2 style={{ borderBottom: "0.1px solid white" }}>Guides & Info</h2>
           <ul className="footer-ul">
             <li>
-              <a href="/buy-property-zanzibar">Buyer's guide</a>
-            </li>
-            {/* <li>
-              <a href="/sell-property-zanzibar">Seller guide</a>
+              <a href="/buy-property-zanzibar">Buyer's Guide</a>
             </li>
             <li>
-              <a href="rentout-property-zanzibar">Rentout guide</a>
+              <a href="/invest-in-zanzibar">Invest in Zanzibar</a>
             </li>
             <li>
-              <a href="/rent-property-zanzibar">Rent guide</a>
-            </li> */}
+              <a href="/foreign-property-ownership-zanzibar">Foreign Property Ownership</a>
+            </li>
+            <li>
+              <a href="/residency-by-investment-zanzibar">Zanzibar Residency & Tax</a>
+            </li>
+            <li>
+              <a href="/best-areas-buy-property-zanzibar">Best Areas to Buy Property</a>
+            </li>
           </ul>
         </div>
       </div>

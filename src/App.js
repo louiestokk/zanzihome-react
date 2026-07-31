@@ -57,6 +57,10 @@ const Tours = lazy(() => import("./pages/Tours"));
 const Taxi = lazy(() => import("./pages/Taxi"));
 const Vehicle = lazy(() => import("./pages/Vehicle"));
 const Realestate = lazy(() => import("./pages/realestate/page"));
+const InvestZanzibar = lazy(() => import("./pages/InvestZanzibar"));
+const ForeignOwnership = lazy(() => import("./pages/ForeignOwnership"));
+const ResidencyInvestment = lazy(() => import("./pages/ResidencyInvestment"));
+const BestAreas = lazy(() => import("./pages/BestAreas"));
 //
 function App() {
   const [logedinUser, setLogedinUser] = useState({});
@@ -168,6 +172,18 @@ function App() {
           </Route>
           <Route path="/buildhousezanzibar">
             <Build />
+          </Route>
+          <Route path="/invest-in-zanzibar">
+            <InvestZanzibar />
+          </Route>
+          <Route path="/foreign-property-ownership-zanzibar">
+            <ForeignOwnership />
+          </Route>
+          <Route path="/residency-by-investment-zanzibar">
+            <ResidencyInvestment />
+          </Route>
+          <Route path="/best-areas-buy-property-zanzibar">
+            <BestAreas />
           </Route>
           <Route path="/admin-dashboard_user_admin_dash">
             {/* <PrivateRoute> */}
