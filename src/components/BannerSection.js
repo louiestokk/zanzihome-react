@@ -196,11 +196,11 @@ const BannerSection = () => {
       <div className="home-promo-grid">
         
         {/* Promotion block 1: List Property */}
-        <div 
+      <div 
           className="home-promo-card" 
           onClick={() => history.push("/checkout")}
           style={{
-            background: "linear-gradient(135deg, #013a17 0%, #0d2818 100%)",
+            background: "linear-gradient(135deg, #013a17 0%, #306c48 100%)",
             border: "none",
             boxShadow: "0 10px 30px rgba(1, 58, 23, 0.15)",
             color: "#ffffff",
