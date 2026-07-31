@@ -112,6 +112,7 @@ const AdsForm = ({ setActiveStep, adType, onFormSubmit }) => {
         ref={form}
         onSubmit={(e) => {
           e.preventDefault();
+          addNewAdToFirebase();
         }}
       >
         <div className="step-container">
@@ -214,8 +215,8 @@ const AdsForm = ({ setActiveStep, adType, onFormSubmit }) => {
 
           <div className="form-control">
             <label htmlFor="Area">Area</label>
-            <select name="Area" onChange={handleAdsFormChange}>
-              <option value="choose">-Select area-</option>
+            <select name="Area" required onChange={handleAdsFormChange}>
+              <option value="">-Select area-</option>
               {villages.map((el, i) => (
                 <option key={i} value={el}>
                   {el}
@@ -417,6 +418,7 @@ const AdsForm = ({ setActiveStep, adType, onFormSubmit }) => {
               name="Text"
               rows="12"
               cols="60"
+              required
               onChange={handleAdsFormChange}
             />
           </div>
@@ -473,7 +475,6 @@ const AdsForm = ({ setActiveStep, adType, onFormSubmit }) => {
               type="submit"
               className="form-ad-btn-cont-sub-btn"
               disabled={accept}
-              onClick={addNewAdToFirebase}
             >
               {loading ? "sending..." : "Place the ad"}
             </button>
