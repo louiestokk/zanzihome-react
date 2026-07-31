@@ -33,11 +33,7 @@ const Footer = () => {
                 List Property
               </Link>
             </li>
-            <li>
-              <Link to="/pricing" className="footer-links">
-                Prices & Plans
-              </Link>
-            </li>
+
             <li>
               <Link to="/contact" className="footer-links">
                 Banner Advertising
@@ -125,9 +121,7 @@ const Footer = () => {
           <button type="button" className="footer-info-bottom-btn">
             <Link to="/payments">Payments</Link>
           </button>
-          <button type="button" className="footer-info-bottom-btn">
-            <Link to="/pricing">Prices</Link>
-          </button>
+
         </div>
         <div>
           <span> {year}  &copy; 'ZanziHome' Stokk Tech Limited, Zanzibar </span>

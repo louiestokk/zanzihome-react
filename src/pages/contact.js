@@ -433,15 +433,15 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Channel 5: Pricing link */}
-          <Link to="/pricing" className="info-card">
+          {/* Channel 5: Checkout link */}
+          <Link to="/checkout" className="info-card">
             <div className="info-card-icon-box" style={{ background: "#ebf8ff", color: "#3182ce" }}>
               <FiCheckCircle />
             </div>
             <div className="info-card-body">
-              <h4>Listing Prices & Plans</h4>
-              <p>View listing prices or promotion plans starting from only $20.</p>
-              <span className="action-link" style={{ color: "#3182ce" }}>View Packages <FiArrowRight /></span>
+              <h4>List Your Property</h4>
+              <p>Advertise your property on Zanzibar's leading real estate platform for free.</p>
+              <span className="action-link" style={{ color: "#3182ce" }}>Start Listing <FiArrowRight /></span>
             </div>
           </Link>
 

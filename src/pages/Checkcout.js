@@ -19,23 +19,28 @@ import { setFirestoreData, getFirestoreData } from "../redux-toolkit/firebaseDat
 import tigo from "../utils/tigo.png";
 import worldremit from "../utils/worldremit.png";
 
-const steps = ["Category", "Package", "Ad Details", "Payment", "Confirmation"];
+const steps = ["Ad Details", "Confirmation"];
 
 const Checkcout = ({ logedinUser }) => {
   const dispatch = useDispatch();
   const firestoreData = useSelector(getFirestoreData);
-  const [adType, setadType] = useState(null);
+  const [adType, setadType] = useState("Properties");
   const { activeStep, setActiveStep } = useFormContext();
   const { user } = useUserContext();
 
   // Selected package details
-  const [selectedPackage, setSelectedPackage] = useState(null); // { name: string, price: number, durationMonths: number }
+  const [selectedPackage, setSelectedPackage] = useState({
+    name: "Free Listing",
+    price: 0,
+    durationMonths: 6,
+    description: "Completely free property listing."
+  });
   const [adsData, setAdsData] = useState(null); // form inputs from AdsForm
 
   const adFormRef = useRef(null);
 
   // Payment states
-  const [paymentMethod, setPaymentMethod] = useState(""); // "PayPal" | "MobileMoney"
+  const [paymentMethod, setPaymentMethod] = useState("Free Tier");
   const [manualSender, setManualSender] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -48,35 +53,22 @@ const Checkcout = ({ logedinUser }) => {
   };
 
   React.useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search);
-    const planParam = queryParams.get("plan");
-    if (planParam === "basic") {
-      setadType("Properties");
-      setSelectedPackage({
-        name: "Basic Listing",
-        price: 20,
-        durationMonths: 6,
-        description: "Standard property listing."
-      });
-      setActiveStep(2);
-    } else if (planParam === "premium") {
-      setadType("Properties");
-      setSelectedPackage({
-        name: "Premium Listing",
-        price: 30,
-        durationMonths: 12,
-        description: "Double duration exposure."
-      });
-      setActiveStep(2);
-    }
+    setadType("Properties");
+    setSelectedPackage({
+      name: "Free Listing",
+      price: 0,
+      durationMonths: 6,
+      description: "Completely free property listing."
+    });
+    setActiveStep(0);
   }, [setActiveStep]);
 
   const handleAdFormSubmit = (formData) => {
     setAdsData(formData);
-    setActiveStep(3); // Advance to Payment step
+    saveAdToDatabase("Free Tier", true, "Direct publication (Free promotion)", formData);
   };
 
-  const saveAdToDatabase = async (method, isPaid, reference = "") => {
+  const saveAdToDatabase = async (method, isPaid, reference = "", currentAdsData = null) => {
     setIsSubmitting(true);
     setErrorMessage("");
 
@@ -85,16 +77,14 @@ const Checkcout = ({ logedinUser }) => {
       const startStr = now.toISOString().split("T")[0];
       
       const future = new Date();
-      if (selectedPackage.durationMonths === 6) {
-        future.setMonth(future.getMonth() + 6);
-      } else {
-        future.setMonth(future.getMonth() + 12);
-      }
+      future.setMonth(future.getMonth() + 6);
       const endStr = future.toISOString().split("T")[0];
+
+      const activeAdsData = currentAdsData || adsData;
 
       // Add subscription and payment fields to final ad payload
       const finalAdData = {
-        ...adsData,
+        ...activeAdsData,
         paid: isPaid ? true : "pending",
         packageType: selectedPackage.name,
         packagePrice: selectedPackage.price,
@@ -102,7 +92,7 @@ const Checkcout = ({ logedinUser }) => {
         endDate: endStr,
         paymentMethod: method,
         paymentReference: reference,
-        Email: user?.email || adsData.Email || ""
+        Email: user?.email || activeAdsData.Email || ""
       };
 
       // Write directly to Firestore
@@ -122,35 +112,35 @@ const Checkcout = ({ logedinUser }) => {
 
       const formEl = adFormRef.current;
       if (formEl) {
-        formEl.elements["from_name"].value = user?.nickname || adsData.Name || "Publisher";
-        formEl.elements["from_email"].value = user?.email || adsData.Email || "";
-        formEl.elements["reply_to"].value = user?.email || adsData.Email || "";
+        formEl.elements["from_name"].value = user?.nickname || activeAdsData.Name || "Publisher";
+        formEl.elements["from_email"].value = user?.email || activeAdsData.Email || "";
+        formEl.elements["reply_to"].value = user?.email || activeAdsData.Email || "";
         formEl.elements["subject"].value = `📢 ZanziHome New Listing - ${selectedPackage.name}`;
         formEl.elements["message"].value = `
-Publisher: ${user?.nickname || adsData.Name} (${user?.email || adsData.Email})
+Publisher: ${user?.nickname || activeAdsData.Name} (${user?.email || activeAdsData.Email})
 Package: ${selectedPackage.name} ($${selectedPackage.price})
 Payment Type: ${method}
 Payment Status: ${isPaid ? "Paid" : "Pending Manual Verification"}
 Reference/Sender: ${reference || "N/A"}
 Active Dates: ${startStr} to ${endStr}
 
-Property Title: ${adsData.Title}
-Property ID: ${adsData.adId || docRef.id}
-Category: ${adsData.category}
-Area: ${adsData.Area}
-Price: $${adsData.Price}
+Property Title: ${activeAdsData.Title}
+Property ID: ${activeAdsData.adId || docRef.id}
+Category: ${activeAdsData.category}
+Area: ${activeAdsData.Area}
+Price: $${activeAdsData.Price}
         `;
         
         // Map individual fields for EmailJS template
-        formEl.elements["to_name"].value = user?.nickname || adsData.Name || "Customer";
+        formEl.elements["to_name"].value = user?.nickname || activeAdsData.Name || "Customer";
         formEl.elements["package_name"].value = selectedPackage.name;
         formEl.elements["package_price"].value = `$${selectedPackage.price}`;
         formEl.elements["duration_months"].value = `${selectedPackage.durationMonths} Months`;
         formEl.elements["start_date"].value = startStr;
         formEl.elements["expiry_date"].value = endStr;
         formEl.elements["renewal_date"].value = endStr;
-        formEl.elements["ad_title"].value = adsData.Title || "";
-        formEl.elements["ad_id"].value = adsData.adId || docRef.id || "";
+        formEl.elements["ad_title"].value = activeAdsData.Title || "";
+        formEl.elements["ad_id"].value = activeAdsData.adId || docRef.id || "";
         formEl.elements["payment_method"].value = method;
         formEl.elements["payment_status"].value = isPaid ? "Paid" : "Pending Review";
         formEl.elements["payment_reference"].value = reference || "N/A";
@@ -159,7 +149,7 @@ Price: $${adsData.Price}
       // 1. Send confirmation to user
       try {
         if (formEl) {
-          formEl.elements["to_email"].value = user?.email || adsData.Email || "";
+          formEl.elements["to_email"].value = user?.email || activeAdsData.Email || "";
         }
         await emailjs.sendForm(
           "service_thbibzh",
@@ -189,7 +179,7 @@ Price: $${adsData.Price}
       }
 
       setIsSubmitting(false);
-      setActiveStep(4); // Advance to final step
+      setActiveStep(1); // Advance to confirmation step
 
     } catch (error) {
       console.error("Error creating listing in Firestore:", error);
@@ -268,16 +258,22 @@ Price: $${adsData.Price}
   const PackageSelection = () => {
     const packages = [
       {
-        name: "Basic Listing",
-        price: 20,
+        name: "Free Listing",
+        price: 0,
         durationMonths: 6,
-        description: "Standard property listing. Perfect for private sellers and agents wishing to list a single house or plot."
+        description: "Standard property listing. 2 free ads per user."
       },
       {
         name: "Premium Listing",
         price: 30,
         durationMonths: 12,
-        description: "Double duration exposure. Best value listing for commercial developments or premium beachfront villas."
+        description: "Double duration exposure. Excellent choice for developer apartments and agent portfolios."
+      },
+      {
+        name: "Featured Listing",
+        price: 50,
+        durationMonths: 12,
+        description: "Top-ranked visibility on the homepage to reach tens of thousands directly."
       }
     ];
 
@@ -287,7 +283,7 @@ Price: $${adsData.Price}
           Select Advertising Package
         </h2>
         <p style={{ textAlign: "center", color: "#6b7280", fontSize: "14px", marginBottom: "30px" }}>
-          Choose a listing plan to proceed. Payments are handled securely prior to publication.
+          Choose a listing plan to proceed. Get started with up to 2 free ads.
         </p>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "20px" }}>
@@ -516,70 +512,175 @@ Price: $${adsData.Price}
       </Paper>
 
       {/* Steps Handler */}
-      {activeStep === 0 && <Category />}
-      {activeStep === 1 && <PackageSelection />}
-      {activeStep === 2 && (
-        <AdsForm 
-          setActiveStep={setActiveStep} 
-          adType={adType} 
-          onFormSubmit={handleAdFormSubmit} 
-        />
-      )}
-      {activeStep === 3 && <PaymentSelection />}
-      {activeStep === 4 && (
-        <main>
-          <PageHero
-            title={"Thank you for your ad!"}
-            subtitle={"We have emailed you a confirmation."}
-            sub3={
-              paymentMethod === "PayPal"
-                ? "The ad is now published on the page."
-                : "Your ad has been submitted for manual payment verification. It will be published as soon as payment is confirmed."
-            }
-            sub4={
-              "Log in with the same email you created the ad with. You can log in directly with Google and Facebook or create an account. When you are logged in, you can edit your ad and add more images."
-            }
-            name={".contact-adress"}
+      {activeStep === 0 && (
+        <div style={{ maxWidth: "800px", margin: "2rem auto", padding: "0 20px" }}>
+          {/* Beautiful premium banner explaining advertising is free */}
+          <div style={{
+            background: "linear-gradient(135deg, #013a17 0%, #0d2818 100%)",
+            color: "white",
+            padding: "32px 24px",
+            borderRadius: "20px",
+            textAlign: "center",
+            marginBottom: "30px",
+            boxShadow: "0 10px 30px rgba(1, 58, 23, 0.15)"
+          }}>
+            <h2 style={{ margin: 0, fontSize: "28px", fontWeight: "800", letterSpacing: "-0.5px" }}>
+              Publish Your Listing for Free!
+            </h2>
+            <p style={{ margin: "10px 0 0 0", fontSize: "15px", color: "#d1e2c9", fontWeight: "300", lineHeight: "1.6" }}>
+              It is completely free to advertise on ZanziHome. Create and publish your property listing instantly to reach thousands of potential clients.
+            </p>
+          </div>
+
+          <AdsForm 
+            setActiveStep={setActiveStep} 
+            adType={adType} 
+            onFormSubmit={handleAdFormSubmit} 
           />
-          <div style={{ textAlign: "center", marginTop: "40px", marginBottom: "40px" }}>
-            {paymentMethod === "PayPal" && (
+        </div>
+      )}
+
+      {activeStep === 1 && (
+        <div style={{ maxWidth: "700px", margin: "3rem auto", padding: "0 20px" }}>
+          <div style={{
+            background: "#ffffff",
+            borderRadius: "24px",
+            border: "1px solid #e5e7eb",
+            boxShadow: "0 20px 50px rgba(0, 0, 0, 0.05)",
+            padding: "40px",
+            textAlign: "center"
+          }}>
+            {/* Checkmark Circle */}
+            <div style={{
+              width: "80px",
+              height: "80px",
+              background: "#ecfdf5",
+              color: "#059669",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              margin: "0 auto 24px auto",
+              fontSize: "40px",
+              fontWeight: "bold",
+              boxShadow: "0 4px 15px rgba(5, 150, 105, 0.1)"
+            }}>
+              ✓
+            </div>
+
+            <h2 style={{ color: "#013a17", fontSize: "28px", fontWeight: "800", margin: "0 0 10px 0", letterSpacing: "-0.5px" }}>
+              Your Ad is Now Live!
+            </h2>
+            <p style={{ color: "#6b7280", fontSize: "15px", margin: "0 0 30px 0", lineHeight: "1.6" }}>
+              Thank you for advertising on ZanziHome. A confirmation email has been sent.
+            </p>
+
+            {/* Listing Details Card */}
+            {adsData && (
+              <div style={{
+                background: "#f9fafb",
+                borderRadius: "16px",
+                border: "1px solid #e5e7eb",
+                padding: "24px",
+                textAlign: "left",
+                marginBottom: "35px"
+              }}>
+                <h4 style={{ margin: "0 0 16px 0", color: "#1f2937", fontSize: "16px", fontWeight: "700", borderBottom: "1px solid #e5e7eb", paddingBottom: "10px" }}>
+                  Ad Details Summary
+                </h4>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px 20px" }}>
+                  <div>
+                    <span style={{ fontSize: "11px", color: "#9ca3af", display: "block", fontWeight: "600", letterSpacing: "0.5px" }}>PROPERTY TITLE</span>
+                    <strong style={{ fontSize: "14px", color: "#1f2937" }}>{adsData.Title}</strong>
+                  </div>
+                  <div>
+                    <span style={{ fontSize: "11px", color: "#9ca3af", display: "block", fontWeight: "600", letterSpacing: "0.5px" }}>PRICE</span>
+                    <strong style={{ fontSize: "14px", color: "#013a17" }}>${adsData.Price}</strong>
+                  </div>
+                  <div>
+                    <span style={{ fontSize: "11px", color: "#9ca3af", display: "block", fontWeight: "600", letterSpacing: "0.5px" }}>LOCATION</span>
+                    <strong style={{ fontSize: "14px", color: "#1f2937" }}>{adsData.Area}</strong>
+                  </div>
+                  <div>
+                    <span style={{ fontSize: "11px", color: "#9ca3af", display: "block", fontWeight: "600", letterSpacing: "0.5px" }}>AD ID</span>
+                    <strong style={{ fontSize: "14px", color: "#1f2937" }}>{adsData.adId}</strong>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Actions */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               <Link 
                 to={`/propertys/property/${adsData?.adId}`}
                 style={{
-                  display: "inline-block",
+                  display: "block",
                   background: "#013a17",
                   color: "#ffffff",
+                  padding: "16px 28px",
+                  borderRadius: "12px",
+                  fontWeight: "700",
+                  textDecoration: "none",
+                  boxShadow: "0 4px 15px rgba(1, 58, 23, 0.2)",
+                  transition: "all 0.2s",
+                  fontSize: "15px"
+                }}
+              >
+                View Your Ad Live
+              </Link>
+              
+              <Link 
+                to="/properties-zanzibar"
+                style={{
+                  display: "block",
+                  background: "#ffffff",
+                  color: "#013a17",
+                  border: "2px solid #013a17",
                   padding: "14px 28px",
                   borderRadius: "12px",
+                  fontWeight: "700",
+                  textDecoration: "none",
+                  transition: "all 0.2s",
+                  fontSize: "15px"
+                }}
+              >
+                View All Properties
+              </Link>
+            </div>
+
+            {/* Boost Listing Promo Box */}
+            <div style={{
+              marginTop: "40px",
+              paddingTop: "30px",
+              borderTop: "1px solid #e5e7eb",
+              textAlign: "center"
+            }}>
+              <h4 style={{ color: "#1f2937", fontSize: "16px", fontWeight: "700", margin: "0 0 8px 0" }}>
+                🚀 Want 10x More Exposure?
+              </h4>
+              <p style={{ color: "#6b7280", fontSize: "13.5px", margin: "0 0 20px 0", lineHeight: "1.5" }}>
+                Boost your listing to appear at the very top of search results and on our homepage featured slider.
+              </p>
+              <Link
+                to="/advertisepropertyzanzibar"
+                style={{
+                  display: "inline-block",
+                  background: "#e5e7eb",
+                  color: "#1f2937",
+                  padding: "10px 20px",
+                  borderRadius: "8px",
                   fontWeight: "600",
                   textDecoration: "none",
-                  marginRight: "20px",
-                  boxShadow: "0 4px 15px rgba(1, 58, 23, 0.15)",
+                  fontSize: "13.5px",
                   transition: "all 0.2s"
                 }}
               >
-                View Your Ad
+                Check Boost Packages
               </Link>
-            )}
-            <Link 
-              to="/properties-zanzibar"
-              style={{
-                display: "inline-block",
-                background: paymentMethod === "PayPal" ? "#ffffff" : "#013a17",
-                color: paymentMethod === "PayPal" ? "#013a17" : "#ffffff",
-                border: "2px solid #013a17",
-                padding: "12px 28px",
-                borderRadius: "12px",
-                fontWeight: "600",
-                textDecoration: "none",
-                boxShadow: paymentMethod === "PayPal" ? "none" : "0 4px 15px rgba(1, 58, 23, 0.15)",
-                transition: "all 0.2s"
-              }}
-            >
-              {paymentMethod === "PayPal" ? "View All Listings" : "Go to Listings Page"}
-            </Link>
+            </div>
+
           </div>
-        </main>
+        </div>
       )}
       
       <div style={{ marginTop: '50px' }}>

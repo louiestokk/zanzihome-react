@@ -196,19 +196,32 @@ const BannerSection = () => {
       <div className="home-promo-grid">
         
         {/* Promotion block 1: List Property */}
-        <div className="home-promo-card" onClick={() => history.push("/checkout")}>
-          <div className="promo-card-image-box">
-            <img
-              src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=400&h=180"
-              alt="List Property Zanzibar"
-              className="promo-card-img"
-            />
-            <span className="promo-card-tag">List Listing</span>
+        <div 
+          className="home-promo-card" 
+          onClick={() => history.push("/checkout")}
+          style={{
+            background: "linear-gradient(135deg, #013a17 0%, #0d2818 100%)",
+            border: "none",
+            boxShadow: "0 10px 30px rgba(1, 58, 23, 0.15)",
+            color: "#ffffff",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            minHeight: "260px"
+          }}
+        >
+          <div style={{
+            textAlign: "center",
+            padding: "20px 10px"
+          }}>
+            <div style={{ fontSize: "36px", marginBottom: "16px" }}>📢</div>
+            <h3 style={{ margin: "0 0 12px 0", color: "#ffffff", fontSize: "22px", fontWeight: "800", letterSpacing: "-0.5px" }}>
+              Publish Your Listing for Free!
+            </h3>
+            <p style={{ margin: 0, fontSize: "14px", color: "#d1e2c9", fontWeight: "300", lineHeight: "1.6" }}>
+              It is completely free to advertise on ZanziHome. Create and publish your property listing instantly to reach thousands of potential clients.
+            </p>
           </div>
-          <h3 className="promo-card-title">Promote your property listing</h3>
-          <p className="promo-card-desc">
-            Advertise your house, apartment or plot on ZanziHome. Starting from only <strong>$20 / 6 Months</strong> or <strong>$30 / 12 Months</strong>. Reach thousands of active property seekers daily.
-          </p>
         </div>
 
         {/* Promotion block 2: Explore */}

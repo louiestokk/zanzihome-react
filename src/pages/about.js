@@ -44,8 +44,8 @@ const About = () => {
           <div className="contact-adress" style={{ marginTop: "1rem" }}>
             <h4>Advertise Property</h4>
 
-            <Link to="/pricing" className="ring">
-              Advertise now, price and information
+            <Link to="/checkout" className="ring">
+              Advertise now
             </Link>
           </div>
           {/* <div

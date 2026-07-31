@@ -528,36 +528,12 @@ Boost Validity: ${startStr} to ${endStr}
           padding-top: 24px;
         }
       `}</style>
-
-      {/* Hero */}
       <section className="pricing-hero">
-        <h1 className="pricing-hero-title">Prices & Packages</h1>
+        <h1 className="pricing-hero-title">Advertise for Free!</h1>
         <p className="pricing-hero-subtitle">
-          Choose a listing plan to advertise your property, or boost visibility of an existing listing on ZanziHome.
+          It is completely free to list your properties on ZanziHome. If you want maximum exposure, choose one of our boost packages below to promote your listings!
         </p>
       </section>
-
-      {/* Tabs */}
-      <div className="tab-container">
-        <button
-          className={`tab-btn ${activeTab === "listings" ? "active" : ""}`}
-          onClick={() => {
-            setActiveTab("listings");
-            setSelectedBoost(null);
-          }}
-        >
-          Property Listings
-        </button>
-        <button
-          className={`tab-btn ${activeTab === "boosts" ? "active" : ""}`}
-          onClick={() => {
-            setActiveTab("boosts");
-            setSelectedBoost(null);
-          }}
-        >
-          Listing Boosts
-        </button>
-      </div>
 
       {statusMessage && (
         <div style={{ maxWidth: "600px", margin: "20px auto" }} className={`status-alert ${statusMessage.success ? "success" : "error"}`}>
@@ -567,135 +543,65 @@ Boost Validity: ${startStr} to ${endStr}
 
       {/* Pricing Grid */}
       <section className="pricing-grid">
-        {activeTab === "listings" ? (
-          <>
-            {/* Listing Package 1: Basic */}
-            <div className="pricing-card">
-              <h3 className="card-title">Basic Listing</h3>
-              <p className="card-desc">Standard property exposure. Best for private owners listing a single land plot or house.</p>
-              <div className="price-box">
-                <span className="currency">$</span>
-                <span className="amount">20</span>
-                <span className="period">/ 6 Months</span>
-              </div>
-              <ul className="features">
-                <li className="feature-item">
-                  <span className="feature-icon">✓</span>
-                  <span>Active listing for <strong>6 Months</strong></span>
-                </li>
-                <li className="feature-item">
-                  <span className="feature-icon">✓</span>
-                  <span>Standard search grid visibility</span>
-                </li>
-                <li className="feature-item">
-                  <span className="feature-icon">✓</span>
-                  <span>Unlimited property photos and description</span>
-                </li>
-                <li className="feature-item">
-                  <span className="feature-icon">✓</span>
-                  <span>Direct client leads via WhatsApp / Phone</span>
-                </li>
-              </ul>
-              <Link to="/checkout?plan=basic" className="action-btn">
-                List Property Now
-              </Link>
-            </div>
+        {/* Boost Package 1: Top Ranking */}
+        <div className="pricing-card">
+          <h3 className="card-title">Top Ranking priority</h3>
+          <p className="card-desc">Increase your views. Excellent for standard plots, local houses, and business listings.</p>
+          <div className="price-box">
+            <span className="currency">$</span>
+            <span className="amount">25</span>
+            <span className="period">/ 6 Months</span>
+          </div>
+          <ul className="features">
+            <li className="feature-item">
+              <span className="feature-icon">✓</span>
+              <span>Priority Top 10 Search Grid position</span>
+            </li>
+            <li className="feature-item">
+              <span className="feature-icon">✓</span>
+              <span>Premium "⭐ Featured" gold badge</span>
+            </li>
+            <li className="feature-item">
+              <span className="feature-icon">✓</span>
+              <span>Active Top-Priority for <strong>6 Months</strong></span>
+            </li>
+          </ul>
+          <button onClick={() => handleSelectBoost("Top Ranking priority", 25)} className="action-btn">
+            Boost Listing
+          </button>
+        </div>
 
-            {/* Listing Package 2: Premium */}
-            <div className="pricing-card highlight">
-              <h3 className="card-title">Premium Listing</h3>
-              <p className="card-desc">Double duration visibility. Excellent choice for developer apartments and agent portfolios.</p>
-              <div className="price-box">
-                <span className="currency">$</span>
-                <span className="amount">30</span>
-                <span className="period">/ 12 Months</span>
-              </div>
-              <ul className="features">
-                <li className="feature-item">
-                  <span className="feature-icon">✓</span>
-                  <span>Active listing for <strong>12 Months</strong></span>
-                </li>
-                <li className="feature-item">
-                  <span className="feature-icon">✓</span>
-                  <span>Standard search grid visibility</span>
-                </li>
-                <li className="feature-item">
-                  <span className="feature-icon">✓</span>
-                  <span>Full year of listing hosting</span>
-                </li>
-                <li className="feature-item">
-                  <span className="feature-icon">✓</span>
-                  <span>Direct client leads via WhatsApp / Phone</span>
-                </li>
-              </ul>
-              <Link to="/checkout?plan=premium" className="action-btn">
-                List Property Now
-              </Link>
-            </div>
-          </>
-        ) : (
-          <>
-            {/* Boost Package 1: Top Ranking */}
-            <div className="pricing-card">
-              <h3 className="card-title">Top Ranking priority</h3>
-              <p className="card-desc">Increase your views. Excellent for standard plots, local houses, and business listings.</p>
-              <div className="price-box">
-                <span className="currency">$</span>
-                <span className="amount">25</span>
-                <span className="period">/ 6 Months</span>
-              </div>
-              <ul className="features">
-                <li className="feature-item">
-                  <span className="feature-icon">✓</span>
-                  <span>Priority Top 10 Search Grid position</span>
-                </li>
-                <li className="feature-item">
-                  <span className="feature-icon">✓</span>
-                  <span>Premium "⭐ Featured" gold badge</span>
-                </li>
-                <li className="feature-item">
-                  <span className="feature-icon">✓</span>
-                  <span>Active Top-Priority for <strong>6 Months</strong></span>
-                </li>
-              </ul>
-              <button onClick={() => handleSelectBoost("Top Ranking priority", 25)} className="action-btn">
-                Boost Listing
-              </button>
-            </div>
-
-            {/* Boost Package 2: Premium Rocket */}
-            <div className="pricing-card highlight">
-              <h3 className="card-title">Premium Rocket rank</h3>
-              <p className="card-desc">Ultimate listing visibility. Best for luxury beachfront villas and commercial listings.</p>
-              <div className="price-box">
-                <span className="currency">$</span>
-                <span className="amount">50</span>
-                <span className="period">/ 6 Months</span>
-              </div>
-              <ul className="features">
-                <li className="feature-item">
-                  <span className="feature-icon">✓</span>
-                  <span>Highest Top 3 Search position (Always on top)</span>
-                </li>
-                <li className="feature-item">
-                  <span className="feature-icon">✓</span>
-                  <span>Featured placement in Homepage Slider Carousel</span>
-                </li>
-                <li className="feature-item">
-                  <span className="feature-icon">✓</span>
-                  <span>Glowing "🔥 Hot" badge for maximum click-through</span>
-                </li>
-                <li className="feature-item">
-                  <span className="feature-icon">✓</span>
-                  <span>Direct click-to-WhatsApp link integration</span>
-                </li>
-              </ul>
-              <button onClick={() => handleSelectBoost("Premium Rocket rank", 50)} className="action-btn">
-                Boost Listing 🚀
-              </button>
-            </div>
-          </>
-        )}
+        {/* Boost Package 2: Premium Rocket */}
+        <div className="pricing-card highlight">
+          <h3 className="card-title">Premium Rocket rank</h3>
+          <p className="card-desc">Ultimate listing visibility. Best for luxury beachfront villas and commercial listings.</p>
+          <div className="price-box">
+            <span className="currency">$</span>
+            <span className="amount">50</span>
+            <span className="period">/ 6 Months</span>
+          </div>
+          <ul className="features">
+            <li className="feature-item">
+              <span className="feature-icon">✓</span>
+              <span>Highest Top 3 Search position (Always on top)</span>
+            </li>
+            <li className="feature-item">
+              <span className="feature-icon">✓</span>
+              <span>Featured placement in Homepage Slider Carousel</span>
+            </li>
+            <li className="feature-item">
+              <span className="feature-icon">✓</span>
+              <span>Glowing "🔥 Hot" badge for maximum click-through</span>
+            </li>
+            <li className="feature-item">
+              <span className="feature-icon">✓</span>
+              <span>Direct click-to-WhatsApp link integration</span>
+            </li>
+          </ul>
+          <button onClick={() => handleSelectBoost("Premium Rocket rank", 50)} className="action-btn">
+            Boost Listing 🚀
+          </button>
+        </div>
       </section>
 
       {/* Boost Selection Drawer / Box */}

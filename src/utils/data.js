@@ -15,11 +15,6 @@ export const navlinks = [
     url: "/advertisepropertyzanzibar"
   },
   {
-    id: 5,
-    text: "Pricing",
-    url: "/pricing"
-  },
-  {
     id: 9,
     text: "About Us",
     url: "/about"
