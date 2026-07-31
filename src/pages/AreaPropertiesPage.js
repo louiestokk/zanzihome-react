@@ -531,10 +531,6 @@ const AreaPropertiesPage = () => {
         </p>
       </section>
 
-      <div style={{ maxWidth: "1200px", margin: "2rem auto 0 auto", padding: "0 16px" }}>
-        <MatchRequestStepper />
-      </div>
-
       <section className="area-content-container">
         {/* Loading Spinner */}
         {loading ? (
@@ -730,6 +726,10 @@ const AreaPropertiesPage = () => {
           </>
         )}
       </section>
+
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px 40px 15px" }}>
+        <MatchRequestStepper />
+      </div>
     </main>
   );
 };

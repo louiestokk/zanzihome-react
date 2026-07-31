@@ -295,10 +295,6 @@ const AllPropertiesPage = () => {
         <MapPage zoom={7} />
       </div>
 
-      <div style={{ maxWidth: "1200px", margin: "2rem auto 0 auto", padding: "0 16px" }}>
-        <MatchRequestStepper />
-      </div>
-
       {/* NEW MODERN FILTER DASHBOARD */}
       <div className="allprops-filter-wrapper">
         <div className="allprops-filter-row">
@@ -559,6 +555,9 @@ const AllPropertiesPage = () => {
       {/* ABOVE FOOTER */}
       <div style={{ margin: "1rem 0" }}>
         <AdBanner />
+      </div>
+      <div style={{ maxWidth: "1200px", margin: "2rem auto", padding: "0 15px" }}>
+        <MatchRequestStepper />
       </div>
       <Abovefooter />
     </section>
