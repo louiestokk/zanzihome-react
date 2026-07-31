@@ -32,7 +32,7 @@ const Payments = () => {
           <div className="contact-adress" style={{ marginTop: "1rem" }}>
             <h4>Advertise property</h4>
 
-            <Link to="/advertisepropertyzanzibar" className="ring">
+            <Link to="/boost-listing" className="ring">
               Advertise now, price and information
             </Link>
           </div>
@@ -41,7 +41,7 @@ const Payments = () => {
             style={{ marginTop: "1rem", marginBottom: "2rem" }}
           >
             <h4>Banner advertising</h4>
-            <Link to="/advertisepropertyzanzibar" className="ring">
+            <Link to="/boost-listing" className="ring">
               Banner advertising, price and information
             </Link>
           </div>

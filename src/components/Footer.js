@@ -33,7 +33,11 @@ const Footer = () => {
                 List Property
               </Link>
             </li>
-
+              <li>
+              <Link to="/boost-listing" className="footer-links">
+                Boost Listing 🚀
+              </Link>
+            </li>
             <li>
               <Link to="/contact" className="footer-links">
                 Banner Advertising
@@ -116,7 +120,7 @@ const Footer = () => {
             <Link to="/">All properties</Link>
           </button>
           <button type="button" className="footer-info-bottom-btn">
-            <Link to="/advertisepropertyzanzibar">Advertise</Link>
+            <Link to="/boost-listing">Advertise</Link>
           </button>
           <button type="button" className="footer-info-bottom-btn">
             <Link to="/payments">Payments</Link>

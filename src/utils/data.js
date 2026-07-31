@@ -12,7 +12,7 @@ export const navlinks = [
   {
     id: 4,
     text: "Boost Listing",
-    url: "/advertisepropertyzanzibar"
+    url: "/boost-listing"
   },
   {
     id: 9,

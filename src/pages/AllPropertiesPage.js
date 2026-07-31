@@ -418,7 +418,7 @@ const AllPropertiesPage = () => {
       <div style={{ background: "#ffeeba", padding: "1.5rem", textAlign: "center", margin: "2rem auto", borderRadius: "12px", maxWidth: "1200px" }}>
         <h2 style={{ marginBottom: "0.5rem" }}>Sell or Rent Faster!</h2>
         <p style={{ marginBottom: "1rem" }}>Boost your property listing and get maximum visibility on ZanziHome.</p>
-        <button onClick={() => window.location.href = "/advertisepropertyzanzibar"} style={{ padding: "0.8rem 1.5rem", background: "#013a17", color: "white", border: "none", borderRadius: "5px", fontWeight: "600", cursor: "pointer" }}>
+        <button onClick={() => window.location.href = "/boost-listing"} style={{ padding: "0.8rem 1.5rem", background: "#013a17", color: "white", border: "none", borderRadius: "5px", fontWeight: "600", cursor: "pointer" }}>
           Boost Your Listing
         </button>
       </div>

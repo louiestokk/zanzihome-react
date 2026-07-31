@@ -53,7 +53,7 @@ const About = () => {
             style={{ marginTop: "1rem", marginBottom: "2rem" }}
           >
             <h4>Banner advertising</h4>
-            <Link to="/advertisepropertyzanzibar" className="ring">
+            <Link to="/boost-listing" className="ring">
               Banner advertising, price and information
             </Link>
           </div> */}

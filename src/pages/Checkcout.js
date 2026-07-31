@@ -572,7 +572,7 @@ Price: $${activeAdsData.Price}
               Your Ad is Now Live!
             </h2>
             <p style={{ color: "#6b7280", fontSize: "15px", margin: "0 0 30px 0", lineHeight: "1.6" }}>
-              Thank you for advertising on ZanziHome. A confirmation email has been sent.
+              Thank you for advertising on ZanziHome.
             </p>
 
             {/* Listing Details Card */}
@@ -662,7 +662,7 @@ Price: $${activeAdsData.Price}
                 Boost your listing to appear at the very top of search results and on our homepage featured slider.
               </p>
               <Link
-                to="/advertisepropertyzanzibar"
+                to="/boost-listing"
                 style={{
                   display: "inline-block",
                   background: "#e5e7eb",

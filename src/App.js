@@ -22,8 +22,7 @@ const Navbar = lazy(() => import("./components/Navbar"));
 const Footer = lazy(() => import("./components/Footer"));
 const MapPage = lazy(() => import("./pages/MapPage"));
 const Profile = lazy(() => import("./pages/Profile"));
-const Advertise = lazy(() => import("./pages/Advertise"));
-const Pricing = lazy(() => import("./pages/Pricing"));
+const BoostListing = lazy(() => import("./pages/BoostListing"));
 const Price = lazy(() => import("./pages/Price"));
 const Guid = lazy(() => import("./pages/Guid"));
 const Build = lazy(() => import("./pages/Build"));
@@ -137,11 +136,8 @@ function App() {
           <Route path="/map">
             <MapPage />
           </Route>
-          <Route path="/advertisepropertyzanzibar">
-            <Advertise />
-          </Route>
-          <Route path="/pricing">
-            <Pricing />
+          <Route path="/boost-listing">
+            <BoostListing />
           </Route>
           <Route path="/priceadvertise">
             <Price />

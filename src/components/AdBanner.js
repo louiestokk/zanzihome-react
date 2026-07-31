@@ -128,7 +128,7 @@ const AdBanner = () => {
         <button
           type="button"
           className="promo-banner-btn"
-          onClick={() => history.push("/pricing")}
+          onClick={() => history.push("/boost-listing")}
         >
           Explore Boost Packages 🚀
         </button>
