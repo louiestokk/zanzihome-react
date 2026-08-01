@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useParams, useHistory } from "react-router-dom";
 import { AiFillHeart } from "react-icons/ai";
 import { FiUser } from "react-icons/fi";
@@ -25,6 +25,10 @@ const SingelFirebaseObject = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [recivied, setRecivied] = useState(false);
   const { adId } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [adId]);
 
   const selectedObjects = firestoreData.filter((object) =>
     location.pathname.includes(object.adId)
