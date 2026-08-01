@@ -11,7 +11,8 @@ import {
   FiMail, 
   FiPercent,
   FiMapPin,
-  FiExternalLink
+  FiExternalLink,
+  FiUser,
 } from "react-icons/fi";
 
 const AgencyPromoBanner = () => {
@@ -362,14 +363,6 @@ const AgencyPromoBanner = () => {
               <div className="promo-feature-item">
                 <FiUsers className="promo-feature-icon" />
                 <span>10,000+ Monthly Buyers</span>
-              </div>
-              <div className="promo-feature-item">
-                <FiMail className="promo-feature-icon" />
-                <span>Direct Lead Routing</span>
-              </div>
-              <div className="promo-feature-item">
-                <FiPercent className="promo-feature-icon" />
-                <span>0% Commission Fee</span>
               </div>
             </div>
 
