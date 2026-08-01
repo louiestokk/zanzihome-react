@@ -63,9 +63,9 @@ const Checkcout = ({ logedinUser }) => {
     setActiveStep(0);
   }, [setActiveStep]);
 
-  const handleAdFormSubmit = (formData) => {
+  const handleAdFormSubmit = async (formData) => {
     setAdsData(formData);
-    saveAdToDatabase("Free Tier", true, "Direct publication (Free promotion)", formData);
+    await saveAdToDatabase("Free Tier", true, "Direct publication (Free promotion)", formData);
   };
 
   const saveAdToDatabase = async (method, isPaid, reference = "", currentAdsData = null) => {
@@ -489,7 +489,7 @@ Price: $${activeAdsData.Price}
                   transition: "background 0.2s"
                 }}
               >
-                {isSubmitting ? "Submitting Ad..." : "I Have Sent Payment - Submit Ad"}
+                {isSubmitting ? "sending request..." : "I Have Sent Payment - Submit Ad"}
               </button>
             </form>
           </div>

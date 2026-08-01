@@ -263,6 +263,24 @@ const structuredData = {
      <Popular
         title={"Featured Properties in Zanzibar"}
         images={[
+                     {
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2FIMG_0260.png?alt=media&token=1c208ad4-54bd-4318-92ab-bdbcad764f3d",
+              imgText: "Beachfront Development Land in Shungi,",
+              adId: Number(374543975),
+              type: "Plot",
+              price: "$1.250.000",
+              size: "10100",
+              rooms:0
+            },
+                     {
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2FIMG_0263.jpeg?alt=media&token=c5caf984-2b4c-415c-8484-bad701d08b82",
+              imgText: "Development Plot| Bwejuu",
+              adId: Number(374543975),
+              type: "Plot",
+              price: "$1.450.000",
+              size: "9000",
+              rooms:0
+            },
                   {
               url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2FIMG_0552.jpeg?alt=media&token=68935c61-785b-4baa-9016-65023f295afa",
               imgText: "HIgh ROI Beachfront living in Paje",

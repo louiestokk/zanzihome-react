@@ -80,11 +80,16 @@ const AdsForm = ({ setActiveStep, adType, onFormSubmit }) => {
     setadsFormData({ ...adsFormData, [e.target.name]: e.target.value });
   };
   const addNewAdToFirebase = async () => {
+    setLoading(true);
     if (onFormSubmit) {
-      onFormSubmit(adsFormData);
+      try {
+        await onFormSubmit(adsFormData);
+      } catch (e) {
+        console.error("Error submitting form: ", e);
+        setLoading(false);
+      }
     } else {
       sendEmail();
-      setLoading(true);
       try {
         const docRef = await addDoc(collection(db, "newAd"), adsFormData);
         console.log("Document written with ID: ", docRef.id);
@@ -93,6 +98,7 @@ const AdsForm = ({ setActiveStep, adType, onFormSubmit }) => {
         setActiveStep(1);
       } catch (e) {
         console.error("Error adding document: ", e);
+        setLoading(false);
       }
     }
   };
@@ -474,9 +480,9 @@ const AdsForm = ({ setActiveStep, adType, onFormSubmit }) => {
             <button
               type="submit"
               className="form-ad-btn-cont-sub-btn"
-              disabled={accept}
+              disabled={accept || loading}
             >
-              {loading ? "sending..." : "Place the ad"}
+              {loading ? "sending request..." : "Place the ad"}
             </button>
           </div>
           <div className="lllll">
