@@ -941,7 +941,7 @@ justify-content: center;
     max-width: 700px;
   }
   .singel-object-infotext {
-    max-width: 300px;
+    max-width: 100%;
   }
   .onpage-buttons span {
     font-size: 1rem;

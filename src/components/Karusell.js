@@ -33,7 +33,9 @@ const Karusell = ({ imagesArray }) => {
         .carousel-view-container {
           position: relative;
           width: 100%;
-          height: 300px;
+          height: 56vw; /* 16:9 aspect ratio */
+          max-height: 320px;
+          min-height: 220px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -42,6 +44,8 @@ const Karusell = ({ imagesArray }) => {
         @media (min-width: 768px) {
           .carousel-view-container {
             height: 450px;
+            max-height: none;
+            min-height: none;
           }
         }
 
@@ -57,13 +61,13 @@ const Karusell = ({ imagesArray }) => {
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          width: 44px;
-          height: 44px;
+          width: 36px;
+          height: 36px;
           border-radius: 50%;
-          background: rgba(255, 255, 255, 0.25);
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.3);
+          background: rgba(255, 255, 255, 0.3);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          border: 1px solid rgba(255, 255, 255, 0.4);
           color: #ffffff;
           display: flex;
           align-items: center;
@@ -75,44 +79,68 @@ const Karusell = ({ imagesArray }) => {
         }
 
         .carousel-btn:hover {
-          background: rgba(255, 255, 255, 0.45);
+          background: rgba(255, 255, 255, 0.5);
           transform: translateY(-50%) scale(1.05);
         }
 
         .carousel-btn.prev {
-          left: 16px;
+          left: 12px;
         }
 
         .carousel-btn.next {
-          right: 16px;
+          right: 12px;
+        }
+
+        @media (min-width: 768px) {
+          .carousel-btn {
+            width: 46px;
+            height: 46px;
+          }
+          .carousel-btn.prev {
+            left: 20px;
+          }
+          .carousel-btn.next {
+            right: 20px;
+          }
         }
 
         /* Image Index Badge */
         .carousel-badge {
           position: absolute;
-          bottom: 16px;
-          right: 16px;
+          bottom: 12px;
+          right: 12px;
           background: rgba(1, 58, 23, 0.75);
           backdrop-filter: blur(8px);
           -webkit-backdrop-filter: blur(8px);
           color: #ffffff;
-          font-size: 12px;
+          font-size: 11px;
           font-weight: 600;
-          padding: 6px 12px;
+          padding: 4px 10px;
           border-radius: 20px;
           letter-spacing: 0.5px;
           z-index: 10;
+        }
+        @media (min-width: 768px) {
+          .carousel-badge {
+            bottom: 16px;
+            right: 16px;
+            font-size: 12px;
+            padding: 6px 12px;
+          }
         }
 
         /* Thumbnails Container */
         .carousel-thumbs-wrapper {
           background: #ffffff;
-          padding: 12px;
+          padding: 8px;
           display: flex;
-          gap: 10px;
+          gap: 8px;
           overflow-x: auto;
-          scroll-behavior: smooth;
+          white-space: nowrap;
+          -webkit-overflow-scrolling: touch;
           border-top: 1px solid #f3f4f6;
+          width: 100%;
+          box-sizing: border-box;
         }
 
         /* Hide scrollbars but keep functionality */
@@ -128,10 +156,10 @@ const Karusell = ({ imagesArray }) => {
         }
 
         .carousel-thumb-item {
-          width: 75px;
-          height: 55px;
+          width: 60px;
+          height: 45px;
           object-fit: cover;
-          border-radius: 8px;
+          border-radius: 6px;
           cursor: pointer;
           transition: all 0.2s ease;
           border: 2px solid transparent;
@@ -140,9 +168,14 @@ const Karusell = ({ imagesArray }) => {
         }
 
         @media (min-width: 768px) {
+          .carousel-thumbs-wrapper {
+            padding: 12px;
+            gap: 10px;
+          }
           .carousel-thumb-item {
             width: 90px;
             height: 65px;
+            border-radius: 8px;
           }
         }
 

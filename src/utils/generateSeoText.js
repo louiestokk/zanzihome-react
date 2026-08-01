@@ -12,3 +12,29 @@ export const generateSeoText = (type, area) => {
     `
   };
 };
+
+export const generateSeoRentText = (type, area) => {
+  return {
+    title: `Rent ${type.charAt(0).toUpperCase() + type.slice(1)} in ${area}, Zanzibar | Long & Short Term Rentals`,
+    description: `Discover beautiful ${type}s for rent in ${area}, Zanzibar. Find your perfect holiday villa, long term apartment, or local home near the beach.`,
+    h1: `Rent ${type.charAt(0).toUpperCase() + type.slice(1)} in ${area}`,
+    content: `
+      Searching for a ${type} for rent in ${area}, Zanzibar? Browse verified rental listings including 
+      beachfront apartments, luxury rental villas, and cozy homes. Whether you need a short-term holiday rental 
+      or a long-term home, ${area} provides amazing living options close to the turquoise water.
+    `
+  };
+};
+
+export const generateSeoInvestText = (area) => {
+  return {
+    title: `Real Estate Investment in ${area}, Zanzibar | Property & Land Investment`,
+    description: `Explore investment properties, beachfront land plots, and development projects in ${area}, Zanzibar. Secure high ROI and residency through real estate.`,
+    h1: `Real Estate Investment in ${area}`,
+    content: `
+      Interested in real estate investment in ${area}, Zanzibar? This fast-growing area offers exceptional opportunities, 
+      from beach plots and commercial land to luxury vacation villas with strong rental ROI. Secure high yields, capital growth, 
+      and legal tax incentives in ${area}'s popular property market.
+    `
+  };
+};

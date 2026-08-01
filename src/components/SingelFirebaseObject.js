@@ -65,6 +65,8 @@ const [openIndex, setOpenIndex] = useState(null);
           padding: 20px 15px;
           font-family: 'Poppins', sans-serif;
           color: #1f2937;
+          box-sizing: border-box;
+          width: 100%;
         }
 
         /* Header section styles */
@@ -159,6 +161,7 @@ const [openIndex, setOpenIndex] = useState(null);
           grid-template-columns: 1fr;
           gap: 30px;
           align-items: start;
+          width: 100%;
         }
         @media (min-width: 992px) {
           .property-grid-layout {
@@ -170,12 +173,18 @@ const [openIndex, setOpenIndex] = useState(null);
           display: flex;
           flex-direction: column;
           gap: 30px;
+          min-width: 0;
+          width: 100%;
+          box-sizing: border-box;
         }
 
         .layout-side-col {
           display: flex;
           flex-direction: column;
           gap: 20px;
+          min-width: 0;
+          width: 100%;
+          box-sizing: border-box;
         }
         @media (min-width: 992px) {
           .layout-side-col {
@@ -284,6 +293,30 @@ const [openIndex, setOpenIndex] = useState(null);
           border-radius: 16px;
           overflow: hidden;
           border: 1px solid #e5e7eb;
+        }
+
+        /* Fallback Single Image styling */
+        .single-fallback-image-wrapper {
+          border-radius: 16px;
+          overflow: hidden;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+          width: 100%;
+          height: 56vw;
+          max-height: 320px;
+          min-height: 220px;
+        }
+        @media (min-width: 768px) {
+          .single-fallback-image-wrapper {
+            height: 450px;
+            max-height: none;
+            min-height: none;
+          }
+        }
+        .single-fallback-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
         }
       `}</style>
 
@@ -481,15 +514,15 @@ const [openIndex, setOpenIndex] = useState(null);
               <div className="layout-main-col">
                 
                 {/* Carousel wrapper */}
-                <div>
+                <div style={{ width: "100%", overflow: "hidden" }}>
                   {imagesArray && imagesArray.length > 1 ? (
                     <Karusell imagesArray={imagesArray} uri={uri} />
                   ) : (
-                    <div style={{ borderRadius: "16px", overflow: "hidden", boxShadow: "0 4px 20px rgba(0,0,0,0.05)" }}>
+                    <div className="single-fallback-image-wrapper">
                       <img
                         src={uri}
                         alt={Title}
-                        style={{ width: "100%", height: "450px", objectFit: "cover", display: "block" }}
+                        className="single-fallback-image"
                       />
                     </div>
                   )}
@@ -722,9 +755,58 @@ const [openIndex, setOpenIndex] = useState(null);
               e.currentTarget.style.color = "#111";
             }}
           >
-            {type.charAt(0).toUpperCase() + type.slice(1)} in {Area}
+            Buy {type.charAt(0).toUpperCase() + type.slice(1)} in {Area}
           </a>
         ))}
+        {["apartment", "house"].map(type => (
+          <a
+            key={`rent-${type}`}
+            href={`/rent/${type}/${Area?.toLowerCase().replace(/\s+/g, "-")}`}
+            style={{
+              padding: "10px 18px",
+              borderRadius: "30px",
+              background: "#f3f4f6",
+              textDecoration: "none",
+              fontSize: "14px",
+              fontWeight: "600",
+              color: "#111",
+              transition: "0.3s",
+            }}
+            onMouseOver={e => {
+              e.currentTarget.style.background = "#0b8b3a";
+              e.currentTarget.style.color = "#fff";
+            }}
+            onMouseOut={e => {
+              e.currentTarget.style.background = "#f3f4f6";
+              e.currentTarget.style.color = "#111";
+            }}
+          >
+            Rent {type.charAt(0).toUpperCase() + type.slice(1)} in {Area}
+          </a>
+        ))}
+        <a
+          href={`/invest/${Area?.toLowerCase().replace(/\s+/g, "-")}`}
+          style={{
+            padding: "10px 18px",
+            borderRadius: "30px",
+            background: "#f3f4f6",
+            textDecoration: "none",
+            fontSize: "14px",
+            fontWeight: "600",
+            color: "#111",
+            transition: "0.3s",
+          }}
+          onMouseOver={e => {
+            e.currentTarget.style.background = "#0b8b3a";
+            e.currentTarget.style.color = "#fff";
+          }}
+          onMouseOut={e => {
+            e.currentTarget.style.background = "#f3f4f6";
+            e.currentTarget.style.color = "#111";
+          }}
+        >
+          Invest in {Area}
+        </a>
       </div>
 
       {/* 🔥 TOP ZANZIBAR AREAS GRID */}
