@@ -513,30 +513,95 @@ Price: $${activeAdsData.Price}
 
       {/* Steps Handler */}
       {activeStep === 0 && (
-        <div style={{ maxWidth: "800px", margin: "2rem auto", padding: "0 20px" }}>
-          {/* Beautiful premium banner explaining advertising is free */}
-          <div style={{
-            background: "linear-gradient(135deg, #013a17 0%, #0d2818 100%)",
-            color: "white",
-            padding: "32px 24px",
-            borderRadius: "20px",
-            textAlign: "center",
-            marginBottom: "30px",
-            boxShadow: "0 10px 30px rgba(1, 58, 23, 0.15)"
-          }}>
-            <h2 style={{ margin: 0, fontSize: "28px", fontWeight: "800", letterSpacing: "-0.5px" }}>
-              Publish Your Listing for Free!
-            </h2>
-            <p style={{ margin: "10px 0 0 0", fontSize: "15px", color: "#d1e2c9", fontWeight: "300", lineHeight: "1.6" }}>
-              It is completely free to advertise on ZanziHome. Create and publish your property listing instantly to reach thousands of potential clients.
-            </p>
-          </div>
-
+        <div style={{ maxWidth: "1100px", margin: "1.5rem auto", padding: "0 20px", width: "100%", boxSizing: "border-box" }}>
           <AdsForm 
             setActiveStep={setActiveStep} 
             adType={adType} 
             onFormSubmit={handleAdFormSubmit} 
           />
+
+          {/* Beautiful premium banner explaining advertising is free */}
+          <div style={{
+            background: "linear-gradient(135deg, #013a17 0%, #0b8b3a 100%)",
+            color: "#ffffff",
+            padding: "24px 24px",
+            borderRadius: "16px",
+            textAlign: "left",
+            marginTop: "40px",
+            marginBottom: "20px",
+            boxShadow: "0 8px 25px rgba(1, 58, 23, 0.15)",
+            position: "relative",
+            overflow: "hidden",
+            fontFamily: "'Poppins', sans-serif"
+          }}>
+            {/* Subtle background overlay graphics */}
+            <div style={{
+              position: "absolute",
+              top: "-30px",
+              right: "-30px",
+              width: "120px",
+              height: "120px",
+              borderRadius: "50%",
+              background: "rgba(255, 255, 255, 0.03)",
+              pointerEvents: "none"
+            }} />
+            <div style={{
+              position: "absolute",
+              bottom: "-20px",
+              left: "-20px",
+              width: "80px",
+              height: "80px",
+              borderRadius: "50%",
+              background: "rgba(255, 255, 255, 0.02)",
+              pointerEvents: "none"
+            }} />
+
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "20px" }}>
+              <div style={{ flex: "1 1 450px" }}>
+                <div style={{
+                  display: "inline-block",
+                  background: "rgba(255, 255, 255, 0.12)",
+                  padding: "4px 10px",
+                  borderRadius: "30px",
+                  fontSize: "10.5px",
+                  fontWeight: "700",
+                  letterSpacing: "0.5px",
+                  marginBottom: "8px",
+                  textTransform: "uppercase"
+                }}>
+                  ✨ Reach Zanzibar's Largest Audience
+                </div>
+                <h2 style={{ margin: 0, fontSize: "22px", fontWeight: "800", letterSpacing: "-0.5px", lineHeight: "1.2" }}>
+                  Publish Your Listing for Free!
+                </h2>
+                <p style={{ margin: "6px 0 0 0", fontSize: "13.5px", color: "#e2f0dc", fontWeight: "300", lineHeight: "1.5", maxWidth: "600px" }}>
+                  Get maximum visibility on Zanzibar's leading real estate platform. Showcase your villa, apartment, or plot to thousands of active buyers and renters.
+                </p>
+              </div>
+
+              {/* Stat Card */}
+              <div style={{
+                background: "rgba(255, 255, 255, 0.08)",
+                backdropFilter: "blur(10px)",
+                border: "1px solid rgba(255, 255, 255, 0.15)",
+                padding: "14px 20px",
+                borderRadius: "12px",
+                flex: "1 1 200px",
+                textAlign: "center",
+                boxShadow: "0 6px 20px rgba(0, 0, 0, 0.05)",
+                boxSizing: "border-box"
+              }}>
+                <div style={{ fontSize: "28px", fontWeight: "800", color: "#ffffff", lineHeight: "1" }}>10,000+</div>
+                <div style={{ fontSize: "11px", fontWeight: "600", color: "#e2f0dc", marginTop: "3px", textTransform: "uppercase", letterSpacing: "0.5px" }}>Active Monthly Users</div>
+                <div style={{ height: "1px", background: "rgba(255, 255, 255, 0.15)", margin: "10px 0" }} />
+                <div style={{ display: "flex", justifyContent: "center", gap: "6px", fontSize: "11px", color: "#ffffff", fontWeight: "600" }}>
+                  <span>✓ Free Tier</span>
+                  <span>•</span>
+                  <span>✓ Instant Live</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )}
 

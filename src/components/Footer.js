@@ -29,6 +29,11 @@ const Footer = () => {
               </Link>
             </li>
             <li>
+              <Link to="/about" className="footer-links">
+                Real Estate Agencies
+              </Link>
+            </li>
+            <li>
               <Link to="/checkout" className="footer-links">
                 List Property
               </Link>

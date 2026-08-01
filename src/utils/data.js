@@ -20,6 +20,11 @@ export const navlinks = [
     url: "/about"
   },
   {
+    id: 11,
+    text: "Real Estate Agencies",
+    url: "/about"
+  },
+  {
     id: 10,
     text: "Contact Us",
     url: "/contact",
@@ -335,6 +340,7 @@ export const villages = [
   "Chukwani",
   "Chwaka",
   "Dimbani",
+  "Dongwe",
   "Fukuchani",
   "Fumba",
   "Fuoni",
@@ -345,6 +351,7 @@ export const villages = [
   "Kendwa",
   "Kibaoni",
   "Kibweni",
+  "Kidoti",
   "Kinyasini",
   "Kitogani",
   "Kiwengwa",
@@ -355,6 +362,7 @@ export const villages = [
   "Mangapwani",
   "Matemwe",
   "Mbweni",
+  "Michamvi",
   "Mchangani",
   "Michenzani",
   "Mkokotoni",
@@ -369,6 +377,7 @@ export const villages = [
   "Pemba",
   "Pingwe",
   "Pongwe",
+  "Pwani Mchangani",
   "Regezo Mwendo",
   "Stone Town",
   "Tunguu",
