@@ -7,6 +7,7 @@ import Faq from "../components/Faq";
 import AdBanner from "../components/AdBanner";
 import MatchRequestStepper from "../components/MatchRequestStepper";
 import { faqdata } from "../utils/faq";
+import AgencyPromoBanner from "../components/AgencyPromoBanner";
 
 const propertyzanzibar = () => {
 
@@ -408,6 +409,7 @@ const structuredData = {
 </a>
   </div>
 </section>
+<AgencyPromoBanner />
 <section style={{ maxWidth: "1000px", margin: "0 auto", padding: "40px 20px" }}>
   <h2 style={{ fontSize: "32px", fontWeight: "700", marginBottom: "20px"}}>
     Your Ultimate Guide to Real Estate in Zanzibar
