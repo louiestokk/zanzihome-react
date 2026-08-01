@@ -263,6 +263,15 @@ const structuredData = {
      <Popular
         title={"Featured Properties in Zanzibar"}
         images={[
+                             {
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2Fhotel-sale.png?alt=media&token=d80f1357-8e5c-4d73-a3e3-1591e8f18ad0",
+              imgText: "Luxury Coastal Hotel Investment in Prime Beach District, Kendwa",
+              adId: Number(373041655),
+              type: "Hotel",
+              price: "$875.000",
+              size: "3000",
+              rooms:0
+            },
                      {
               url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2FIMG_0260.png?alt=media&token=1c208ad4-54bd-4318-92ab-bdbcad764f3d",
               imgText: "Beachfront Development Land in Shungi,",
