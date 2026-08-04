@@ -264,6 +264,24 @@ const structuredData = {
      <Popular
         title={"Featured Properties in Zanzibar"}
         images={[
+                                 {
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2Fplot-sale-paje.jpeg?alt=media&token=ee3a2c2a-c6cc-4926-a81c-393e7133b65c",
+              imgText: "PRIME ROADSIDE INVESTMENT LAND FOR SALE – PAJE–JAMBIANI",
+              adId: Number(218752271),
+              type: "Plot",
+              price: "$395.000",
+              size: "6451",
+              rooms:0
+            },
+                          {
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2Fbusiness-jambiani.webp?alt=media&token=ea61d850-ed15-441f-97f8-4c3b892a7885",
+              imgText: "COMMERCIAL & HOSPITALITY INVESTMENT PROPERTY – JAMBIANI",
+              adId: Number(363634436),
+              type: "Business",
+              price: "$600.000",
+              size: "8365",
+              rooms:0
+            },
                              {
               url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2Fhotel-sale.png?alt=media&token=d80f1357-8e5c-4d73-a3e3-1591e8f18ad0",
               imgText: "Luxury Coastal Hotel Investment in Prime Beach District, Kendwa",
@@ -273,22 +291,40 @@ const structuredData = {
               size: "3000",
               rooms:0
             },
-                     {
-              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2FIMG_0260.png?alt=media&token=1c208ad4-54bd-4318-92ab-bdbcad764f3d",
-              imgText: "Beachfront Development Land in Shungi,",
-              adId: Number(374543975),
+                           {
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2Fplot-bwejuu.webp?alt=media&token=453e385d-9703-4821-9b62-4a97a3256311",
+              imgText: "5,000 SQM Fantastic Prime Land in Bwejuu",
+              adId: Number(491630589),
               type: "Plot",
-              price: "$1.250.000",
-              size: "10100",
+              price: "$50.000",
+              size: "5000",
               rooms:0
             },
-                     {
-              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2FIMG_0263.jpeg?alt=media&token=c5caf984-2b4c-415c-8484-bad701d08b82",
-              imgText: "Development Plot| Bwejuu",
-              adId: Number(374543975),
+                          {
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2FMakunduchi-plot.webp?alt=media&token=5b87d631-9a9e-4b7e-a606-0c84379cd5c5",
+              imgText: "Prime Cliff-Front Ocean Land | Makunduchi",
+              adId: Number(905192344),
               type: "Plot",
-              price: "$1.450.000",
-              size: "9000",
+              price: "$550.000",
+              size: "8500",
+              rooms:0
+            },
+                              {
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2FIMG_4279.png?alt=media&token=da47d065-946b-4dc8-9fc3-5d5253927640",
+              imgText: "Oceanview Land with Private Shoreline in Kidoti, Nungwi",
+              adId: Number(414112080),
+              type: "Plot",
+              price: "$795.000",
+              size: "10000",
+              rooms:0
+            },
+                                {
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2FIMG_4280.png?alt=media&token=9ebb9592-6099-4a14-833a-9f09df191161",
+              imgText: "Roadside Development Plot Near the Coast, Shungi",
+              adId: Number(165083046),
+              type: "Plot",
+              price: "$600.000",
+              size: "16000",
               rooms:0
             },
                   {
