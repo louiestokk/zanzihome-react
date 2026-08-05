@@ -58,7 +58,7 @@ const faqs = [
     a: "Prices vary depending on property type, location and proximity to the beach."
   }
 ];
-console.log(currentUrl)
+console.log(currentObject)
 const [openIndex, setOpenIndex] = useState(null);
   return (
     <div className="property-details-page">
@@ -344,6 +344,7 @@ const [openIndex, setOpenIndex] = useState(null);
           uri,
           imagesArray,
           WhatsApp,
+          About,
         } = object;
 
         const hasCoords = lat && lng && !isNaN(Number(lat)) && !isNaN(Number(lng)) && Number(lat) !== 0 && Number(lng) !== 0;
@@ -623,7 +624,7 @@ const [openIndex, setOpenIndex] = useState(null);
                 </div>
 
                 {/* Brokers Contact Card */}
-                <Brokers contact={Name} agency={Name} number={Phone} email={Email} whatsapp={WhatsApp} />
+                <Brokers contact={Name} agency={Name} number={Phone} email={Email} whatsapp={WhatsApp} about={About} />
 
                 {/* Boost Card */}
                 <div className="sidebar-boost-card">

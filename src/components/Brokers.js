@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Brokers = ({ agency, number, contact, logo, email, whatsapp }) => {
+const Brokers = ({ agency, number, contact, logo, email, whatsapp, about }) => {
   const [copiedType, setCopiedType] = useState(null);
 
   // Fallbacks
@@ -148,6 +148,110 @@ const Brokers = ({ agency, number, contact, logo, email, whatsapp }) => {
           background: #d1fae5;
           color: #065f46;
         }
+
+        .brokers-about {
+          margin-top: 20px;
+          padding-top: 18px;
+          border-top: 1px solid #f3f4f6;
+        }
+
+        .about-title {
+          font-size: 10.5px;
+          font-weight: 700;
+          color: #9ca3af;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin: 0 0 6px 0;
+        }
+
+        .about-text {
+          font-size: 13px;
+          color: #4b5563;
+          line-height: 1.6;
+          margin: 0;
+          white-space: pre-line;
+        }
+
+        .brokers-trust {
+          margin-top: 20px;
+          padding-top: 18px;
+          border-top: 1px solid #f3f4f6;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .trust-header {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+        }
+
+        .trust-rating-box {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .trust-score {
+          font-size: 15px;
+          font-weight: 800;
+          color: #111827;
+        }
+
+        .trust-stars {
+          display: flex;
+          color: #fbbf24;
+          font-size: 13px;
+          gap: 1px;
+        }
+
+        .trust-reviews-count {
+          font-size: 12.5px;
+          color: #6b7280;
+          font-weight: 500;
+          margin-left: 2px;
+        }
+
+        .trust-badge-row {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex-wrap: wrap;
+        }
+
+        .trustpilot-badge {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          background: #f3f4f6;
+          padding: 5px 10px;
+          border-radius: 6px;
+          font-size: 11.5px;
+          font-weight: 600;
+          color: #374151;
+          border: 1px solid #e5e7eb;
+        }
+
+        .verified-badge {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          background: #f0fdf4;
+          padding: 5px 10px;
+          border-radius: 6px;
+          font-size: 11.5px;
+          font-weight: 600;
+          color: #166534;
+          border: 1px solid #bbf7d0;
+        }
+
+        .trust-sales-pitch {
+          font-size: 12px;
+          color: #374151;
+          margin: 2px 0 0 0;
+          line-height: 1.4;
+        }
       `}</style>
 
       <div className="brokers-header">
@@ -155,8 +259,14 @@ const Brokers = ({ agency, number, contact, logo, email, whatsapp }) => {
           {displayName.charAt(0).toUpperCase()}
         </div>
         <div className="brokers-header-info">
-          <h4 className="brokers-title">Contact Agent</h4>
-          <p className="brokers-subtitle">{displayName}</p>
+          <h4 className="brokers-title" style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+            Contact Agent
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#0b8b3a" style={{ flexShrink: 0 }}>
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+            </svg>
+          </h4>
+          <p className="verified-badge-sub" style={{ fontSize: "10px", color: "#0b8b3a", fontWeight: "700", margin: "2px 0 0 0", textTransform: "uppercase", letterSpacing: "0.5px" }}>Verified Agent</p>
+          <p className="brokers-subtitle" style={{ marginTop: "4px" }}>{displayName}</p>
         </div>
       </div>
 
@@ -217,6 +327,48 @@ const Brokers = ({ agency, number, contact, logo, email, whatsapp }) => {
           </span>
         </div>
 
+      </div>
+
+      {about && (
+        <div className="brokers-about">
+          <h5 className="about-title">About Agent</h5>
+          <p className="about-text">{about}</p>
+        </div>
+      )}
+
+      {/* Trustpilot & Reviews section */}
+      <div className="brokers-trust">
+        <div className="trust-header">
+          <div className="trust-rating-box">
+            <span className="trust-score">4.9</span>
+            <div className="trust-stars">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <span className="trust-reviews-count">(639 reviews)</span>
+          </div>
+        </div>
+
+        <div className="trust-badge-row">
+          <div className="trustpilot-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#00b67a" style={{ verticalAlign: "middle" }}>
+              <polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9" />
+            </svg>
+            <span className="trustpilot-text">
+              Trustpilot <strong style={{ color: "#00b67a" }}>4.9/5</strong>
+            </span>
+          </div>
+          <div className="verified-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0b8b3a" strokeWidth="2.5">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              <path d="M9 11l2 2 4-4" />
+            </svg>
+            <span>Verified Agent</span>
+          </div>
+        </div>
+        
+        <p className="trust-sales-pitch">
+          ⚡ <strong>Fast response:</strong> Typically replies within 1 hour.
+        </p>
       </div>
     </div>
   );
