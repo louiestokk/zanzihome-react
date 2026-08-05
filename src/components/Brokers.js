@@ -9,6 +9,8 @@ const Brokers = ({ agency, number, contact, logo, email, whatsapp, about, isComp
   const displayEmail = email || "louiestokk@gmail.com";
   const displayName = agency || contact || "Louie";
 
+  const showCompanyTrust = isCompany === true || (about && about.trim().length > 0);
+
   const handleCopy = (text, type) => {
     if (!text) return;
     navigator.clipboard.writeText(text);
@@ -261,12 +263,16 @@ const Brokers = ({ agency, number, contact, logo, email, whatsapp, about, isComp
         <div className="brokers-header-info">
           <h4 className="brokers-title" style={{ display: "flex", alignItems: "center", gap: "6px" }}>
             Contact Agent
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="#0b8b3a" style={{ flexShrink: 0 }}>
-              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-            </svg>
+            {showCompanyTrust && (
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#0b8b3a" style={{ flexShrink: 0 }}>
+                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+              </svg>
+            )}
           </h4>
-          <p className="verified-badge-sub" style={{ fontSize: "10px", color: "#0b8b3a", fontWeight: "700", margin: "2px 0 0 0", textTransform: "uppercase", letterSpacing: "0.5px" }}>Verified Agent</p>
-          <p className="brokers-subtitle" style={{ marginTop: "4px" }}>{displayName}</p>
+          {showCompanyTrust && (
+            <p className="verified-badge-sub" style={{ fontSize: "10px", color: "#0b8b3a", fontWeight: "700", margin: "2px 0 0 0", textTransform: "uppercase", letterSpacing: "0.5px" }}>Verified Agent</p>
+          )}
+          <p className="brokers-subtitle" style={{ marginTop: showCompanyTrust ? "4px" : "0px" }}>{displayName}</p>
         </div>
       </div>
 
@@ -337,7 +343,7 @@ const Brokers = ({ agency, number, contact, logo, email, whatsapp, about, isComp
       )}
 
       {/* Trustpilot & Reviews section */}
-      {(isCompany || (about && about.trim().length > 0)) && (
+      {showCompanyTrust && (
         <div className="brokers-trust">
           <div className="trust-header">
             <div className="trust-rating-box">
