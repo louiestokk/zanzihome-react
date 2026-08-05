@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Brokers = ({ agency, number, contact, logo, email, whatsapp, about }) => {
+const Brokers = ({ agency, number, contact, logo, email, whatsapp, about, isCompany }) => {
   const [copiedType, setCopiedType] = useState(null);
 
   // Fallbacks
@@ -337,39 +337,41 @@ const Brokers = ({ agency, number, contact, logo, email, whatsapp, about }) => {
       )}
 
       {/* Trustpilot & Reviews section */}
-      <div className="brokers-trust">
-        <div className="trust-header">
-          <div className="trust-rating-box">
-            <span className="trust-score">4.9</span>
-            <div className="trust-stars">
-              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      {(isCompany || (about && about.trim().length > 0)) && (
+        <div className="brokers-trust">
+          <div className="trust-header">
+            <div className="trust-rating-box">
+              <span className="trust-score">4.9</span>
+              <div className="trust-stars">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+              <span className="trust-reviews-count">(639 reviews)</span>
             </div>
-            <span className="trust-reviews-count">(639 reviews)</span>
           </div>
-        </div>
 
-        <div className="trust-badge-row">
-          <div className="trustpilot-badge">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="#00b67a" style={{ verticalAlign: "middle" }}>
-              <polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9" />
-            </svg>
-            <span className="trustpilot-text">
-              Trustpilot <strong style={{ color: "#00b67a" }}>4.9/5</strong>
-            </span>
+          <div className="trust-badge-row">
+            <div className="trustpilot-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#00b67a" style={{ verticalAlign: "middle" }}>
+                <polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9" />
+              </svg>
+              <span className="trustpilot-text">
+                Trustpilot <strong style={{ color: "#00b67a" }}>4.9/5</strong>
+              </span>
+            </div>
+            <div className="verified-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0b8b3a" strokeWidth="2.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <path d="M9 11l2 2 4-4" />
+              </svg>
+              <span>Verified Agent</span>
+            </div>
           </div>
-          <div className="verified-badge">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0b8b3a" strokeWidth="2.5">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-              <path d="M9 11l2 2 4-4" />
-            </svg>
-            <span>Verified Agent</span>
-          </div>
+          
+          <p className="trust-sales-pitch">
+            ⚡ <strong>Fast response:</strong> Typically replies within 1 hour.
+          </p>
         </div>
-        
-        <p className="trust-sales-pitch">
-          ⚡ <strong>Fast response:</strong> Typically replies within 1 hour.
-        </p>
-      </div>
+      )}
     </div>
   );
 };

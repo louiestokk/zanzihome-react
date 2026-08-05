@@ -345,6 +345,7 @@ const [openIndex, setOpenIndex] = useState(null);
           imagesArray,
           WhatsApp,
           About,
+          isCompany,
         } = object;
 
         const hasCoords = lat && lng && !isNaN(Number(lat)) && !isNaN(Number(lng)) && Number(lat) !== 0 && Number(lng) !== 0;
@@ -624,7 +625,7 @@ const [openIndex, setOpenIndex] = useState(null);
                 </div>
 
                 {/* Brokers Contact Card */}
-                <Brokers contact={Name} agency={Name} number={Phone} email={Email} whatsapp={WhatsApp} about={About} />
+                <Brokers contact={Name} agency={Name} number={Phone} email={Email} whatsapp={WhatsApp} about={About} isCompany={isCompany} />
 
                 {/* Boost Card */}
                 <div className="sidebar-boost-card">

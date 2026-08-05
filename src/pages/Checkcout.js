@@ -25,7 +25,7 @@ const Checkcout = ({ logedinUser }) => {
   const dispatch = useDispatch();
   const firestoreData = useSelector(getFirestoreData);
   const [adType, setadType] = useState("Properties");
-  const { activeStep, setActiveStep } = useFormContext();
+  const { activeStep, setActiveStep, company } = useFormContext();
   const { user } = useUserContext();
 
   // Selected package details
@@ -92,7 +92,9 @@ const Checkcout = ({ logedinUser }) => {
         endDate: endStr,
         paymentMethod: method,
         paymentReference: reference,
-        Email: user?.email || activeAdsData.Email || ""
+        Email: activeAdsData.Email || user?.email || "",
+        userEmail: user?.email || "",
+        isCompany: !company
       };
 
       // Write directly to Firestore
