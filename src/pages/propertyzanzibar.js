@@ -8,6 +8,9 @@ import AdBanner from "../components/AdBanner";
 import MatchRequestStepper from "../components/MatchRequestStepper";
 import { faqdata } from "../utils/faq";
 import AgencyPromoBanner from "../components/AgencyPromoBanner";
+import LatestApartments from "../components/LatestApartments";
+import LatestHouses from "../components/LatestHouses";
+import LatestBusiness from "../components/LatestBusiness";
 
 const propertyzanzibar = () => {
 
@@ -382,6 +385,9 @@ const structuredData = {
         ]}
       />
 </div>
+<LatestApartments />
+<LatestHouses />
+<LatestBusiness />
 <div style={{ padding: "0 15px 40px 15px" }}>
   <MatchRequestStepper />
 </div>
