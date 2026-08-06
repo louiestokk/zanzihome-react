@@ -4,6 +4,7 @@ import { AiFillHeart } from "react-icons/ai";
 import { FiUser } from "react-icons/fi";
 import SingelObjectInfo from "./SingelObjectInfo";
 import Brokers from "./Brokers";
+import CompanyLeadForm from "./CompanyLeadForm";
 import { useUserContext } from "../user_context";
 import { useSelector } from "react-redux";
 import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
@@ -624,11 +625,22 @@ const [openIndex, setOpenIndex] = useState(null);
                   </div>
                 </div>
 
-                {/* Brokers Contact Card */}
-                <Brokers contact={Name} agency={Name} number={Phone} email={Email} whatsapp={WhatsApp} about={About} isCompany={isCompany} />
+                {/* Brokers Contact Card / Company Lead Form */}
+                {isCompany === true || (About && About.trim().length > 0) ? (
+                  <CompanyLeadForm
+                    listingTitle={Title}
+                    listingId={adId}
+                    companyName={Name}
+                    companyEmail={Email}
+                    isCompany={isCompany}
+                    about={About}
+                  />
+                ) : (
+                  <Brokers contact={Name} agency={Name} number={Phone} email={Email} whatsapp={WhatsApp} about={About} isCompany={isCompany} />
+                )}
 
                 {/* Boost Card */}
-                <div className="sidebar-boost-card">
+                {/* <div className="sidebar-boost-card">
                   <h3 className="boost-card-title">Sell or Rent Faster! 🚀</h3>
                   <p className="boost-card-text">
                     Boost your listing to place it at the very top of search results and get featured homepage slider exposure.
@@ -639,7 +651,7 @@ const [openIndex, setOpenIndex] = useState(null);
                   >
                     Boost This Listing
                   </button>
-                </div>
+                </div> */}
 
               </div>
 

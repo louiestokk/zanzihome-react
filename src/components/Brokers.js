@@ -351,7 +351,6 @@ const Brokers = ({ agency, number, contact, logo, email, whatsapp, about, isComp
               <div className="trust-stars">
                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
               </div>
-              <span className="trust-reviews-count">(639 reviews)</span>
             </div>
           </div>
 
