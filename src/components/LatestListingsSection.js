@@ -396,9 +396,9 @@ const LatestListingsSection = ({ title, subtitle, category }) => {
                     </svg>
                     <span>{item.Area || "Zanzibar"}</span>
                   </div>
-                  {item.Name && (
-                    <span className="latest-publisher">
-                      {item.Name}
+                  {item.category && (
+                    <span className="latest-publisher" style={{ textTransform: "capitalize" }}>
+                      {item.category}
                     </span>
                   )}
                 </div>
