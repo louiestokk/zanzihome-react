@@ -315,7 +315,7 @@ const Objects = () => {
                   {/* Price */}
                   <div className="object-price-row">
                     <span className="object-price">
-                      {Rent === null && Sell === null ? `$${Price}.00` : `$${Price}/month`}
+                      {Rent === null && Sell === null ? `$${Price}` : `$${Price}/month`}
                     </span>
                   </div>
                 </div>
