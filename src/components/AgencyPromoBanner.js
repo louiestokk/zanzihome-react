@@ -70,6 +70,7 @@ const AgencyPromoBanner = () => {
           position: relative;
           overflow: hidden;
           font-family: 'Poppins', sans-serif;
+          width: 100%;
         }
 
         /* Ambient background decorations */
@@ -86,12 +87,7 @@ const AgencyPromoBanner = () => {
         }
 
         .promo-banner-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 25px;
-          align-items: center;
-          position: relative;
-          z-index: 10;
+       
         }
 
         @media (min-width: 900px) {
@@ -137,10 +133,11 @@ const AgencyPromoBanner = () => {
 
         /* 6 benefits compact list */
         .promo-features-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
+       display: flex;
+          flex-wrap: wrap;
           gap: 12px;
           margin-top: 18px;
+          margin-bottom: 6px; 
         }
 
         @media (min-width: 550px) {
@@ -169,7 +166,7 @@ const AgencyPromoBanner = () => {
           display: flex;
           flex-wrap: wrap;
           gap: 12px;
-          margin-top: 22px;
+          margin: 22px 0;
         }
 
         .promo-btn-primary {
@@ -372,7 +369,7 @@ const AgencyPromoBanner = () => {
                 Learn More & Join <FiArrowRight style={{ marginLeft: "8px" }} />
               </Link>
               <Link to="/contact" className="promo-btn-secondary">
-                Contact Sales
+                Contact Sales <FiArrowRight style={{ marginLeft: "8px" }} />
               </Link>
             </div>
           </div>
