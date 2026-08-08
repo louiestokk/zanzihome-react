@@ -11,6 +11,7 @@ import AgencyPromoBanner from "../components/AgencyPromoBanner";
 import LatestApartments from "../components/LatestApartments";
 import LatestHouses from "../components/LatestHouses";
 import LatestBusiness from "../components/LatestBusiness";
+import PartnerFeaturedSection from "../components/PartnerFeaturedSection";
 
 const propertyzanzibar = () => {
 
@@ -267,6 +268,24 @@ const structuredData = {
      <Popular
         title={"Featured Properties in Zanzibar"}
         images={[
+                               {
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2Fapartments-real-estate-zanzibar.webp?alt=media&token=99fb74d9-cc6c-40bf-a697-d48b014e1f97",
+              imgText: "Luxury apartments in the Heart of Zanzibar - Paje",
+              adId: Number(550389000),
+              type: "Apartments",
+              price: "from $75,000",
+              size: "48-120",
+              rooms:'1 to 4'
+            },
+                                  {
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2F1786204061318_aura-garden-view-02.webp?alt=media&token=39c6be93-b47f-4c44-ab69-b038e1bb247e",
+              imgText: "HIgh ROI Beachfront living in Paje ",
+              adId: Number(788913793),
+              type: "Apartments",
+              price: "$95-210,000",
+              size: "46-110",
+              rooms:'1 to 3'
+            },
                                  {
               url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2Fplot-sale-paje.jpeg?alt=media&token=ee3a2c2a-c6cc-4926-a81c-393e7133b65c",
               imgText: "PRIME ROADSIDE INVESTMENT LAND FOR SALE – PAJE–JAMBIANI",
@@ -385,6 +404,7 @@ const structuredData = {
         ]}
       />
 </div>
+<PartnerFeaturedSection />
 <LatestApartments />
 <LatestHouses />
 <LatestBusiness />

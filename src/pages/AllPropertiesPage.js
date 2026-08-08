@@ -11,6 +11,7 @@ import Faq from "../components/Faq";
 import Abovefooter from "../components/Abovefooter";
 import AdBanner from "../components/AdBanner";
 import MatchRequestStepper from "../components/MatchRequestStepper";
+import PartnerFeaturedSection from "../components/PartnerFeaturedSection";
 import { setFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 import { useDispatch } from "react-redux";
 import { villages } from "../utils/data";
@@ -374,6 +375,15 @@ const AllPropertiesPage = () => {
         <Popular
           title={"Featured Properties in Zanzibar"}
           images={[
+                                   {
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2F1786204061318_aura-garden-view-02.webp?alt=media&token=39c6be93-b47f-4c44-ab69-b038e1bb247e",
+              imgText: "HIgh ROI Beachfront living in Paje ",
+              adId: Number(788913793),
+              type: "Apartments",
+              price: "$95-210,000",
+              size: "46-110",
+              rooms:'1 to 3'
+            },
                                  {
               url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2Fplot-sale-paje.jpeg?alt=media&token=ee3a2c2a-c6cc-4926-a81c-393e7133b65c",
               imgText: "PRIME ROADSIDE INVESTMENT LAND FOR SALE – PAJE–JAMBIANI",
@@ -495,15 +505,9 @@ const AllPropertiesPage = () => {
 
       {/* PROPERTIES GRID OBJECTS */}
       <Objects />
-
+        <PartnerFeaturedSection />
       {/* BOOST CTA MID-LIST */}
-      <div style={{ background: "#ffeeba", padding: "1.5rem", textAlign: "center", margin: "2rem auto", borderRadius: "12px", maxWidth: "1200px" }}>
-        <h2 style={{ marginBottom: "0.5rem" }}>Sell or Rent Faster!</h2>
-        <p style={{ marginBottom: "1rem" }}>Boost your property listing and get maximum visibility on ZanziHome.</p>
-        <button onClick={() => window.location.href = "/boost-listing"} style={{ padding: "0.8rem 1.5rem", background: "#013a17", color: "white", border: "none", borderRadius: "5px", fontWeight: "600", cursor: "pointer" }}>
-          Boost Your Listing
-        </button>
-      </div>
+  
 
       {/* FAQ SECTION */}
       <Faq data={faqdata} />

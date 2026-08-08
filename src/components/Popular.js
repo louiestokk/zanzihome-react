@@ -48,7 +48,7 @@ const Popular = ({ title, images }) => {
       <style>{`
         .popular-section {
           width: 100%;
-          padding: 40px 16px;
+          padding: 15px 16px;
           background: #fafbfa;
           overflow: hidden;
         }

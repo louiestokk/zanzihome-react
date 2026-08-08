@@ -63,6 +63,8 @@ const ResidencyInvestment = lazy(() => import("./pages/ResidencyInvestment"));
 const BestAreas = lazy(() => import("./pages/BestAreas"));
 const SeoRentPages = lazy(() => import("./pages/SeoRentPages"));
 const SeoInvestPages = lazy(() => import("./pages/SeoInvestPages"));
+const ZanzipalmsPartnerPage = lazy(() => import("./pages/ZanzipalmsPartnerPage"));
+const ZanzipalmsDetailsPage = lazy(() => import("./pages/ZanzipalmsDetailsPage"));
 //
 function App() {
   const [logedinUser, setLogedinUser] = useState({});
@@ -142,6 +144,12 @@ function App() {
           <Route path="/properties/area/:areaName">
             <AreaPropertiesPage />
           </Route>
+          <Route path="/partners/zanzipalms" exact>
+            <ZanzipalmsPartnerPage />
+          </Route>
+          <Route path="/partners/zanzipalms/property/:id">
+            <ZanzipalmsDetailsPage />
+          </Route>
           <Route path="/buy-property-zanzibar">
             <BuyersGuide />
           </Route>
@@ -193,11 +201,9 @@ function App() {
           <Route path="/invest/:area">
             <SeoInvestPages />
           </Route>
-          <Route path="/admin-dashboard_user_admin_dash">
-            {/* <PrivateRoute> */}
-            {/* <AdminDashBoard /> */}
-            {/* </PrivateRoute> */}
-          </Route>
+          {/* <Route path="/admin-dashboard_user_admin_dash">
+            <AdminDashBoard />
+          </Route> */}
           <Route path="/foreginerpropertyzanzibar">
             <Foreginer />
           </Route>
