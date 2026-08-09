@@ -9,6 +9,7 @@ import { areas, propertyTypes } from "../utils/seoData";
 import { generateSeoText } from "../utils/generateSeoText";
 import Faq from "../components/Faq";
 import AdBanner from "../components/AdBanner";
+import PartnerFeaturedSection from "../components/PartnerFeaturedSection";
 
 const SeoPage = () => {
   const { type, area } = useParams();
@@ -42,103 +43,128 @@ const formattedArea =
 
     return matchType && matchArea;
   });
-const schema = {
-  "@context": "https://schema.org",
-  "@graph": [
+  const faqs = [
     {
-      "@type": "WebSite",
-      "name": "ZanziHome",
-      "url": "https://www.zanzihome.com/",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": `https://www.zanzihome.com/properties?search={search_term_string}`,
-        "query-input": "required name=search_term_string"
-      }
+      q: `Can foreigners buy property in ${formattedArea}, Zanzibar?`,
+      a: `Yes, foreigners can buy property in ${formattedArea}, Zanzibar through secure leasehold structures (typically 33 to 99 years) which are fully protected and renewable. Zanzibari laws promote foreign investments, especially in designated resort zones approved by ZIPA.`
     },
     {
-      "@type": "Organization",
-      "name": "ZanziHome",
-      "url": "https://www.zanzihome.com/",
-      "logo": "https://www.zanzihome.com/logo.png",
-      "sameAs": [
-        "https://www.facebook.com/",
-        "https://www.instagram.com/"
-      ]
+      q: `Is ${formattedArea} a good place to invest in real estate?`,
+      a: `Yes, ${formattedArea} is one of the hot spots for real estate in Zanzibar. It offers high rental yields (often between 10% and 18% annually) driven by strong tourist traffic, high holiday occupancy rates, and significant capital growth.`
     },
     {
-      "@type": "RealEstateAgent",
-      "name": "ZanziHome Real Estate",
-      "url": window.location.href,
-      "areaServed": {
-        "@type": "Place",
-        "name": "Zanzibar"
-      },
-      "description": seo.description
+      q: `What types of properties are for sale in ${formattedArea}, Zanzibar?`,
+      a: `A wide variety of properties are available in ${formattedArea}, including beachfront villas, modern apartments, undeveloped land plots, hotels, and commercial listings. You can browse them on ZanziHome.`
     },
     {
-      "@type": "CollectionPage",
-      "name": seo.title,
-      "description": seo.description,
-      "url": window.location.href,
-      "mainEntity": {
-        "@type": "ItemList",
-        "numberOfItems": filtered.length,
-        "itemListElement": filtered.slice(0, 20).map((item, index) => ({
-          "@type": "ListItem",
-          "position": index + 1,
-          "url": `https://www.zanzihome.com/propertys/property/${item.adId}/`,
-          "name": item.Title
-        }))
-      }
+      q: `How much does a property cost in ${formattedArea}, Zanzibar?`,
+      a: `Prices in ${formattedArea} vary. Beachfront villas range from $250,000 to over $1M, while apartments can start from $80,000 and inland land plots can start as low as $15,000 depending on proximity to the ocean.`
     },
     {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://www.zanzihome.com"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": `${formattedType} in Zanzibar`,
-          "item": `https://www.zanzihome.com/buy/${formattedType}/`
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": `${formattedType} in ${formattedArea}`,
-          "item": window.location.href
-        }
-      ]
+      q: `Are there additional transaction costs when buying property in ${formattedArea}?`,
+      a: "Yes. Buyers should expect around 3% to 5% in additional costs. This includes local transfer taxes, legal fees (usually 1% to 2% for a local lawyer), and agency registration fees."
+    },
+    {
+      q: `Do I need a local bank account to buy real estate in Zanzibar?`,
+      a: "No, a local bank account is not strictly required. Most transactions are made via international wire transfers in USD directly to the seller's escrow or legal representative account."
+    },
+    {
+      q: `Can I get a residency permit by investing in property in ${formattedArea}?`,
+      a: "Yes, under the ZIPA framework, foreign investors purchasing properties in approved projects with a minimum value (typically starting at $100,000) are eligible to apply for Zanzibar residency permits."
+    },
+    {
+      q: `Is it safe to buy land plots in ${formattedArea}?`,
+      a: "Yes, it is safe if you perform proper due diligence. This includes conducting land registry searches, verifying ownership certificates, checking government zoning plans, and hiring a reputable lawyer."
     }
-  ]
-};
+  ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "ZanziHome",
+        "url": "https://www.zanzihome.com/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": `https://www.zanzihome.com/properties?search={search_term_string}`,
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "name": "ZanziHome",
+        "url": "https://www.zanzihome.com/",
+        "logo": "https://www.zanzihome.com/logo.png",
+        "sameAs": [
+          "https://www.facebook.com/",
+          "https://www.instagram.com/"
+        ]
+      },
+      {
+        "@type": "RealEstateAgent",
+        "name": "ZanziHome Real Estate",
+        "url": window.location.href,
+        "areaServed": {
+          "@type": "Place",
+          "name": "Zanzibar"
+        },
+        "description": seo.description
+      },
+      {
+        "@type": "CollectionPage",
+        "name": seo.title,
+        "description": seo.description,
+        "url": window.location.href,
+        "mainEntity": {
+          "@type": "ItemList",
+          "numberOfItems": filtered.length,
+          "itemListElement": filtered.slice(0, 20).map((item, index) => ({
+            "@type": "ListItem",
+            "position": index + 1,
+            "url": `https://www.zanzihome.com/propertys/property/${item.adId}/`,
+            "name": item.Title
+          }))
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.zanzihome.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": `${formattedType} in Zanzibar`,
+            "item": `https://www.zanzihome.com/buy/${formattedType}/`
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": `${formattedType} in ${formattedArea}`,
+            "item": window.location.href
+          }
+        ]
+      }
+    ]
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({
       "@type": "Question",
-      "name": "Can foreigners buy property in Zanzibar?",
+      "name": f.q,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, foreigners can buy property in Zanzibar..."
+        "text": f.a
       }
-    },
-    {
-      "@type": "Question",
-      "name": "Is Zanzibar a good place to invest in real estate?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Zanzibar is one of the fastest-growing real estate markets..."
-      }
-    }
-  ]
-};
+    }))
+  };
   return (
     <main style={{ maxWidth: "1100px", margin: "0 auto", padding: "1rem" }}>
       
@@ -433,40 +459,7 @@ const faqSchema = {
     Frequently Asked Questions – Buying {formattedType} in {formattedArea}
   </h2>
 
-  {[
-    {
-      q: `Can foreigners buy property in ${formattedArea} Zanzibar?`,
-      a: "Yes, foreigners can buy property in Zanzibar, typically through leasehold agreements approved by the Zanzibar Investment Promotion Authority (ZIPA). This makes Zanzibar an attractive destination for international real estate investors."
-    },
-    {
-      q: "Is Zanzibar a good place to invest in real estate?",
-      a: "Zanzibar is one of the fastest-growing real estate markets in East Africa. With increasing tourism, rising demand for rentals, and limited beachfront land, property investments in Zanzibar offer strong potential returns."
-    },
-    {
-      q: `What types of properties are available in ${formattedArea} Zanzibar?`,
-      a: "You can find a wide range of properties including beachfront villas, apartments, land plots, hotels, and commercial real estate. Areas like Paje, Jambiani, and Nungwi are especially popular."
-    },
-    {
-      q: "How much does property cost in Zanzibar?",
-      a: "Property prices in Zanzibar vary depending on location and type. Land plots can start from a few thousand USD, while beachfront villas and investment properties can range significantly higher."
-    },
-    {
-      q: "Can I rent out my property in Zanzibar?",
-      a: "Yes, many property owners in Zanzibar rent out their homes on a short-term or long-term basis. With strong tourism, rental income can be a great source of passive income."
-    },
-    {
-      q: "What are the best areas to buy property in Zanzibar?",
-      a: "Popular areas include Paje, Jambiani, Nungwi, Kendwa, and Stone Town. Each area offers different benefits depending on whether you're looking for investment, lifestyle, or tourism opportunities."
-    },
-    {
-      q: "Do I need a lawyer when buying property in Zanzibar?",
-      a: "Yes, it is highly recommended to work with a local lawyer or real estate expert to ensure the transaction is secure and compliant with Zanzibar laws."
-    },
-    {
-      q: "Is buying plot in Zanzibar safe?",
-      a: "Buying plot in Zanzibar is safe when proper due diligence is done. Always verify ownership, zoning, and legal status with a trusted agent or lawyer."
-    }
-  ].map((item, index) => (
+  {faqs.map((item, index) => (
     <details
       key={index}
       style={{
@@ -527,7 +520,9 @@ const faqSchema = {
     one of the most promising emerging markets for real estate in East Africa.
   </p>
 </div>
-  <div style={{ margin: "2rem 0",padding:'1rem',textAlign:'center',maxWidth:'1000px' }}>
+      <PartnerFeaturedSection />
+
+      <div style={{ margin: "2rem 0",padding:'1rem',textAlign:'center',maxWidth:'1000px' }}>
         <h2 className="best-airmax-text">Trusted by Our Clients</h2>
         <p style={{lineHeight:'26px',marginTop:'0.5rem'}}>
           Join over <strong>1,540 satisfied clients</strong> who have found their ideal property in Zanzibar with ZanziHome. Our platform is your ultimate guide to <strong>Zanzibar real estate</strong>, offering both local and international buyers a reliable, user-friendly marketplace.

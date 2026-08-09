@@ -9,6 +9,7 @@ import { areas, propertyTypes } from "../utils/seoData";
 import { generateSeoRentText } from "../utils/generateSeoText";
 import AdBanner from "../components/AdBanner";
 import MatchRequestStepper from "../components/MatchRequestStepper";
+import PartnerFeaturedSection from "../components/PartnerFeaturedSection";
 
 const SeoRentPages = () => {
   const { type, area } = useParams();
@@ -117,27 +118,40 @@ const SeoRentPages = () => {
     ]
   };
 
+  const faqs = [
+    {
+      q: `How to rent a ${formattedType} in ${formattedArea}, Zanzibar?`,
+      a: `To rent a ${formattedType} in ${formattedArea}, browse the verified listings on ZanziHome, select your preferred property, and contact the listing agent directly. Long-term residential leases, corporate rentals, and short-term vacation rentals are all available.`
+    },
+    {
+      q: `What is the cost of renting a ${formattedType} in ${formattedArea}, Zanzibar?`,
+      a: `Rental costs in ${formattedArea} depend on the location, size, and proximity to the beach. Long-term rentals typically range from $500 to $1,500+ per month, while short-term vacation villas command premium rates during high tourism seasons.`
+    },
+    {
+      q: `Can foreigners rent houses or villas long term in ${formattedArea}?`,
+      a: "Yes, foreigners can legally rent properties long-term in Zanzibar. Standard tenancy contracts are drafted in English, and leases can span from a few months to several years."
+    },
+    {
+      q: `Are utilities included in long-term rentals in ${formattedArea}?`,
+      a: "Typically, long-term rentals exclude electricity (LUKU) and high-speed internet, which are paid separately by the tenant. Short-term rentals or serviced apartments usually include water, cleaning services, and basic utilities."
+    },
+    {
+      q: `Is a security deposit required for renting in ${formattedArea}?`,
+      a: "Yes. Most landlords in Zanzibar require a security deposit equivalent to 1 or 2 months' rent, which is refundable upon lease termination. In addition, rent is often paid 3, 6, or 12 months in advance."
+    }
+  ];
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": `How to rent a ${formattedType} in ${formattedArea}?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `Browse available rentals on ZanziHome, select your desired ${formattedType}, and contact the agent directly. Short term holiday rentals and long term residential leases are available.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `What is the cost of renting a ${formattedType} in ${formattedArea}?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `Rent prices vary depending on proximity to the beach, property size, and amenities. Central tourist spots command higher prices during high seasons.`
-        }
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": f.a
       }
-    ]
+    }))
   };
 
   return (
@@ -256,16 +270,7 @@ const SeoRentPages = () => {
         <h2 style={{ fontSize: "1.8rem", fontWeight: "800", color: "#013a17", marginBottom: "1.5rem" }}>
           Frequently Asked Questions
         </h2>
-        {[
-          {
-            q: `Can foreigners rent houses or villas long term in ${formattedArea}?`,
-            a: "Yes. Foreigners can legally rent properties for short holiday stays or sign multi-year long-term leases for residential or business purposes."
-          },
-          {
-            q: `What is included in the rental price of a ${formattedType} in ${formattedArea}?`,
-            a: "This depends on the listing. Furnished beach villas usually include basic utilities and cleaning, while long term apartment leases may exclude electricity (LUKU) and internet."
-          }
-        ].map((item, index) => (
+        {faqs.map((item, index) => (
           <div
             key={index}
             style={{
@@ -307,6 +312,8 @@ const SeoRentPages = () => {
           </div>
         ))}
       </div>
+
+      <PartnerFeaturedSection />
 
       {/* INTERNAL LINKS – SAME AREA */}
       <div style={{ marginTop: "3rem" }}>

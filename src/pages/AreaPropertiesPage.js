@@ -7,6 +7,7 @@ import { ImHome } from "react-icons/im";
 import { BsSquare, BsCompass } from "react-icons/bs";
 import { Audio } from "react-loader-spinner";
 import MatchRequestStepper from "../components/MatchRequestStepper";
+import PartnerFeaturedSection from "../components/PartnerFeaturedSection";
 
 const types = ["House", "Apartment", "Land", "Business"];
 
@@ -726,6 +727,8 @@ const AreaPropertiesPage = () => {
           </>
         )}
       </section>
+
+      <PartnerFeaturedSection />
 
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px 40px 15px" }}>
         <MatchRequestStepper />

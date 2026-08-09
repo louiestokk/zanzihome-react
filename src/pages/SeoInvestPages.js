@@ -9,6 +9,7 @@ import { areas } from "../utils/seoData";
 import { generateSeoInvestText } from "../utils/generateSeoText";
 import AdBanner from "../components/AdBanner";
 import MatchRequestStepper from "../components/MatchRequestStepper";
+import PartnerFeaturedSection from "../components/PartnerFeaturedSection";
 
 const SeoInvestPages = () => {
   const { area } = useParams();
@@ -110,27 +111,40 @@ const SeoInvestPages = () => {
     ]
   };
 
+  const faqs = [
+    {
+      q: `Why should I invest in real estate in ${formattedArea}, Zanzibar?`,
+      a: `${formattedArea} is experiencing rapidly increasing tourism and development. Property buyers here enjoy high capital gains, strong rental occupancy rates, and stable annual rental yields between 10% and 18%.`
+    },
+    {
+      q: `Can a foreign investor purchase land or houses in ${formattedArea}?`,
+      a: "Yes, foreign investors can purchase properties in approved developments under secure leasehold laws. The government provides legal protections and investment visas through ZIPA."
+    },
+    {
+      q: `What is the average ROI for properties in ${formattedArea}?`,
+      a: `Rental ROI in ${formattedArea} ranges between 10% to 18% per year, primarily fueled by vacationers and expat leasing during peak tourism seasons.`
+    },
+    {
+      q: "Are there professional property management services in Zanzibar?",
+      a: "Yes, there are several reputable property management companies in Zanzibar that will handle your rental listings, cleaning, check-ins, and maintenance for a percentage of the rental income."
+    },
+    {
+      q: `What tax incentives does Zanzibar offer to property investors?`,
+      a: "Investors in approved strategic projects enjoy significant tax benefits, including exemption from capital gains tax, low corporate tax rates, zero stamp duty, and repatriation of profits."
+    }
+  ];
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": `Why should I invest in real estate in ${formattedArea}, Zanzibar?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `${formattedArea} is experiencing rapidly increasing tourism and development. Property buyers here enjoy high capital gains, strong rental occupancy rates, and stable rental yields.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `Can a foreign investor purchase land or houses in ${formattedArea}?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, foreign investors can purchase properties in approved developments under secure leasehold laws. The government provides legal protections and investment visas through ZIPA."
-        }
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": f.a
       }
-    ]
+    }))
   };
 
   return (
@@ -249,16 +263,7 @@ const SeoInvestPages = () => {
         <h2 style={{ fontSize: "1.8rem", fontWeight: "800", color: "#013a17", marginBottom: "1.5rem" }}>
           Investment FAQs
         </h2>
-        {[
-          {
-            q: `What is the average ROI for properties in ${formattedArea}?`,
-            a: `Rental ROI in ${formattedArea} ranges between 10% to 18% per year, primarily fueled by vacationers and expat leasing during peak tourism seasons.`
-          },
-          {
-            q: "Are there property management services available?",
-            a: "Yes, there are several reputable property management companies in Zanzibar that will handle your rental listings, cleaning, check-ins, and maintenance for a percentage of the rental income."
-          }
-        ].map((item, index) => (
+        {faqs.map((item, index) => (
           <div
             key={index}
             style={{
@@ -300,6 +305,8 @@ const SeoInvestPages = () => {
           </div>
         ))}
       </div>
+
+      <PartnerFeaturedSection />
 
       {/* INTERNAL LINKS – REGIONS */}
       <div style={{ marginTop: "3rem" }}>

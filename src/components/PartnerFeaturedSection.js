@@ -13,7 +13,6 @@ const PartnerFeaturedSection = () => {
   const mapWordPressProperty = (wpItem) => {
     const classes = wpItem.class_list || [];
     
-    // 1. Extract location/city from class_list
     const cityClass = classes.find(c => c.startsWith('property_city-'));
     let city = 'Zanzibar';
     if (cityClass) {
@@ -21,7 +20,6 @@ const PartnerFeaturedSection = () => {
       city = rawCity.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
     }
 
-    // 2. Map property type
     const typeClass = classes.find(c => c.startsWith('property_type-')) || '';
     const titleText = (wpItem.title?.rendered || '').toLowerCase();
     
@@ -38,11 +36,9 @@ const PartnerFeaturedSection = () => {
       category = 'Apartment';
     }
 
-    // 3. Map offer type
     const statusClass = classes.find(c => c.startsWith('property_status-'));
     const isRent = statusClass ? statusClass.includes('rent') : false;
 
-    // 4. Parse details (price, size, rooms) from HTML body
     const bodyText = wpItem.content?.rendered || '';
     let price = 'Price on Request';
     const priceMatch = bodyText.match(/USD\s*([0-9,.]+)/i);
@@ -58,7 +54,6 @@ const PartnerFeaturedSection = () => {
     const sizeMatch = bodyText.match(/([0-9,.]+)\s*(sqm|m²)/i);
     if (sizeMatch) size = sizeMatch[1];
 
-    // 5. Featured Image
     let imageUrl = 'https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg';
     if (wpItem._embedded?.['wp:featuredmedia']?.[0]) {
       imageUrl = wpItem._embedded['wp:featuredmedia'][0].source_url;
