@@ -5,6 +5,7 @@ import { BiMap } from "react-icons/bi";
 import Abovefooter from "../components/Abovefooter";
 import AdBanner from "../components/AdBanner";
 import MatchRequestStepper from "../components/MatchRequestStepper";
+import { zanzipalmsStaticData } from "../utils/zanzipalmsData";
 
 const ZanzipalmsPartnerPage = () => {
   const history = useHistory();
@@ -45,19 +46,35 @@ const ZanzipalmsPartnerPage = () => {
 
     // 4. Parse details (price, size, rooms) from HTML body
     const bodyText = wpItem.content?.rendered || '';
+    
+    // Look up static data first
+    const staticData = zanzipalmsStaticData[wpItem.id];
+    
     let price = 'Price on Request';
-    const priceMatch = bodyText.match(/USD\s*([0-9,.]+)/i);
-    if (priceMatch) {
-      price = `$${priceMatch[1]}`;
+    if (staticData && staticData.price) {
+      price = staticData.price;
+    } else {
+      const priceMatch = bodyText.match(/USD\s*([0-9,.]+)/i);
+      if (priceMatch) {
+        price = `$${priceMatch[1]}`;
+      }
     }
 
     let rooms = 0;
-    const bedMatch = bodyText.match(/(\d+)\s*Bedroom/i);
-    if (bedMatch) rooms = parseInt(bedMatch[1], 10);
+    if (staticData && staticData.bedrooms !== null) {
+      rooms = staticData.bedrooms;
+    } else {
+      const bedMatch = bodyText.match(/(\d+)\s*Bedroom/i);
+      if (bedMatch) rooms = parseInt(bedMatch[1], 10);
+    }
 
     let size = '';
-    const sizeMatch = bodyText.match(/([0-9,.]+)\s*(sqm|m²)/i);
-    if (sizeMatch) size = sizeMatch[1];
+    if (staticData && staticData.size) {
+      size = staticData.size;
+    } else {
+      const sizeMatch = bodyText.match(/([0-9,.]+)\s*(sqm|m²)/i);
+      if (sizeMatch) size = sizeMatch[1];
+    }
 
     // 5. Featured Image
     let imageUrl = 'https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg';

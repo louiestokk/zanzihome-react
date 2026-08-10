@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { zanzipalmsStaticData } from "../utils/zanzipalmsData";
 
 const PartnerFeaturedSection = () => {
   const history = useHistory();
@@ -40,19 +41,33 @@ const PartnerFeaturedSection = () => {
     const isRent = statusClass ? statusClass.includes('rent') : false;
 
     const bodyText = wpItem.content?.rendered || '';
+    const staticData = zanzipalmsStaticData[wpItem.id];
+    
     let price = 'Price on Request';
-    const priceMatch = bodyText.match(/USD\s*([0-9,.]+)/i);
-    if (priceMatch) {
-      price = `$${priceMatch[1]}`;
+    if (staticData && staticData.price) {
+      price = staticData.price;
+    } else {
+      const priceMatch = bodyText.match(/USD\s*([0-9,.]+)/i);
+      if (priceMatch) {
+        price = `$${priceMatch[1]}`;
+      }
     }
 
     let rooms = 0;
-    const bedMatch = bodyText.match(/(\d+)\s*Bedroom/i);
-    if (bedMatch) rooms = parseInt(bedMatch[1], 10);
+    if (staticData && staticData.bedrooms !== null) {
+      rooms = staticData.bedrooms;
+    } else {
+      const bedMatch = bodyText.match(/(\d+)\s*Bedroom/i);
+      if (bedMatch) rooms = parseInt(bedMatch[1], 10);
+    }
 
     let size = '';
-    const sizeMatch = bodyText.match(/([0-9,.]+)\s*(sqm|m²)/i);
-    if (sizeMatch) size = sizeMatch[1];
+    if (staticData && staticData.size) {
+      size = staticData.size;
+    } else {
+      const sizeMatch = bodyText.match(/([0-9,.]+)\s*(sqm|m²)/i);
+      if (sizeMatch) size = sizeMatch[1];
+    }
 
     let imageUrl = 'https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg';
     if (wpItem._embedded?.['wp:featuredmedia']?.[0]) {
