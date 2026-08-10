@@ -65,6 +65,7 @@ const SeoRentPages = lazy(() => import("./pages/SeoRentPages"));
 const SeoInvestPages = lazy(() => import("./pages/SeoInvestPages"));
 const ZanzipalmsPartnerPage = lazy(() => import("./pages/ZanzipalmsPartnerPage"));
 const ZanzipalmsDetailsPage = lazy(() => import("./pages/ZanzipalmsDetailsPage"));
+const SeoCheapPages = lazy(() => import("./pages/SeoCheapPages"));
 //
 function App() {
   const [logedinUser, setLogedinUser] = useState({});
@@ -149,6 +150,9 @@ function App() {
           </Route>
           <Route path="/partners/zanzipalms/property/:id">
             <ZanzipalmsDetailsPage />
+          </Route>
+          <Route path="/cheap/:type/for-sale/:area">
+            <SeoCheapPages />
           </Route>
           <Route path="/buy-property-zanzibar">
             <BuyersGuide />
