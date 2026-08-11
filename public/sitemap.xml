@@ -675,6 +675,8 @@
 <url><loc>https://www.zanzihome.com/invest/fumba</loc></url>
 <url><loc>https://www.zanzihome.com/invest/kizimkazi</loc></url>
 <url><loc>https://www.zanzihome.com/invest/makunduchi</loc></url>
+<url><loc>https://www.zanzihome.com/invest/zanzibar</loc></url>
+<url><loc>https://www.zanzihome.com/invest/kidoti</loc></url>
 
   <!-- Cheap categories for sale in Paje -->
   <url><loc>https://www.zanzihome.com/cheap/house/for-sale/paje</loc></url>
@@ -796,8 +798,24 @@
   <url><loc>https://www.zanzihome.com/cheap/hotel/for-sale/makunduchi</loc></url>
   <url><loc>https://www.zanzihome.com/cheap/restaurant/for-sale/makunduchi</loc></url>
   <url><loc>https://www.zanzihome.com/cheap/bar/for-sale/makunduchi</loc></url>
-
-  <!-- Zanzipalms Partner Listings -->
+ <!-- Cheap categories for sale in Zanzibar -->
+  <url><loc>https://www.zanzihome.com/cheap/house/for-sale/zanzibar</loc></url>
+  <url><loc>https://www.zanzihome.com/cheap/villa/for-sale/zanzibar</loc></url>
+  <url><loc>https://www.zanzihome.com/cheap/apartment/for-sale/zanzibar</loc></url>
+  <url><loc>https://www.zanzihome.com/cheap/land/for-sale/zanzibar</loc></url>
+  <url><loc>https://www.zanzihome.com/cheap/plot/for-sale/zanzibar</loc></url>
+  <url><loc>https://www.zanzihome.com/cheap/beachfront/for-sale/zanzibar</loc></url>
+  <url><loc>https://www.zanzihome.com/cheap/hotel/for-sale/zanzibar</loc></url>
+ <!-- Cheap categories for sale in Kidoti -->
+  <url><loc>https://www.zanzihome.com/cheap/house/for-sale/kidoti</loc></url>
+  <url><loc>https://www.zanzihome.com/cheap/villa/for-sale/kidoti</loc></url>
+  <url><loc>https://www.zanzihome.com/cheap/apartment/for-sale/kidoti</loc></url>
+  <url><loc>https://www.zanzihome.com/cheap/land/for-sale/kidoti</loc></url>
+  <url><loc>https://www.zanzihome.com/cheap/plot/for-sale/kidoti</loc></url>
+  <url><loc>https://www.zanzihome.com/cheap/beachfront/for-sale/kidoti</loc></url>
+  <url><loc>https://www.zanzihome.com/cheap/hotel/for-sale/kidoti</loc></url>
+  
+     <!-- Zanzipalms Partner Listings -->
   <url><loc>https://www.zanzihome.com/partners/zanzipalms/property/21084</loc></url>
   <url><loc>https://www.zanzihome.com/partners/zanzipalms/property/21070</loc></url>
   <url><loc>https://www.zanzihome.com/partners/zanzipalms/property/21042</loc></url>

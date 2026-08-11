@@ -10,7 +10,9 @@ export const areas = [
   "Bububu",
   "Fumba",
   "Kizimkazi",
-  "Makunduchi"
+  "Makunduchi",
+  "Zanzibar",
+  "Kidoti"
 ];
 
 export const propertyTypes = [
@@ -22,5 +24,6 @@ export const propertyTypes = [
   "beachfront",
   "Hotel",
   "Restaurant",
-  'Bar'
+  'Bar',
+  "Condo"
 ];
