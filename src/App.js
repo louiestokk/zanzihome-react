@@ -205,9 +205,9 @@ function App() {
           <Route path="/invest/:area">
             <SeoInvestPages />
           </Route>
-          {/* <Route path="/admin-dashboard_user_admin_dash">
+          <Route path="/admin-dashboard_user_admin_dash">
             <AdminDashBoard />
-          </Route> */}
+          </Route>
           <Route path="/foreginerpropertyzanzibar">
             <Foreginer />
           </Route>
