@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 import { villages } from "../../utils/data";
 import { BiSearch, BiMap, BiBuilding } from "react-icons/bi";
 import { useRouter } from "next/navigation";
@@ -56,33 +54,24 @@ const NewFilter = () => {
         {/* Inputs Form */}
         <form onSubmit={handleSearch} className="home-search-row">
           
-          {/* Autocomplete Location Field (Controlled inputValue for correct autosuggest filtering) */}
+          {/* Location field */}
           <div className="search-field-box">
             <BiMap className="search-field-icon" />
             <div className="search-input-inner">
-              <Autocomplete
-                id="location-autocomplete"
-                freeSolo
-                disableClearable
-                options={villages}
-                inputValue={selectedLocation}
-                onInputChange={(event, newInputValue) => {
-                  setSelectedLocation(newInputValue);
-                }}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    placeholder="Search location (e.g. Paje, Nungwi...)"
-                    margin="none"
-                    InputProps={{
-                      ...params.InputProps,
-                      type: "search",
-                      disableUnderline: true,
-                    }}
-                    style={{ width: "100%" }}
-                  />
-                )}
+              <input
+                list="zanzibar-locations"
+                className="search-input-field"
+                type="search"
+                value={selectedLocation}
+                placeholder="Search location (e.g. Paje, Nungwi...)"
+                onChange={(e) => setSelectedLocation(e.target.value)}
+                aria-label="Search location"
               />
+              <datalist id="zanzibar-locations">
+                {villages.map((village) => (
+                  <option key={village} value={village} />
+                ))}
+              </datalist>
             </div>
           </div>
 

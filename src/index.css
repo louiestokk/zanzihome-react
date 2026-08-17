@@ -3916,6 +3916,27 @@ border-top-right-radius: 5px;
             width: 100%;
           }
 
+          .search-input-field {
+            width: 100%;
+            border: none;
+            background: transparent;
+            color: #1f2937;
+            font-size: 13.5px;
+            font-weight: 500;
+            padding: 8px 0;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+          }
+
+          .search-input-field::placeholder {
+            color: #9ca3af;
+            opacity: 1;
+          }
+
+          .search-input-field:focus {
+            outline: none;
+          }
+
           /* Select custom styling */
           .search-select-field {
             width: 100%;
