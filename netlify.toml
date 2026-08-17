@@ -1,11 +1,11 @@
 [build]
+  command = "npm run build"
+  publish = ".next"
   functions = "./functions"
 
-[[plugins]]
-  package = "@netlify/plugin-functions-install-core"
+[build.environment]
+  NPM_FLAGS = "--legacy-peer-deps"
+  NODE_VERSION = "20.12.0"
 
 [dev]
-  command = "react-scripts start"
-
-[dev.environment]
-  NODE_OPTIONS = "--openssl-legacy-provider"
+  command = "next dev"
