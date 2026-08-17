@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { storage } from "../firebase";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";

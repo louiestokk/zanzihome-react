@@ -23,9 +23,9 @@ const useStyles = makeStyles({
   }
 });
 const RelatedObjects = (adId) => {
-  const current = Number(
-    window.location.pathname.split("/propertys/property/")[1]
-  );
+  const current = typeof window !== "undefined"
+    ? Number(window.location.pathname.split("/propertys/property/")[1])
+    : NaN;
 
   const objects = useSelector(getFirestoreData);
   const classes = useStyles();
@@ -99,7 +99,7 @@ const RelatedObjects = (adId) => {
               fontSize:'1.4rem',
               width: "100%",
               color: "#334155",
-              textAlign: window.innerWidth > 900 && "center"
+              textAlign: (typeof window !== "undefined" && window.innerWidth > 900) ? "center" : "left"
             }}
           >
             Other objects in {currentArea && currentArea}

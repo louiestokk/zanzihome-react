@@ -1,19 +1,41 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 const initialState = {
-  data: []
+  rawItems: [],
+  filteredItems: []
 };
 
 const firebaseDataSlice = createSlice({
   name: "data",
   initialState,
   reducers: {
-    setFirestoreData: (state = initialState, { payload }) => {
-      state.data = payload;
+    setFirestoreData: (state, action) => {
+      const payload = action.payload || [];
+      if (state.rawItems.length === 0 || payload.length > state.rawItems.length + 5) {
+        state.rawItems = payload;
+      }
+      state.filteredItems = payload;
+    },
+    setFilteredData: (state, action) => {
+      state.filteredItems = action.payload || [];
     }
   }
 });
 
-export const getFirestoreData = (state) => state.data.data;
-export const { setFirestoreData } = firebaseDataSlice.actions;
+export const getFirestoreData = (state) => {
+  if (Array.isArray(state.data)) {
+    return state.data;
+  }
+  return state.data?.filteredItems || [];
+};
+
+export const getRawFirestoreData = (state) => {
+  if (Array.isArray(state.data)) {
+    return state.data;
+  }
+  return state.data?.rawItems || [];
+};
+
+export const { setFirestoreData, setFilteredData } = firebaseDataSlice.actions;
 
 export default firebaseDataSlice.reducer;

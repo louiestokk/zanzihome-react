@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { loadStripe } from "@stripe/stripe-js";
@@ -10,13 +12,13 @@ import {
   Elements,
   useElements
 } from "@stripe/react-stripe-js";
-import { useHistory } from "react-router-dom";
+import { useRouter } from "next/navigation";
 //  username UID:  PK50165_13f9999571fb
 // password HhSB9JCaQBa14ish
 const promise = loadStripe(`${process.env.RECT_APP_STRIPE_PUBLIC_KEY}`);
 const CheckoutForm = ({ logedinUser }) => {
   const { myUser } = useUserContext();
-  const history = useHistory();
+  const router = useRouter();
   const [confirmAd, setConfirmAd] = useState(true);
   const { price } = useFormContext();
 
@@ -49,7 +51,7 @@ const CheckoutForm = ({ logedinUser }) => {
   const createPaymentIntent = async () => {
     try {
       const { data } = await axios.post(
-        "/.netlify/functions/create-payment-intent",
+        "/api/create-payment-intent",
         JSON.stringify(10)
       );
       setClientSecret(data.clientSecret);
@@ -78,7 +80,7 @@ const CheckoutForm = ({ logedinUser }) => {
       setProccessing(false);
       setSucceeded(true);
       setTimeout(() => {
-        history.push("/");
+        router.push("/");
       }, 9000);
     }
   };

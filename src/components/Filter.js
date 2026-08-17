@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { BiSearch } from "react-icons/bi";
 import { BsThreeDotsVertical } from "react-icons/bs";

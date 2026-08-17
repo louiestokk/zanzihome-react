@@ -1,6 +1,8 @@
+"use client";
+
 import React from "react";
 import { ImHome } from "react-icons/im";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { useSelector } from "react-redux";
 import { Audio } from "react-loader-spinner";
 import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
@@ -10,8 +12,9 @@ const Objects = () => {
 
   if (!firestoreData || firestoreData.length === 0) {
     return (
-      <div style={{ display: "flex", justifyContent: "center", margin: "2rem 0" }}>
-        <Audio height="80" width="80" radius="9" color="green" ariaLabel="loading" />
+      <div className="modern-loader-container">
+        <div className="modern-spinner"></div>
+        <p className="modern-loader-text">Loading properties...</p>
       </div>
     );
   }
@@ -22,202 +25,7 @@ const Objects = () => {
 
   return (
     <section style={{ maxWidth: "1200px", margin: "1.5rem auto 3rem auto", padding: "0 1rem", fontFamily: "'Poppins', sans-serif" }}>
-      <style>{`
-        .object-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 28px;
-        }
-
-        .object-card {
-          position: relative;
-          border-radius: 20px;
-          overflow: hidden;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-          border: 1px solid rgba(0, 0, 0, 0.05);
-          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
-          background: #ffffff;
-          cursor: pointer;
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-        }
-
-        .object-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-          border-color: rgba(1, 58, 23, 0.15);
-        }
-
-        /* Image Wrapper & Zoom */
-        .object-img-wrapper {
-          position: relative;
-          height: 220px;
-          overflow: hidden;
-        }
-
-        .object-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .object-card:hover .object-img {
-          transform: scale(1.05);
-        }
-
-        /* Transaction badge */
-        .object-badge-transaction {
-          position: absolute;
-          top: 12px;
-          right: 12px;
-          background: rgba(1, 58, 23, 0.85);
-          backdrop-filter: blur(4px);
-          color: #ffffff;
-          font-size: 11px;
-          font-weight: 700;
-          padding: 4px 10px;
-          border-radius: 30px;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          z-index: 2;
-        }
-
-        /* Card Content Area */
-        .object-card-body {
-          padding: 22px;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-
-        .object-card-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 12px;
-        }
-
-        .object-category-tag {
-          font-size: 11px;
-          font-weight: 700;
-          color: #013a17;
-          background: #e6ebe7;
-          padding: 4px 10px;
-          border-radius: 30px;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-
-        .object-brand {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          font-size: 12px;
-          font-weight: 600;
-          color: #6b7280;
-        }
-
-        .object-title {
-          font-size: 17px;
-          font-weight: 600;
-          color: #111827;
-          margin: 0 0 10px 0;
-          line-height: 1.4;
-          transition: color 0.3s;
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-          height: 48px;
-        }
-
-        .object-card:hover .object-title {
-          color: #013a17;
-        }
-
-        /* Price Details */
-        .object-price-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 14px;
-        }
-
-        .object-price {
-          font-size: 19px;
-          font-weight: 700;
-          color: #013a17;
-        }
-
-        /* Specs details row */
-        .object-specs {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          font-size: 12.5px;
-          color: #4b5563;
-          border-top: 1px solid #f3f4f6;
-          padding-top: 12px;
-          margin-top: auto;
-        }
-
-        .object-spec-item {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-          color: #6b7280;
-        }
-
-        /* Action buttons */
-        .object-buttons {
-          display: flex;
-          gap: 10px;
-          margin-top: 18px;
-        }
-
-        .btn-contact, .btn-info {
-          width: 100%;
-          padding: 10px 16px;
-          font-size: 13.5px;
-          font-weight: 600;
-          border-radius: 10px;
-          cursor: pointer;
-          transition: all 0.3s;
-          text-align: center;
-          font-family: 'Poppins', sans-serif;
-        }
-
-        .btn-contact {
-          background: #013a17;
-          color: #ffffff;
-          border: none;
-          box-shadow: 0 4px 10px rgba(1, 58, 23, 0.15);
-        }
-
-        .btn-contact:hover {
-          background: #0d2818;
-          box-shadow: 0 6px 16px rgba(1, 58, 23, 0.25);
-        }
-
-        .btn-info {
-          background: #ffffff;
-          color: #013a17;
-          border: 1px solid #013a17;
-        }
-
-        .btn-info:hover {
-          background: #f0f4f1;
-        }
-
-        @media (max-width: 480px) {
-          .object-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
+      
 
       {/* Counter Row */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
@@ -252,7 +60,7 @@ const Objects = () => {
               
               {/* IMAGE & BADGES */}
               <div className="object-img-wrapper">
-                <Link to={`/propertys/property/${adId}`}>
+                <Link href={`/propertys/property/${adId}`}>
                   <img
                     src={imageUrl}
                     alt={`Property in ${Area}, Zanzibar`}
@@ -315,7 +123,7 @@ const Objects = () => {
                   {/* Price */}
                   <div className="object-price-row">
                     <span className="object-price">
-                      {Rent === null && Sell === null ? `$${Price}` : `$${Price}/month`}
+                      {Rent === "Rent" ? `$${Price}/night` : `$${Price}`}
                     </span>
                   </div>
                 </div>
@@ -345,10 +153,10 @@ const Objects = () => {
 
                 {/* Action buttons */}
                 <div className="object-buttons">
-                  <Link to={`/propertys/property/${adId}`} style={{ flex: 1, textDecoration: "none" }}>
+                  <Link href={`/propertys/property/${adId}`} style={{ flex: 1, textDecoration: "none" }}>
                     <button className="btn-contact">Contact</button>
                   </Link>
-                  <Link to={`/propertys/property/${adId}`} style={{ flex: 1, textDecoration: "none" }}>
+                  <Link href={`/propertys/property/${adId}`} style={{ flex: 1, textDecoration: "none" }}>
                     <button className="btn-info">Details</button>
                   </Link>
                 </div>

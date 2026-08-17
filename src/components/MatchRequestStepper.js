@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 
@@ -120,31 +122,16 @@ Client WhatsApp: ${whatsapp}
         `;
       }
 
-      // 1. Send request copy to admin
+      // Send confirmation to user (admin is CC'ed automatically via EmailJS settings)
       if (formEl) {
-        formEl.elements["to_email"].value = "louiestokk@gmail.com";
+        formEl.elements["to_email"].value = email;
       }
       await emailjs.sendForm(
         "service_thbibzh",
         "template_xn7q61k",
         formEl,
-        process.env.REACT_APP_EMAILJS
+        process.env.NEXT_PUBLIC_REACT_APP_EMAILJS || process.env.REACT_APP_EMAILJS || "yP8LTloRH-vMrxS8b"
       );
-
-      // 2. Send confirmation to user
-      try {
-        if (formEl) {
-          formEl.elements["to_email"].value = email;
-        }
-        await emailjs.sendForm(
-          "service_thbibzh",
-          "template_xn7q61k",
-          formEl,
-          process.env.REACT_APP_EMAILJS
-        );
-      } catch (err) {
-        console.error("Failed to send match confirmation copy to client:", err);
-      }
 
       setSubmitted(true);
     } catch (err) {
@@ -157,370 +144,7 @@ Client WhatsApp: ${whatsapp}
 
   return (
     <div className="match-stepper-container">
-      <style>{`
-        .match-stepper-container {
-          background: linear-gradient(135deg, #013a17 0%, #0d2818 100%);
-          border-radius: 24px;
-          padding: 24px;
-          color: #ffffff;
-          box-shadow: 0 12px 40px rgba(1, 58, 23, 0.3);
-          max-width: 600px;
-          margin: 2rem auto;
-          font-family: 'Poppins', sans-serif;
-          display: flex;
-          flex-direction: column;
-          gap: 24px;
-          box-sizing: border-box;
-        }
-
-        /* Desktop Layout (Split Columns) */
-        @media (min-width: 768px) {
-          .match-stepper-container {
-            max-width: 1000px;
-            flex-direction: row;
-            align-items: stretch;
-            gap: 48px;
-            padding: 44px;
-          }
-          
-          .info-column {
-            flex: 1.1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: none;
-            padding-right: 48px;
-            padding-bottom: 0;
-          }
-
-          .form-column {
-            flex: 0.9;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-          }
-        }
-
-        /* Info Column on Mobile and Base */
-        .info-column {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-          padding-bottom: 24px;
-        }
-
-        .info-title {
-          font-size: 26px;
-          font-weight: 800;
-          line-height: 1.25;
-          margin: 0 0 16px 0;
-          color: #ffffff;
-          letter-spacing: -0.5px;
-        }
-
-        .info-subtitle {
-          font-size: 14.5px;
-          color: #f3f4f6;
-          line-height: 1.6;
-          margin: 0 0 28px 0;
-          font-weight: 400;
-          opacity: 0.95;
-        }
-
-        .benefits-list {
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        .benefit-item {
-          display: flex;
-          align-items: flex-start;
-          gap: 14px;
-        }
-
-        .benefit-icon-wrapper {
-          background: rgba(255, 255, 255, 0.1);
-          color: #22c55e;
-          width: 38px;
-          height: 38px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-          font-size: 18px;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        }
-
-        .benefit-content h4 {
-          margin: 0 0 4px 0;
-          font-size: 15px;
-          font-weight: 700;
-          color: #ffffff;
-        }
-
-        .benefit-content p {
-          margin: 0;
-          font-size: 13px;
-          color: #f3f4f6;
-          line-height: 1.5;
-          font-weight: 400;
-          opacity: 0.85;
-        }
-
-        /* Right Column Form/Stepper */
-        .stepper-header {
-          text-align: center;
-          margin-bottom: 20px;
-        }
-
-        .stepper-header h2 {
-          font-size: 19px;
-          font-weight: 800;
-          margin: 0 0 4px 0;
-          color: #ffffff;
-          letter-spacing: -0.5px;
-        }
-
-        .stepper-header p {
-          font-size: 13px;
-          color: #f3f4f6;
-          margin: 0;
-          font-weight: 400;
-          opacity: 0.9;
-          line-height: 1.4;
-        }
-
-        /* Progress Dots */
-        .progress-indicator {
-          display: flex;
-          justify-content: center;
-          gap: 8px;
-          margin-bottom: 20px;
-        }
-
-        .progress-dot {
-          width: 7px;
-          height: 7px;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.2);
-          transition: all 0.3s ease;
-        }
-
-        .progress-dot.active {
-          background: #ffffff;
-          transform: scale(1.2);
-          box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-        }
-
-        .step-content {
-          min-height: 130px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-
-        .pill-selection {
-          display: flex;
-          gap: 12px;
-          margin-bottom: 12px;
-          width: 100%;
-        }
-
-        .pill-btn {
-          flex: 1;
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          color: #ffffff;
-          padding: 12px;
-          border-radius: 12px;
-          cursor: pointer;
-          font-weight: 600;
-          font-size: 13.5px;
-          transition: all 0.2s;
-          text-align: center;
-        }
-
-        .pill-btn:hover {
-          background: rgba(255, 255, 255, 0.16);
-        }
-
-        .pill-btn.selected {
-          background: #ffffff;
-          color: #013a17;
-          border-color: #ffffff;
-          box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
-        }
-
-        .input-group {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-          margin-bottom: 12px;
-          position: relative;
-        }
-
-        .input-group label {
-          font-size: 11px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          color: #a3b899;
-          margin-bottom: 2px;
-        }
-
-        .stepper-input {
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          border-radius: 10px;
-          color: #ffffff;
-          padding: 12px 16px;
-          font-size: 14px;
-          outline: none;
-          width: 100%;
-          box-sizing: border-box;
-          font-family: 'Poppins', sans-serif;
-          font-weight: 500;
-          transition: border-color 0.2s;
-        }
-
-        .stepper-input:focus {
-          border-color: rgba(255, 255, 255, 0.5);
-        }
-
-        .stepper-input::placeholder {
-          color: rgba(255, 255, 255, 0.4);
-        }
-
-        .autocomplete-container {
-          position: relative;
-          width: 100%;
-        }
-
-        .suggestions-list {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          background: #0d2818;
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          border-radius: 10px;
-          margin-top: 5px;
-          max-height: 180px;
-          overflow-y: auto;
-          z-index: 100;
-          list-style: none;
-          padding: 0;
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-        }
-
-        .suggestion-item {
-          padding: 10px 16px;
-          color: #ffffff;
-          font-size: 13px;
-          cursor: pointer;
-          transition: background 0.2s;
-          text-align: left;
-        }
-
-        .suggestion-item:hover {
-          background: rgba(255, 255, 255, 0.1);
-        }
-
-        .no-suggestions {
-          padding: 10px 16px;
-          color: rgba(255, 255, 255, 0.5);
-          font-size: 12.5px;
-          font-style: italic;
-        }
-
-        .selected-area-badge {
-          background: rgba(34, 197, 94, 0.15);
-          border: 1px solid #22c55e;
-          color: #22c55e;
-          padding: 8px 12px;
-          border-radius: 8px;
-          font-size: 13px;
-          font-weight: 600;
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          align-self: flex-start;
-          margin-top: 8px;
-        }
-
-        /* Buttons footer */
-        .stepper-footer {
-          display: flex;
-          justify-content: space-between;
-          margin-top: 20px;
-          gap: 12px;
-        }
-
-        .btn-stepper {
-          padding: 11px 20px;
-          font-size: 13.5px;
-          font-weight: 700;
-          border-radius: 10px;
-          cursor: pointer;
-          transition: all 0.2s;
-          border: none;
-          outline: none;
-        }
-
-        .btn-stepper.primary {
-          background: #ffffff;
-          color: #013a17;
-          flex: 1;
-        }
-
-        .btn-stepper.primary:hover {
-          background: #d1e2c9;
-        }
-
-        .btn-stepper.secondary {
-          background: transparent;
-          color: #ffffff;
-          border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .btn-stepper.secondary:hover {
-          background: rgba(255, 255, 255, 0.1);
-        }
-
-        .stepper-error {
-          background: rgba(239, 68, 68, 0.2);
-          border: 1px solid #ef4444;
-          border-radius: 10px;
-          padding: 8px 12px;
-          font-size: 12px;
-          color: #fca5a5;
-          margin-bottom: 12px;
-          text-align: center;
-        }
-
-        .success-step {
-          text-align: center;
-          padding: 16px 0;
-        }
-
-        .success-step h3 {
-          font-size: 20px;
-          font-weight: 800;
-          margin: 10px 0 6px 0;
-        }
-
-        .success-step p {
-          font-size: 13.5px;
-          color: #f3f4f6;
-          line-height: 1.5;
-          margin: 0;
-          font-weight: 400;
-        }
-      `}</style>
+      
 
       {/* Left Column - Desktop Service Info */}
       <div className="info-column">
@@ -537,8 +161,8 @@ Client WhatsApp: ${whatsapp}
               </svg>
             </div>
             <div className="benefit-content">
-              <h4>Save Time & Travel Costs</h4>
-              <p>Skip browsing hundreds of outdated listings. We only send verified options.</p>
+              <h4 style={{color:'white'}}>Save Time & Travel Costs</h4>
+              <p style={{opacity: '1', color: 'white'}}>Skip browsing hundreds of outdated listings. We only send verified options.</p>
             </div>
           </div>
 
@@ -549,8 +173,8 @@ Client WhatsApp: ${whatsapp}
               </svg>
             </div>
             <div className="benefit-content">
-              <h4>Access Off-Market Listings</h4>
-              <p>Get priority access to properties that aren't advertised anywhere else online.</p>
+              <h4 style={{color:'white'}}>Access Off-Market Listings</h4>
+              <p style={{opacity: '1', color: 'white'}}>Get priority access to properties that aren't advertised anywhere else online.</p>
             </div>
           </div>
 
@@ -561,8 +185,8 @@ Client WhatsApp: ${whatsapp}
               </svg>
             </div>
             <div className="benefit-content">
-              <h4>100% Free Service for Clients</h4>
-              <p>We work directly with owners and agencies to help you secure properties at no extra cost.</p>
+              <h4  style={{color:'white'}}>100% Free Service for Clients</h4>
+              <p style={{opacity: '1', color: 'white'}}>We work directly with owners and agencies to help you secure properties at no extra cost.</p>
             </div>
           </div>
         </div>

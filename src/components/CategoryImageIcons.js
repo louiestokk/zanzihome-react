@@ -1,6 +1,8 @@
+"use client";
+
 import React from "react";
 import { makeStyles } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
+import { useRouter } from "next/navigation";
 const useStyles = makeStyles({
   imgHolder: {
     textAlign: "center",
@@ -26,12 +28,12 @@ const useStyles = makeStyles({
 });
 const CategoryImageIcons = () => {
   const classes = useStyles();
-  const history = useHistory();
+  const router = useRouter();
   return (
     <div className={classes.imgcontainer}>
       <div
         className={classes.imgHolder}
-        onClick={() => history.push("/properties-zanzibar")}
+        onClick={() => router.push("/properties-zanzibar")}
       >
         <img
           loading="lazy"
@@ -43,7 +45,7 @@ const CategoryImageIcons = () => {
       </div>
       <div
         className={classes.imgHolder}
-        onClick={() => history.push("/car-rental-zanzibar")}
+        onClick={() => router.push("/car-rental-zanzibar")}
       >
         <img
           loading="lazy"
@@ -55,7 +57,7 @@ const CategoryImageIcons = () => {
       </div>
       <div
         className={classes.imgHolder}
-        onClick={() => history.push("/tours-zanzibar")}
+        onClick={() => router.push("/tours-zanzibar")}
       >
         <img
           loading="lazy"

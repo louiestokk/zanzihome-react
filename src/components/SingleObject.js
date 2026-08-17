@@ -1,5 +1,7 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "next/navigation";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { AiFillHeart } from "react-icons/ai";
@@ -53,7 +55,7 @@ const SingleObject = () => {
         "service_9wx2s0e",
         "template_9kq3rcn",
         form.current,
-        process.env.REACT_APP_EMAILJ_USER_ID
+        process.env.NEXT_PUBLIC_REACT_APP_EMAILJ_USER_ID || process.env.REACT_APP_EMAILJ_USER_ID || "user_a9rRSeZcRVhTLpSYxEfo8"
       )
       .then(
         (result) => {
@@ -173,7 +175,7 @@ const SingleObject = () => {
                     Se on map
                   </button>
                   <h4 className="singel-object-price">
-                    {to === "Rent" ? `${price}$ / week` : `${price}.00$`}
+                    {to === "Rent" ? `$${price}/night` : `${price}.00$`}
                   </h4>
                 </div>
                 <div className="bid-div">{bid && <Bid bid={bid} />}</div>
@@ -197,7 +199,7 @@ const SingleObject = () => {
                           <li>{rooms || ""}</li>
                           <li>
                             {to === "Rent"
-                              ? `${price}$ / week`
+                              ? `$${price}/night`
                               : `${price}.00$`}
                           </li>
                         </ul>

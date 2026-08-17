@@ -1,15 +1,19 @@
+"use client";
+
 import React, { useRef, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
+import { isPartnerAd } from "../utils/partnerEmails";
 
-const LatestListingsSection = ({ title, subtitle, category }) => {
-  const history = useHistory();
+const LatestListingsSection = ({ title, subtitle, category, initialProperties }) => {
+  const router = useRouter();
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
-  const firestoreData = useSelector(getFirestoreData) || [];
+  const reduxData = useSelector(getFirestoreData) || [];
+  const firestoreData = reduxData.length > 0 ? reduxData : (initialProperties || []);
 
   // Filter listings by category and active status
   const filteredListings = firestoreData.filter(
@@ -66,254 +70,29 @@ const LatestListingsSection = ({ title, subtitle, category }) => {
     }
   };
 
+  if (firestoreData.length === 0) {
+    return (
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", margin: "2rem 0" }}>
+        <p style={{ fontFamily: "Poppins, sans-serif", fontSize: "14px", color: "#6b7280", marginBottom: "0.5rem" }}>
+          Fetching latest {category.toLowerCase()}s...
+        </p>
+        <div style={{ width: "20px", height: "20px", border: "2px solid #e5e7eb", borderTopColor: "#013a17", borderRadius: "50%", animation: "spin-loader 0.8s linear infinite" }} />
+        <style dangerouslySetInnerHTML={{ __html: `
+          @keyframes spin-loader {
+            to { transform: rotate(360deg); }
+          }
+        ` }} />
+      </div>
+    );
+  }
+
   if (latestListings.length === 0) {
     return null; // Don't render empty sections
   }
 
   return (
     <section className="latest-section">
-      <style>{`
-        .latest-section {
-          padding: 40px 20px;
-          max-width: 1200px;
-          margin: 0 auto;
-          font-family: 'Poppins', sans-serif;
-        }
-
-        .latest-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-end;
-          margin-bottom: 24px;
-        }
-
-        .latest-title-container {
-          flex: 1;
-        }
-
-        .latest-title {
-          font-size: 26px;
-          font-weight: 800;
-          color: #013a17;
-          margin: 0 0 6px 0;
-          letter-spacing: -0.5px;
-        }
-
-        .latest-subtitle {
-          font-size: 14px;
-          color: #64748b;
-          margin: 0;
-          font-weight: 500;
-        }
-
-        .latest-nav-container {
-          display: flex;
-          gap: 8px;
-          margin-left: 16px;
-        }
-
-        .latest-nav-btn {
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
-          background: #ffffff;
-          border: 1px solid #e2e8f0;
-          color: #1e293b;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: all 0.2s ease;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-        }
-
-        .latest-nav-btn:hover:not(:disabled) {
-          background: #013a17;
-          color: #ffffff;
-          border-color: #013a17;
-          transform: scale(1.05);
-        }
-
-        .latest-nav-btn:disabled {
-          opacity: 0.4;
-          cursor: not-allowed;
-        }
-
-        .latest-scroll-container {
-          display: flex;
-          gap: 20px;
-          overflow-x: auto;
-          scroll-snap-type: x mandatory;
-          padding: 8px 4px 20px 4px;
-          scrollbar-width: none; /* Firefox */
-          scroll-behavior: smooth;
-        }
-
-        .latest-scroll-container::-webkit-scrollbar {
-          display: none; /* Chrome, Safari */
-        }
-
-        .latest-card {
-          flex: 0 0 280px;
-          scroll-snap-align: start;
-          background: #ffffff;
-          border-radius: 16px;
-          overflow: hidden;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-          border: 1px solid #f1f5f9;
-          cursor: pointer;
-          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
-          display: flex;
-          flex-direction: column;
-        }
-
-        .latest-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 12px 24px rgba(1, 58, 23, 0.08);
-          border-color: rgba(1, 58, 23, 0.12);
-        }
-
-        .latest-img-wrapper {
-          position: relative;
-          height: 180px;
-          overflow: hidden;
-          background: #f1f5f9;
-        }
-
-        .latest-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.5s ease;
-        }
-
-        .latest-card:hover .latest-img {
-          transform: scale(1.06);
-        }
-
-        .latest-badge-container {
-          position: absolute;
-          top: 12px;
-          left: 12px;
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-          z-index: 2;
-        }
-
-        .latest-badge-new {
-          background: #013a17;
-          color: #ffffff;
-          font-size: 10px;
-          font-weight: 700;
-          padding: 4px 8px;
-          border-radius: 6px;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .latest-badge-verified {
-          background: #22c55e;
-          color: #ffffff;
-          font-size: 10px;
-          font-weight: 700;
-          padding: 4px 8px;
-          border-radius: 6px;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .latest-img-overlay {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 40%;
-          background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
-          z-index: 1;
-        }
-
-        .latest-card-content {
-          padding: 16px;
-          display: flex;
-          flex-direction: column;
-          flex: 1;
-        }
-
-        .latest-card-title {
-          font-size: 15px;
-          font-weight: 700;
-          color: #0f172a;
-          margin: 0 0 8px 0;
-          line-height: 1.4;
-          height: 42px;
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-
-        .latest-specs-row {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          margin-bottom: 12px;
-          font-size: 12px;
-          color: #64748b;
-          font-weight: 600;
-        }
-
-        .latest-price {
-          font-size: 15px;
-          font-weight: 800;
-          color: #013a17;
-        }
-
-        .latest-spec-item {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-        }
-
-        .latest-meta-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-top: auto;
-          padding-top: 12px;
-          border-top: 1px solid #f1f5f9;
-        }
-
-        .latest-location {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-          font-size: 11px;
-          color: #475569;
-          font-weight: 600;
-        }
-
-        .latest-publisher {
-          font-size: 11px;
-          color: #013a17;
-          font-weight: 700;
-          max-width: 120px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
-
-        @media (max-width: 640px) {
-          .latest-title {
-            font-size: 22px;
-          }
-          .latest-card {
-            flex: 0 0 250px;
-          }
-        }
-      `}</style>
+      
 
       <div className="latest-header">
         <div className="latest-title-container">
@@ -348,14 +127,14 @@ const LatestListingsSection = ({ title, subtitle, category }) => {
 
       <div className="latest-scroll-container" ref={scrollRef}>
         {latestListings.map((item, index) => {
-          const isVerified = item.isCompany === true || (item.About && item.About.trim().length > 0);
+          const isVerified = isPartnerAd(item);
           const isNew = index < 3; // First 3 sorted items get a "New" badge
 
           return (
             <div
               key={item.id || index}
               className="latest-card"
-              onClick={() => history.push(`/propertys/property/${item.adId}`)}
+              onClick={() => router.push(`/propertys/property/${item.adId}`)}
             >
               <div className="latest-img-wrapper">
                 <img
@@ -375,7 +154,13 @@ const LatestListingsSection = ({ title, subtitle, category }) => {
                 <h3 className="latest-card-title">{item.Title}</h3>
 
                 <div className="latest-specs-row">
-                  <span className="latest-price">{item.Price || item.price || "Contact"}</span>
+                  <span className="latest-price">
+                    {item.Price || item.price ? (
+                      item.Rent === "Rent" ? `$${item.Price || item.price}/night` : `$${item.Price || item.price}`
+                    ) : (
+                      "Contact"
+                    )}
+                  </span>
                   {item.Size && (
                     <div className="latest-spec-item">
                       <span>• {item.Size} sqm</span>

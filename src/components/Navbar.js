@@ -1,23 +1,27 @@
+"use client";
+
 import React from "react";
 import { FaBars } from "react-icons/fa";
 import { navlinks } from "../utils/data";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ImHome } from "react-icons/im";
 import { FiUser } from "react-icons/fi";
 import { RiAdvertisementLine } from "react-icons/ri";
 import { FaWindowClose } from "react-icons/fa";
 import { useGlobalContext } from "../context";
 import { useUserContext } from "../user_context";
-import { useHistory } from "react-router-dom";
 import FoodDelivery from "./FoodDelivery";
+
 const Navbar = ({ logedinUser, loading }) => {
-  const history = useHistory();
   const { show, setShow } = useGlobalContext();
   const { showUser, setShowUser, loginWithRedirect, myUser, logout, user } =
     useUserContext();
   const refreshPage = () => {
-    window.location.href = "/";
+    if (typeof window !== "undefined") {
+      window.location.href = "/";
+    }
   };
+
 
   return (
     <>
@@ -33,7 +37,7 @@ const Navbar = ({ logedinUser, loading }) => {
                 className="nav-list"
                 onClick={() => setShow(!show)}
               >
-                <Link to={link.url} className="nav-links">
+                <Link href={link.url} className="nav-links">
                   {link.text}
                   {link.icon && link.icon}
                 </Link>
@@ -47,7 +51,7 @@ const Navbar = ({ logedinUser, loading }) => {
           <div className="nav-btn" onClick={() => setShow(!show)}>
             <FaBars />
           </div>
-          <Link to="/">
+          <Link href="/">
             <div className="logo" onClick={refreshPage}>
               <div className="logo-circle">
                 <ImHome className="logo-icon" />
@@ -107,7 +111,7 @@ const Navbar = ({ logedinUser, loading }) => {
             className="user-account"
           >
             <Link
-              to={`/profile/${user.email}`}
+              href={`/profile/${user.email}`}
               className="user-modal-link"
               onClick={() => setShowUser(false)}
             >
@@ -116,7 +120,7 @@ const Navbar = ({ logedinUser, loading }) => {
             </Link>
           </button>
           <Link
-            to="/checkout"
+            href="/checkout"
             className="user-modal-link"
             style={{ display: "flex", alignItems: "center" }}
             onClick={() => setShowUser(false)}
@@ -129,7 +133,7 @@ const Navbar = ({ logedinUser, loading }) => {
           </Link>
           <button
             className="user-logout"
-            onClick={() => logout({ returnTo: window.location.origin })}
+            onClick={() => logout({ returnTo: typeof window !== "undefined" ? window.location.origin : "" })}
           >
             {loading ? "proccessing..." : "Logout"}
           </button>

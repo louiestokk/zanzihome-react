@@ -1,89 +1,14 @@
+"use client";
+
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 const BannerSection = () => {
-  const history = useHistory();
+  const router = useRouter();
 
   return (
     <div>
-      <style>{`
-        .home-promo-grid {
-          display: flex;
-          flex-direction: column;
-          gap: 24px;
-          max-width: 1000px;
-          margin: 3rem auto;
-          padding: 0 1rem;
-        }
-
-        .home-promo-card {
-          flex: 1;
-          background: #ffffff;
-          border-radius: 16px;
-          padding: 24px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-          border: 1px solid rgba(0, 0, 0, 0.05);
-          cursor: pointer;
-          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-          display: flex;
-          flex-direction: column;
-        }
-
-        .home-promo-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
-        }
-
-        .promo-card-image-box {
-          height: 180px;
-          border-radius: 10px;
-          overflow: hidden;
-          margin-bottom: 18px;
-          position: relative;
-        }
-
-        .promo-card-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        .promo-card-tag {
-          position: absolute;
-          top: 12px;
-          left: 12px;
-          background: #013a17;
-          color: #ffffff;
-          font-size: 11px;
-          font-weight: 700;
-          padding: 4px 10px;
-          border-radius: 30px;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-
-        .promo-card-title {
-          font-size: 18px;
-          font-weight: 700;
-          color: #1f2937;
-          margin: 0 0 8px 0;
-          line-height: 1.3;
-        }
-
-        .promo-card-desc {
-          font-size: 13.5px;
-          color: #4b5563;
-          line-height: 1.6;
-          margin: 0;
-          font-weight: 300;
-        }
-
-        @media (min-width: 768px) {
-          .home-promo-grid {
-            flex-direction: row;
-          }
-        }
-      `}</style>
+      
 
       {/* ✅ HERO SECTION (H1 + SEARCH FEEL + SEO) */}
       <section
@@ -138,7 +63,7 @@ const BannerSection = () => {
 
           {/* CTA BUTTON */}
           <button
-            onClick={() => history.push("/properties-zanzibar")}
+            onClick={() => router.push("/properties-zanzibar")}
             style={{
               marginTop: "1.5rem",
               background: "#0b8b3a",
@@ -169,7 +94,7 @@ const BannerSection = () => {
         {/* ✅ PROPERTY BANNER */}
         <section
           className="zanzibar-real-estate-section"
-          onClick={() => history.push("/properties-zanzibar")}
+          onClick={() => router.push("/properties-zanzibar")}
         >
           <div className="content">
             <span className="badge">Updated Monthly • 10,000+ Users</span>
@@ -198,7 +123,7 @@ const BannerSection = () => {
         {/* Promotion block 1: List Property */}
       <div 
           className="home-promo-card" 
-          onClick={() => history.push("/checkout")}
+          onClick={() => router.push("/checkout")}
           style={{
             background: "linear-gradient(135deg, #013a17 0%, #306c48 100%)",
             border: "none",
@@ -225,7 +150,7 @@ const BannerSection = () => {
         </div>
 
         {/* Promotion block 2: Explore */}
-        <div className="home-promo-card" onClick={() => history.push("/properties-zanzibar")}>
+        <div className="home-promo-card" onClick={() => router.push("/properties-zanzibar")}>
           <div className="promo-card-image-box">
             <img
               src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=400&h=180"

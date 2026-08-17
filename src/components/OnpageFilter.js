@@ -1,7 +1,9 @@
+"use client";
+
 import React, { useState, useContext, useEffect } from "react";
 import { useGlobalContext } from "../context";
 import { objects } from "../utils/data";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { BsMap } from "react-icons/bs";
 import MapComp from "./Map";
 
@@ -55,7 +57,7 @@ const OnpageFilter = ({ size, setSize }) => {
             <option value="lowprice">Sorted by lowest price first</option>
             <option value="highprices">Sorted by highest price first</option>
           </select>
-          <Link to="/">
+          <Link href="/">
             <button>
               <BsMap className="map" />
               Map

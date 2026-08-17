@@ -49,38 +49,29 @@ Listed by Company: ${companyName || "N/A"}
 Company Contact Email: ${companyEmail || "N/A"}
       `;
 
-      // 1. Set values for first submission (to Admin)
+      // 1. Set values for submission
       formEl.elements["from_name"].value = formData.userName;
       formEl.elements["from_email"].value = formData.userEmail;
-      formEl.elements["to_name"].value = "ZanziHome Admin";
-      formEl.elements["to_email"].value = "louiestokk@gmail.com";
-      formEl.elements["subject"].value = `New Lead: ${formData.userName} is interested in ${listingTitle}`;
+      
+      const targetCompanyEmail = companyEmail || "louiestokk@gmail.com";
+      if (targetCompanyEmail === "louiestokk@gmail.com") {
+        formEl.elements["to_name"].value = "ZanziHome Admin";
+        formEl.elements["to_email"].value = "louiestokk@gmail.com";
+        formEl.elements["subject"].value = `New Lead: ${formData.userName} is interested in ${listingTitle}`;
+      } else {
+        formEl.elements["to_name"].value = companyName || "Broker Partner";
+        formEl.elements["to_email"].value = targetCompanyEmail;
+        formEl.elements["subject"].value = `ZanziHome Partner Lead: Inquiry for ${listingTitle}`;
+      }
       formEl.elements["message"].value = formattedMessage;
 
       await emailjs.sendForm(
         "service_thbibzh",
         "template_xn7q61k",
         formEl,
-        process.env.REACT_APP_EMAILJS
+        process.env.NEXT_PUBLIC_REACT_APP_EMAILJS || process.env.REACT_APP_EMAILJS || "yP8LTloRH-vMrxS8b"
       );
-      console.log("Lead email sent to admin successfully");
-
-      // 2. Set values for second submission (to the Company/Broker)
-      const targetCompanyEmail = companyEmail || "louiestokk@gmail.com";
-      // Only send second email if it goes to a different email address
-      if (targetCompanyEmail !== "louiestokk@gmail.com") {
-        formEl.elements["to_name"].value = companyName || "Broker Partner";
-        formEl.elements["to_email"].value = targetCompanyEmail;
-        formEl.elements["subject"].value = `ZanziHome Partner Lead: Inquiry for ${listingTitle}`;
-
-        await emailjs.sendForm(
-          "service_thbibzh",
-          "template_xn7q61k",
-          formEl,
-          process.env.REACT_APP_EMAILJS
-        );
-        console.log("Lead email sent to company successfully");
-      }
+      console.log("Lead email sent successfully");
 
       setSuccess(true);
       setFormData({

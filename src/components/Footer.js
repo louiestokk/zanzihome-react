@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { FaInstagram } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { AiOutlineFacebook } from "react-icons/ai";
@@ -19,32 +19,32 @@ const Footer = () => {
           <h2 style={{ borderBottom: "0.1px solid white" }}>Contact</h2>
           <ul className="footer-ul">
             <li>
-              <Link to="/contact" className="footer-links">
+              <Link href="/contact" className="footer-links">
                 Customer service & contact
               </Link>
             </li>
             <li>
-              <Link to="/about" className="footer-links">
+              <Link href="/about" className="footer-links">
                 About ZanziHome
               </Link>
             </li>
             <li>
-              <Link to="/about" className="footer-links">
+              <Link href="/about" className="footer-links">
                 Real Estate Agencies
               </Link>
             </li>
             <li>
-              <Link to="/checkout" className="footer-links">
+              <Link href="/checkout" className="footer-links">
                 List Property
               </Link>
             </li>
               <li>
-              <Link to="/boost-listing" className="footer-links">
+              <Link href="/boost-listing" className="footer-links">
                 Boost Listing 🚀
               </Link>
             </li>
             <li>
-              <Link to="/contact" className="footer-links">
+              <Link href="/contact" className="footer-links">
                 Banner Advertising
               </Link>
             </li>
@@ -60,7 +60,7 @@ const Footer = () => {
           <ul className="footer-ul">
             <li>
               <HiOutlineMail className="insta-fot" />
-              <Link to="/contact" className="footer-links">
+              <Link href="/contact" className="footer-links">
                 ZanziHome newsletter
               </Link>
             </li>
@@ -125,13 +125,13 @@ const Footer = () => {
       <div className="footer-bottom-info">
         <div>
           <button type="button" className="footer-info-bottom-btn">
-            <Link to="/">All properties</Link>
+            <Link href="/">All properties</Link>
           </button>
           <button type="button" className="footer-info-bottom-btn">
-            <Link to="/boost-listing">Advertise</Link>
+            <Link href="/boost-listing">Advertise</Link>
           </button>
           <button type="button" className="footer-info-bottom-btn">
-            <Link to="/payments">Payments</Link>
+            <Link href="/payments">Payments</Link>
           </button>
 
         </div>

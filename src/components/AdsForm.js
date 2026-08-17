@@ -1,9 +1,11 @@
+"use client";
+
 import React, { useState, useRef } from "react";
 import { useFormContext } from "../form_ads_context";
 import { RiAdvertisementFill } from "react-icons/ri";
 import emailjs from "@emailjs/browser";
 import { villages } from "../utils/data";
-import { useHistory } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { useGlobalContext } from "../context";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
@@ -53,7 +55,7 @@ const AdsForm = ({ setActiveStep, adType, onFormSubmit }) => {
     WhatsApp: null
   });
   const form = useRef();
-  const history = useHistory();
+  const router = useRouter();
   const { myUser } = useGlobalContext();
   const sendEmail = (e) => {
     emailjs
@@ -61,7 +63,7 @@ const AdsForm = ({ setActiveStep, adType, onFormSubmit }) => {
         "service_thbibzh",
         "template_xn7q61k",
         form.current,
-        process.env.REACT_APP_EMAILJS
+        process.env.NEXT_PUBLIC_REACT_APP_EMAILJS || process.env.REACT_APP_EMAILJS || "yP8LTloRH-vMrxS8b"
       )
       .then(
         (result) => {
@@ -131,353 +133,7 @@ const AdsForm = ({ setActiveStep, adType, onFormSubmit }) => {
   };
   return (
     <div className="modern-ad-form-container">
-      <style>{`
-        .modern-ad-form-container {
-          max-width: 1100px;
-          margin: 0 auto;
-          padding: 20px 15px;
-          font-family: 'Poppins', sans-serif;
-          box-sizing: border-box;
-          width: 100%;
-        }
-
-        .ad-form-in {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 30px;
-          align-items: start;
-        }
-
-        /* Override global index.css recursive margin-left shift bug */
-        .ad-form-in div {
-          margin-left: 0 !important;
-        }
-
-        @media (min-width: 992px) {
-          .ad-form-in {
-            grid-template-columns: 1.4fr 1fr;
-          }
-        }
-
-        .ad-form-in.hidden {
-          display: none;
-        }
-
-        .form-fields-column {
-          display: flex;
-          flex-direction: column;
-          gap: 24px;
-          width: 100%;
-        }
-
-        .form-sidebar-column {
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-          background: #ffffff;
-          border-radius: 16px;
-          border: 1px solid #e5e7eb;
-          padding: 24px;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-          box-sizing: border-box;
-          width: 100%;
-        }
-
-        @media (min-width: 992px) {
-          .form-sidebar-column {
-            position: sticky;
-            top: 20px;
-          }
-        }
-
-        .form-card {
-          background: #ffffff;
-          border-radius: 16px;
-          border: 1px solid #e5e7eb;
-          padding: 24px;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-          box-sizing: border-box;
-        }
-
-        .form-card-title {
-          font-size: 16px;
-          font-weight: 700;
-          color: #111827;
-          margin: 0 0 20px 0;
-          border-bottom: 1px solid #f3f4f6;
-          padding-bottom: 12px;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-
-        .form-control-row {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 16px;
-          margin-bottom: 16px;
-        }
-
-        @media (min-width: 600px) {
-          .form-control-row.split-2 {
-            grid-template-columns: 1fr 1fr;
-          }
-        }
-
-        .form-control-item {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-          width: 100%;
-        }
-
-        .form-control-item label {
-          font-size: 13.5px;
-          font-weight: 600;
-          color: #374151;
-        }
-
-        .autocomplete-container {
-          position: relative;
-          width: 100%;
-        }
-
-        .autocomplete-container input[type="text"] {
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'/%3E%3C/svg%3E");
-          background-repeat: no-repeat;
-          background-position: right 14px center;
-          background-size: 16px;
-          padding-right: 40px !important;
-        }
-
-        .suggestions-dropdown {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          background: #ffffff;
-          border: 1.5px solid #e5e7eb;
-          border-radius: 10px;
-          margin-top: 6px;
-          max-height: 200px;
-          overflow-y: auto;
-          z-index: 1000;
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-          padding: 6px 0;
-        }
-
-        .suggestion-item {
-          padding: 10px 14px;
-          font-size: 14px;
-          color: #374151;
-          cursor: pointer;
-          transition: background 0.15s;
-          text-align: left;
-        }
-
-        .suggestion-item:hover {
-          background: #f3f4f6;
-          color: #0b8b3a;
-          font-weight: 600;
-        }
-
-        .no-suggestions {
-          padding: 10px 14px;
-          font-size: 13.5px;
-          color: #9ca3af;
-          text-align: center;
-        }
-
-        .form-control-item input[type="text"],
-        .form-control-item input[type="email"],
-        .form-control-item select,
-        .form-control-item textarea {
-          width: 100%;
-          height: 46px;
-          border-radius: 10px;
-          border: 1.5px solid #e5e7eb;
-          padding: 8px 14px;
-          font-size: 14.5px;
-          font-family: 'Poppins', sans-serif;
-          color: #1f2937;
-          background-color: #ffffff;
-          box-sizing: border-box;
-          transition: all 0.2s ease;
-          outline: none;
-        }
-
-        .form-control-item textarea {
-          height: auto;
-          resize: vertical;
-          min-height: 100px;
-        }
-
-        .form-control-item input[type="text"]:focus,
-        .form-control-item input[type="email"]:focus,
-        .form-control-item select:focus,
-        .form-control-item textarea:focus {
-          border-color: #0b8b3a;
-          box-shadow: 0 0 0 4px rgba(11, 139, 58, 0.08);
-        }
-
-        .form-control-item select {
-          cursor: pointer;
-          appearance: none;
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%234b5563' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E");
-          background-repeat: no-repeat;
-          background-position: right 14px center;
-          background-size: 16px;
-          padding-right: 40px;
-        }
-
-        .checkbox-group-wrapper {
-          display: flex;
-          align-items: center;
-          gap: 24px;
-          margin: 10px 0 20px 0;
-          flex-wrap: wrap;
-        }
-
-        .checkbox-item-wrapper {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          cursor: pointer;
-        }
-
-        .checkbox-item-wrapper input[type="checkbox"] {
-          width: 18px;
-          height: 18px;
-          border-radius: 4px;
-          border: 1.5px solid #cbd5e1;
-          cursor: pointer;
-          accent-color: #0b8b3a;
-        }
-
-        .checkbox-item-wrapper label {
-          font-size: 14px;
-          font-weight: 600;
-          color: #374151;
-          cursor: pointer;
-          margin: 0;
-        }
-
-        .form-header-box {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 24px;
-          border-bottom: 1.5px solid #e5e7eb;
-          padding-bottom: 16px;
-        }
-
-        .form-header-box h1 {
-          font-size: 24px;
-          font-weight: 800;
-          color: #111827;
-          margin: 0;
-        }
-
-        .form-header-box .cancel-form-btn {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          background: #f3f4f6;
-          border: none;
-          color: #4b5563;
-          font-size: 18px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: all 0.2s;
-        }
-
-        .form-header-box .cancel-form-btn:hover {
-          background: #e5e7eb;
-          color: #111827;
-        }
-
-        .submit-section-box {
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-          border-top: 1px solid #f3f4f6;
-          padding-top: 20px;
-          margin-top: 12px;
-        }
-
-        .submit-checkbox-wrapper {
-          display: flex;
-          align-items: flex-start;
-          gap: 10px;
-        }
-
-        .submit-checkbox-wrapper input[type="checkbox"] {
-          margin-top: 3px;
-          width: 18px;
-          height: 18px;
-          accent-color: #0b8b3a;
-          cursor: pointer;
-        }
-
-        .submit-checkbox-wrapper label {
-          font-size: 13.5px;
-          font-weight: 500;
-          color: #4b5563;
-          line-height: 1.4;
-          cursor: pointer;
-        }
-
-        .form-ad-btn-cont-sub-btn {
-          width: 100%;
-          height: 48px;
-          background: #0b8b3a;
-          color: #ffffff;
-          border: none;
-          border-radius: 12px;
-          font-size: 15px;
-          font-weight: 700;
-          cursor: pointer;
-          transition: all 0.2s;
-          box-shadow: 0 4px 12px rgba(11, 139, 58, 0.15);
-        }
-
-        .form-ad-btn-cont-sub-btn:hover:not(:disabled) {
-          background: #013a17;
-          box-shadow: 0 6px 16px rgba(1, 58, 23, 0.25);
-          transform: translateY(-1px);
-        }
-
-        .form-ad-btn-cont-sub-btn:disabled {
-          background: #cbd5e1;
-          color: #94a3b8;
-          box-shadow: none;
-          cursor: not-allowed;
-          opacity: 0.8;
-        }
-
-        .disclaimer-box {
-          display: flex;
-          gap: 10px;
-          background: #f8fafc;
-          border-radius: 12px;
-          padding: 16px;
-          border: 1px solid #f1f5f9;
-        }
-
-        .disclaimer-box svg {
-          font-size: 20px;
-          color: #0b8b3a;
-          flex-shrink: 0;
-        }
-
-        .disclaimer-box p {
-          margin: 0;
-          font-size: 12.5px;
-          color: #64748b;
-          line-height: 1.5;
-        }
-      `}</style>
+      
 
       <form
         className={sended ? "ad-form-in hidden" : "ad-form-in"}
@@ -495,7 +151,7 @@ const AdsForm = ({ setActiveStep, adType, onFormSubmit }) => {
             <button
               type="button"
               className="cancel-form-btn"
-              onClick={() => history.push("/")}
+              onClick={() => router.push("/")}
             >
               &times;
             </button>
@@ -842,6 +498,7 @@ const AdsForm = ({ setActiveStep, adType, onFormSubmit }) => {
                 <input
                   type="text"
                   name="Price"
+                  placeholder={!sell ? "Enter price per day" : ""}
                   required
                   onChange={handleAdsFormChange}
                 />

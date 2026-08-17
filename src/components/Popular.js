@@ -1,8 +1,10 @@
+"use client";
+
 import React, { useRef, useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 const Popular = ({ title, images }) => {
-  const history = useHistory();
+  const router = useRouter();
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -45,232 +47,7 @@ const Popular = ({ title, images }) => {
 
   return (
     <section className="popular-section">
-      <style>{`
-        .popular-section {
-          width: 100%;
-          padding: 15px 16px;
-          background: #fafbfa;
-          overflow: hidden;
-        }
-        .popular-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-end;
-          max-width: 1200px;
-          margin: 0 auto 28px auto;
-        }
-        .popular-title-container {
-          text-align: left;
-        }
-        .popular-title {
-          font-size: 28px;
-          font-weight: 700;
-          color: #013a17;
-          margin: 0;
-          letter-spacing: -0.5px;
-        }
-        .popular-subtitle {
-          font-size: 14px;
-          color: #6b7280;
-          margin: 6px 0 0 0;
-        }
-        .popular-nav-container {
-          display: flex;
-          gap: 12px;
-        }
-        .popular-nav-btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 44px;
-          height: 44px;
-          border-radius: 50%;
-          border: 1px solid #e5e7eb;
-          background: #ffffff;
-          color: #1c2c22;
-          cursor: pointer;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-          box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-        .popular-nav-btn:hover:not(:disabled) {
-          background: #013a17;
-          color: #ffffff;
-          border-color: #013a17;
-          box-shadow: 0 4px 12px rgba(1, 58, 23, 0.25);
-        }
-        .popular-nav-btn:disabled {
-          opacity: 0.4;
-          cursor: not-allowed;
-          background: #f9fafb;
-          color: #9ca3af;
-          border-color: #e5e7eb;
-        }
-        .popular-scroll-container {
-          display: flex;
-          gap: 24px;
-          overflow-x: auto;
-          scroll-snap-type: x mandatory;
-          scroll-behavior: smooth;
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 8px 4px 24px 4px;
-          scrollbar-width: none; /* Hide standard Firefox scrollbar */
-        }
-        .popular-scroll-container::-webkit-scrollbar {
-          display: none; /* Hide Chrome/Safari scrollbar for extra clean look */
-        }
-        .popular-card {
-          position: relative;
-          cursor: pointer;
-          border-radius: 16px;
-          overflow: hidden;
-          background: #ffffff;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-          border: 1px solid rgba(0,0,0,0.06);
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-          scroll-snap-align: start;
-          width: 320px;
-          flex-shrink: 0;
-        }
-        .popular-card:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 20px 35px rgba(0,0,0,0.1);
-          border-color: rgba(1, 58, 23, 0.15);
-        }
-        .popular-img-wrapper {
-          position: relative;
-          height: 220px;
-          overflow: hidden;
-        }
-        .popular-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .popular-card:hover .popular-img {
-          transform: scale(1.08);
-        }
-        .popular-badge-container {
-          position: absolute;
-          top: 14px;
-          left: 14px;
-          display: flex;
-          gap: 8px;
-          z-index: 2;
-        }
-        .popular-badge-featured {
-          background: #FFD700;
-          color: #000;
-          padding: 6px 12px;
-          font-size: 11px;
-          font-weight: 700;
-          border-radius: 20px;
-          box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-          letter-spacing: 0.3px;
-        }
-        .popular-badge-hot {
-          background: #ff4d4f;
-          color: #fff;
-          padding: 6px 12px;
-          font-size: 11px;
-          font-weight: 700;
-          border-radius: 20px;
-          box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-          letter-spacing: 0.3px;
-        }
-        .popular-img-overlay {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 40%;
-          background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
-          z-index: 1;
-        }
-        .popular-card-content {
-          padding: 20px;
-        }
-        .popular-card-title {
-          font-size: 17px;
-          font-weight: 600;
-          color: #111827;
-          margin: 0 0 10px 0;
-          line-height: 1.4;
-          transition: color 0.3s;
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-          height: 48px;
-        }
-        .popular-card:hover .popular-card-title {
-          color: #013a17;
-        }
-        .popular-meta-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-top: 12px;
-          padding-top: 12px;
-          border-top: 1px solid #f3f4f6;
-        }
-        .popular-location {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-          font-size: 13px;
-          color: #6b7280;
-        }
-        .popular-type-tag {
-          font-size: 11px;
-          font-weight: 600;
-          color: #013a17;
-          background: #e6ebe7;
-          padding: 4px 10px;
-          border-radius: 12px;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-        .popular-specs-row {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          margin-top: 8px;
-          font-size: 13px;
-          color: #4b5563;
-        }
-        .popular-price {
-          font-size: 15px;
-          font-weight: 700;
-          color: #013a17;
-        }
-        .popular-spec-item {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-          font-size: 12px;
-          color: #6b7280;
-        }
-        
-        @media (max-width: 768px) {
-          .popular-header {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 16px;
-            margin-bottom: 20px;
-          }
-          .popular-nav-container {
-            display: none; /* Hide buttons on mobile in favor of pure touch swipe */
-          }
-          .popular-card {
-            width: 280px;
-          }
-          .popular-img-wrapper {
-            height: 180px;
-          }
-        }
-      `}</style>
+      
 
       {/* Header Container */}
       <div className="popular-header">
@@ -315,7 +92,7 @@ const Popular = ({ title, images }) => {
             key={i}
             className="popular-card"
             onClick={() => {
-              history.push(`/propertys/property/${tour.adId}`);
+              router.push(`/propertys/property/${tour.adId}`);
             }}
           >
             {/* Image Wrapper */}

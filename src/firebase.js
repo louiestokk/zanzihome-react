@@ -1,16 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore";
+import { getAnalytics, isSupported } from "firebase/analytics";
 import { getStorage } from "firebase/storage";
-// const firebaseConfig = {
-//   apiKey: process.env.REACT_API_KEY_FIREBASE,
-//   authDomain: process.env.REACT_AUTHDOMAIN_FIREBASE,
-//   projectId: process.env.REACT_PROJECTID_FIREBASE,
-//   storageBucket: process.env.REACT_STORAGEBUCKET_FIREBASE,
-//   messagingSenderId: process.env.REACT_MESSAGINGSENDERID_FIREBASE,
-//   appId: process.env.REACT_APPID_FIREBASE,
-//   measurementId: process.env.REACT_MEASUREMENTID_FIREBASE
-// };
+import { getFirestore, enableMultiTabIndexedDbPersistence } from "firebase/firestore";
+
 const firebaseConfig = {
   apiKey: "AIzaSyC-VNhKXGxYfeVJ_wsKKGKKWG5dRrXkRRo",
 
@@ -30,4 +22,18 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
-const analytics = getAnalytics(app);
+
+if (typeof window !== "undefined") {
+  enableMultiTabIndexedDbPersistence(db).catch((err) => {
+    console.warn("Firestore persistence failed to enable:", err.code);
+  });
+}
+
+let analytics = null;
+if (typeof window !== "undefined") {
+  isSupported().then((supported) => {
+    if (supported) {
+      analytics = getAnalytics(app);
+    }
+  });
+}

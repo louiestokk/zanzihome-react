@@ -1,18 +1,56 @@
+"use client";
+
 import React from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { useHistory, useLocation } from "react-router-dom";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { useRouter, useSearchParams } from "next/navigation";
+
 import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 import { useSelector } from "react-redux";
+import L from "leaflet";
+
+// Fix Leaflet default marker icons not loading in Next.js builds
+if (typeof window !== "undefined") {
+  delete L.Icon.Default.prototype._getIconUrl;
+  L.Icon.Default.mergeOptions({
+    iconRetinaUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png",
+    iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
+    shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
+  });
+}
+
+// Helper component to dynamically change the map view (center/zoom)
+const ChangeMapView = ({ center, zoom }) => {
+  const map = useMap();
+  React.useEffect(() => {
+    if (center && center[0] && center[1]) {
+      map.setView(center, zoom);
+    }
+  }, [center, zoom, map]);
+  return null;
+};
 
 const MapComp = ({ zoom }) => {
   const firebaseData = useSelector(getFirestoreData);
-  const history = useHistory();
-  const location = useLocation();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // Generate a unique key per mount instance to prevent Map container is already initialized error
+  const [mapInstanceId] = React.useState(() => Math.random().toString(36).substring(2, 9));
+
+  React.useEffect(() => {
+    return () => {
+      if (typeof window !== "undefined") {
+        const container = document.getElementById("zanzibar-all-map");
+        if (container) {
+          container._leaflet_id = null;
+        }
+      }
+    };
+  }, []);
 
   // Read query coordinates to center and zoom in on a specific property
-  const queryParams = new URLSearchParams(location.search);
-  const qLat = queryParams.get("lat");
-  const qLng = queryParams.get("lng");
+  const qLat = searchParams.get("lat");
+  const qLng = searchParams.get("lng");
 
   let centerCoords = [-6.0084, 39.2401]; // Default Zanzibar coordinates
   let zoomLevel = zoom ? zoom : 9;
@@ -23,14 +61,15 @@ const MapComp = ({ zoom }) => {
   }
 
   return (
-    <div className="map-holder">
+    <div className="map-holder" key={mapInstanceId}>
       <MapContainer
+        id="zanzibar-all-map"
         center={centerCoords}
         zoom={zoomLevel}
         scrollWheelZoom={false}
         className="map-container"
-        key={`${centerCoords[0]}-${centerCoords[1]}`} // Key forces re-render if center changes
       >
+        <ChangeMapView center={centerCoords} zoom={zoomLevel} />
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -64,7 +103,7 @@ const MapComp = ({ zoom }) => {
                 key={index}
                 eventHandlers={{
                   click: () => {
-                    history.push(`/propertys/property/${el.adId}`);
+                    router.push(`/propertys/property/${el.adId}`);
                   }
                 }}
               >

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useRef, useEffect } from "react";
 import { storage } from "../firebase";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
@@ -9,7 +11,7 @@ import {
   getDocs,
   updateDoc
 } from "firebase/firestore";
-import { useParams } from "react-router-dom";
+import { useParams } from "next/navigation";
 import { makeStyles } from "@material-ui/core";
 import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 import { useSelector } from "react-redux";

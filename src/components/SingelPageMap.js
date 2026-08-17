@@ -1,6 +1,19 @@
+"use client";
+
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 const SingelPageMap = ({ Area, userCoords, Title }) => {
+  React.useEffect(() => {
+    return () => {
+      if (typeof window !== "undefined") {
+        const container = document.getElementById("zanzibar-detail-page-map");
+        if (container) {
+          container._leaflet_id = null;
+        }
+      }
+    };
+  }, []);
+
   if (userCoords.includes(NaN)) return <></>;
   if (userCoords[0] === 0 && userCoords[1] === 0) return <></>;
   return (
@@ -8,6 +21,7 @@ const SingelPageMap = ({ Area, userCoords, Title }) => {
       {Area && <h3>Location: {"Property"}</h3>}
       <section style={{ height: "100%", width: "100%" }}>
         <MapContainer
+          id="zanzibar-detail-page-map"
           center={userCoords}
           zoom={12}
           scrollWheelZoom={false}

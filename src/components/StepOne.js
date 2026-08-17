@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react'
 import { TextField } from '@material-ui/core'
 const StepOne = ({setRenterEmail,setRenterName,setRenterNumber}) => {

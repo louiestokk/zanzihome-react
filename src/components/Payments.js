@@ -1,7 +1,7 @@
 import React from "react";
 import PageHero from "../components/PageHero";
 import { HiArrowCircleDown } from "react-icons/hi";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 const Payments = () => {
   return (
     <main style={{ background: "#dfe6d8" }} className="call-main">
@@ -32,7 +32,7 @@ const Payments = () => {
           <div className="contact-adress" style={{ marginTop: "1rem" }}>
             <h4>Advertise property</h4>
 
-            <Link to="/boost-listing" className="ring">
+            <Link href="/boost-listing" className="ring">
               Advertise now, price and information
             </Link>
           </div>
@@ -41,7 +41,7 @@ const Payments = () => {
             style={{ marginTop: "1rem", marginBottom: "2rem" }}
           >
             <h4>Banner advertising</h4>
-            <Link to="/boost-listing" className="ring">
+            <Link href="/boost-listing" className="ring">
               Banner advertising, price and information
             </Link>
           </div>

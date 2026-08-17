@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
@@ -112,7 +114,7 @@ const PaypalCheckout = ({
           alignItems: "center",
           marginBottom: "2rem",
           justifyContent: "center",
-          width: window.innerWidth > 950 && "70%"
+          width: (typeof window !== "undefined" && window.innerWidth > 950) ? "70%" : undefined
         }}
       >
         <button

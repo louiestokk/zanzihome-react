@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 function PageHero({ icon, title, subtitle, sub2, sub3, sub4, sub5, name }) {

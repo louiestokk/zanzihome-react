@@ -4,6 +4,7 @@ import imagesRedducer from "./ImagesSlice";
 import firebaseReducer from "./firebaseDataSlice";
 import carRentalReducer from "./carRentalSlice";
 import filterReducer from "./filterSlice";
+
 export const store = configureStore({
   reducer: {
     object: objectReducer,
@@ -11,5 +12,9 @@ export const store = configureStore({
     data: firebaseReducer,
     carRental: carRentalReducer,
     filter: filterReducer
-  }
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false
+    })
 });

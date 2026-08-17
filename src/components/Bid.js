@@ -1,6 +1,6 @@
 import React from "react";
 import { GiFlatHammer } from "react-icons/gi";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 const Bid = ({ bid, id, propertys }) => {
   return (
     <div className="bid-comp">
