@@ -70,9 +70,11 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "devDependencies": {
+    "autoprefixer": "^10.4.16",
     "cross-env": "^10.1.0",
     "json-server": "^0.17.0",
-    "netlify-cli": "^8.6.5"
+    "netlify-cli": "^8.6.5",
+    "postcss": "^8.4.31"
   },
   "author": "",
   "license": "ISC"
