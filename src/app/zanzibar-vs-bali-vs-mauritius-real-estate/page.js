@@ -115,48 +115,50 @@ export default function ZanzibarComparisonPage() {
 
           <article className="content-card">
             <h2>Market Comparison Matrix</h2>
-            <table style={{ width: "100%", borderCollapse: "collapse", margin: "15px 0", textAlign: "left", fontSize: "14px" }}>
-              <thead>
-                <tr style={{ borderBottom: "2px solid #e5e7eb" }}>
-                  <th style={{ padding: "8px", fontWeight: "600" }}>Metric</th>
-                  <th style={{ padding: "8px", fontWeight: "600" }}>Zanzibar</th>
-                  <th style={{ padding: "8px", fontWeight: "600" }}>Bali</th>
-                  <th style={{ padding: "8px", fontWeight: "600" }}>Mauritius</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
-                  <td style={{ padding: "8px", fontWeight: "600" }}>Entry Budget</td>
-                  <td style={{ padding: "8px" }}>$55,000 – $75,000 (Apartments)</td>
-                  <td style={{ padding: "8px" }}>$120,000 – $200,000 (Leasehold villas)</td>
-                  <td style={{ padding: "8px" }}>$150,000 – $375,000 (PDS/IRS Schemes)</td>
-                </tr>
-                <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
-                  <td style={{ padding: "8px", fontWeight: "600" }}>Average Rental ROI</td>
-                  <td style={{ padding: "8px", color: "#013a17", fontWeight: "600" }}>10% – 18% (High)</td>
-                  <td style={{ padding: "8px" }}>8% – 12% (Medium-High)</td>
-                  <td style={{ padding: "8px" }}>5% – 8% (Stable)</td>
-                </tr>
-                <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
-                  <td style={{ padding: "8px", fontWeight: "600" }}>Ownership Type</td>
-                  <td style={{ padding: "8px" }}>99-Year Leasehold (Condominium)</td>
-                  <td style={{ padding: "8px" }}>Hak Pakai or Leasehold (25-30 years)</td>
-                  <td style={{ padding: "8px" }}>Freehold (in approved schemes)</td>
+            <div style={{ overflowX: "auto", width: "100%", WebkitOverflowScrolling: "touch" }}>
+              <table style={{ width: "100%", minWidth: "600px", borderCollapse: "collapse", margin: "15px 0", textAlign: "left", fontSize: "14px" }}>
+                <thead>
+                  <tr style={{ borderBottom: "2px solid #e5e7eb" }}>
+                    <th style={{ padding: "8px", fontWeight: "600" }}>Metric</th>
+                    <th style={{ padding: "8px", fontWeight: "600" }}>Zanzibar</th>
+                    <th style={{ padding: "8px", fontWeight: "600" }}>Bali</th>
+                    <th style={{ padding: "8px", fontWeight: "600" }}>Mauritius</th>
                   </tr>
-                <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
-                  <td style={{ padding: "8px", fontWeight: "600" }}>Tax Environment</td>
-                  <td style={{ padding: "8px" }}>Favorable (No Capital Gains, low tax)</td>
-                  <td style={{ padding: "8px" }}>Moderate (10%+ withholding taxes)</td>
-                  <td style={{ padding: "8px" }}>Flat 15% Income & Corporate Tax</td>
-                </tr>
-                <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
-                  <td style={{ padding: "8px", fontWeight: "600" }}>Residency Option</td>
-                  <td style={{ padding: "8px" }}>Yes (Invest $100k+ in ZIPA Condos)</td>
-                  <td style={{ padding: "8px" }}>Second Home Visa (requires capital)</td>
-                  <td style={{ padding: "8px" }}>Yes (Invest $375k+ in Freehold)</td>
-                </tr>
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
+                    <td style={{ padding: "8px", fontWeight: "600" }}>Entry Budget</td>
+                    <td style={{ padding: "8px" }}>$55,000 – $75,000 (Apartments)</td>
+                    <td style={{ padding: "8px" }}>$120,000 – $200,000 (Leasehold villas)</td>
+                    <td style={{ padding: "8px" }}>$150,000 – $375,000 (PDS/IRS Schemes)</td>
+                  </tr>
+                  <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
+                    <td style={{ padding: "8px", fontWeight: "600" }}>Average Rental ROI</td>
+                    <td style={{ padding: "8px", color: "#013a17", fontWeight: "600" }}>10% – 18% (High)</td>
+                    <td style={{ padding: "8px" }}>8% – 12% (Medium-High)</td>
+                    <td style={{ padding: "8px" }}>5% – 8% (Stable)</td>
+                  </tr>
+                  <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
+                    <td style={{ padding: "8px", fontWeight: "600" }}>Ownership Type</td>
+                    <td style={{ padding: "8px" }}>99-Year Leasehold (Condominium)</td>
+                    <td style={{ padding: "8px" }}>Hak Pakai or Leasehold (25-30 years)</td>
+                    <td style={{ padding: "8px" }}>Freehold (in approved schemes)</td>
+                    </tr>
+                  <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
+                    <td style={{ padding: "8px", fontWeight: "600" }}>Tax Environment</td>
+                    <td style={{ padding: "8px" }}>Favorable (No Capital Gains, low tax)</td>
+                    <td style={{ padding: "8px" }}>Moderate (10%+ withholding taxes)</td>
+                    <td style={{ padding: "8px" }}>Flat 15% Income & Corporate Tax</td>
+                  </tr>
+                  <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
+                    <td style={{ padding: "8px", fontWeight: "600" }}>Residency Option</td>
+                    <td style={{ padding: "8px" }}>Yes (Invest $100k+ in ZIPA Condos)</td>
+                    <td style={{ padding: "8px" }}>Second Home Visa (requires capital)</td>
+                    <td style={{ padding: "8px" }}>Yes (Invest $375k+ in Freehold)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </article>
 
           <article className="content-card">

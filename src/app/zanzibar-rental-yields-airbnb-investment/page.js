@@ -138,30 +138,32 @@ export default function RentalYieldsPage() {
 
           <article className="content-card">
             <h2>Short-Term vs. Long-Term Rentals</h2>
-            <table style={{ width: "100%", borderCollapse: "collapse", margin: "15px 0", textAlign: "left", fontSize: "14px" }}>
-              <thead>
-                <tr style={{ borderBottom: "2px solid #e5e7eb" }}>
-                  <th style={{ padding: "8px", fontWeight: "600" }}>Rental Type</th>
-                  <th style={{ padding: "8px", fontWeight: "600" }}>Typical ROI</th>
-                  <th style={{ padding: "8px", fontWeight: "600" }}>Target Audience</th>
-                  <th style={{ padding: "8px", fontWeight: "600" }}>Management Effort</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
-                  <td style={{ padding: "8px", fontWeight: "600" }}>Short-Term (Airbnb/Booking)</td>
-                  <td style={{ padding: "8px", color: "#013a17", fontWeight: "600" }}>10% – 18%</td>
-                  <td style={{ padding: "8px" }}>Tourists, Holidaymakers</td>
-                  <td style={{ padding: "8px" }}>High (requires housekeeping & support)</td>
-                </tr>
-                <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
-                  <td style={{ padding: "8px", fontWeight: "600" }}>Long-Term (Monthly/Yearly)</td>
-                  <td style={{ padding: "8px" }}>7% – 10%</td>
-                  <td style={{ padding: "8px" }}>Expats, Remote Workers</td>
-                  <td style={{ padding: "8px" }}>Low (standard tenancy contracts)</td>
-                </tr>
-              </tbody>
-            </table>
+            <div style={{ overflowX: "auto", width: "100%", WebkitOverflowScrolling: "touch" }}>
+              <table style={{ width: "100%", minWidth: "600px", borderCollapse: "collapse", margin: "15px 0", textAlign: "left", fontSize: "14px" }}>
+                <thead>
+                  <tr style={{ borderBottom: "2px solid #e5e7eb" }}>
+                    <th style={{ padding: "8px", fontWeight: "600" }}>Rental Type</th>
+                    <th style={{ padding: "8px", fontWeight: "600" }}>Typical ROI</th>
+                    <th style={{ padding: "8px", fontWeight: "600" }}>Target Audience</th>
+                    <th style={{ padding: "8px", fontWeight: "600" }}>Management Effort</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
+                    <td style={{ padding: "8px", fontWeight: "600" }}>Short-Term (Airbnb/Booking)</td>
+                    <td style={{ padding: "8px", color: "#013a17", fontWeight: "600" }}>10% – 18%</td>
+                    <td style={{ padding: "8px" }}>Tourists, Holidaymakers</td>
+                    <td style={{ padding: "8px" }}>High (requires housekeeping & support)</td>
+                  </tr>
+                  <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
+                    <td style={{ padding: "8px", fontWeight: "600" }}>Long-Term (Monthly/Yearly)</td>
+                    <td style={{ padding: "8px" }}>7% – 10%</td>
+                    <td style={{ padding: "8px" }}>Expats, Remote Workers</td>
+                    <td style={{ padding: "8px" }}>Low (standard tenancy contracts)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </article>
 
           <article className="content-card">
