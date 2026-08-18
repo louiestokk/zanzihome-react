@@ -14,6 +14,11 @@ const NewFilter = () => {
   const [offerType, setOfferType] = useState("Sale"); // default to Buy/Sale
   const [propertyType, setPropertyType] = useState("All"); // default to All Types
   const [selectedLocation, setSelectedLocation] = useState(""); // Input text for autocomplete
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const filteredVillages = villages.filter((village) =>
+    village.toLowerCase().includes(selectedLocation.toLowerCase())
+  );
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -59,19 +64,38 @@ const NewFilter = () => {
             <BiMap className="search-field-icon" />
             <div className="search-input-inner">
               <input
-                list="zanzibar-locations"
                 className="search-input-field"
-                type="search"
+                type="text"
                 value={selectedLocation}
                 placeholder="Search location (e.g. Paje, Nungwi...)"
                 onChange={(e) => setSelectedLocation(e.target.value)}
+                onFocus={() => setShowSuggestions(true)}
+                onBlur={() => setShowSuggestions(false)}
                 aria-label="Search location"
+                autoComplete="off"
               />
-              <datalist id="zanzibar-locations">
-                {villages.map((village) => (
-                  <option key={village} value={village} />
-                ))}
-              </datalist>
+              {showSuggestions && (
+                <ul className="search-suggestions-dropdown">
+                  {filteredVillages.slice(0, 15).map((village) => (
+                    <li
+                      key={village}
+                      className="search-suggestion-item"
+                      onMouseDown={() => {
+                        setSelectedLocation(village);
+                        setShowSuggestions(false);
+                      }}
+                    >
+                      <BiMap style={{ marginRight: "8px", color: "#013a17", fontSize: "15px" }} />
+                      {village}
+                    </li>
+                  ))}
+                  {filteredVillages.length === 0 && (
+                    <li className="search-suggestion-no-results">
+                      No locations found
+                    </li>
+                  )}
+                </ul>
+              )}
             </div>
           </div>
 
