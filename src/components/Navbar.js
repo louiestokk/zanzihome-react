@@ -16,12 +16,24 @@ const Navbar = ({ logedinUser, loading }) => {
   const { show, setShow } = useGlobalContext();
   const { showUser, setShowUser, loginWithRedirect, myUser, logout, user } =
     useUserContext();
+
+  const userDisplayName = user?.nickname || user?.name || "User";
+  const userAvatarSrc = user?.picture
+    ? user.picture
+    : `data:image/svg+xml;utf8,${encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+          <rect width="120" height="120" rx="60" fill="#e2e8f0"/>
+          <text x="50%" y="54%" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#111827">${(userDisplayName || "U")
+            .slice(0, 2)
+            .toUpperCase()}</text>
+        </svg>
+      `)}`;
+
   const refreshPage = () => {
     if (typeof window !== "undefined") {
       window.location.href = "/";
     }
   };
-
 
   return (
     <>
@@ -77,7 +89,7 @@ const Navbar = ({ logedinUser, loading }) => {
               className="user-icon-container"
               onClick={() => setShowUser(!showUser)}
             >
-              <img src={user.picture} className="user-icon" alt="user-icon" />
+              <img src={userAvatarSrc} className="user-icon" alt="user-icon" />
             </div>
           </div>
         ) : (
@@ -99,10 +111,10 @@ const Navbar = ({ logedinUser, loading }) => {
               flexDirection: "row"
             }}
           >
-            <img src={user.picture} alt="user icon" />
+            <img src={userAvatarSrc} alt="user icon" />
             <div>
               <span>Welcome</span>
-              <p>{user.nickname}</p>
+              <p>{userDisplayName}</p>
             </div>
           </div>
           <button

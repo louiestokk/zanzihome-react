@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from "react";
+import React, { useMemo, useEffect } from "react";
 import { Provider, useDispatch } from "react-redux";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { store } from "../redux-toolkit/store";
@@ -36,22 +36,31 @@ function AppInitializer({ children }) {
 }
 
 export function Providers({ children }) {
-  const [origin, setOrigin] = useState("");
-
-  useEffect(() => {
-    setOrigin(window.location.origin);
-  }, []);
-
   const domain = process.env.NEXT_PUBLIC_REACT_APP_AUTH_DOMAIN || process.env.REACT_APP_AUTH_DOMAIN;
   const clientId = process.env.NEXT_PUBLIC_REACT_APP_AUTH_CLIENT_ID || process.env.REACT_APP_AUTH_CLIENT_ID;
+
+  const redirectUri = useMemo(() => {
+    if (typeof window !== "undefined" && window.location?.origin) {
+      return window.location.origin;
+    }
+
+    if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
+    if (process.env.NEXT_PUBLIC_APP_URL) return process.env.NEXT_PUBLIC_APP_URL;
+    if (process.env.URL) return process.env.URL;
+    if (process.env.DEPLOY_URL) return process.env.DEPLOY_URL;
+    if (process.env.DEPLOY_PRIME_URL) return process.env.DEPLOY_PRIME_URL;
+
+    return "http://localhost:3000";
+  }, []);
 
   return (
     <Provider store={store}>
       <Auth0Provider
         domain={domain}
         clientId={clientId}
-        redirectUri={origin || "http://localhost:3000"}
+        redirectUri={redirectUri}
         cacheLocation="localstorage"
+        authorizationParams={{ redirect_uri: redirectUri }}
       >
         <UserProvider>
           <AppProvider>
