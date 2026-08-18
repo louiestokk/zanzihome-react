@@ -22,7 +22,7 @@ export const navlinks = [
   {
     id: 11,
     text: "Real Estate Agencies",
-    url: "/about"
+    url: "/statistics"
   },
   {
     id: 10,

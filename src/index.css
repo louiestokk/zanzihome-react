@@ -4297,7 +4297,7 @@ border-top-right-radius: 5px;
           border: 1px solid rgba(1, 58, 23, 0.05);
           transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
           scroll-snap-align: start;
-          width: 320px;
+          width: 100%;
           flex-shrink: 0;
         }
         .partner-card:hover {
@@ -4503,7 +4503,7 @@ border-top-right-radius: 5px;
             display: none;
           }
           .partner-card, .skeleton-card {
-            width: 280px;
+            width: 100%;
           }
           .partner-img-wrapper, .skeleton-image {
             height: 180px;
@@ -5187,7 +5187,7 @@ border-top-right-radius: 5px;
 
         @media (min-width: 900px) {
           .about-content-grid {
-            grid-template-columns: 1.2fr 1fr;
+            grid-template-columns: 1fr;
           }
         }
 

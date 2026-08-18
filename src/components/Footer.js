@@ -29,7 +29,7 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href="/about" className="footer-links">
+              <Link href="/statistics" className="footer-links">
                 Real Estate Agencies
               </Link>
             </li>
