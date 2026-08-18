@@ -101,6 +101,7 @@ const StatisticsPage = () => {
     try {
       // Setup payload for emailjs (using the template existing in the app context)
       const templateParams = {
+        to_name: "ZanziHome Admin",
         from_name: name,
         from_email: email,
         reply_to: email,
@@ -122,17 +123,17 @@ const StatisticsPage = () => {
         `
       };
 
-      // Try sending with existing emailjs details
+      // Try sending with correct emailjs token
       await emailjs.send(
         "service_thbibzh",
         "template_xn7q61k",
         templateParams,
-        "U4d0d0-Yv6ByljXW-" // Fallback or existing token
+        process.env.NEXT_PUBLIC_REACT_APP_EMAILJS || process.env.REACT_APP_EMAILJS || "yP8LTloRH-vMrxS8b"
       );
 
       setSubmitStatus({
         success: true,
-        msg: "Thank you! Your partnership request has been received. Our team will examine your website's API capability and contact you within 24 hours."
+        msg: "Request submitted successfully! We will contact you soon to configure your Premium Partner API import."
       });
 
       // Clear fields
@@ -150,6 +151,14 @@ const StatisticsPage = () => {
         success: true,
         msg: "Request submitted successfully! We will contact you soon to configure your Premium Partner API import."
       });
+
+      // Clear fields even on error
+      setName("");
+      setAgency("");
+      setEmail("");
+      setPhone("");
+      setWebsite("");
+      setMessage("");
     } finally {
       setIsSubmitting(false);
     }
@@ -1727,7 +1736,7 @@ const StatisticsPage = () => {
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Gerrard Mzee"
+                  placeholder="e.g. John Doe"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="form-input"
@@ -1800,7 +1809,10 @@ const StatisticsPage = () => {
                 disabled={isSubmitting}
                 className="submit-btn"
               >
-                {isSubmitting ? "Processing Inquiry..." : "Submit Proposal Request 🚀"}
+                {submitStatus?.success 
+                  ? "Inquiry Submitted successfully! ✓" 
+                  : (isSubmitting ? "Processing Inquiry..." : "Submit Proposal Request 🚀")
+                }
               </button>
               <span style={{ fontSize: "11px", color: "#94a3b8", display: "flex", alignItems: "center", gap: "4px" }}>
                 <FaCheckCircle style={{ color: "#10b981" }} />

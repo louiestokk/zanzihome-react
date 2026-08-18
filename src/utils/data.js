@@ -332,6 +332,7 @@ export const bannerInfo = [
 ];
 
 export const villages = [
+  "Arusha",
   "Bondeni",
   "Bububu",
   "Bumbwini",
@@ -340,6 +341,8 @@ export const villages = [
   "Chukwani",
   "Chwaka",
   "Dimbani",
+  "Dar es-Salaam",
+  "Dodoma",
   "Dongwe",
   "Fukuchani",
   "Fumba",
@@ -380,6 +383,7 @@ export const villages = [
   "Pwani Mchangani",
   "Regezo Mwendo",
   "Stone Town",
+  "Tanga",
   "Tunguu",
   "Unguja Ukuu",
   "Uroa",

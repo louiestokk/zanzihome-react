@@ -119,6 +119,10 @@ const Footer = () => {
             <li>
               <a href="/best-areas-buy-property-zanzibar">Best Areas to Buy Property</a>
             </li>
+               <li style={{display:'flex',alingItems:'center',width:'100%'}}>
+              <Link href="/zanzibar-knowledge-hub" style={{ fontWeight: "700", color: "#6ee7b7" }}>ZanziHome Knowledge Hub </Link>
+              📚
+            </li>
           </ul>
         </div>
       </div>

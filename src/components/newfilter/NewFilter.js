@@ -76,7 +76,7 @@ const NewFilter = () => {
               />
               {showSuggestions && (
                 <ul className="search-suggestions-dropdown">
-                  {filteredVillages.slice(0, 15).map((village) => (
+                  {filteredVillages.map((village) => (
                     <li
                       key={village}
                       className="search-suggestion-item"
