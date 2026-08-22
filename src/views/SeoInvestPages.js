@@ -269,6 +269,141 @@ const SeoInvestPages = ({ initialProperties }) => {
 
       <AdBanner />
 
+      {/* INVESTMENT PROPERTIES & PRICES TABLE */}
+      <div
+        style={{
+          background: "#ffffff",
+          borderRadius: "16px",
+          border: "1px solid #e5e7eb",
+          boxShadow: "0 4px 20px rgba(0,0,0,0.02)",
+          padding: "2rem",
+          margin: "3rem auto",
+          maxWidth: "1000px",
+          fontFamily: "'Poppins', sans-serif"
+        }}
+      >
+        <h2
+          style={{
+            fontSize: "1.75rem",
+            fontWeight: "800",
+            color: "#013a17",
+            marginBottom: "1rem"
+          }}
+        >
+          {formattedArea} Property Investment Prices & ROI
+        </h2>
+        <p style={{ color: "#4b5563", fontSize: "14px", lineHeight: "1.6", marginBottom: "1.5rem" }}>
+          Real estate in <strong>{formattedArea}</strong> offers premium returns driven by growing holidaymaker demand. Here is a breakdown of average acquisition costs, expected holiday rental occupancy rates, and annual return on investment (ROI) in this area:
+        </p>
+
+        <div style={{ overflowX: "auto" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", minWidth: "500px" }}>
+            <thead>
+              <tr style={{ borderBottom: "2px solid #e5e7eb", textAlign: "left" }}>
+                <th style={{ padding: "12px 8px", fontSize: "14px", fontWeight: "600", color: "#374151" }}>Property Category</th>
+                <th style={{ padding: "12px 8px", fontSize: "14px", fontWeight: "600", color: "#374151" }}>Avg. Investment (USD)</th>
+                <th style={{ padding: "12px 8px", fontSize: "14px", fontWeight: "600", color: "#374151" }}>Avg. Occupancy</th>
+                <th style={{ padding: "12px 8px", fontSize: "14px", fontWeight: "600", color: "#374151" }}>Expected Annual ROI</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
+                <td style={{ padding: "12px 8px", fontSize: "14px", fontWeight: "600", color: "#111827" }}>Luxury Beachfront Villa</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#4b5563" }}>$450,000 – $1,500,000</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#4b5563" }}>65% – 80%</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#059669", fontWeight: "600" }}>14% – 18%</td>
+              </tr>
+              <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
+                <td style={{ padding: "12px 8px", fontSize: "14px", fontWeight: "600", color: "#111827" }}>Modern Holiday Apartment</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#4b5563" }}>$90,000 – $240,000</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#4b5563" }}>70% – 85%</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#059669", fontWeight: "600" }}>12% – 15%</td>
+              </tr>
+              <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
+                <td style={{ padding: "12px 8px", fontSize: "14px", fontWeight: "600", color: "#111827" }}>Boutique Resort / Hotel</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#4b5563" }}>$600,000 – $3,000,000+</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#4b5563" }}>60% – 75%</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#059669", fontWeight: "600" }}>15% – 22%</td>
+              </tr>
+              <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
+                <td style={{ padding: "12px 8px", fontSize: "14px", fontWeight: "600", color: "#111827" }}>Beachfront Development Land</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#4b5563" }}>$80,000 – $350,000</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#6b7280" }}>N/A (Capital Appreciation)</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#059669", fontWeight: "600" }}>15% – 25% p.a.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style={{ marginTop: "1rem", fontSize: "12px", color: "#6b7280", fontStyle: "italic" }}>
+          *Disclaimer: ROI estimates are based on historical performance of managed vacation rentals in {formattedArea} and current occupancy indexes. Actual performance depends on marketing, amenities, and management.
+        </p>
+      </div>
+
+      {/* INVESTMENT RULES & ZIPA INCENTIVES */}
+      <div
+        style={{
+          background: "linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%)",
+          borderRadius: "16px",
+          border: "1px solid #bbf7d0",
+          padding: "2rem",
+          margin: "3rem auto",
+          maxWidth: "1000px",
+          fontFamily: "'Poppins', sans-serif"
+        }}
+      >
+        <h2
+          style={{
+            fontSize: "1.75rem",
+            fontWeight: "800",
+            color: "#013a17",
+            marginBottom: "1rem"
+          }}
+        >
+          Key Rules & Benefits for Real Estate Investors in Zanzibar
+        </h2>
+        <p style={{ color: "#374151", fontSize: "14px", lineHeight: "1.6", marginBottom: "1.5rem" }}>
+          Zanzibar offers one of the most attractive investment environments in East Africa. If you plan to deploy capital into real estate in <strong>{formattedArea}</strong>, understanding the rules and benefits is critical:
+        </p>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "20px" }}>
+          <div style={{ background: "#ffffff", padding: "1.25rem", borderRadius: "12px", border: "1px solid #e5e7eb" }}>
+            <h3 style={{ fontSize: "15px", fontWeight: "600", color: "#0f172a", marginBottom: "8px" }}>
+              📋 1. Secure Leasehold Structures
+            </h3>
+            <p style={{ fontSize: "13px", color: "#475569", lineHeight: "1.6", margin: 0 }}>
+              All land belongs to the state. Foreigners purchase properties via government-registered leasehold agreements (usually <strong>33, 66, or 99 years</strong>). These leases are fully renewable, can be sold or mortgaged, and are protected under the Zanzibar Land Act.
+            </p>
+          </div>
+
+          <div style={{ background: "#ffffff", padding: "1.25rem", borderRadius: "12px", border: "1px solid #e5e7eb" }}>
+            <h3 style={{ fontSize: "15px", fontWeight: "600", color: "#0f172a", marginBottom: "8px" }}>
+              🏝 2. ZIPA Investment Visa Benefits
+            </h3>
+            <p style={{ fontSize: "13px", color: "#475569", lineHeight: "1.6", margin: 0 }}>
+              Investing in approved developments under the Zanzibar Investment Promotion Authority (ZIPA) grants foreigners a <strong>residency permit</strong> (valid for the lease duration). Residency extends to spouses and children under 20.
+            </p>
+          </div>
+
+          <div style={{ background: "#ffffff", padding: "1.25rem", borderRadius: "12px", border: "1px solid #e5e7eb" }}>
+            <h3 style={{ fontSize: "15px", fontWeight: "600", color: "#0f172a", marginBottom: "8px" }}>
+              💰 3. Tax Exemptions & Profit Repatriation
+            </h3>
+            <p style={{ fontSize: "13px", color: "#475569", lineHeight: "1.6", margin: 0 }}>
+              Strategic property investments are exempt from <strong>capital gains tax</strong>. Non-resident rental income is taxed at a low flat rate (usually 15%). The law also guarantees 100% repatriation of profits and capital after local tax compliance.
+            </p>
+          </div>
+
+          <div style={{ background: "#ffffff", padding: "1.25rem", borderRadius: "12px", border: "1px solid #e5e7eb" }}>
+            <h3 style={{ fontSize: "15px", fontWeight: "600", color: "#0f172a", marginBottom: "8px" }}>
+              🔑 4. Hands-Off Property Management
+            </h3>
+            <p style={{ fontSize: "13px", color: "#475569", lineHeight: "1.6", margin: 0 }}>
+              Foreign owners can legally operate their properties as holiday rentals. Several professional local property managers in {formattedArea} handle guest onboarding, Airbnb listings, maintenance, and cleaning in exchange for a 15-20% fee.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* STEPPER FOR CONVERSIONS */}
       <div style={{ margin: "4rem auto 2rem auto" }}>
         <MatchRequestStepper />

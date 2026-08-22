@@ -295,6 +295,148 @@ const formattedArea =
 
       {/* CTA */}
       <AdBanner />
+
+      {/* PROPERTY TYPES & PRICES TABLE */}
+      <div
+        style={{
+          background: "#ffffff",
+          borderRadius: "16px",
+          border: "1px solid #e5e7eb",
+          boxShadow: "0 4px 15px rgba(0,0,0,0.02)",
+          padding: "2rem",
+          margin: "3rem auto",
+          maxWidth: "1000px",
+          fontFamily: "'Poppins', sans-serif"
+        }}
+      >
+        <h2
+          style={{
+            fontSize: "1.75rem",
+            fontWeight: "700",
+            color: "#013a17",
+            marginBottom: "1rem"
+          }}
+        >
+          {formattedArea} Real Estate Prices & Property Types
+        </h2>
+        <p style={{ color: "#4b5563", fontSize: "14px", lineHeight: "1.6", marginBottom: "1.5rem" }}>
+          The property market in <strong>{formattedArea}</strong> offers various investment options, ranging from entry-level plots to luxury beachfront villas. Below is an overview of the typical price ranges and expected rental yields for different property types in this region:
+        </p>
+
+        <div style={{ overflowX: "auto" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", minWidth: "500px" }}>
+            <thead>
+              <tr style={{ borderBottom: "2px solid #e5e7eb", textAlign: "left" }}>
+                <th style={{ padding: "12px 8px", fontSize: "14px", fontWeight: "600", color: "#374151" }}>Property Type</th>
+                <th style={{ padding: "12px 8px", fontSize: "14px", fontWeight: "600", color: "#374151" }}>Estimated Price Range (USD)</th>
+                <th style={{ padding: "12px 8px", fontSize: "14px", fontWeight: "600", color: "#374151" }}>Est. Annual Yield</th>
+                <th style={{ padding: "12px 8px", fontSize: "14px", fontWeight: "600", color: "#374151" }}>Best Suited For</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
+                <td style={{ padding: "12px 8px", fontSize: "14px", fontWeight: "600", color: "#111827" }}>Beachfront Villa</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#4b5563" }}>$350,000 – $1,200,000+</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#059669", fontWeight: "600" }}>12% – 18%</td>
+                <td style={{ padding: "12px 8px", fontSize: "13px", color: "#6b7280" }}>Luxury rental income & high-end lifestyle</td>
+              </tr>
+              <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
+                <td style={{ padding: "12px 8px", fontSize: "14px", fontWeight: "600", color: "#111827" }}>Modern Apartment</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#4b5563" }}>$80,000 – $220,000</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#059669", fontWeight: "600" }}>10% – 15%</td>
+                <td style={{ padding: "12px 8px", fontSize: "13px", color: "#6b7280" }}>Hands-off holiday rentals & solo investors</td>
+              </tr>
+              <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
+                <td style={{ padding: "12px 8px", fontSize: "14px", fontWeight: "600", color: "#111827" }}>Inland House / Bungalow</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#4b5563" }}>$120,000 – $280,000</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#059669", fontWeight: "600" }}>8% – 12%</td>
+                <td style={{ padding: "12px 8px", fontSize: "13px", color: "#6b7280" }}>Expat living & long-term residential leasing</td>
+              </tr>
+              <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
+                <td style={{ padding: "12px 8px", fontSize: "14px", fontWeight: "600", color: "#111827" }}>Beachfront Land Plot</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#4b5563" }}>$60,000 – $250,000+</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#6b7280" }}>Appreciation</td>
+                <td style={{ padding: "12px 8px", fontSize: "13px", color: "#6b7280" }}>Custom villa construction & land banking</td>
+              </tr>
+              <tr>
+                <td style={{ padding: "12px 8px", fontSize: "14px", fontWeight: "600", color: "#111827" }}>Commercial / Boutique Hotel</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#4b5563" }}>$450,000 – $2,500,000+</td>
+                <td style={{ padding: "12px 8px", fontSize: "14px", color: "#059669", fontWeight: "600" }}>14% – 20%</td>
+                <td style={{ padding: "12px 8px", fontSize: "13px", color: "#6b7280" }}>Tourism business operators & developers</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style={{ marginTop: "1rem", fontSize: "12px", color: "#6b7280", fontStyle: "italic" }}>
+          *Note: Price ranges are estimates based on current listings on ZanziHome and market reports. Beachfront proximity and size heavily influence individual pricing.
+        </p>
+      </div>
+
+      {/* KEY BUYING RULES FOR FOREIGNERS */}
+      <div
+        style={{
+          background: "linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%)",
+          borderRadius: "16px",
+          border: "1px solid #bbf7d0",
+          padding: "2rem",
+          margin: "3rem auto",
+          maxWidth: "1000px",
+          fontFamily: "'Poppins', sans-serif"
+        }}
+      >
+        <h2
+          style={{
+            fontSize: "1.75rem",
+            fontWeight: "700",
+            color: "#013a17",
+            marginBottom: "1rem"
+          }}
+        >
+          Key Rules for Foreigners Buying Property in Zanzibar
+        </h2>
+        <p style={{ color: "#374151", fontSize: "14px", lineHeight: "1.6", marginBottom: "1.5rem" }}>
+          Zanzibar welcomes international real estate investment under clear legal frameworks. If you are a foreign buyer looking to purchase a property in <strong>{formattedArea}</strong> or elsewhere on the island, here are the essential rules you need to know:
+        </p>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "20px" }}>
+          <div style={{ background: "#ffffff", padding: "1.25rem", borderRadius: "12px", border: "1px solid #e5e7eb" }}>
+            <h3 style={{ fontSize: "15px", fontWeight: "600", color: "#0f172a", marginBottom: "8px", display: "flex", alignItems: "center", gap: "8px" }}>
+              <span style={{ color: "#22c55e", fontWeight: "bold" }}>1.</span> Government Leasehold Law
+            </h3>
+            <p style={{ fontSize: "13px", color: "#475569", lineHeight: "1.6", margin: 0 }}>
+              All land in Zanzibar is owned by the government. Foreigners cannot own land freehold but obtain secure, government-registered leasehold rights (typically for <strong>33, 66, or 99 years</strong>). Leases are fully renewable, transferable, and inheritable.
+            </p>
+          </div>
+
+          <div style={{ background: "#ffffff", padding: "1.25rem", borderRadius: "12px", border: "1px solid #e5e7eb" }}>
+            <h3 style={{ fontSize: "15px", fontWeight: "600", color: "#0f172a", marginBottom: "8px", display: "flex", alignItems: "center", gap: "8px" }}>
+              <span style={{ color: "#22c55e", fontWeight: "bold" }}>2.</span> ZIPA Golden Visa Benefits
+            </h3>
+            <p style={{ fontSize: "13px", color: "#475569", lineHeight: "1.6", margin: 0 }}>
+              Purchasing a property worth <strong>$100,000 USD or more</strong> within ZIPA-approved strategic investment projects qualifies foreign buyers for a <strong>Zanzibar Residency Permit</strong>. Benefits include zero capital gains tax, income tax reduced to 15%, and permission to live and work.
+            </p>
+          </div>
+
+          <div style={{ background: "#ffffff", padding: "1.25rem", borderRadius: "12px", border: "1px solid #e5e7eb" }}>
+            <h3 style={{ fontSize: "15px", fontWeight: "600", color: "#0f172a", marginBottom: "8px", display: "flex", alignItems: "center", gap: "8px" }}>
+              <span style={{ color: "#22c55e", fontWeight: "bold" }}>3.</span> Standard Condominium Act
+            </h3>
+            <p style={{ fontSize: "13px", color: "#475569", lineHeight: "1.6", margin: 0 }}>
+              The Zanzibar Condominium Act allows foreigners to fully own apartments or individual villas within managed residential complexes. You receive a separate title deed for your unit alongside shares in the common areas, which simplifies management and resale.
+            </p>
+          </div>
+
+          <div style={{ background: "#ffffff", padding: "1.25rem", borderRadius: "12px", border: "1px solid #e5e7eb" }}>
+            <h3 style={{ fontSize: "15px", fontWeight: "600", color: "#0f172a", marginBottom: "8px", display: "flex", alignItems: "center", gap: "8px" }}>
+              <span style={{ color: "#22c55e", fontWeight: "bold" }}>4.</span> Due Diligence & Closing Fees
+            </h3>
+            <p style={{ fontSize: "13px", color: "#475569", lineHeight: "1.6", margin: 0 }}>
+              Always hire an independent local lawyer to perform official searches at the Land Registry, verify seller identities, and crosscheck building approvals. Closing costs typically run between <strong>3% and 5%</strong> (including transfer tax, registry, and legal fees).
+            </p>
+          </div>
+        </div>
+      </div>
+
 <div
   style={{
     maxWidth: "1000px",
