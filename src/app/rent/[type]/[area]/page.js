@@ -1,7 +1,15 @@
 import React from "react";
+import { notFound } from "next/navigation";
 import SeoRentPages from "../../../../views/SeoRentPages";
 import { generateSeoRentText, normalizePropertyType } from "../../../../utils/generateSeoText";
 import { getProperties } from "../../../../lib/db";
+import { areas, propertyTypes } from "../../../../utils/seoData";
+
+function isValidSeoRoute(type, area) {
+  const validType = propertyTypes.some((value) => normalizePropertyType(value) === normalizePropertyType(type));
+  const validArea = areas.some((value) => value.toLowerCase().replace(/\s+/g, "-") === area.toLowerCase());
+  return validType && validArea;
+}
 
 export async function generateMetadata({ params }) {
   const { type, area } = params;
@@ -41,7 +49,8 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function RentPropertyTypeAreaPageRoute() {
+export default async function RentPropertyTypeAreaPageRoute({ params }) {
+  if (!isValidSeoRoute(params.type, params.area)) notFound();
   const properties = await getProperties();
   return <SeoRentPages initialProperties={properties} />;
 }

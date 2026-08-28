@@ -1,6 +1,8 @@
 import React from "react";
+import { notFound } from "next/navigation";
 import AreaPropertiesPage from "../../../../views/AreaPropertiesPage";
 import { getProperties } from "../../../../lib/db";
+import { areas } from "../../../../utils/seoData";
 
 export async function generateMetadata({ params }) {
   const { areaName } = params;
@@ -33,7 +35,9 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function AreaPropertiesPageRoute() {
+export default async function AreaPropertiesPageRoute({ params }) {
+  const validArea = areas.some((value) => value.toLowerCase().replace(/\s+/g, "-") === params.areaName.toLowerCase());
+  if (!validArea) notFound();
   const properties = await getProperties();
   return <AreaPropertiesPage initialProperties={properties} />;
 }

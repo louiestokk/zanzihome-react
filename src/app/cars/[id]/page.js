@@ -1,4 +1,5 @@
 import React from "react";
+import { notFound } from "next/navigation";
 import VehicleDetails from "../../../views/VehicleDetails";
 import { db } from "../../../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -64,6 +65,8 @@ async function getAdDetailsOrVehicle(id) {
   return await getVehicleDetails(id);
 }
 
-export default function VehicleDetailsPageRoute() {
+export default async function VehicleDetailsPageRoute({ params }) {
+  const vehicle = await getVehicleDetails(params.id);
+  if (!vehicle) notFound();
   return <VehicleDetails />;
 }

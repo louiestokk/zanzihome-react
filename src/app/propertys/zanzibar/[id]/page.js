@@ -1,4 +1,5 @@
 import React from "react";
+import { notFound } from "next/navigation";
 import SingleObject from "../../../../components/SingleObject";
 import { objects } from "../../../../utils/data";
 
@@ -44,6 +45,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function SingleObjectPageRoute() {
+export default function SingleObjectPageRoute({ params }) {
+  if (!objects.some((object) => object.id === Number(params.id))) notFound();
   return <SingleObject />;
 }

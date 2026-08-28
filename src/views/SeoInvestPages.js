@@ -2,7 +2,7 @@
 
 // src/pages/SeoInvestPages.js
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
@@ -20,11 +20,6 @@ const SeoInvestPages = ({ initialProperties }) => {
   const reduxData = useSelector(getFirestoreData) || [];
   const firestoreData = reduxData.length > 0 ? reduxData : (initialProperties || []);
   const [openFaq, setOpenFaq] = useState(null);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const formattedArea = area
     .replace("-", " ")
@@ -163,18 +158,6 @@ const SeoInvestPages = ({ initialProperties }) => {
 
   return (
     <main style={{ maxWidth: "1100px", margin: "0 auto", padding: "1.5rem" }}>
-      {isMounted && (
-        <>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-          />
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-          />
-        </>
-      )}
       
 
       {/* HEADER */}
@@ -225,7 +208,7 @@ const SeoInvestPages = ({ initialProperties }) => {
             {/* IMAGE */}
             <div style={{ position: "relative", height: "200px", overflow: "hidden" }}>
               <img
-                src={item.uri || item.imagesArray?.[0]}
+                src={item.uri || item.imagesArray?.[0] || "/images/filterBackground.jpg"}
                 alt={item.Title}
                 style={{
                   width: "100%",

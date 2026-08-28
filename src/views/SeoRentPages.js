@@ -232,7 +232,7 @@ const SeoRentPages = ({ initialProperties }) => {
             {/* IMAGE */}
             <div style={{ position: "relative", height: "200px", overflow: "hidden" }}>
               <img
-                src={item.uri || item.imagesArray?.[0]}
+                src={item.uri || item.imagesArray?.[0] || "/images/filterBackground.jpg"}
                 alt={item.Title}
                 style={{
                   width: "100%",

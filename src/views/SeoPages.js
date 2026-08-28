@@ -236,7 +236,7 @@ const formattedArea =
             {/* IMAGE */}
             <div style={{ position: "relative" }}>
               <img
-                src={item.uri || item.imagesArray?.[0]}
+                src={item.uri || item.imagesArray?.[0] || "/images/filterBackground.jpg"}
                 alt={item.Title}
                 style={{
                   width: "100%",

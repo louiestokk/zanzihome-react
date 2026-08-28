@@ -1,4 +1,5 @@
 import React from "react";
+import { notFound } from "next/navigation";
 import ZanzipalmsDetailsPage from "../../../../../views/ZanzipalmsDetailsPage";
 import { zanzipalmsStaticData } from "../../../../../utils/zanzipalmsData";
 
@@ -36,6 +37,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function ZanzipalmsDetailsPageRoute() {
+export default function ZanzipalmsDetailsPageRoute({ params }) {
+  if (!zanzipalmsStaticData[params.id]) notFound();
   return <ZanzipalmsDetailsPage />;
 }

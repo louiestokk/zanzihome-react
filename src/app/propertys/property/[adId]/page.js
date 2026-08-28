@@ -1,4 +1,5 @@
 import React from "react";
+import { notFound } from "next/navigation";
 import SingelFirebaseObject from "../../../../components/SingelFirebaseObject";
 import { db } from "../../../../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -67,7 +68,9 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function SingelFirebaseObjectPageRoute({ params }) {
+export default async function SingelFirebaseObjectPageRoute({ params }) {
   const { adId } = params;
+  const ad = await getAdDetails(adId);
+  if (!ad) notFound();
   return <SingelFirebaseObject adId={adId} />;
 }

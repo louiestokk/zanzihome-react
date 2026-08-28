@@ -21,7 +21,7 @@ export const metadata = {
   },
   icons: {
     icon: "/favicon.ico",
-    apple: "/logo192.png",
+    apple: "/favicon.ico",
   },
   manifest: "/manifest.json",
   other: {
@@ -30,7 +30,7 @@ export const metadata = {
   },
 };
 
-// Compile all static JSON-LD schemas from the original index.html
+/*
 const staticSchemas = [
   {
     "@context": "https://schema.org",
@@ -289,18 +289,13 @@ const staticSchemas = [
     ]
   }
 ];
+*/
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://images.pexels.com" crossOrigin="anonymous" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(staticSchemas),
-          }}
-        />
       </head>
       <body>
         <StyledComponentsRegistry>

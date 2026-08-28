@@ -1,7 +1,15 @@
 import React from "react";
+import { notFound } from "next/navigation";
 import SeoCheapPages from "../../../../../views/SeoCheapPages";
 import { getProperties } from "../../../../../lib/db";
 import { normalizePropertyType } from "../../../../../utils/generateSeoText";
+import { areas, propertyTypes } from "../../../../../utils/seoData";
+
+function isValidCheapRoute(type, area) {
+  const validType = propertyTypes.some((value) => normalizePropertyType(value) === normalizePropertyType(type));
+  const validArea = areas.some((value) => value.toLowerCase().replace(/\s+/g, "-") === area.toLowerCase());
+  return validType && validArea;
+}
 
 export async function generateMetadata({ params }) {
   const { type, area } = params;
@@ -45,7 +53,8 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function CheapPropertyTypeAreaPageRoute() {
+export default async function CheapPropertyTypeAreaPageRoute({ params }) {
+  if (!isValidCheapRoute(params.type, params.area)) notFound();
   const properties = await getProperties();
   return <SeoCheapPages initialProperties={properties} />;
 }
