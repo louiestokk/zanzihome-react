@@ -206,6 +206,15 @@ const formattedArea =
         {seo.content}
       </p>
 
+      <section style={{ marginTop: "1.5rem", maxWidth: "800px", background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "16px", padding: "1.25rem 1.5rem" }}>
+        <h2 style={{ fontSize: "1.3rem", fontWeight: "700", marginBottom: "0.6rem" }}>
+          {`Explore ${formattedType.toLowerCase()} options in ${formattedArea}`}
+        </h2>
+        <p style={{ margin: 0, lineHeight: "1.7", color: "#475569" }}>
+          {`Find ${formattedType.toLowerCase()}s for sale in ${formattedArea} that match your lifestyle, investment goals, and budget. Compare beach access, price levels, and neighborhood character before choosing the right location.`}
+        </p>
+      </section>
+
       {/* RESULT COUNT */}
       <p style={{ marginTop: "1rem", color: "#555", fontSize: "14px" }}>
         {filtered.length} properties found

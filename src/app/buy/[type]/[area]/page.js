@@ -26,6 +26,8 @@ export async function generateMetadata({ params }) {
   return {
     title: seo.title,
     description: seo.description,
+    keywords: seo.keywords,
+    robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
     alternates: {
       canonical,
     },
@@ -34,6 +36,7 @@ export async function generateMetadata({ params }) {
       title: seo.title,
       description: seo.description,
       url: canonical,
+      siteName: "ZanziHome",
       images: [
         {
           url: "https://images.pexels.com/photos/2724078/pexels-photo-2724078.jpeg",

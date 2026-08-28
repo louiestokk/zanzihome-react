@@ -30,6 +30,8 @@ export async function generateMetadata({ params }) {
   return {
     title,
     description,
+    keywords: `${formattedType.toLowerCase()} for sale in ${formattedArea}, cheap ${formattedType.toLowerCase()} in ${formattedArea}, ${formattedArea} property deals, buy ${formattedType.toLowerCase()} in zanzibar`,
+    robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
     alternates: {
       canonical,
     },
@@ -38,6 +40,7 @@ export async function generateMetadata({ params }) {
       title,
       description,
       url: canonical,
+      siteName: "ZanziHome",
       images: [
         {
           url: "https://images.pexels.com/photos/2724078/pexels-photo-2724078.jpeg",

@@ -193,6 +193,15 @@ const SeoRentPages = ({ initialProperties }) => {
         {seo.content}
       </p>
 
+      <section style={{ marginTop: "1.5rem", maxWidth: "800px", background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "16px", padding: "1.25rem 1.5rem" }}>
+        <h2 style={{ fontSize: "1.3rem", fontWeight: "700", marginBottom: "0.6rem", color: "#013a17" }}>
+          {`Find the right ${formattedType.toLowerCase()} rental in ${formattedArea}`}
+        </h2>
+        <p style={{ margin: 0, lineHeight: "1.7", color: "#475569" }}>
+          {`Explore ${formattedType.toLowerCase()} rentals in ${formattedArea} suited for holiday stays, remote working, or long-term living with strong local demand and convenient access to beaches and amenities.`}
+        </p>
+      </section>
+
       {/* RESULT COUNT */}
       <p style={{ marginTop: "1.5rem", color: "#6b7280", fontSize: "13.5px", fontWeight: "600" }}>
         {filtered.length} rental properties found in {formattedArea}

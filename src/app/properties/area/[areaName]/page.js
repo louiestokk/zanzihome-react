@@ -19,6 +19,8 @@ export async function generateMetadata({ params }) {
   return {
     title,
     description,
+    keywords: `${formattedAreaName} property for sale, ${formattedAreaName} apartments, ${formattedAreaName} houses, ${formattedAreaName} real estate, zanzibar property listings`,
+    robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
     alternates: {
       canonical,
     },
@@ -26,6 +28,7 @@ export async function generateMetadata({ params }) {
       url: canonical,
       title: `Real Estate in ${formattedAreaName}, Zanzibar | ZanziHome`,
       description: `Explore property listings in ${formattedAreaName}. Filter by houses, plots, apartments for sale or rent.`,
+      siteName: "ZanziHome",
       images: [
         {
           url: "https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg",

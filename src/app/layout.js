@@ -13,9 +13,11 @@ export const viewport = {
 };
 
 export const metadata = {
+  metadataBase: new URL("https://www.zanzihome.com"),
   title: "Real Estate Zanzibar | Properties for Sale & Rent",
   description: "Find real estate in Zanzibar – houses, villas, apartments, land and plots for sale or rent. Discover beachfront homes and top investment opportunities today.",
-  robots: "index, follow",
+  keywords: "real estate zanzibar, zanzibar property for sale, zanzibar villas, zanzibar apartments, zanzibar land for sale",
+  robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   alternates: {
     canonical: "https://www.zanzihome.com/",
   },
