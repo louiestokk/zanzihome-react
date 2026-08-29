@@ -6674,6 +6674,130 @@ border-top-right-radius: 5px;
           padding: 0 16px;
         }
 
+        .area-seo-content {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 16px 16px 0;
+        }
+        .area-seo-grid {
+          display: grid;
+          gap: 24px;
+        }
+        .area-seo-article,
+        .area-seo-area-nav {
+          background: #ffffff;
+          border: 1px solid rgba(1, 58, 23, 0.08);
+          border-radius: 16px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.025);
+          padding: 28px 24px;
+        }
+        .area-seo-eyebrow {
+          color: #537460;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.7px;
+          margin: 0 0 8px;
+          text-transform: uppercase;
+        }
+        .area-seo-article h2,
+        .area-seo-area-nav h2 {
+          color: #013a17;
+          font-size: 22px;
+          font-weight: 700;
+          line-height: 1.35;
+          margin: 0 0 12px;
+        }
+        .area-seo-article p,
+        .area-seo-area-nav p {
+          color: #4b5563;
+          font-size: 14px;
+          line-height: 1.75;
+          margin: 0 0 14px;
+        }
+        .area-seo-divider {
+          border-top: 1px solid #edf1ed;
+          margin: 28px 0;
+        }
+        .area-seo-link-grid {
+          display: grid;
+          gap: 10px;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .area-seo-action-link {
+          align-items: center;
+          background: #f3f7f3;
+          border: 1px solid #dbe8dd;
+          border-radius: 8px;
+          color: #013a17;
+          display: flex;
+          font-size: 13px;
+          font-weight: 600;
+          justify-content: center;
+          min-height: 48px;
+          padding: 8px 12px;
+          text-align: center;
+          text-decoration: none;
+          transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+        .area-seo-action-link:hover {
+          background: #e6eee7;
+          border-color: #8eae97;
+          transform: translateY(-2px);
+        }
+        .area-seo-faqs {
+          border-top: 1px solid #edf1ed;
+        }
+        .area-seo-faq {
+          border-bottom: 1px solid #edf1ed;
+          padding: 18px 0;
+        }
+        .area-seo-faq h3 {
+          color: #173d24;
+          font-size: 15px;
+          font-weight: 600;
+          line-height: 1.5;
+          margin: 0 0 7px;
+        }
+        .area-seo-faq p {
+          margin: 0;
+        }
+        .area-seo-area-list {
+          display: grid;
+          gap: 2px;
+          list-style: none;
+          margin: 20px 0 24px;
+          padding: 0;
+        }
+        .area-seo-area-list a {
+          border-bottom: 1px solid #edf1ed;
+          color: #174c28;
+          display: block;
+          font-size: 14px;
+          font-weight: 500;
+          padding: 10px 0;
+          text-decoration: none;
+          transition: color 0.2s ease, padding-left 0.2s ease;
+        }
+        .area-seo-area-list a:hover {
+          color: #013a17;
+          padding-left: 5px;
+        }
+        .area-seo-all-link {
+          background: #013a17;
+          border-radius: 8px;
+          color: #ffffff;
+          display: block;
+          font-size: 13px;
+          font-weight: 600;
+          padding: 12px 14px;
+          text-align: center;
+          text-decoration: none;
+          transition: background 0.2s ease;
+        }
+        .area-seo-all-link:hover {
+          background: #0d2818;
+        }
+
         /* Filter Controls */
         .area-filter-wrapper {
           background: #ffffff;
@@ -7014,6 +7138,24 @@ border-top-right-radius: 5px;
           }
           .area-filter-wrapper {
             padding: 30px;
+          }
+          .area-seo-grid {
+            grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.8fr);
+          }
+          .area-seo-article,
+          .area-seo-area-nav {
+            padding: 34px;
+          }
+          .area-seo-area-nav {
+            align-self: start;
+            position: sticky;
+            top: 20px;
+          }
+        }
+
+        @media (max-width: 600px) {
+          .area-seo-link-grid {
+            grid-template-columns: 1fr;
           }
         }
       

@@ -14,7 +14,7 @@ import { getRawFirestoreData, setFirestoreData } from "../redux-toolkit/firebase
 
 const types = ["House", "Apartment", "Land", "Business"];
 
-const AreaPropertiesPage = ({ initialProperties }) => {
+const AreaPropertiesPage = ({ initialProperties, children }) => {
   const { areaName } = useParams();
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -128,7 +128,7 @@ const AreaPropertiesPage = ({ initialProperties }) => {
           <span>/</span>
           <span>{formattedAreaName}</span>
         </div>
-        <h1 className="area-hero-title">Properties in {formattedAreaName}</h1>
+        <h1 className="area-hero-title">Properties for sale and rent in {formattedAreaName}</h1>
         <p className="area-hero-subtitle">
           Explore rental listings, plots, villas and premium real estate investment opportunities in {formattedAreaName}, Zanzibar.
         </p>
@@ -329,6 +329,9 @@ const AreaPropertiesPage = ({ initialProperties }) => {
           </>
         )}
       </section>
+        <div style={{marginBottom: "40px"}}>
+   {children}
+        </div>
 
       <PartnerFeaturedSection />
 

@@ -388,5 +388,6 @@ export const villages = [
   "Unguja Ukuu",
   "Uroa",
   "Zanzibar City",
+  "Zanzibar",
   "Airport Abeid Amani International"
 ];
