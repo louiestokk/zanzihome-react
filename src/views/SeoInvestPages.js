@@ -49,116 +49,36 @@ const SeoInvestPages = ({ initialProperties }) => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
-  const schema = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "name": "ZanziHome",
-        "url": "https://www.zanzihome.com/",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://www.zanzihome.com/properties?search={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
-      },
-      {
-        "@type": "Organization",
-        "name": "ZanziHome",
-        "url": "https://www.zanzihome.com/",
-        "logo": "https://www.zanzihome.com/logo.png"
-      },
-      {
-        "@type": "RealEstateAgent",
-        "name": "ZanziHome Real Estate",
-        "url": currentUrl,
-        "areaServed": {
-          "@type": "Place",
-          "name": "Zanzibar"
-        },
-        "description": seo.description
-      },
-      {
-        "@type": "CollectionPage",
-        "name": seo.title,
-        "description": seo.description,
-        "url": currentUrl,
-        "mainEntity": {
-          "@type": "ItemList",
-          "numberOfItems": filtered.length,
-          "itemListElement": filtered.slice(0, 20).map((item, index) => ({
-            "@type": "ListItem",
-            "position": index + 1,
-            "url": `https://www.zanzihome.com/propertys/property/${item.adId}/`,
-            "name": item.Title
-          }))
-        }
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://www.zanzihome.com"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": `Zanzibar Real Estate Investment`,
-            "item": `https://www.zanzihome.com/invest-in-zanzibar`
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": `Invest in ${formattedArea}`,
-            "item": currentUrl
-          }
-        ]
-      }
-    ]
-  };
-
+  // FAQs for investment properties - SEO optimized
   const faqs = [
     {
-      q: `Why should I invest in real estate in ${formattedArea}, Zanzibar?`,
-      a: `${formattedArea} is experiencing rapidly increasing tourism and development. Property buyers here enjoy high capital gains, strong rental occupancy rates, and stable annual rental yields between 10% and 18%.`
+      q: `Best property investment ROI in ${formattedArea}, Zanzibar - Returns comparison`,
+      a: `${formattedArea} properties generate 12-20% annual ROI through holiday rentals: Luxury villas average 16-20% ($500k+ investment), modern apartments 12-15% ($100k-$200k), land appreciation 15-25% p.a. Annual occupancy 70-85%. Professional management yields net 10-17% after 15-20% manager fees. Compare to global markets - Zanzibar consistently outperforms European/Asian real estate returns.`
     },
     {
-      q: `Can a foreign investor purchase land or houses in ${formattedArea}?`,
-      a: "Yes, foreign investors can purchase properties in approved developments under secure leasehold laws. The government provides legal protections and investment visas through ZIPA."
+      q: `Can foreign investors legally buy property in ${formattedArea}, Zanzibar?`,
+      a: `Absolutely yes! Zanzibar welcomes foreign investment with clear legal frameworks: ZIPA-approved developments, government-registered 33/66/99-year leases, Condominium Act for full unit ownership, residency permits for $100,000+ purchases. All properties on ZanziHome verified for legal compliance. Your investment is protected by Zanzibar Land Act and international treaty recognition.`
     },
     {
-      q: `What is the average ROI for properties in ${formattedArea}?`,
-      a: `Rental ROI in ${formattedArea} ranges between 10% to 18% per year, primarily fueled by vacationers and expat leasing during peak tourism seasons.`
+      q: `Why invest in ${formattedArea} over other African real estate markets?`,
+      a: `${formattedArea} offers: (1) Strongest holiday rental demand in East Africa ($150-$400/night achievable), (2) Lower entry prices than Mauritius/Seychelles, (3) ZIPA tax incentives (zero capital gains tax, 15% income tax), (4) 70%+ occupancy annually, (5) Strong currency (100% repatriation guaranteed), (6) Growing tourism infrastructure. Perfect for passive income and capital growth.`
     },
     {
-      q: "Are there professional property management services in Zanzibar?",
-      a: "Yes, there are several reputable property management companies in Zanzibar that will handle your rental listings, cleaning, check-ins, and maintenance for a percentage of the rental income."
+      q: `Can I manage my ${formattedArea} investment property remotely without visiting?`,
+      a: `Yes - 80% of foreign investors use professional local property managers costing 15-20% of rental income. Manager handles: guest booking/coordination, cleaning/maintenance, tax compliance, repairs, airbnb/booking.com listings. You receive net income monthly. Cloud-based reporting systems provide transparency. Hands-off model proven profitable for international ownership.`
     },
     {
-      q: `What tax incentives does Zanzibar offer to property investors?`,
-      a: "Investors in approved strategic projects enjoy significant tax benefits, including exemption from capital gains tax, low corporate tax rates, zero stamp duty, and repatriation of profits."
+      q: `What are lease terms for foreign property purchases in ${formattedArea}?`,
+      a: `All land is government-leasehold: Choose 33-year (shorter/cheaper), 66-year (standard), or 99-year (maximum) terms. Leases are fully renewable after expiry, transferable to family/heirs, mortgageable, and covered by Zanzibar Land Act protection. Effective for 50-100+ years total ownership potential. Most foreign investors choose 99-year for maximum asset longevity.`
+    },
+    {
+      q: `What ZIPA visa & tax benefits do I get for investing in ${formattedArea}?`,
+      a: `ZIPA Golden Visa (residence permit) benefits for $100,000+ properties: (1) Zero capital gains tax on investment properties, (2) 15% flat-rate non-resident income tax (vs. 30% globally), (3) 100% profit repatriation guaranteed, (4) Visa valid for entire lease duration (33-99 years), (5) Extends to spouse + children under 20. Tax savings alone justify investment in first 5 years.`
     }
   ];
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(f => ({
-      "@type": "Question",
-      "name": f.q,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": f.a
-      }
-    }))
-  };
-
   return (
     <main style={{ maxWidth: "1100px", margin: "0 auto", padding: "1.5rem" }}>
-      
 
       {/* HEADER */}
       <h1 style={{ fontSize: "2.2rem", fontWeight: "800", color: "#013a17", marginBottom: "1rem", letterSpacing: "-0.5px" }}>

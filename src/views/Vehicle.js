@@ -159,20 +159,6 @@ const Vehicle = ({ loading, allVehicle, setallVehicle }) => {
   const [showModal, setshowModal] = useState(false);
   const [filtering, setFiltering] = useState(false);
 
-  const articleStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    title: "Rent Cars and Motorcycles in Zanzibar",
-    description:
-      "Car Rental Zanzibar. Explore Zanzibar with our affordable car and motorcycle rentals. From scooters to SUVs",
-    image:
-      "https://images.pexels.com/photos/787472/pexels-photo-787472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    datePublished: new Date("2023-04-04T09:25:01.340Z").toISOString(),
-    author: {
-      "@type": "Person",
-      name: "Louie Stokk"
-    }
-  };
   const handleFiltering = (e) => {
     const area = e.target.innerText;
     setallVehicle(allVehicle.filter((el) => el.Area === area));
@@ -180,10 +166,6 @@ const Vehicle = ({ loading, allVehicle, setallVehicle }) => {
 
   return (
     <section className={classes.root}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData) }}
-      />
       {/* <div
         className={classes.bookingBox}
         onClick={() => setshowModal(!showModal)}
@@ -203,6 +185,7 @@ const Vehicle = ({ loading, allVehicle, setallVehicle }) => {
           <p style={{lineHeight:'24px'}}>Get the vehicle <strong>delivered</strong> to your hotel or airport for free in all <strong>Zanzibar</strong>.</p>
         </div>
       </div>
+    
       <div className={classes.typeIcons}>
         {types?.map((type, i) => (
           <div

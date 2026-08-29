@@ -66,114 +66,29 @@ const SeoCheapPages = ({ initialProperties }) => {
   // Dynamically generate FAQs
   const faqs = [
     {
-      q: `How can I find cheap ${type} for sale in ${formattedArea}, Zanzibar by owner?`,
-      a: `To find budget-friendly ${type} for sale directly by owner in ${formattedArea}, browse the listings on ZanziHome. You can contact owners and verified local agents directly to negotiate prices and avoid broker fees.`
+      q: `Cheapest ${type} for sale in ${formattedArea}, Zanzibar - Budget prices today`,
+      a: `ZanziHome lists most affordable ${type}: Inland land plots $15,000-$50,000, basic houses $60,000-$120,000, apartments $80,000-$150,000. Beachfront ${type} from $200,000. All verified for secure title. Buy direct from owners, save 10-15% commission.`
     },
     {
-      q: `What is the starting price for cheap real estate in ${formattedArea}?`,
-      a: `In ${formattedArea}, starting prices depend on the property type. Inland land plots can start from $15,000, while basic houses and apartments can start from $60,000. Properties closer to the beach command higher starting prices.`
+      q: `Affordable ${type} in ${formattedArea} Zanzibar - Best value for money`,
+      a: `Budget properties offer excellent investment value: Houses $80,000-$140,000, land $20,000-$60,000, apartments $100,000-$180,000. Inland 30-40% cheaper than beach. ROI 8-12% annually. Perfect for budget-conscious first-time investors in African real estate.`
     },
     {
-      q: `Can foreigners legally purchase affordable properties in ${formattedArea}, Zanzibar?`,
-      a: `Yes, foreigners can purchase leasehold properties in approved development areas. ZanziHome lists properties with secure title registry records, making it safe for international buyers to invest.`
+      q: `Can foreigners buy cheap property in ${formattedArea} as foreigner - Costs and legal?`,
+      a: `Yes - legal leasehold purchases (33/66/99 years) with government registration. Closing costs ~5-6% (3% tax + 2% legal + 1% registry). No ZIPA minimum for cheap ${type}. Transparent pricing on ZanziHome, no hidden fees. Budget $100-$300 lawyer verification.`
     },
     {
-      q: `Are prices negotiable when buying cheap properties in Zanzibar?`,
-      a: "Yes. Many sellers are open to reasonable offers, especially when dealing with private owners or when purchasing land plots. Working with a registered ZanziHome agent can help you secure the best rate."
+      q: `Best strategy finding cheap ${type} in ${formattedArea} Zanzibar - How to save money`,
+      a: "Save money: (1) Inland vs. beach (40% savings), (2) Land development (50%+ appreciation), (3) Negotiate private owners, (4) Off-season purchase (April-Sept), (5) Multiple plot discounts. Budget buyers achieve 8-15% annual returns through rentals or appreciation."
     },
     {
-      q: `Are there any hidden taxes when buying budget property in ${formattedArea}?`,
-      a: "Standard transaction costs include the local transfer tax (typically 3%), legal fees for drafting the contract (1% to 2%), and registration fees. Always consult a local lawyer to audit the property title."
+      q: `Cheap property investment ROI in ${formattedArea} - Budget vs. luxury returns`,
+      a: "Budget ${type} ($60k-$150k) yield 10-13% ROI. Land ($20k-$50k) appreciates 12-20% yearly. Total returns match premium properties with lower capital required. Best strategy for budget-limited investors entering Zanzibar real estate for first time."
     }
   ];
 
-  // Schema.org Structured Data
-  const schema = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "name": "ZanziHome",
-        "url": "https://www.zanzihome.com/",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://www.zanzihome.com/properties?search={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
-      },
-      {
-        "@type": "Organization",
-        "name": "ZanziHome",
-        "url": "https://www.zanzihome.com/",
-        "logo": "https://www.zanzihome.com/logo.png"
-      },
-      {
-        "@type": "CollectionPage",
-        "name": `Cheap ${formattedType} for Sale in ${formattedArea}, Zanzibar | Budget Listings`,
-        "description": `Browse affordable ${type} for sale in ${formattedArea}, Zanzibar. Filter cheap villas, homes, and land plots starting from low prices directly by owner.`,
-        "url": currentUrl,
-        "mainEntity": {
-          "@type": "ItemList",
-          "numberOfItems": sortedProperties.length,
-          "itemListElement": sortedProperties.slice(0, 15).map((item, index) => ({
-            "@type": "ListItem",
-            "position": index + 1,
-            "url": `https://www.zanzihome.com/propertys/property/${item.adId}/`,
-            "name": item.Title || `${formattedType} in ${formattedArea}`
-          }))
-        }
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://www.zanzihome.com"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Cheap Properties",
-            "item": `https://www.zanzihome.com/properties-zanzibar`
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": `Cheap ${formattedType} in ${formattedArea}`,
-            "item": currentUrl
-          }
-        ]
-      }
-    ]
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map((f) => ({
-      "@type": "Question",
-      "name": f.q,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": f.a
-      }
-    }))
-  };
-
   return (
     <main className="cheap-seo-page">
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning={true}
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning={true}
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
       
 
       

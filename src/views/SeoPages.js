@@ -2,7 +2,7 @@
 
 // src/pages/SeoPage.js
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
@@ -19,18 +19,14 @@ const SeoPage = ({ initialProperties }) => {
   const { type, area } = useParams();
   const reduxData = useSelector(getFirestoreData) || [];
   const firestoreData = reduxData.length > 0 ? reduxData : (initialProperties || []);
-  const [isMounted, setIsMounted] = useState(false);
+  const [openFaq, setOpenFaq] = useState(null);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-const formattedArea =
-  area
-    .replace("-", " ")
-    .toLowerCase()
-    .trim()
-    .replace(/^./, (str) => str.toUpperCase());
+  const formattedArea =
+    area
+      .replace("-", " ")
+      .toLowerCase()
+      .trim()
+      .replace(/^./, (str) => str.toUpperCase());
   const formattedType = type.toLowerCase().trim();
 
   const seo = generateSeoText(formattedType, formattedArea);
@@ -57,146 +53,37 @@ const formattedArea =
 
     return matchType && matchArea;
   });
+
+  // FAQs for buying properties - SEO optimized
   const faqs = [
     {
-      q: `Can foreigners buy property in ${formattedArea}, Zanzibar?`,
-      a: `Yes, foreigners can buy property in ${formattedArea}, Zanzibar through secure leasehold structures (typically 33 to 99 years) which are fully protected and renewable. Zanzibari laws promote foreign investments, especially in designated resort zones approved by ZIPA.`
+      q: `Best ${formattedType} for sale in ${formattedArea}, Zanzibar - Where to buy?`,
+      a: `ZanziHome lists the best ${formattedType} for sale in ${formattedArea}. Properties range from budget plots ($15,000-$60,000) to luxury beachfront villas ($500,000+). All listings are verified and include secure title registry. Filter by price, amenities, and beach access to find your ideal ${formattedType} in ${formattedArea}.`
     },
     {
-      q: `Is ${formattedArea} a good place to invest in real estate?`,
-      a: `Yes, ${formattedArea} is one of the hot spots for real estate in Zanzibar. It offers high rental yields (often between 10% and 18% annually) driven by strong tourist traffic, high holiday occupancy rates, and significant capital growth.`
+      q: `How much does ${formattedType} cost in ${formattedArea}, Zanzibar?`,
+      a: `${formattedType} prices in ${formattedArea} vary by location and size. Beachfront properties command premium prices ($300,000-$1,500,000), while inland ${formattedType} start from $80,000-$250,000. Average prices for quality properties: Modern villas $400,000, apartments $120,000, land plots $50,000-$150,000. Compare current market prices on ZanziHome.`
     },
     {
-      q: `What types of properties are for sale in ${formattedArea}, Zanzibar?`,
-      a: `A wide variety of properties are available in ${formattedArea}, including beachfront villas, modern apartments, undeveloped land plots, hotels, and commercial listings. You can browse them on ZanziHome.`
+      q: `Can foreigners buy property in ${formattedArea}, Zanzibar - Legal requirements?`,
+      a: `Yes! Foreigners can legally purchase ${formattedType} in ${formattedArea} under the Zanzibar Leasehold Law. You get secure 33/66/99-year government-registered leases that are renewable and inheritable. ZIPA investment programs offer residency permits for properties worth $100,000+. Always use a local lawyer to verify title and complete due diligence.`
     },
     {
-      q: `How much does a property cost in ${formattedArea}, Zanzibar?`,
-      a: `Prices in ${formattedArea} vary. Beachfront villas range from $250,000 to over $1M, while apartments can start from $80,000 and inland land plots can start as low as $15,000 depending on proximity to the ocean.`
+      q: `What's the average ROI for ${formattedType} investment in ${formattedArea}?`,
+      a: `${formattedType} in ${formattedArea} generate 10-20% annual returns through holiday rentals and long-term leasing. Beachfront villas yield 14-18%, while apartments yield 10-15%. Capital appreciation averages 8-12% yearly. Professional property managers handle rentals for 15-20% fee, enabling hands-off investment income.`
     },
     {
-      q: `Are there additional transaction costs when buying property in ${formattedArea}?`,
-      a: "Yes. Buyers should expect around 3% to 5% in additional costs. This includes local transfer taxes, legal fees (usually 1% to 2% for a local lawyer), and agency registration fees."
+      q: `Are there taxes or hidden costs when buying ${formattedType} in Zanzibar?`,
+      a: `Yes - standard closing costs include: 3% transfer tax, 1-2% legal fees, 1% registration fees = ~5-6% total. Strategic ZIPA investments get zero capital gains tax exemption. Non-resident rental income taxed at 15% flat rate. Always audit full costs with a local lawyer before purchasing ${formattedType} in ${formattedArea}.`
     },
     {
-      q: `Do I need a local bank account to buy real estate in Zanzibar?`,
-      a: "No, a local bank account is not strictly required. Most transactions are made via international wire transfers in USD directly to the seller's escrow or legal representative account."
-    },
-    {
-      q: `Can I get a residency permit by investing in property in ${formattedArea}?`,
-      a: "Yes, under the ZIPA framework, foreign investors purchasing properties in approved projects with a minimum value (typically starting at $100,000) are eligible to apply for Zanzibar residency permits."
-    },
-    {
-      q: `Is it safe to buy land plots in ${formattedArea}?`,
-      a: "Yes, it is safe if you perform proper due diligence. This includes conducting land registry searches, verifying ownership certificates, checking government zoning plans, and hiring a reputable lawyer."
+      q: `Best areas in Zanzibar for ${formattedType} investment - ${formattedArea} vs. others?`,
+      a: `${formattedArea} is one of Zanzibar's top investment locations with strong rental demand, tourism proximity, and beach access. Compared to Stone Town (cultural), it offers better ROI. Best for investors seeking: holiday rental income, capital appreciation, and lifestyle property. Browse premium ${formattedType} in ${formattedArea} with verified agent support on ZanziHome.`
     }
   ];
 
-  const schema = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "name": "ZanziHome",
-        "url": "https://www.zanzihome.com/",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": `https://www.zanzihome.com/properties?search={search_term_string}`,
-          "query-input": "required name=search_term_string"
-        }
-      },
-      {
-        "@type": "Organization",
-        "name": "ZanziHome",
-        "url": "https://www.zanzihome.com/",
-        "logo": "https://www.zanzihome.com/logo.png",
-        "sameAs": [
-          "https://www.facebook.com/",
-          "https://www.instagram.com/"
-        ]
-      },
-      {
-        "@type": "RealEstateAgent",
-        "name": "ZanziHome Real Estate",
-        "url": currentUrl,
-        "areaServed": {
-          "@type": "Place",
-          "name": "Zanzibar"
-        },
-        "description": seo.description
-      },
-      {
-        "@type": "CollectionPage",
-        "name": seo.title,
-        "description": seo.description,
-        "url": currentUrl,
-        "mainEntity": {
-          "@type": "ItemList",
-          "numberOfItems": filtered.length,
-          "itemListElement": filtered.slice(0, 20).map((item, index) => ({
-            "@type": "ListItem",
-            "position": index + 1,
-            "url": `https://www.zanzihome.com/propertys/property/${item.adId}/`,
-            "name": item.Title
-          }))
-        }
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://www.zanzihome.com"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": `${formattedType} in Zanzibar`,
-            "item": `https://www.zanzihome.com/buy/${formattedType}/`
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": `${formattedType} in ${formattedArea}`,
-            "item": currentUrl
-          }
-        ]
-      }
-    ]
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(f => ({
-      "@type": "Question",
-      "name": f.q,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": f.a
-      }
-    }))
-  };
   return (
     <main style={{ maxWidth: "1100px", margin: "0 auto", padding: "1rem" }}>
-      {isMounted && (
-        <>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-          />
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-          />
-        </>
-      )}
-      
-      {/* SEO */}
-    
-
       {/* HEADER */}
       <h1 style={{ fontSize: "2rem", fontWeight: "700" }}>
         {seo.h1}
@@ -536,6 +423,7 @@ const formattedArea =
     ))}
   </div>
 </div>
+
       {/* INTERNAL LINKS – SAME AREA */}
       <div style={{ marginTop: "2rem" }}>
         <h3 style={{marginBottom:'0.3rem'}}>Other properties in {area}</h3>

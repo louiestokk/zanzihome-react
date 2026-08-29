@@ -2,7 +2,7 @@
 
 // src/pages/SeoRentPages.js
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
@@ -20,11 +20,6 @@ const SeoRentPages = ({ initialProperties }) => {
   const reduxData = useSelector(getFirestoreData) || [];
   const firestoreData = reduxData.length > 0 ? reduxData : (initialProperties || []);
   const [openFaq, setOpenFaq] = useState(null);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const formattedArea = area
     .replace("-", " ")
@@ -61,127 +56,36 @@ const SeoRentPages = ({ initialProperties }) => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
-  const schema = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "name": "ZanziHome",
-        "url": "https://www.zanzihome.com/",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://www.zanzihome.com/properties?search={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
-      },
-      {
-        "@type": "Organization",
-        "name": "ZanziHome",
-        "url": "https://www.zanzihome.com/",
-        "logo": "https://www.zanzihome.com/logo.png"
-      },
-      {
-        "@type": "RealEstateAgent",
-        "name": "ZanziHome Real Estate",
-        "url": currentUrl,
-        "areaServed": {
-          "@type": "Place",
-          "name": "Zanzibar"
-        },
-        "description": seo.description
-      },
-      {
-        "@type": "CollectionPage",
-        "name": seo.title,
-        "description": seo.description,
-        "url": currentUrl,
-        "mainEntity": {
-          "@type": "ItemList",
-          "numberOfItems": filtered.length,
-          "itemListElement": filtered.slice(0, 20).map((item, index) => ({
-            "@type": "ListItem",
-            "position": index + 1,
-            "url": `https://www.zanzihome.com/propertys/property/${item.adId}/`,
-            "name": item.Title
-          }))
-        }
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://www.zanzihome.com"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": `Rent in Zanzibar`,
-            "item": `https://www.zanzihome.com/properties-zanzibar?offer=Rent`
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": `${formattedType} for Rent in ${formattedArea}`,
-            "item": currentUrl
-          }
-        ]
-      }
-    ]
-  };
-
+  // FAQs for rental properties - SEO optimized
   const faqs = [
     {
-      q: `How to rent a ${formattedType} in ${formattedArea}, Zanzibar?`,
-      a: `To rent a ${formattedType} in ${formattedArea}, browse the verified listings on ZanziHome, select your preferred property, and contact the listing agent directly. Long-term residential leases, corporate rentals, and short-term vacation rentals are all available.`
+      q: `Best ${formattedType} rentals in ${formattedArea}, Zanzibar - Find yours today`,
+      a: `ZanziHome lists premium ${formattedType} rentals in ${formattedArea} with monthly rates from $500-$5,000+ depending on size and location. Furnished apartments near beaches run $1,500-$3,000/month. All properties verified by agents. Book directly to save money and get flexible lease terms. Perfect for expats, digital nomads, and tourists seeking long-term or seasonal rentals.`
     },
     {
-      q: `What is the cost of renting a ${formattedType} in ${formattedArea}, Zanzibar?`,
-      a: `Rental costs in ${formattedArea} depend on the location, size, and proximity to the beach. Long-term rentals typically range from $500 to $1,500+ per month, while short-term vacation villas command premium rates during high tourism seasons.`
+      q: `What's the average rental price for ${formattedType} in ${formattedArea}, Zanzibar?`,
+      a: `${formattedType} rental prices in ${formattedArea}: Modern furnished apartments $1,200-$2,800/month, beachfront villas $2,500-$6,000/month, basic houses $800-$1,500/month. Prices fluctuate seasonally (high Oct-Mar). Budget properties inland cost 30-40% less. Compare options on ZanziHome to find the best value for your budget.`
     },
     {
-      q: `Can foreigners rent houses or villas long term in ${formattedArea}?`,
-      a: "Yes, foreigners can legally rent properties long-term in Zanzibar. Standard tenancy contracts are drafted in English, and leases can span from a few months to several years."
+      q: `Can foreigners rent long-term in ${formattedArea}, Zanzibar - Visa & legal requirements?`,
+      a: `Yes! Foreigners can rent long-term ${formattedType} in ${formattedArea} without restrictions. Most landlords welcome international tenants on 6-36 month leases. Typical requirements: passport copy, security deposit (1-2 months rent), reference letter. All rentals on ZanziHome are legal and compliant. Perfect for expat relocation and long-term stays.`
     },
     {
-      q: `Are utilities included in long-term rentals in ${formattedArea}?`,
-      a: "Typically, long-term rentals exclude electricity (LUKU) and high-speed internet, which are paid separately by the tenant. Short-term rentals or serviced apartments usually include water, cleaning services, and basic utilities."
+      q: `Are utilities included in rental prices for ${formattedType} in ${formattedArea}?`,
+      a: `Usually not included - utilities (water, electricity, internet) average $50-$150/month separately. Some furnished premium rentals include utilities. Always clarify in the lease what's included. Landlords typically pay water/electric directly to authorities, with renters reimbursing based on usage. Budget accordingly when calculating total housing costs.`
     },
     {
-      q: `Is a security deposit required for renting in ${formattedArea}?`,
-      a: "Yes. Most landlords in Zanzibar require a security deposit equivalent to 1 or 2 months' rent, which is refundable upon lease termination. In addition, rent is often paid 3, 6, or 12 months in advance."
+      q: `Best lease terms for renting ${formattedType} in Zanzibar - Flexibility & options?`,
+      a: `Lease periods available: Short-term (1-3 months ideal for tourists), Mid-term (6-12 months best for expats), Long-term (2-3 years for permanent relocation). Most ZanziHome landlords offer flexible negotiations, especially for reliable tenants. Month-to-month leases available at premium rates. Book your ${formattedType} in ${formattedArea} with clear contract terms.`
+    },
+    {
+      q: `Furnished vs. unfurnished rentals in ${formattedArea} - Which is better value?`,
+      a: `Furnished rentals cost 20-30% more but include furniture, kitchen basics, linens, and appliances - ideal for expats arriving without belongings. Unfurnished rentals cheaper but require full setup ($3,000-$8,000 initial investment). Choose furnished for convenience, unfurnished for long-term savings. Both available on ZanziHome for ${formattedArea}.`
     }
   ];
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(f => ({
-      "@type": "Question",
-      "name": f.q,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": f.a
-      }
-    }))
-  };
-
   return (
     <main style={{ maxWidth: "1100px", margin: "0 auto", padding: "1.5rem" }}>
-      {isMounted && (
-        <>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-          />
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-          />
-        </>
-      )}
       
 
       {/* HEADER */}

@@ -33,20 +33,6 @@ const AllPropertiesPage = ({ initialProperties }) => {
   const reduxData = useSelector(getRawFirestoreData) || [];
   const firestoreData = reduxData.length > 0 ? reduxData : (initialProperties || []);
 
-  const articleStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "RealEstateListing",
-    "name": "ZanziHome Properties - Sale & Rent in Zanzibar",
-    "url": "https://www.zanzihome.com/properties-zanzibar",
-    "description": "Browse and find houses, apartments, villas, land and commercial properties for sale or rent in Zanzibar. Get featured listings and boost your property visibility with ZanziHome.",
-    "image": "https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    "author": {
-      "@type": "Organization",
-      "name": "ZanziHome"
-    },
-    "mainEntityOfPage": "https://www.zanzihome.com/properties-zanzibar"
-  };
-
   // Fallback API fetch if Redux data is empty
   useEffect(() => {
     if (firestoreData.length === 0) {
@@ -105,19 +91,6 @@ const AllPropertiesPage = ({ initialProperties }) => {
 
   return (
     <section style={{ fontFamily: "Poppins, sans-serif", background: "#fafbfa", paddingBottom: "40px" }}>
-      {/* SCHEMA */}
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning={true}
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData) }}
-      />
-
-      {/* SEO */}
-      
-
-      {/* Custom Styles */}
-      
-
       {/* Hero Header */}
       <section className="allprops-hero">
         <div className="allprops-breadcrumbs">
