@@ -357,6 +357,7 @@ const structuredData = {
       />
 </div>
 <CoccolagoonFeaturedSection />
+<div style={{ height: "50px" }}></div>
 <PartnerFeaturedSection />
 <LatestApartments initialProperties={initialProperties} />
 <LatestHouses initialProperties={initialProperties} />
