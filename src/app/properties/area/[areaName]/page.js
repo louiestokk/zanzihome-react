@@ -2,6 +2,9 @@ import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AreaPropertiesPage from "../../../../views/AreaPropertiesPage";
+import CoccolagoonFeaturedSection from "../../../../components/CoccolagoonFeaturedSection";
+import MatchRequestStepper from "../../../../components/MatchRequestStepper";
+import PartnerFeaturedSection from "../../../../components/PartnerFeaturedSection";
 import { getProperties } from "../../../../lib/db";
 import { areas } from "../../../../utils/seoData";
 
@@ -121,7 +124,22 @@ export default async function AreaPropertiesPageRoute({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      <AreaPropertiesPage initialProperties={properties}>
+      <main className="area-page">
+        <section className="area-hero">
+          <div className="area-breadcrumbs">
+            <Link href="/">Home</Link>
+            <span>/</span>
+            <Link href="/properties-zanzibar">Properties</Link>
+            <span>/</span>
+            <span>{formattedAreaName}</span>
+          </div>
+          <h1 className="area-hero-title">Properties for sale and rent in {formattedAreaName}</h1>
+          <p className="area-hero-subtitle">
+            Explore rental listings, plots, villas and premium real estate investment opportunities in {formattedAreaName}, Zanzibar.
+          </p>
+        </section>
+        <AreaPropertiesPage areaName={params.areaName} initialProperties={activeProperties} />
+        <div style={{ marginBottom: "40px" }}>
         <section className="area-seo-content" aria-labelledby="area-guide-title">
           <div className="area-seo-grid">
             <article className="area-seo-article">
@@ -170,7 +188,18 @@ export default async function AreaPropertiesPageRoute({ params }) {
             </nav>
           </div>
         </section>
-      </AreaPropertiesPage>
+        </div>
+        {formattedAreaName === "Pemba" && (
+          <div>
+            <h2 style={{ padding: "1rem", color: "#013a17" }}>Pemba Property Investments</h2>
+            <CoccolagoonFeaturedSection />
+          </div>
+        )}
+        <PartnerFeaturedSection />
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px 40px 15px" }}>
+          <MatchRequestStepper />
+        </div>
+      </main>
     </>
   );
 }

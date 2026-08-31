@@ -5,7 +5,8 @@
  */
 export const partnerEmails = [
   "sales@zanzipalms.com",
-  "info@zanzipalms.com"
+  "info@zanzipalms.com",
+  "clancy@coccolagoon.com"
   // Add other partner emails here
 ];
 

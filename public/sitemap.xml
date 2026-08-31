@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
 		<loc>https://www.zanzihome.com/</loc>
@@ -61,6 +61,11 @@
 		<loc>https://www.zanzihome.com/partners/zanzipalms</loc>
 		<priority>0.8</priority>
 		<lastmod>2026-08-09</lastmod>
+	</url>
+	<url>
+		<loc>https://www.zanzihome.com/partners/coccolagoon</loc>
+		<priority>0.8</priority>
+		<lastmod>2026-08-31</lastmod>
 	</url>
 	<url>
 		<loc>https://www.zanzihome.com/properties/area/paje</loc>
@@ -861,6 +866,14 @@
   <url><loc>https://www.zanzihome.com/partners/zanzipalms/property/18963</loc></url>
   <url><loc>https://www.zanzihome.com/partners/zanzipalms/property/18878</loc></url>
   <url><loc>https://www.zanzihome.com/partners/zanzipalms/property/18867</loc></url>
+     <!-- Cocco Lagoon Partner Listings -->
+  <url><loc>https://www.zanzihome.com/partners/coccolagoon/property/studio-apartment</loc></url>
+  <url><loc>https://www.zanzihome.com/partners/coccolagoon/property/ocean-studio</loc></url>
+  <url><loc>https://www.zanzihome.com/partners/coccolagoon/property/beach-studio</loc></url>
+  <url><loc>https://www.zanzihome.com/partners/coccolagoon/property/2-bedroom-apartment</loc></url>
+  <url><loc>https://www.zanzihome.com/partners/coccolagoon/property/wille-waves</loc></url>
+  <url><loc>https://www.zanzihome.com/partners/coccolagoon/property/sky-suite</loc></url>
+  <url><loc>https://www.zanzihome.com/partners/coccolagoon/property/penthouse</loc></url>
 	<url>
 		<loc>https://www.zanzihome.com/zanzibar-knowledge-hub</loc>
 		<priority>0.8</priority>
@@ -1184,6 +1197,156 @@
 		<priority>0.8</priority>
 		<lastmod>2026-08-19</lastmod>
 	</url>
+<!-- SEO pages for recently added Zanzibar areas -->
+	<url><loc>https://www.zanzihome.com/properties/area/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/properties/area/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/properties/area/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/properties/area/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/properties/area/pemba</loc></url>
+
+	<url><loc>https://www.zanzihome.com/buy/house/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/villa/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/apartment/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/land/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/plot/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/beachfront/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/hotel/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/restaurant/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/bar/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/house/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/villa/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/apartment/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/land/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/plot/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/beachfront/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/hotel/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/restaurant/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/bar/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/house/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/villa/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/apartment/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/land/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/plot/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/beachfront/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/hotel/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/restaurant/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/bar/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/house/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/villa/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/apartment/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/land/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/plot/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/beachfront/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/hotel/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/restaurant/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/bar/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/house/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/villa/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/apartment/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/land/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/plot/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/beachfront/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/hotel/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/restaurant/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/buy/bar/pemba</loc></url>
+
+	<url><loc>https://www.zanzihome.com/rent/house/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/villa/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/apartment/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/land/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/plot/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/beachfront/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/hotel/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/restaurant/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/bar/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/house/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/villa/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/apartment/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/land/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/plot/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/beachfront/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/hotel/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/restaurant/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/bar/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/house/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/villa/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/apartment/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/land/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/plot/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/beachfront/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/hotel/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/restaurant/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/bar/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/house/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/villa/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/apartment/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/land/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/plot/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/beachfront/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/hotel/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/restaurant/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/bar/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/house/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/villa/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/apartment/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/land/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/plot/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/beachfront/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/hotel/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/restaurant/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/rent/bar/pemba</loc></url>
+
+	<url><loc>https://www.zanzihome.com/invest/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/invest/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/invest/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/invest/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/invest/pemba</loc></url>
+
+	<url><loc>https://www.zanzihome.com/cheap/house/for-sale/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/villa/for-sale/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/apartment/for-sale/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/land/for-sale/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/plot/for-sale/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/beachfront/for-sale/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/hotel/for-sale/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/restaurant/for-sale/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/bar/for-sale/chwaka</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/house/for-sale/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/villa/for-sale/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/apartment/for-sale/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/land/for-sale/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/plot/for-sale/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/beachfront/for-sale/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/hotel/for-sale/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/restaurant/for-sale/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/bar/for-sale/uroa</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/house/for-sale/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/villa/for-sale/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/apartment/for-sale/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/land/for-sale/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/plot/for-sale/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/beachfront/for-sale/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/hotel/for-sale/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/restaurant/for-sale/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/bar/for-sale/pongwe</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/house/for-sale/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/villa/for-sale/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/apartment/for-sale/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/land/for-sale/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/plot/for-sale/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/beachfront/for-sale/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/hotel/for-sale/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/restaurant/for-sale/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/bar/for-sale/matemwe</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/house/for-sale/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/villa/for-sale/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/apartment/for-sale/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/land/for-sale/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/plot/for-sale/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/beachfront/for-sale/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/hotel/for-sale/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/restaurant/for-sale/pemba</loc></url>
+	<url><loc>https://www.zanzihome.com/cheap/bar/for-sale/pemba</loc></url>
 	<url>
 		<loc>https://www.zanzihome.com/real-estate/fumba</loc>
 		<priority>0.8</priority>

@@ -1,25 +1,15 @@
-"use client";
-
 // src/pages/SeoPage.js
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-
-import { useSelector } from "react-redux";
-import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 
 import { areas, propertyTypes } from "../utils/seoData";
 import { generateSeoText, normalizePropertyType } from "../utils/generateSeoText";
-import Faq from "../components/Faq";
 import AdBanner from "../components/AdBanner";
 import PartnerFeaturedSection from "../components/PartnerFeaturedSection";
+import CoccolagoonFeaturedSection from "../components/CoccolagoonFeaturedSection";
 
-const SeoPage = ({ initialProperties }) => {
-  const { type, area } = useParams();
-  const reduxData = useSelector(getFirestoreData) || [];
-  const firestoreData = reduxData.length > 0 ? reduxData : (initialProperties || []);
-  const [openFaq, setOpenFaq] = useState(null);
+const SeoPage = ({ area, properties, type }) => {
 
   const formattedArea =
     area
@@ -31,28 +21,7 @@ const SeoPage = ({ initialProperties }) => {
 
   const seo = generateSeoText(formattedType, formattedArea);
 
-  const currentUrl = typeof window !== "undefined"
-    ? window.location.href
-    : `https://www.zanzihome.com/buy/${type}/${area}`;
-
-  const filtered = firestoreData.filter((obj) => {
-    if (!obj || !obj.paid || obj.removed) return false;
-
-    const objType = normalizePropertyType(obj.category);
-   const objArea = obj.Area
-  ?.toLowerCase()
-  .trim()
-  .replace(/^./, (char) => char.toUpperCase());
-
-    const matchType = objType === normalizePropertyType(type);
-
-    // 🔥 viktig fix → includes istället för ===
-    const matchArea =
-      objArea === formattedArea ||
-      objArea?.includes(formattedArea);
-
-    return matchType && matchArea;
-  });
+  const filtered = properties || [];
 
   // FAQs for buying properties - SEO optimized
   const faqs = [
@@ -85,13 +54,15 @@ const SeoPage = ({ initialProperties }) => {
   return (
     <main style={{ maxWidth: "1100px", margin: "0 auto", padding: "1rem" }}>
       {/* HEADER */}
-      <h1 style={{ fontSize: "2rem", fontWeight: "700" }}>
+      <header>
+             <h1 style={{ fontSize: "2rem", fontWeight: "700" }}>
         {seo.h1}
       </h1>
 
       <p style={{ marginTop: "1rem", lineHeight: "1.7", maxWidth: "800px" }}>
         {seo.content}
       </p>
+      </header>
 
       <section style={{ marginTop: "1.5rem", maxWidth: "800px", background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "16px", padding: "1.25rem 1.5rem" }}>
         <h2 style={{ fontSize: "1.3rem", fontWeight: "700", marginBottom: "0.6rem" }}>
@@ -188,6 +159,13 @@ const SeoPage = ({ initialProperties }) => {
           </Link>
         ))}
       </div>
+
+      {formattedArea === "Pemba" && (
+        <div>
+          <h2 style={{ padding: "1rem", color: "#013a17" }}>Pemba Property Investments</h2>
+          <CoccolagoonFeaturedSection />
+        </div>
+      )}
 
       {/* CTA */}
       <AdBanner />

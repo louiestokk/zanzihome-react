@@ -190,7 +190,10 @@ export default async function InvestAreaPageRoute({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         suppressHydrationWarning={true}
       />
-      <SeoInvestPages initialProperties={properties} />
+      <SeoInvestPages
+        area={params.area}
+        properties={activeProperties}
+      />
     </>
   );
 }

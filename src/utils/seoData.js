@@ -12,7 +12,12 @@ export const areas = [
   "Kizimkazi",
   "Makunduchi",
   "Zanzibar",
-  "Kidoti"
+  "Kidoti",
+  "Chwaka",
+  "Uroa",
+  "Pongwe",
+  "Matemwe",
+  "Pemba"
 ];
 
 export const propertyTypes = [

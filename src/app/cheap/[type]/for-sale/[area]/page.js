@@ -187,7 +187,11 @@ export default async function CheapPropertyTypeAreaPageRoute({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         suppressHydrationWarning={true}
       />
-      <SeoCheapPages initialProperties={properties} />
+      <SeoCheapPages
+        area={params.area}
+        properties={sortedProperties}
+        type={params.type}
+      />
     </>
   );
 }

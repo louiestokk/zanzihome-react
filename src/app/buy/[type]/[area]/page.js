@@ -200,7 +200,11 @@ export default async function BuyPropertyTypeAreaPage({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         suppressHydrationWarning={true}
       />
-      <SeoPages initialProperties={properties} />
+      <SeoPages
+        area={params.area}
+        properties={filtered}
+        type={params.type}
+      />
     </>
   );
 }

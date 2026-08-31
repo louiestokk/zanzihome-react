@@ -11,6 +11,7 @@ import LatestApartments from "../components/LatestApartments";
 import LatestHouses from "../components/LatestHouses";
 import LatestBusiness from "../components/LatestBusiness";
 import PartnerFeaturedSection from "../components/PartnerFeaturedSection";
+import CoccolagoonFeaturedSection from "../components/CoccolagoonFeaturedSection";
 
 const propertyzanzibar = ({ initialProperties }) => {
 
@@ -355,6 +356,7 @@ const structuredData = {
         ]}
       />
 </div>
+<CoccolagoonFeaturedSection />
 <PartnerFeaturedSection />
 <LatestApartments initialProperties={initialProperties} />
 <LatestHouses initialProperties={initialProperties} />

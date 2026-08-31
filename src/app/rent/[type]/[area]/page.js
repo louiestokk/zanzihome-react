@@ -192,7 +192,11 @@ export default async function RentPropertyTypeAreaPageRoute({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         suppressHydrationWarning={true}
       />
-      <SeoRentPages initialProperties={properties} />
+      <SeoRentPages
+        area={params.area}
+        properties={filtered}
+        type={params.type}
+      />
     </>
   );
 }

@@ -1,26 +1,16 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { useParams, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 import { ImHome } from "react-icons/im";
 import { BsSquare, BsCompass } from "react-icons/bs";
 import { Audio } from "react-loader-spinner";
-import MatchRequestStepper from "../components/MatchRequestStepper";
-import PartnerFeaturedSection from "../components/PartnerFeaturedSection";
-import { useDispatch, useSelector } from "react-redux";
-import { getRawFirestoreData, setFirestoreData } from "../redux-toolkit/firebaseDataSlice";
-
 const types = ["House", "Apartment", "Land", "Business"];
 
-const AreaPropertiesPage = ({ initialProperties, children }) => {
-  const { areaName } = useParams();
-  const [properties, setProperties] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const dispatch = useDispatch();
-  const reduxData = useSelector(getRawFirestoreData) || [];
-  const firestoreData = reduxData.length > 0 ? reduxData : (initialProperties || []);
+const AreaPropertiesPage = ({ areaName, initialProperties }) => {
+  const properties = initialProperties || [];
   
   const searchParams = useSearchParams();
   const initialOffer = searchParams.get("offer") || "All";
@@ -40,53 +30,6 @@ const AreaPropertiesPage = ({ initialProperties, children }) => {
   };
 
   const formattedAreaName = formatAreaName(areaName);
-
-  // Fetch Firestore listings on mount
-  useEffect(() => {
-    const filterAndSet = (data) => {
-      // Filter by area (case-insensitive and robust against dash/spaces)
-      const normalize = (str) => str?.toLowerCase().replace(/[-\s]/g, "") || "";
-      const targetAreaNormalized = normalize(areaName);
-      
-      const areaFiltered = data.filter((obj) => {
-        const isProperty = !["Vehicle", "Tours", "Taxi"].includes(obj.adType);
-        const isPaidAndActive = obj.paid && !obj.removed;
-        const matchesArea = normalize(obj.Area) === targetAreaNormalized;
-        return isProperty && isPaidAndActive && matchesArea;
-      });
-
-      setProperties(areaFiltered);
-    };
-
-    if (firestoreData.length > 0) {
-      filterAndSet(firestoreData);
-      setLoading(false);
-      return;
-    }
-
-    const fetchAds = async () => {
-      setLoading(true);
-      try {
-        const res = await fetch("/api/properties");
-        if (!res.ok) throw new Error("API response error");
-        const data = await res.json();
-        dispatch(setFirestoreData(data));
-        filterAndSet(data);
-      } catch (err) {
-        console.error("Error fetching area properties via API:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAds();
-  }, [firestoreData, areaName, dispatch]);
-
-  // Sync state with URL search parameters
-  useEffect(() => {
-    setOfferType(initialOffer);
-    setPropertyType(initialType);
-  }, [initialOffer, initialType]);
 
   // Apply UI Filters on fetched area listings
   const filteredProperties = properties.filter((obj) => {
@@ -113,35 +56,8 @@ const AreaPropertiesPage = ({ initialProperties, children }) => {
   };
 
   return (
-    <main className="area-page">
-      
-
-      {/* Styled-Components Style Tag */}
-      
-
-      {/* Hero Header */}
-      <section className="area-hero">
-        <div className="area-breadcrumbs">
-          <Link href="/">Home</Link>
-          <span>/</span>
-          <Link href="/properties-zanzibar">Properties</Link>
-          <span>/</span>
-          <span>{formattedAreaName}</span>
-        </div>
-        <h1 className="area-hero-title">Properties for sale and rent in {formattedAreaName}</h1>
-        <p className="area-hero-subtitle">
-          Explore rental listings, plots, villas and premium real estate investment opportunities in {formattedAreaName}, Zanzibar.
-        </p>
-      </section>
-
+    <>
       <section className="area-content-container">
-        {/* Loading Spinner */}
-        {loading ? (
-          <div className="modern-loader-container">
-            <div className="modern-spinner"></div>
-            <p className="modern-loader-text">Loading properties...</p>
-          </div>
-        ) : (
           <>
             {/* Filter Section */}
             <div className="area-filter-wrapper">
@@ -327,18 +243,8 @@ const AreaPropertiesPage = ({ initialProperties, children }) => {
               </div>
             )}
           </>
-        )}
       </section>
-        <div style={{marginBottom: "40px"}}>
-   {children}
-        </div>
-
-      <PartnerFeaturedSection />
-
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px 40px 15px" }}>
-        <MatchRequestStepper />
-      </div>
-    </main>
+    </>
   );
 };
 

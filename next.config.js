@@ -25,7 +25,8 @@ const nextConfig = {
       'images.unsplash.com',
       'www.svgrepo.com',
       'huba-tours.com',
-      'firebasestorage.googleapis.com'
+      'firebasestorage.googleapis.com',
+      'invest.coccolagoon.com'
     ],
   },
   webpack: (config, { dev }) => {

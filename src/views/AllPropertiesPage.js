@@ -13,6 +13,7 @@ import Abovefooter from "../components/Abovefooter";
 import AdBanner from "../components/AdBanner";
 import MatchRequestStepper from "../components/MatchRequestStepper";
 import PartnerFeaturedSection from "../components/PartnerFeaturedSection";
+import CoccolagoonFeaturedSection from "../components/CoccolagoonFeaturedSection";
 import { setFirestoreData, setFilteredData, getRawFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { villages } from "../utils/data";
@@ -324,7 +325,8 @@ const AllPropertiesPage = ({ initialProperties }) => {
 
       {/* PROPERTIES GRID OBJECTS */}
       <Objects />
-        <PartnerFeaturedSection />
+      <CoccolagoonFeaturedSection />
+      <PartnerFeaturedSection />
       {/* BOOST CTA MID-LIST */}
   
 

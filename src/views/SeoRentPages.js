@@ -1,25 +1,16 @@
-"use client";
-
 // src/pages/SeoRentPages.js
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-
-import { useSelector } from "react-redux";
-import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 
 import { areas, propertyTypes } from "../utils/seoData";
 import { generateSeoRentText, normalizePropertyType } from "../utils/generateSeoText";
 import AdBanner from "../components/AdBanner";
 import MatchRequestStepper from "../components/MatchRequestStepper";
 import PartnerFeaturedSection from "../components/PartnerFeaturedSection";
+import CoccolagoonFeaturedSection from "../components/CoccolagoonFeaturedSection";
 
-const SeoRentPages = ({ initialProperties }) => {
-  const { type, area } = useParams();
-  const reduxData = useSelector(getFirestoreData) || [];
-  const firestoreData = reduxData.length > 0 ? reduxData : (initialProperties || []);
-  const [openFaq, setOpenFaq] = useState(null);
+const SeoRentPages = ({ area, properties, type }) => {
 
   const formattedArea = area
     .replace("-", " ")
@@ -30,31 +21,7 @@ const SeoRentPages = ({ initialProperties }) => {
 
   const seo = generateSeoRentText(formattedType, formattedArea);
 
-  const currentUrl = typeof window !== "undefined"
-    ? window.location.href
-    : `https://www.zanzihome.com/rent/${type}/${area}`;
-
-  const filtered = firestoreData.filter((obj) => {
-    if (!obj || !obj.paid || obj.removed) return false;
-
-    // Must be a rental property
-    if (obj.Rent !== "Rent") return false;
-
-    const objType = normalizePropertyType(obj.category);
-    const objArea = obj.Area
-      ?.toLowerCase()
-      .trim()
-      .replace(/^./, (char) => char.toUpperCase());
-
-    const matchType = objType === normalizePropertyType(type);
-    const matchArea = objArea === formattedArea || objArea?.includes(formattedArea);
-
-    return matchType && matchArea;
-  });
-
-  const toggleFaq = (index) => {
-    setOpenFaq(openFaq === index ? null : index);
-  };
+  const filtered = properties || [];
 
   // FAQs for rental properties - SEO optimized
   const faqs = [
@@ -133,14 +100,6 @@ const SeoRentPages = ({ initialProperties }) => {
               border: "1px solid rgba(0,0,0,0.05)",
               transition: "transform 0.2s, box-shadow 0.2s"
             }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.transform = "translateY(-4px)";
-              e.currentTarget.style.boxShadow = "0 10px 25px rgba(0,0,0,0.08)";
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "0 4px 20px rgba(0,0,0,0.04)";
-            }}
           >
             {/* IMAGE */}
             <div style={{ position: "relative", height: "200px", overflow: "hidden" }}>
@@ -187,6 +146,13 @@ const SeoRentPages = ({ initialProperties }) => {
         ))}
       </div>
 
+      {formattedArea === "Pemba" && (
+        <div>
+          <h2 style={{ padding: "1rem", color: "#013a17" }}>Pemba Property Investments</h2>
+          <CoccolagoonFeaturedSection />
+        </div>
+      )}
+
       <AdBanner />
 
       {/* STEPPER FOR CONVERSIONS */}
@@ -200,7 +166,7 @@ const SeoRentPages = ({ initialProperties }) => {
           Frequently Asked Questions
         </h2>
         {faqs.map((item, index) => (
-          <div
+          <details
             key={index}
             style={{
               background: "#ffffff",
@@ -210,8 +176,7 @@ const SeoRentPages = ({ initialProperties }) => {
               overflow: "hidden"
             }}
           >
-            <button
-              onClick={() => toggleFaq(index)}
+            <summary
               style={{
                 width: "100%",
                 textAlign: "left",
@@ -229,16 +194,14 @@ const SeoRentPages = ({ initialProperties }) => {
               }}
             >
               <span>{item.q}</span>
-              <span style={{ transition: "transform 0.3s", transform: openFaq === index ? "rotate(180deg)" : "rotate(0)" }}>
+              <span>
                 ▼
               </span>
-            </button>
-            {openFaq === index && (
-              <div style={{ padding: "0 16px 16px 16px", fontSize: "13.5px", color: "#4b5563", lineHeight: "1.6" }}>
-                {item.a}
-              </div>
-            )}
-          </div>
+            </summary>
+            <div style={{ padding: "0 16px 16px 16px", fontSize: "13.5px", color: "#4b5563", lineHeight: "1.6" }}>
+              {item.a}
+            </div>
+          </details>
         ))}
       </div>
 

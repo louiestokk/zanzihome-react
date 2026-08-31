@@ -1,27 +1,14 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-
-import { useSelector } from "react-redux";
-import { getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
 
 import { areas, propertyTypes } from "../utils/seoData";
-import { normalizePropertyType } from "../utils/generateSeoText";
 import PartnerFeaturedSection from "../components/PartnerFeaturedSection";
 import MatchRequestStepper from "../components/MatchRequestStepper";
 import Abovefooter from "../components/Abovefooter";
+import CoccolagoonFeaturedSection from "../components/CoccolagoonFeaturedSection";
 import { BsCompass } from "react-icons/bs";
 
-const SeoCheapPages = ({ initialProperties }) => {
-  const { type, area } = useParams();
-  const reduxData = useSelector(getFirestoreData) || [];
-  const firestoreData = reduxData.length > 0 ? reduxData : (initialProperties || []);
-  const [openFaq, setOpenFaq] = useState(null);
-  const toggleFaq = (index) => {
-    setOpenFaq(openFaq === index ? null : index);
-  };
+const SeoCheapPages = ({ area, properties, type }) => {
 
   // Format type & area for display
   const formattedArea = area
@@ -31,37 +18,7 @@ const SeoCheapPages = ({ initialProperties }) => {
 
   const formattedType = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
 
-  const currentUrl = typeof window !== "undefined"
-    ? window.location.href
-    : `https://www.zanzihome.com/cheap-plots-for-sale-in-zanzibar/${area}`;
-
-  // Helper to parse price string to number
-  const parsePrice = (priceVal) => {
-    if (!priceVal) return 0;
-    const clean = priceVal.toString().replace(/[^0-9.]/g, "");
-    return parseFloat(clean) || 0;
-  };
-
-  // Filter listings by active status, category and area
-  const filtered = firestoreData.filter((obj) => {
-    if (!obj || !obj.paid || obj.removed) return false;
-
-    // We only want sales listings since route is /cheap/:type/for-sale/:area
-    if (obj.Rent === "Rent") return false;
-
-    const objType = normalizePropertyType(obj.category);
-    const objArea = obj.Area?.toLowerCase().replace(/[-\s]/g, "");
-
-    const matchType = objType === normalizePropertyType(type);
-    const matchArea = objArea === area.toLowerCase().replace(/[-\s]/g, "");
-
-    return matchType && matchArea;
-  });
-
-  // Sort by price ascending (cheap first)
-  const sortedProperties = [...filtered].sort((a, b) => {
-    return parsePrice(a.Price || a.price) - parsePrice(b.Price || b.price);
-  });
+  const sortedProperties = properties || [];
 
   // Dynamically generate FAQs
   const faqs = [
@@ -190,6 +147,13 @@ const SeoCheapPages = ({ initialProperties }) => {
           </div>
         )}
 
+        {formattedArea === "Pemba" && (
+          <div>
+            <h2 style={{ padding: "1rem", color: "#013a17" }}>Pemba Property Investments</h2>
+            <CoccolagoonFeaturedSection />
+          </div>
+        )}
+
         {/* Informational Rich Onpage SEO Text */}
         <div className="info-section">
           <h2>Affordable Real Estate & Homes in {formattedArea}, Zanzibar</h2>
@@ -219,22 +183,13 @@ const SeoCheapPages = ({ initialProperties }) => {
         <div className="faq-box">
           <h2>Buying Cheap Properties in {formattedArea} – FAQs</h2>
           {faqs.map((f, index) => (
-            <div key={index} className="faq-item">
-              <button className="faq-btn" onClick={() => toggleFaq(index)}>
+            <details key={index} className="faq-item">
+              <summary className="faq-btn">
                 <span>{f.q}</span>
-                <span 
-                  className="faq-arrow" 
-                  style={{ transform: openFaq === index ? "rotate(180deg)" : "rotate(0)" }}
-                >
-                  ▼
-                </span>
-              </button>
-              {openFaq === index && (
-                <div className="faq-ans">
-                  {f.a}
-                </div>
-              )}
-            </div>
+                <span className="faq-arrow">▼</span>
+              </summary>
+              <div className="faq-ans">{f.a}</div>
+            </details>
           ))}
         </div>
 
