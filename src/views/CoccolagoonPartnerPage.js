@@ -1,8 +1,5 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 import { BiMap } from "react-icons/bi";
 import Abovefooter from "../components/Abovefooter";
@@ -10,8 +7,6 @@ import MatchRequestStepper from "../components/MatchRequestStepper";
 import { coccolagoonProperties } from "../utils/coccolagoonData";
 
 const CoccolagoonPartnerPage = () => {
-  const router = useRouter();
-
   return (
     <section style={{ fontFamily: "Poppins, sans-serif", background: "#fafbfa", paddingBottom: "40px" }}>
 
@@ -33,11 +28,9 @@ const CoccolagoonPartnerPage = () => {
       <div className="grid-container">
         <div className="cards-grid">
           {coccolagoonProperties.map((prop) => (
+            <Link key={prop.id} href={`/partners/coccolagoon/property/${prop.id}`}>
             <div
-              key={prop.id}
-              className="prop-card"
-              onClick={() => router.push(`/partners/coccolagoon/property/${prop.id}`)}
-            >
+              className="prop-card">
               {/* Image */}
               <div className="prop-img-wrapper">
                 <img
@@ -79,6 +72,8 @@ const CoccolagoonPartnerPage = () => {
                 </div>
               </div>
             </div>
+            </Link>
+            
           ))}
         </div>
       </div>
