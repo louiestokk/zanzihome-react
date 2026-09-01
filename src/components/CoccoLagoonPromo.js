@@ -1,13 +1,16 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const CoccoLagoonPromo = () => (
   <section className="cocco-lagoon-promo" aria-labelledby="cocco-lagoon-promo-title">
     <div className="cocco-lagoon-promo-image-wrap">
-      <img
+      <Image
         src="https://i.ibb.co/9HnnF8H8/Masterplan.png"
         alt="Masterplan for Cocco Lagoon Resort and Spa on Pemba Island"
         className="cocco-lagoon-promo-image"
+        fill
+        sizes="(max-width: 760px) 100vw, 55vw"
       />
       <span className="cocco-lagoon-promo-location">Pemba Island, Zanzibar</span>
     </div>
