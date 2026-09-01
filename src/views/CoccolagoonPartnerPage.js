@@ -36,7 +36,7 @@ const CoccolagoonPartnerPage = () => {
       </section>
 
       {/* Main Grid */}
-      <div className="grid-container">
+      <div id="properties" className="grid-container">
         <div className="cards-grid">
           {coccolagoonProperties.map((prop) => (
             <Link key={prop.id} href={`/partners/coccolagoon/property/${prop.id}`}>

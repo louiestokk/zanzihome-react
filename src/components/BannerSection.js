@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
+import CoccoLagoonPromo from "./CoccoLagoonPromo";
 
 const BannerSection = () => {
   const router = useRouter();
@@ -118,6 +119,7 @@ const BannerSection = () => {
       </div>
 
       {/* Side-by-side promotional grid on Desktop */}
+      <CoccoLagoonPromo />
       <div className="home-promo-grid">
         
         {/* Promotion block 1: List Property */}

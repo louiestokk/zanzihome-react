@@ -1,6 +1,7 @@
 import React from "react";
 import PropertyZanzibar from "../views/propertyzanzibar";
 import { getProperties } from "../lib/db";
+import { faqdata } from "../utils/faq";
 
 export const metadata = {
   title: "Real Estate Zanzibar | Property for Sale & Rent in Zanzibar",
@@ -38,14 +39,37 @@ export default async function HomePage() {
         "url": "https://www.zanzihome.com/",
         "name": "Real Estate Zanzibar | Houses for Sale & Rent",
         "description": "Browse houses, apartments and land for sale or rent in Zanzibar.",
+        "inLanguage": "en",
         "isPartOf": { "@id": "https://www.zanzihome.com/#website" },
-        "mainEntity": { "@id": "https://www.zanzihome.com/#property-list" }
+        "about": { "@id": "https://www.zanzihome.com/#zanzibar" },
+        "mainEntity": [
+          { "@id": "https://www.zanzihome.com/#property-list" },
+          { "@id": "https://www.zanzihome.com/#faq" }
+        ]
       },
       {
         "@type": "WebSite",
         "@id": "https://www.zanzihome.com/#website",
         "name": "ZanziHome",
-        "url": "https://www.zanzihome.com/"
+        "url": "https://www.zanzihome.com/",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://www.zanzihome.com/#organization" }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://www.zanzihome.com/#organization",
+        "name": "ZanziHome",
+        "url": "https://www.zanzihome.com/",
+        "logo": "https://www.zanzihome.com/logo.png"
+      },
+      {
+        "@type": "Place",
+        "@id": "https://www.zanzihome.com/#zanzibar",
+        "name": "Zanzibar",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "TZ"
+        }
       },
       {
         "@type": "ItemList",
@@ -57,6 +81,18 @@ export default async function HomePage() {
           "position": index + 1,
           "name": property.Title || "Property in Zanzibar",
           "url": `https://www.zanzihome.com/propertys/property/${property.adId}`
+        }))
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://www.zanzihome.com/#faq",
+        "mainEntity": faqdata.map((faq) => ({
+          "@type": "Question",
+          "name": faq.title,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.text
+          }
         }))
       }
     ]
