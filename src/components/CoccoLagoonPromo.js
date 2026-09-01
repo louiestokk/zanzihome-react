@@ -6,7 +6,7 @@ const CoccoLagoonPromo = () => (
   <section className="cocco-lagoon-promo" aria-labelledby="cocco-lagoon-promo-title">
     <div className="cocco-lagoon-promo-image-wrap">
       <Image
-        src="https://i.ibb.co/9HnnF8H8/Masterplan.png"
+        src="https://i.ibb.co/yc0Xn7dn/restort-cocco-laggon-main.png"
         alt="Masterplan for Cocco Lagoon Resort and Spa on Pemba Island"
         className="cocco-lagoon-promo-image"
         fill
