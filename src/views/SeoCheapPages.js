@@ -6,6 +6,7 @@ import PartnerFeaturedSection from "../components/PartnerFeaturedSection";
 import MatchRequestStepper from "../components/MatchRequestStepper";
 import Abovefooter from "../components/Abovefooter";
 import CoccolagoonFeaturedSection from "../components/CoccolagoonFeaturedSection";
+import { getAreaSeoProfile } from "../utils/areaSeoContent";
 import { BsCompass } from "react-icons/bs";
 
 const SeoCheapPages = ({ area, properties, type }) => {
@@ -19,6 +20,7 @@ const SeoCheapPages = ({ area, properties, type }) => {
   const formattedType = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
 
   const sortedProperties = properties || [];
+  const areaProfile = getAreaSeoProfile(area);
 
   // Dynamically generate FAQs
   const faqs = [
@@ -63,8 +65,7 @@ const SeoCheapPages = ({ area, properties, type }) => {
           Cheap {formattedType} for Sale in {formattedArea}, Zanzibar
         </h1>
         <p className="cheap-hero-subtitle">
-          Find affordable and budget-friendly {type} for sale by owner and verified agents. 
-          Discover cheap plots, oceanfront homes, and budget villas in {formattedArea} today.
+          Find affordable {type} for sale from owners and agents. {areaProfile.overview}
         </p>
       </section>
 
@@ -158,10 +159,7 @@ const SeoCheapPages = ({ area, properties, type }) => {
         <div className="info-section">
           <h2>Affordable Real Estate & Homes in {formattedArea}, Zanzibar</h2>
           <p>
-            Buying cheap real estate in {formattedArea}, Zanzibar is one of the smartest ways to enter 
-            the booming East African tropical property market. As infrastructure expands and tourism 
-            demand increases, buying budget-friendly villas, apartments, or plots allows investors and 
-            lifestyle buyers to secure prime land before values rise further.
+            {areaProfile.overview}
           </p>
           <p style={{ marginTop: "1rem" }}>
             To secure cheap properties by owner, ensure you conduct registry validation at the local 

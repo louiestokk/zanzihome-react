@@ -1,9 +1,10 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import SeoRentPages from "../../../../views/SeoRentPages";
-import { generateSeoRentText, normalizePropertyType } from "../../../../utils/generateSeoText";
+import { generateSeoRentText, matchesSeoPropertyType, normalizePropertyType } from "../../../../utils/generateSeoText";
 import { getProperties } from "../../../../lib/db";
 import { areas, propertyTypes } from "../../../../utils/seoData";
+import { getListingImage } from "../../../../utils/areaSeoContent";
 
 function isValidSeoRoute(type, area) {
   const validType = propertyTypes.some((value) => normalizePropertyType(value) === normalizePropertyType(type));
@@ -22,6 +23,18 @@ export async function generateMetadata({ params }) {
   
   const seo = generateSeoRentText(formattedType, formattedArea);
   const canonical = `https://www.zanzihome.com/rent/${type}/${area}`;
+  const properties = await getProperties();
+  const metadataImage = getListingImage(
+    properties.filter((property) => (
+      property &&
+      property.paid &&
+      !property.removed &&
+      property.Rent === "Rent" &&
+      matchesSeoPropertyType(property, formattedType) &&
+      property.Area?.toLowerCase().replace(/[\s-]/g, "") === formattedArea.toLowerCase().replace(/[\s-]/g, "")
+    )),
+    area
+  );
 
   return {
     title: seo.title,
@@ -39,7 +52,7 @@ export async function generateMetadata({ params }) {
       siteName: "ZanziHome",
       images: [
         {
-          url: "https://images.pexels.com/photos/2724078/pexels-photo-2724078.jpeg",
+          url: metadataImage,
         },
       ],
     },
@@ -47,7 +60,7 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title: seo.title,
       description: seo.description,
-      images: ["https://images.pexels.com/photos/2724078/pexels-photo-2724078.jpeg"],
+      images: [metadataImage],
     },
   };
 }
@@ -69,9 +82,8 @@ export default async function RentPropertyTypeAreaPageRoute({ params }) {
   // Filter properties for this specific type and area (rent only)
   const filtered = properties.filter((obj) => {
     if (!obj || !obj.paid || obj.removed || obj.Rent !== "Rent") return false;
-    const objType = normalizePropertyType(obj.category);
     const objArea = obj.Area?.toLowerCase().trim().replace(/^./, (char) => char.toUpperCase());
-    const matchType = objType === formattedType;
+    const matchType = matchesSeoPropertyType(obj, formattedType);
     const matchArea = objArea === formattedArea || objArea?.includes(formattedArea);
     return matchType && matchArea;
   });

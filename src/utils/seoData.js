@@ -12,6 +12,7 @@ export const areas = [
   "Kizimkazi",
   "Makunduchi",
   "Zanzibar",
+  "Zanzibar City",
   "Kidoti",
   "Chwaka",
   "Uroa",

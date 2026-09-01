@@ -1,5 +1,7 @@
 // src/utils/generateSeoText.js
 
+import { getAreaSeoProfile } from "./areaSeoContent";
+
 export function normalizePropertyType(type) {
   if (!type) return "";
   const t = type.toLowerCase().trim();
@@ -19,6 +21,24 @@ export function normalizePropertyType(type) {
     return "business";
   }
   return t;
+}
+
+export function matchesSeoPropertyType(property, type) {
+  const normalizedType = normalizePropertyType(type);
+  const category = normalizePropertyType(property?.category);
+
+  if (normalizedType === "beachfront" || normalizedType === "villa") {
+    const searchableText = [
+      property?.Title,
+      property?.description,
+      property?.desc,
+      property?.info,
+      property?.typeClass,
+    ].filter(Boolean).join(" ").toLowerCase();
+    return searchableText.includes(normalizedType === "beachfront" ? "beach" : "villa");
+  }
+
+  return category === normalizedType;
 }
 
 const formatAreaName = (area = "") =>
@@ -47,41 +67,44 @@ const buildKeywords = (propertyLabel, areaName, intent) => {
 };
 
 export const generateSeoText = (type, area) => {
-  const areaName = formatAreaName(area);
+  const areaProfile = getAreaSeoProfile(area);
+  const areaName = areaProfile.name;
   const propertyLabel = formatPropertyLabel(type);
   const propertyKey = propertyLabel.toLowerCase();
 
   return {
-    title: `Buy ${propertyLabel} in ${areaName}, Zanzibar | ${areaName} ${propertyLabel}s for Sale`,
-    description: `Browse verified ${propertyKey}s for sale in ${areaName}, Zanzibar. Compare listings, prices, and investment opportunities for ${propertyKey}s near beaches, villas, and growing communities.`,
+    title: `Buy ${propertyLabel} in ${areaName}, Zanzibar | ${areaProfile.focus}`,
+    description: `Explore ${propertyKey} listings for sale in ${areaName}, Zanzibar. ${areaProfile.overview}`,
     keywords: buildKeywords(propertyLabel, areaName, "for sale"),
     h1: `Buy ${propertyLabel} in ${areaName}, Zanzibar`,
-    content: `Looking to buy a ${propertyKey} in ${areaName}, Zanzibar? Explore a curated selection of homes, villas, apartments, and land opportunities designed for lifestyle buyers and investors. ${areaName} offers strong rental demand, beach access, and long-term value for property buyers who want a secure and attractive location in Zanzibar.`
+    content: `Looking to buy a ${propertyKey} in ${areaName}, Zanzibar? ${areaProfile.overview}`
   };
 };
 
 export const generateSeoRentText = (type, area) => {
-  const areaName = formatAreaName(area);
+  const areaProfile = getAreaSeoProfile(area);
+  const areaName = areaProfile.name;
   const propertyLabel = formatPropertyLabel(type);
   const propertyKey = propertyLabel.toLowerCase();
 
   return {
-    title: `Rent ${propertyLabel} in ${areaName}, Zanzibar | ${areaName} Rentals`,
-    description: `Find ${propertyKey}s for rent in ${areaName}, Zanzibar. Compare beach villas, apartments, and long-term homes with clear pricing, location details, and rental options for every budget.`,
+    title: `Rent ${propertyLabel} in ${areaName}, Zanzibar | ${areaProfile.focus}`,
+    description: `Find ${propertyKey} listings for rent in ${areaName}, Zanzibar. ${areaProfile.overview}`,
     keywords: buildKeywords(propertyLabel, areaName, "rentals"),
     h1: `Rent ${propertyLabel} in ${areaName}, Zanzibar`,
-    content: `Searching for a ${propertyKey} to rent in ${areaName}, Zanzibar? Discover verified rental listings for short-term stays and long-term living, from beachfront villas to practical family homes and modern apartments. ${areaName} is popular with holidaymakers, remote workers, and investors looking for solid rental demand in Zanzibar.`
+    content: `Searching for a ${propertyKey} to rent in ${areaName}, Zanzibar? ${areaProfile.overview}`
   };
 };
 
 export const generateSeoInvestText = (area) => {
-  const areaName = formatAreaName(area);
+  const areaProfile = getAreaSeoProfile(area);
+  const areaName = areaProfile.name;
 
   return {
-    title: `Real Estate Investment in ${areaName}, Zanzibar | Property & Land Investment`,
-    description: `Explore real estate investment opportunities in ${areaName}, Zanzibar, including beach villas, land plots, and development projects with strong rental yields and growth potential.`,
+    title: `Invest in ${areaName}, Zanzibar | ${areaProfile.focus}`,
+    description: `Explore property and land investment opportunities in ${areaName}, Zanzibar. ${areaProfile.overview}`,
     keywords: `real estate investment in ${areaName}, property investment zanzibar, buy land in ${areaName}, ${areaName} investment property, zanzibar rental yields`,
-    h1: `Real Estate Investment in ${areaName}, Zanzibar`,
-    content: `Interested in property investment in ${areaName}, Zanzibar? This growing location combines tourist demand, capital appreciation, and legal investment pathways that make it attractive for buyers seeking rental income and long-term value. Explore apartments, villas, and land opportunities designed for yield-focused investors and lifestyle buyers.`
+    h1: `Invest in ${areaName}, Zanzibar`,
+    content: `Interested in property investment in ${areaName}, Zanzibar? ${areaProfile.overview}`
   };
 };

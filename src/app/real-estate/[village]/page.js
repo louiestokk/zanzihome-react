@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getProperties } from "../../../lib/db";
 import { villages } from "../../../utils/data";
 import { getVillageSeoData, getSlug } from "../../../utils/villageSeoHelper";
+import { getListingImage } from "../../../utils/areaSeoContent";
 import VillagePropertiesList from "../../../components/VillagePropertiesList";
 import SeoFaq from "../../../components/SeoFaq";
 import MatchRequestStepper from "../../../components/MatchRequestStepper";
@@ -36,10 +37,22 @@ export async function generateMetadata({ params }) {
   }
 
   const canonicalUrl = `https://www.zanzihome.com/real-estate/${village}`;
+  const properties = await getProperties();
+  const normalize = (value) => value?.toLowerCase().replace(/[-\s]/g, "") || "";
+  const matchingProperties = properties.filter((property) => (
+    property &&
+    property.paid &&
+    !property.removed &&
+    !["Vehicle", "Tours", "Taxi"].includes(property.adType) &&
+    normalize(property.Area) === normalize(villageName)
+  ));
+  const metadataImage = getListingImage(matchingProperties, villageName);
 
   return {
     title: seoData.metaTitle,
     description: seoData.metaDescription,
+    keywords: seoData.keywords,
+    robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
     alternates: {
       canonical: canonicalUrl,
     },
@@ -49,7 +62,7 @@ export async function generateMetadata({ params }) {
       description: seoData.metaDescription,
       images: [
         {
-          url: "https://images.pexels.com/photos/14667295/pexels-photo-14667295.jpeg",
+          url: metadataImage,
           width: 1200,
           height: 630,
           alt: `Real Estate in ${seoData.displayName}, Zanzibar`,
@@ -60,6 +73,7 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title: seoData.metaTitle,
       description: seoData.metaDescription,
+      images: [metadataImage],
     },
   };
 }
@@ -223,6 +237,13 @@ export default async function VillageRealEstatePage({ params }) {
                   💡 Live Market Indicator: The average listing price for active properties in {seoData.displayName} is currently around ${averagePrice.toLocaleString()}.
                 </span>
               )}
+            </p>
+
+            <h3 style={{ fontSize: "19px", fontWeight: "700", color: "#013a17", marginBottom: "12px" }}>
+              Buying Property in {seoData.displayName}
+            </h3>
+            <p style={{ fontSize: "15px", lineHeight: "1.7", color: "#374151", marginBottom: "25px" }}>
+              {seoData.buyingGuide}
             </p>
 
             {/* Typical Prices Table (Pris exempel) */}

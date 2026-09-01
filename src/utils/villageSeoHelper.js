@@ -1,6 +1,7 @@
 // src/utils/villageSeoHelper.js
 
 import { villages } from "./data";
+import { getAreaSeoProfile } from "./areaSeoContent";
 
 /**
  * Normalizes a string by converting it to lowercase and removing spaces/dashes.
@@ -19,6 +20,65 @@ export const getSlug = (name) => {
         .replace(/\s+/g, "-")
         .replace(/[^a-z0-9-]/g, "")
     : "";
+};
+
+const limitText = (text, maxLength) => {
+  if (text.length <= maxLength) return text;
+  const shortened = text.slice(0, maxLength - 1);
+  return `${shortened.slice(0, shortened.lastIndexOf(" "))}...`;
+};
+
+const createMetadata = (displayName, introduction) => ({
+  metaTitle: limitText(`Real Estate in ${displayName}, Zanzibar`, 60),
+  metaDescription: limitText(
+    `Browse property for sale and rent in ${displayName}, Zanzibar. ${introduction}`,
+    155
+  ),
+  keywords: `real estate ${displayName}, property for sale ${displayName}, homes and land ${displayName}, Zanzibar property`,
+  h1: `Real Estate in ${displayName}, Zanzibar`,
+});
+
+const createLongTailContent = (displayName, introduction) => ({
+  buyingGuide: `When searching for real estate in ${displayName}, start by comparing the exact location and property type rather than relying on the area name alone. ${introduction} For land, ask for the plot boundaries, access route, current use and supporting tenure documents. For homes, apartments and commercial properties, review condition, utility connections, maintenance responsibilities and any permissions relevant to your intended use. A viewing and independent legal due diligence should take place before money changes hands.`,
+  faqs: [
+    {
+      q: `What types of real estate are available in ${displayName}, Zanzibar?`,
+      a: `Listings in ${displayName} can include land, houses, apartments, villas and commercial opportunities, depending on current supply. Use the live listings on this page to compare each property's category, price, photos, location details and contact information.`
+    },
+    {
+      q: `How do I find property for sale in ${displayName}, Zanzibar?`,
+      a: `Review the active listings for ${displayName}, narrow the results by property type and sale or rental status, then contact the advertiser about availability. Before arranging a purchase, confirm the exact address or plot location, asking price, access and the documents available for review.`
+    },
+    {
+      q: `Is ${displayName} suitable for a home, holiday property or investment?`,
+      a: `${displayName} may suit different goals depending on the individual property's setting, access and permitted use. Compare how close each listing is to services, transport and the coast, and consider whether it fits your personal use, long-term rental or hospitality plan.`
+    },
+    {
+      q: `What should I check before buying land in ${displayName}?`,
+      a: `Ask to see the relevant land documents, confirm boundaries on site, verify road access and understand utility availability. An independent local lawyer should review the tenure, transfer process, approvals and any restrictions that apply to the specific plot before you sign an agreement.`
+    },
+    {
+      q: `Can foreign buyers purchase real estate in ${displayName}, Zanzibar?`,
+      a: `Foreign buyers generally acquire interests in Zanzibar property through approved long-term leasehold or qualifying development structures rather than freehold land ownership. Requirements depend on the property and transaction, so obtain independent legal advice and verify the current rules with the relevant authorities.`
+    },
+    {
+      q: `How are property prices in ${displayName} determined?`,
+      a: `Prices vary according to plot or floor area, condition, tenure, access, utilities, nearby services and the precise location within ${displayName}. Compare current listing prices for similar property types, then verify what is included before treating any advertised price as a final transaction value.`
+    },
+    {
+      q: `Are there rental properties in ${displayName}, Zanzibar?`,
+      a: `Availability changes as advertisers add and remove listings. Select the rental filter on this page to view active homes, apartments or other properties offered for rent in ${displayName}, and confirm lease length, inclusions, deposits and utility arrangements directly with the advertiser.`
+    },
+  ],
+});
+
+const enrichProfile = (profile) => {
+  const longTail = createLongTailContent(profile.displayName, profile.introduction);
+  return {
+    ...profile,
+    buyingGuide: longTail.buyingGuide,
+    faqs: [...profile.faqs, ...longTail.faqs],
+  };
 };
 
 const customProfiles = {
@@ -258,27 +318,27 @@ export const getVillageSeoData = (villageName) => {
 
   // If a custom profile exists, use it
   if (customProfiles[normalized]) {
-    const profile = customProfiles[normalized];
+    const profile = enrichProfile(customProfiles[normalized]);
     return {
       ...profile,
       slug,
-      metaTitle: `Real Estate in ${profile.displayName}, Zanzibar | Properties for Sale & Rent`,
-      metaDescription: `Discover houses, beachfront villas, apartments, and land plots for sale or rent in ${profile.displayName}, Zanzibar. Explore top investment opportunities in the area today.`,
-      h1: `Real Estate & Properties in ${profile.displayName}, Zanzibar`
+      ...createMetadata(profile.displayName, profile.introduction),
     };
   }
 
-  // Otherwise, generate a high-quality fallback profile dynamically
+  // Use neutral, village-specific copy when no editorial profile exists.
   const displayName = villageName.replace(/-/g, " ").trim().replace(/\b\w/g, c => c.toUpperCase());
+  const areaProfile = getAreaSeoProfile(displayName);
+  const introduction = areaProfile.slug !== getSlug(displayName)
+    ? `Explore property options in ${displayName}, including homes, apartments, land and commercial spaces. Compare each listing's exact location, access, utilities and tenure information before making a decision.`
+    : areaProfile.overview;
   
-  return {
+  const fallbackProfile = {
     displayName,
     slug,
-    metaTitle: `Real Estate in ${displayName}, Zanzibar | Properties for Sale & Rent`,
-    metaDescription: `Browse houses, beachfront land plots, apartments, and commercial projects for sale or rent in ${displayName}, Zanzibar. Find your next property or investment today.`,
-    h1: `Real Estate & Properties in ${displayName}, Zanzibar`,
-    introduction: `Discover the real estate market in ${displayName}, Zanzibar. As Zanzibar continues to rise as a global tourism and investment destination, areas like ${displayName} are attracting interest from buyers looking for beachfront plots, holiday homes, and commercial opportunities in East Africa.`,
-    marketOverview: `The property market in ${displayName} is emerging, offering a range of land and building options. From affordable inland residential plots suitable for private homes to beachfront land ideal for commercial resorts, ${displayName} provides investors with a chance to enter the market at competitive price points with strong growth potential.`,
+    ...createMetadata(displayName, introduction),
+    introduction,
+    marketOverview: `Listings in ${displayName} may include land, homes, apartments and commercial properties. Review the listing details, verify the exact location and obtain independent legal advice before proceeding with a purchase or lease.`,
     priceTable: [
       { category: "Oceanfront Land Plots", priceRange: "$80,000 - $250,000", notes: "Depending on beach frontage" },
       { category: "Residential Land (inland)", priceRange: "$8,000 - $35,000", notes: "Excellent value for holiday homes" },
@@ -291,19 +351,8 @@ export const getVillageSeoData = (villageName) => {
       `Great entry-level property prices compared to major hubs like Paje or Nungwi`,
       `Accessible to local amenities, transport routes, and Stone Town`
     ],
-    faqs: [
-      {
-        q: `Is it a good time to buy real estate in ${displayName}?`,
-        a: `Yes, buying in emerging areas like ${displayName} offers excellent capital appreciation potential as infrastructure and tourism developments expand across Zanzibar.`
-      },
-      {
-        q: `Can foreigners own property in ${displayName}?`,
-        a: `Foreigners can legally acquire property in ${displayName} through long-term leasehold contracts (typically 33, 66, or 99 years) or by investing in ZIPA-approved real estate projects.`
-      },
-      {
-        q: `What is the typical distance from ${displayName} to the airport?`,
-        a: `Most villages in Unguja, Zanzibar are within a 30 to 80-minute drive from Abeid Amani Karume International Airport via tarmac roads.`
-      }
-    ]
+    faqs: []
   };
+
+  return enrichProfile(fallbackProfile);
 };

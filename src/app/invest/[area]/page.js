@@ -4,6 +4,7 @@ import SeoInvestPages from "../../../views/SeoInvestPages";
 import { generateSeoInvestText } from "../../../utils/generateSeoText";
 import { getProperties } from "../../../lib/db";
 import { areas } from "../../../utils/seoData";
+import { getListingImage } from "../../../utils/areaSeoContent";
 
 function getAreaName(area) {
   const areaSlug = area.toLowerCase();
@@ -17,6 +18,16 @@ export async function generateMetadata({ params }) {
   
   const seo = generateSeoInvestText(formattedArea);
   const canonical = `https://www.zanzihome.com/invest/${area}`;
+  const properties = await getProperties();
+  const metadataImage = getListingImage(
+    properties.filter((property) => (
+      property &&
+      property.paid &&
+      !property.removed &&
+      property.Area?.toLowerCase().replace(/[\s-]/g, "") === formattedArea.toLowerCase().replace(/[\s-]/g, "")
+    )),
+    area
+  );
 
   return {
     title: seo.title,
@@ -34,7 +45,7 @@ export async function generateMetadata({ params }) {
       siteName: "ZanziHome",
       images: [
         {
-          url: "https://images.pexels.com/photos/2724078/pexels-photo-2724078.jpeg",
+          url: metadataImage,
         },
       ],
     },
@@ -42,7 +53,7 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title: seo.title,
       description: seo.description,
-      images: ["https://images.pexels.com/photos/2724078/pexels-photo-2724078.jpeg"],
+      images: [metadataImage],
     },
   };
 }
