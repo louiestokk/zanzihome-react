@@ -333,7 +333,7 @@ export default function BuyersGuidePage() {
         ))}
 
         <div style={{ textAlign: "center", marginTop: "20px" }}>
-          <Link href="/checkout" style={{ display: "inline-block", padding: "1rem 2rem", backgroundColor: "#22c55e", color: "#fff", fontWeight: "700", borderRadius: "9999px", textDecoration: "none" }}>
+          <Link href="/list-your-property-zanzibar" style={{ display: "inline-block", padding: "1rem 2rem", backgroundColor: "#22c55e", color: "#fff", fontWeight: "700", borderRadius: "9999px", textDecoration: "none" }}>
             List your property
           </Link>
         </div>

@@ -807,7 +807,7 @@ Boost Validity: ${startStr} to ${endStr}
                   <p style={{ color: "#6b7280", fontSize: "13.5px", marginBottom: "20px" }}>
                     You don't have any active listings associated with your account email (<strong>{user?.email}</strong>) yet.
                   </p>
-                  <Link href="/checkout" className="action-btn" style={{ display: "inline-block", width: "auto" }}>
+nding info                  <Link href="/list-your-property-zanzibar" className="action-btn" style={{ display: "inline-block", width: "auto" }}>
                     Create Your First Listing
                   </Link>
                 </div>

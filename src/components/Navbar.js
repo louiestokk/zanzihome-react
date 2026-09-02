@@ -132,7 +132,7 @@ const Navbar = ({ logedinUser, loading }) => {
             </Link>
           </button>
           <Link
-            href="/checkout"
+            href="/list-your-property-zanzibar"
             className="user-modal-link"
             style={{ display: "flex", alignItems: "center" }}
             onClick={() => setShowUser(false)}

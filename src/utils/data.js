@@ -7,7 +7,7 @@ export const navlinks = [
   {
     id: 3,
     text: "List Property",
-    url: "/checkout"
+    url: "/list-your-property-zanzibar"
   },
   {
     id: 4,

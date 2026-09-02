@@ -34,7 +34,7 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href="/checkout" className="footer-links">
+              <Link href="/list-your-property-zanzibar" className="footer-links">
                 List Property
               </Link>
             </li>

@@ -88,7 +88,7 @@ export default function AboutPage() {
             </div>
 
             <div style={{ marginTop: "30px", borderTop: "1px solid #f3f4f6", paddingTop: "20px" }}>
-              <Link href="/checkout" className="cta-button">
+              <Link href="/list-your-property-zanzibar" className="cta-button">
                 List Your Property (Free) <FiArrowRight style={{ marginLeft: "8px" }} />
               </Link>
               

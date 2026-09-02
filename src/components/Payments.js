@@ -41,7 +41,7 @@ const Payments = () => {
           <div className="contact-adress" style={{ marginTop: "1rem" }}>
             <h4>Advertise property</h4>
 
-            <Link href="/checkout" className="ring">
+            <Link href="/list-your-property-zanzibar" className="ring">
               Advertise now, price and information
             </Link>
           </div>

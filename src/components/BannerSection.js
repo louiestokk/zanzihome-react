@@ -125,7 +125,7 @@ const BannerSection = () => {
         {/* Promotion block 1: List Property */}
       <div 
           className="home-promo-card" 
-          onClick={() => router.push("/checkout")}
+          onClick={() => router.push("/list-your-property-zanzibar")}
           style={{
             background: "linear-gradient(135deg, #013a17 0%, #306c48 100%)",
             border: "none",

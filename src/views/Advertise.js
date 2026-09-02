@@ -702,7 +702,7 @@ Price: $${propertyObj.Price}
               <p style={{ color: "#6b7280", fontSize: "14px", marginBottom: "20px" }}>
                 You don't have any active property listings associated with your account email (<strong>{user?.email}</strong>) yet.
               </p>
-              <Link href="/checkout" className="btn-boost-action" style={{ display: "inline-block", width: "auto" }}>
+              <Link href="/list-your-property-zanzibar" className="btn-boost-action" style={{ display: "inline-block", width: "auto" }}>
                 Create Your First Listing
               </Link>
             </div>

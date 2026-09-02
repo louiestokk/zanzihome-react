@@ -409,7 +409,7 @@ const Contact = () => {
           </div>
 
           {/* Channel 5: Checkout link */}
-          <Link href="/checkout" className="info-card">
+          <Link href="/list-your-property-zanzibar" className="info-card">
             <div className="info-card-icon-box" style={{ background: "#ebf8ff", color: "#3182ce" }}>
               <FiCheckCircle />
             </div>
