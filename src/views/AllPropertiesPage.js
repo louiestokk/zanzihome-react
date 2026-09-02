@@ -195,7 +195,16 @@ const AllPropertiesPage = ({ initialProperties }) => {
         <Popular
           title={"Featured Properties in Zanzibar"}
           images={[
-                                   {
+                 {
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2F1788375016732_restaurant-for-sale-paje-zanzibar.png?alt=media&token=1d9d45ac-b546-42eb-a09e-57b4ba735338",
+              imgText: "Established Fast-Food Restaurant for Sale in Prime Paje Location",
+              adId: Number(621136943),
+              type: "Business",
+              price: "from $35,000",
+              size: "50",
+              rooms:'2'
+            },
+                {
               url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2F1786204061318_aura-garden-view-02.webp?alt=media&token=39c6be93-b47f-4c44-ab69-b038e1bb247e",
               imgText: "HIgh ROI Beachfront living in Paje ",
               adId: Number(788913793),
