@@ -158,7 +158,7 @@ const propertyzanzibar = ({ initialProperties }) => {
         ]}
       />
 </div>
-<CoccolagoonFeaturedSection />
+{/* <CoccolagoonFeaturedSection /> */}
 <div style={{ height: "50px" }}></div>
 <PartnerFeaturedSection />
 <LatestApartments initialProperties={initialProperties} />

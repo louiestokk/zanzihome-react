@@ -163,7 +163,7 @@ const SeoPage = ({ area, properties, type }) => {
       {formattedArea === "Pemba" && (
         <div>
           <h2 style={{ padding: "1rem", color: "#013a17" }}>Pemba Property Investments</h2>
-          <CoccolagoonFeaturedSection />
+          {/* <CoccolagoonFeaturedSection /> */}
         </div>
       )}
 

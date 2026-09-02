@@ -325,7 +325,7 @@ const AllPropertiesPage = ({ initialProperties }) => {
 
       {/* PROPERTIES GRID OBJECTS */}
       <Objects />
-      <CoccolagoonFeaturedSection />
+      {/* <CoccolagoonFeaturedSection /> */}
       <PartnerFeaturedSection />
       {/* BOOST CTA MID-LIST */}
   
