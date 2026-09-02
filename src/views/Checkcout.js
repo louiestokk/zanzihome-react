@@ -12,7 +12,6 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useUserContext } from "../user_context";
-import emailjs from "@emailjs/browser";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { setFirestoreData, getFirestoreData } from "../redux-toolkit/firebaseDataSlice";
@@ -114,56 +113,45 @@ const Checkcout = ({ logedinUser }) => {
         dispatch(setFirestoreData([newAdWithId]));
       }
 
-      const formEl = adFormRef.current;
-      if (formEl) {
-        formEl.elements["from_name"].value = user?.nickname || activeAdsData.Name || "Publisher";
-        formEl.elements["from_email"].value = user?.email || activeAdsData.Email || "";
-        formEl.elements["reply_to"].value = user?.email || activeAdsData.Email || "";
-        formEl.elements["subject"].value = `📢 ZanziHome New Listing - ${selectedPackage.name}`;
-        formEl.elements["message"].value = `
-Publisher: ${user?.nickname || activeAdsData.Name} (${user?.email || activeAdsData.Email})
-Package: ${selectedPackage.name} ($${selectedPackage.price})
-Payment Type: ${method}
-Payment Status: ${isPaid ? "Paid" : "Pending Manual Verification"}
-Reference/Sender: ${reference || "N/A"}
-Active Dates: ${startStr} to ${endStr}
+      const listingId = finalAdData.adId;
+      const listingUrl = `https://www.zanzihome.com/propertys/property/${listingId}`;
 
-Property Title: ${activeAdsData.Title}
-Property ID: ${activeAdsData.adId || docRef.id}
-Category: ${activeAdsData.category}
-Area: ${activeAdsData.Area}
-Price: $${activeAdsData.Price}
-        `;
-        
-        // Map individual fields for EmailJS template
-        formEl.elements["to_name"].value = user?.nickname || activeAdsData.Name || "Customer";
-        formEl.elements["package_name"].value = selectedPackage.name;
-        formEl.elements["package_price"].value = `$${selectedPackage.price}`;
-        formEl.elements["duration_months"].value = `${selectedPackage.durationMonths} Months`;
-        formEl.elements["start_date"].value = startStr;
-        formEl.elements["expiry_date"].value = endStr;
-        formEl.elements["renewal_date"].value = endStr;
-        formEl.elements["ad_title"].value = activeAdsData.Title || "";
-        formEl.elements["ad_id"].value = activeAdsData.adId || docRef.id || "";
-        formEl.elements["payment_method"].value = method;
-        formEl.elements["payment_status"].value = isPaid ? "Paid" : "Pending Review";
-        formEl.elements["payment_reference"].value = reference || "N/A";
-      }
-
-      // Send confirmation to user (admin is CC'ed automatically via EmailJS settings)
       try {
-        if (formEl) {
-          formEl.elements["to_email"].value = user?.email || activeAdsData.Email || "";
+        const emailResponse = await fetch("/api/listing", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            from_name: user?.nickname || activeAdsData.Name || "Publisher",
+            from_email: user?.email || activeAdsData.Email || "",
+            title: activeAdsData.Title || "New listing",
+            price: activeAdsData.Price || selectedPackage.price,
+            area: activeAdsData.Area || "Not provided",
+            category: activeAdsData.category || activeAdsData.Adress || "Property",
+            adType: activeAdsData.adType || adType,
+            packageName: selectedPackage.name,
+            paymentMethod: method,
+            adId: listingId,
+            listingUrl,
+            message: activeAdsData.Text || activeAdsData.About || "No description provided.",
+            phone: activeAdsData.Phone || "Not provided",
+            whatsapp: activeAdsData.WhatsApp || "Not provided",
+            rooms: activeAdsData.Rooms || "Not provided",
+            size: activeAdsData.Size || "Not provided",
+            rentOrSell: activeAdsData.Sell ? "For sale" : "For rent",
+            companyName: company ? (activeAdsData.Name || "Company") : "Private seller"
+          })
+        });
+
+        const emailResult = await emailResponse.json();
+        if (!emailResponse.ok) {
+          console.error("Failed to send listing emails via Resend:", emailResult?.error || emailResponse.statusText);
+        } else {
+          console.log("Listing confirmation and admin emails sent successfully via Resend");
         }
-        await emailjs.sendForm(
-          "service_thbibzh",
-          "template_xn7q61k",
-          adFormRef.current,
-          process.env.NEXT_PUBLIC_REACT_APP_EMAILJS || process.env.REACT_APP_EMAILJS || "yP8LTloRH-vMrxS8b"
-        );
-        console.log("Listing confirmation email sent to user");
       } catch (err) {
-        console.error("Failed to send listing email to user:", err);
+        console.error("Failed to send listing email via Resend:", err);
       }
 
       setIsSubmitting(false);

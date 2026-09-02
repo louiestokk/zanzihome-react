@@ -2583,7 +2583,7 @@ border-top-right-radius: 5px;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 24px;
+          margin-bottom: 1rem;
           border-bottom: 1.5px solid #e5e7eb;
           padding-bottom: 16px;
         }

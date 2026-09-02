@@ -145,7 +145,6 @@ const AdsForm = ({ setActiveStep, adType, onFormSubmit }) => {
       >
         {/* Left Column: Form Fields */}
         <div className="form-fields-column">
-          
           <div className="form-header-box">
             <h1>Place ad on ZanziHome</h1>
             <button
@@ -158,9 +157,9 @@ const AdsForm = ({ setActiveStep, adType, onFormSubmit }) => {
           </div>
 
           <h3 style={{ margin: "0 0 10px 0", fontSize: "18px", fontWeight: "700", color: "#013a17" }}>
-            {adType} in Zanzibar
+           Add new property
           </h3>
-
+          <p>Please fill in the details below to add your new property listing.</p>
           {/* Publisher Profile Card */}
           <div className="form-card">
             <h4 className="form-card-title">Publisher Details</h4>

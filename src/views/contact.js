@@ -2,7 +2,6 @@
 
 import React, { useState, useRef } from "react";
 import Link from "next/link";
-import emailjs from "@emailjs/browser";
 
 // Standard React Icons
 import { FiMail, FiPhone, FiMapPin, FiCheckCircle, FiArrowRight } from "react-icons/fi";
@@ -29,36 +28,35 @@ const Contact = () => {
     setStatus(null);
 
     try {
-      const formEl = contactFormRef.current;
-      if (formEl) {
-        let toEmailInput = formEl.querySelector("input[name='to_email']");
-        if (!toEmailInput) {
-          toEmailInput = document.createElement("input");
-          toEmailInput.type = "hidden";
-          toEmailInput.name = "to_email";
-          formEl.appendChild(toEmailInput);
-        }
-        toEmailInput.value = formData.from_email;
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          from_name: formData.from_name,
+          from_email: formData.from_email,
+          subject: formData.subject,
+          message: formData.message
+        })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to send contact message.");
       }
 
-      // Send confirmation to user (admin is CC'ed automatically via EmailJS settings)
-      await emailjs.sendForm(
-        "service_thbibzh",
-        "template_xn7q61k",
-        contactFormRef.current,
-        process.env.NEXT_PUBLIC_REACT_APP_EMAILJS || process.env.REACT_APP_EMAILJS || "yP8LTloRH-vMrxS8b"
-      );
-      console.log("Contact confirmation email sent to user");
       setStatus({
         success: true,
-        text: "Thank you! Your message has been sent successfully. We will get back to you shortly."
+        text: "Thank you! We have received your request and will contact you soon."
       });
       setFormData({ from_name: "", from_email: "", subject: "", message: "" });
     } catch (err) {
       console.error(err);
       setStatus({
         success: false,
-        text: err.response?.data?.error || err.message || "An error occurred while sending your message. Please try again."
+        text: err.message || "An error occurred while sending your message. Please try again."
       });
     } finally {
       setLoading(false);
@@ -406,7 +404,7 @@ const Contact = () => {
             </div>
             <div className="info-card-body">
               <h4>Our Visiting Office</h4>
-              <p>ZanziHome.com / Stokk Tech Limited<br />Paje, Zanzibar</p>
+              <p>ZanziHome.com / Tripple M Ltd<br />Stone Town Zanzibar</p>
             </div>
           </div>
 

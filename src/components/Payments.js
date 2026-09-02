@@ -20,19 +20,28 @@ const Payments = () => {
         <article>
           <div className="contact-adress">
             <h4>Visiting address</h4>
-            <p>ZanziHome.com / Stokk Tech Limited</p>
+            <p>ZanziHome.com / Tripple M Ltd</p>
           </div>
           <div className="contact-adress" style={{ marginTop: "1rem" }}>
             <h4>Call us</h4>
 
-            <a href="tel:+255773749776" className="ring">
-              +255 713 288 772
+            <a style={{marginBottom:'1rem'}} href="tel:+255655912498" className="ring">
+              +255 655 912 498
+            </a>
+            <br />
+            <a
+              href="https://wa.me/46704276963"
+              className="ring"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              WhatsApp: +46 704 276 963
             </a>
           </div>
           <div className="contact-adress" style={{ marginTop: "1rem" }}>
             <h4>Advertise property</h4>
 
-            <Link href="/boost-listing" className="ring">
+            <Link href="/checkout" className="ring">
               Advertise now, price and information
             </Link>
           </div>
@@ -41,7 +50,7 @@ const Payments = () => {
             style={{ marginTop: "1rem", marginBottom: "2rem" }}
           >
             <h4>Banner advertising</h4>
-            <Link href="/boost-listing" className="ring">
+            <Link href="/contact" className="ring">
               Banner advertising, price and information
             </Link>
           </div>

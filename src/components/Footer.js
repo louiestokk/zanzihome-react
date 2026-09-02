@@ -140,7 +140,7 @@ const Footer = () => {
 
         </div>
         <div>
-          <span> {year}  &copy; 'ZanziHome' Stokk Tech Limited, Zanzibar </span>
+          <span> {year}  &copy; 'ZanziHome' Tripple M Ltd, Stone Town Zanzibar </span>
        
         </div>
       </div>
