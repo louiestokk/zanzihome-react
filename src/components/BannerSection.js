@@ -52,7 +52,6 @@ const BannerSection = () => {
 
         {/* Content */}
         <div style={{ zIndex: 2, padding: "1rem" }}>
-          {/* ✅ H1 (SUPER VIKTIG SEO) */}
           <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>
             Property for Sale & Rent in Zanzibar
           </h1>

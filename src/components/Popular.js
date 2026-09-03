@@ -54,7 +54,7 @@ const Popular = ({ title, images }) => {
         <div className="popular-title-container">
           <h2 className="popular-title">{title}</h2>
           <p className="popular-subtitle">
-            Featured listings get more <strong>views</strong> and <strong>buyers</strong>
+            Handpicked properties offering the best <strong>value</strong> and <strong>location</strong> in Zanzibar
           </p>
         </div>
 
