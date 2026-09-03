@@ -29,12 +29,12 @@ const limitText = (text, maxLength) => {
 };
 
 const createMetadata = (displayName, introduction) => ({
-  metaTitle: limitText(`Real Estate in ${displayName}, Zanzibar`, 60),
+  metaTitle: limitText(`Real Estate in ${displayName}, Zanzibar | Buy & Rent`, 60),
   metaDescription: limitText(
-    `Browse property for sale and rent in ${displayName}, Zanzibar. ${introduction}`,
+    `Real Estate in ${displayName}, Zanzibar: browse property for sale and rent. ${introduction}`,
     155
   ),
-  keywords: `real estate ${displayName}, property for sale ${displayName}, homes and land ${displayName}, Zanzibar property`,
+  keywords: `real estate ${displayName}, real estate in ${displayName} Zanzibar, property for sale ${displayName}, homes and land ${displayName}, Zanzibar property`,
   h1: `Real Estate in ${displayName}, Zanzibar`,
 });
 

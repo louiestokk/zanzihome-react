@@ -89,6 +89,7 @@ export default async function VillageRealEstatePage({ params }) {
   }
 
   const seoData = getVillageSeoData(villageName);
+  const otherVillages = villages.filter((v) => v !== villageName);
   const allProperties = await getProperties();
 
   // Filter listings matching the current village
@@ -187,6 +188,19 @@ export default async function VillageRealEstatePage({ params }) {
       }))
     });
   }
+
+  // Related areas ItemList to reinforce internal linking/topical relevance
+  schemaData["@graph"].push({
+    "@type": "ItemList",
+    "@id": `https://www.zanzihome.com/real-estate/${village}#related-areas`,
+    "name": "Other Zanzibar Real Estate Areas",
+    "itemListElement": otherVillages.map((v, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "name": `Real Estate in ${v}`,
+      "url": `https://www.zanzihome.com/real-estate/${getSlug(v)}`
+    }))
+  });
 
   return (
     <main className="area-page">
@@ -307,6 +321,31 @@ export default async function VillageRealEstatePage({ params }) {
         {/* Localized FAQ Accordion */}
         <div style={{ marginTop: "50px", background: "#ffffff", padding: "30px", borderRadius: "16px", border: "1px solid rgba(0,0,0,0.05)" }}>
           <SeoFaq faqs={seoData.faqs.map((f) => ({ q: f.q, a: f.a }))} />
+        </div>
+
+        {/* Internal linking to all other Zanzibar areas for SEO discovery */}
+        <div style={{ marginTop: "40px", background: "#ffffff", padding: "30px", borderRadius: "16px", border: "1px solid rgba(0,0,0,0.05)" }}>
+          <h2 style={{ fontSize: "20px", fontWeight: "700", color: "#013a17", marginBottom: "15px" }}>
+            Explore Real Estate in Other Zanzibar Areas
+          </h2>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+            {otherVillages.map((v) => (
+              <Link
+                key={v}
+                href={`/real-estate/${getSlug(v)}`}
+                style={{
+                  fontSize: "13px",
+                  color: "#013a17",
+                  background: "#f3f4f6",
+                  padding: "8px 14px",
+                  borderRadius: "20px",
+                  textDecoration: "none",
+                }}
+              >
+                Real Estate in {v}
+              </Link>
+            ))}
+          </div>
         </div>
 
       </section>
