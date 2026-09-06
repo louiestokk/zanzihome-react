@@ -195,6 +195,15 @@ const AllPropertiesPage = ({ initialProperties }) => {
         <Popular
           title={"Featured Properties in Zanzibar"}
           images={[
+                    {
+              url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2F1788706715422_restort-cocco-laggon-main.webp?alt=media&token=5f985fe3-8492-4063-884d-aac0a3f97123",
+              imgText: "Sea View Studio in 5 star Cocco Lagoon Resort & Spa",
+              adId: Number(682584645),
+              type: "Studio",
+              price: "from $159,999",
+              size: "33",
+              rooms:'1'
+            },
                  {
               url: "https://firebasestorage.googleapis.com/v0/b/homenet-47307.appspot.com/o/files%2F1788375016732_restaurant-for-sale-paje-zanzibar.png?alt=media&token=1d9d45ac-b546-42eb-a09e-57b4ba735338",
               imgText: "Established Fast-Food Restaurant for Sale in Prime Paje Location",
