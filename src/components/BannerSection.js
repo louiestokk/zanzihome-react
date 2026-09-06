@@ -118,7 +118,7 @@ const BannerSection = () => {
       </div>
 
       {/* Side-by-side promotional grid on Desktop */}
-      {/* <CoccoLagoonPromo /> */}
+      <CoccoLagoonPromo />
       <div className="home-promo-grid">
         
         {/* Promotion block 1: List Property */}
