@@ -25,7 +25,11 @@ import {
   FiLock,
   FiLogOut,
   FiPhone,
-  FiMail
+  FiMail,
+  FiInbox,
+  FiArrowLeft,
+  FiCalendar,
+  FiLink
 } from "react-icons/fi";
 
 const AdminDashBoard = () => {
@@ -33,18 +37,28 @@ const AdminDashBoard = () => {
 
   // Authentication State
   const [password, setPassword] = useState("");
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    typeof window !== "undefined" ? sessionStorage.getItem("admin_authenticated") === "true" : false
-  );
+  // Always start false so server/client first render match; read sessionStorage after mount.
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loginError, setLoginError] = useState("");
 
+  useEffect(() => {
+    if (sessionStorage.getItem("admin_authenticated") === "true") {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
   // Navigation State
-  const [activeTab, setActiveTab] = useState("dashboard"); // "dashboard" | "listings" | "customers"
+  const [activeTab, setActiveTab] = useState("dashboard"); // "dashboard" | "listings" | "customers" | "leads"
 
   // Data State
   const [firestoreData, setFirestoreDataState] = useState([]);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  // Leads State
+  const [leadsData, setLeadsData] = useState([]);
+  const [leadsLoading, setLeadsLoading] = useState(false);
+  const [selectedLeadsCompany, setSelectedLeadsCompany] = useState(null);
 
   // Search & Filtering State
   const [searchQuery, setSearchQuery] = useState("");
@@ -99,9 +113,31 @@ const AdminDashBoard = () => {
     }
   };
 
+  const fetchLeadsData = async () => {
+    setLeadsLoading(true);
+    try {
+      const querySnapshot = await getDocs(collection(db, "leads"));
+      const newLeads = querySnapshot.docs.map((docSnap) => ({
+        ...docSnap.data(),
+        id: docSnap.id
+      }));
+      newLeads.sort((a, b) => {
+        const aTime = a.createdAt?.seconds || 0;
+        const bTime = b.createdAt?.seconds || 0;
+        return bTime - aTime;
+      });
+      setLeadsData(newLeads);
+    } catch (error) {
+      console.error("Error fetching leads:", error);
+    } finally {
+      setLeadsLoading(false);
+    }
+  };
+
   useEffect(() => {
     if (isAuthenticated) {
       fetchFirestoreData();
+      fetchLeadsData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
@@ -338,6 +374,35 @@ const AdminDashBoard = () => {
     (a, b) => b.listings.length - a.listings.length
   );
 
+  // Group Leads by Company Email
+  const leadsCompanyMap = {};
+  leadsData.forEach((lead) => {
+    const key = lead.companyEmailKey || (lead.companyEmail || "unspecified@zanzihome.com").trim().toLowerCase();
+    if (!leadsCompanyMap[key]) {
+      leadsCompanyMap[key] = {
+        companyName: lead.companyName || "Unknown Company",
+        companyEmail: lead.companyEmail || key,
+        leads: []
+      };
+    }
+    leadsCompanyMap[key].leads.push(lead);
+  });
+
+  const leadsByCompanyList = Object.values(leadsCompanyMap).sort(
+    (a, b) => b.leads.length - a.leads.length
+  );
+
+  const totalLeadsCount = leadsData.length;
+
+  const formatLeadDate = (createdAt) => {
+    if (!createdAt?.seconds) return "Unknown date";
+    return new Date(createdAt.seconds * 1000).toLocaleString();
+  };
+
+  const selectedCompanyLeads = selectedLeadsCompany
+    ? leadsByCompanyList.find((c) => c.companyEmail.trim().toLowerCase() === selectedLeadsCompany.trim().toLowerCase())
+    : null;
+
   // Stats Calculations
   const totalAdsCount = firestoreData.length;
   const activeAdsCount = firestoreData.filter((el) => !el.removed).length;
@@ -452,6 +517,15 @@ const AdminDashBoard = () => {
             >
               <FiUsers /> Customers
             </li>
+            <li
+              className={`menu-item ${activeTab === "leads" ? "active" : ""}`}
+              onClick={() => {
+                setActiveTab("leads");
+                setSelectedLeadsCompany(null);
+              }}
+            >
+              <FiInbox /> Leads
+            </li>
           </ul>
         </aside>
 
@@ -462,6 +536,7 @@ const AdminDashBoard = () => {
               {activeTab === "dashboard" && "Overview & Analytics"}
               {activeTab === "listings" && "Property & Ads Catalog"}
               {activeTab === "customers" && "Advertisers Registry"}
+              {activeTab === "leads" && (selectedCompanyLeads ? `Leads - ${selectedCompanyLeads.companyName}` : "Leads by Company")}
             </h2>
             <button className="logout-btn" onClick={handleLogout}>
               <FiLogOut /> Logout
@@ -532,6 +607,16 @@ const AdminDashBoard = () => {
                   </div>
                   <div className="metric-icon-box" style={{ background: "#faf5ff", color: "#6b21a8" }}>
                     <FiUsers />
+                  </div>
+                </div>
+
+                <div className="metric-card">
+                  <div className="metric-info">
+                    <h3>{totalLeadsCount}</h3>
+                    <p>Total Leads</p>
+                  </div>
+                  <div className="metric-icon-box" style={{ background: "#fff7ed", color: "#9a3412" }}>
+                    <FiInbox />
                   </div>
                 </div>
               </section>
@@ -822,6 +907,94 @@ const AdminDashBoard = () => {
                 );
               })}
             </div>
+          )}
+
+          {/* TAB 4: LEADS VIEW */}
+          {!loading && activeTab === "leads" && !selectedCompanyLeads && (
+            <>
+              {leadsLoading && (
+                <div style={{ display: "flex", justifyContent: "center", margin: "3rem 0" }}>
+                  <span>Loading leads...</span>
+                </div>
+              )}
+
+              {!leadsLoading && leadsByCompanyList.length === 0 && (
+                <div className="leads-empty-state">
+                  No leads have been submitted yet.
+                </div>
+              )}
+
+              {!leadsLoading && leadsByCompanyList.length > 0 && (
+                <div className="leads-companies-grid">
+                  {leadsByCompanyList.map((company, idx) => {
+                    const latestLead = company.leads[0];
+                    return (
+                      <div
+                        className="lead-company-card"
+                        key={idx}
+                        onClick={() => setSelectedLeadsCompany(company.companyEmail)}
+                      >
+                        <div className="lead-company-card-header">
+                          <h4 className="lead-company-name">{company.companyName}</h4>
+                          <span className="lead-company-count-badge">
+                            {company.leads.length} {company.leads.length === 1 ? "lead" : "leads"}
+                          </span>
+                        </div>
+                        <div className="lead-company-email">
+                          <FiMail /> {company.companyEmail}
+                        </div>
+                        {latestLead && (
+                          <div className="lead-company-latest">
+                            Latest: {formatLeadDate(latestLead.createdAt)}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </>
+          )}
+
+          {/* TAB 4: LEADS VIEW - SINGLE COMPANY DETAIL */}
+          {!loading && activeTab === "leads" && selectedCompanyLeads && (
+            <>
+              <button className="leads-back-btn" onClick={() => setSelectedLeadsCompany(null)}>
+                <FiArrowLeft /> Back to all companies
+              </button>
+
+              <div className="leads-list">
+                {selectedCompanyLeads.leads.map((lead, idx) => (
+                  <div className="lead-item-card" key={idx}>
+                    <div className="lead-item-header">
+                      <div>
+                        <p className="lead-item-title">
+                          <a href={lead.listingUrl} target="_blank" rel="noopener noreferrer">
+                            {lead.listingTitle || "Untitled listing"}
+                          </a>
+                        </p>
+                        <div style={{ fontSize: "11px", color: "#94a3b8" }}>
+                          <FiLink /> Property Ref: {lead.listingId || "N/A"}
+                        </div>
+                      </div>
+                      <div className="lead-item-date">
+                        <FiCalendar /> {formatLeadDate(lead.createdAt)}
+                      </div>
+                    </div>
+
+                    <div className="lead-item-body">
+                      <span><strong>Name:</strong>&nbsp;{lead.userName}</span>
+                      <span><FiMail /> {lead.userEmail}</span>
+                      <span><FiPhone /> {lead.userPhone || "Not provided"}</span>
+                    </div>
+
+                    {lead.userMessage && (
+                      <div className="lead-item-message">{lead.userMessage}</div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </>
           )}
         </main>
       </div>

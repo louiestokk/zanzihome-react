@@ -6213,6 +6213,144 @@ border-top-right-radius: 5px;
         .modal-btn.save:hover {
           background: #0b8b3a;
         }
+
+        /* Leads View */
+        .leads-back-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: #f1f5f9;
+          color: #334155;
+          border: none;
+          padding: 8px 14px;
+          border-radius: 8px;
+          font-size: 12.5px;
+          font-weight: 700;
+          cursor: pointer;
+          margin-bottom: 16px;
+        }
+        .leads-back-btn:hover {
+          background: #e2e8f0;
+        }
+        .leads-companies-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 16px;
+        }
+        .lead-company-card {
+          background: #ffffff;
+          border-radius: 14px;
+          padding: 16px;
+          border: 1px solid #e2e8f0;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+          cursor: pointer;
+          transition: all 0.15s ease;
+        }
+        .lead-company-card:hover {
+          border-color: #013a17;
+          box-shadow: 0 6px 16px rgba(1, 58, 23, 0.08);
+        }
+        .lead-company-card-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-bottom: 8px;
+        }
+        .lead-company-name {
+          font-size: 14.5px;
+          font-weight: 700;
+          color: #0f172a;
+          margin: 0;
+        }
+        .lead-company-count-badge {
+          font-size: 10px;
+          font-weight: 700;
+          padding: 3px 8px;
+          border-radius: 20px;
+          background: #f0fdf4;
+          color: #166534;
+          border: 1px solid #bbf7d0;
+          white-space: nowrap;
+        }
+        .lead-company-email {
+          font-size: 12px;
+          color: #64748b;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          margin-bottom: 6px;
+        }
+        .lead-company-latest {
+          font-size: 11px;
+          color: #94a3b8;
+        }
+        .leads-list {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+        .lead-item-card {
+          background: #ffffff;
+          border-radius: 14px;
+          padding: 18px;
+          border: 1px solid #e2e8f0;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+        }
+        .lead-item-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          gap: 10px;
+          margin-bottom: 12px;
+          padding-bottom: 12px;
+          border-bottom: 1px solid #f1f5f9;
+        }
+        .lead-item-title {
+          font-size: 15px;
+          font-weight: 700;
+          color: #013a17;
+          margin: 0 0 4px;
+        }
+        .lead-item-title a {
+          color: #013a17;
+          text-decoration: none;
+        }
+        .lead-item-title a:hover {
+          text-decoration: underline;
+        }
+        .lead-item-date {
+          font-size: 11px;
+          color: #94a3b8;
+          white-space: nowrap;
+        }
+        .lead-item-body {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+          gap: 10px;
+          font-size: 12.5px;
+          color: #334155;
+        }
+        .lead-item-body span {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+        .lead-item-message {
+          margin-top: 12px;
+          background: #f8fafc;
+          border: 1px solid #f1f5f9;
+          border-radius: 8px;
+          padding: 10px 12px;
+          font-size: 12.5px;
+          color: #475569;
+          line-height: 1.6;
+        }
+        .leads-empty-state {
+          text-align: center;
+          padding: 40px 16px;
+          color: #94a3b8;
+          font-size: 13.5px;
+        }
       
 
 /* Styles extracted from views\Advertise.js */

@@ -1,8 +1,6 @@
-import React, { useState, useRef } from "react";
-import emailjs from "@emailjs/browser";
+import React, { useState } from "react";
 
 const CompanyLeadForm = ({ listingTitle, listingId, companyName, companyEmail, isCompany, about }) => {
-  const formRef = useRef();
   const [formData, setFormData] = useState({
     userName: "",
     userPhone: "",
@@ -29,48 +27,31 @@ const CompanyLeadForm = ({ listingTitle, listingId, companyName, companyEmail, i
     setErrorMsg("");
 
     try {
-      const formEl = formRef.current;
-      if (!formEl) return;
+      // The URL the user actually filled the form on (correct for both /propertys and /partners/* routes).
+      const currentPageUrl = typeof window !== "undefined" ? window.location.href : `https://www.zanzihome.com/propertys/property/${listingId}`;
 
-      const formattedMessage = `
-Name: ${formData.userName}
-Email: ${formData.userEmail}
-Phone: ${formData.userPhone}
+      const response = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userName: formData.userName,
+          userEmail: formData.userEmail,
+          userPhone: formData.userPhone,
+          userMessage: formData.userMessage,
+          listingId,
+          listingTitle,
+          listingUrl: currentPageUrl,
+          companyName,
+          companyEmail
+        })
+      });
 
-Message:
-${formData.userMessage}
+      const result = await response.json();
 
-----------------------------------------
-Property Ref: ${listingId}
-Property Title: ${listingTitle}
-URL: https://www.zanzihome.com/propertys/property/${listingId}
-----------------------------------------
-Listed by Company: ${companyName || "N/A"}
-Company Contact Email: ${companyEmail || "N/A"}
-      `;
-
-      // 1. Set values for submission
-      formEl.elements["from_name"].value = formData.userName;
-      formEl.elements["from_email"].value = formData.userEmail;
-      
-      const targetCompanyEmail = companyEmail || "louiestokk@gmail.com";
-      if (targetCompanyEmail === "louiestokk@gmail.com") {
-        formEl.elements["to_name"].value = "ZanziHome Admin";
-        formEl.elements["to_email"].value = "louiestokk@gmail.com";
-        formEl.elements["subject"].value = `New Lead: ${formData.userName} is interested in ${listingTitle}`;
-      } else {
-        formEl.elements["to_name"].value = companyName || "Broker Partner";
-        formEl.elements["to_email"].value = targetCompanyEmail;
-        formEl.elements["subject"].value = `ZanziHome Partner Lead: Inquiry for ${listingTitle}`;
+      if (!response.ok) {
+        throw new Error(result?.error || "Failed to send your inquiry.");
       }
-      formEl.elements["message"].value = formattedMessage;
 
-      await emailjs.sendForm(
-        "service_thbibzh",
-        "template_xn7q61k",
-        formEl,
-        process.env.NEXT_PUBLIC_REACT_APP_EMAILJS || process.env.REACT_APP_EMAILJS || "yP8LTloRH-vMrxS8b"
-      );
       console.log("Lead email sent successfully");
 
       setSuccess(true);
@@ -81,7 +62,7 @@ Company Contact Email: ${companyEmail || "N/A"}
         userMessage: ""
       });
     } catch (err) {
-      console.error("EmailJS Error:", err);
+      console.error("Resend lead error:", err);
       setErrorMsg("Failed to send your inquiry. Please try again or contact us directly.");
     } finally {
       setSending(false);
@@ -388,16 +369,6 @@ Company Contact Email: ${companyEmail || "N/A"}
             <button type="submit" disabled={sending} className="lead-submit-btn">
               {sending ? "Sending inquiry..." : "Send Inquiry"}
             </button>
-          </form>
-
-          {/* Hidden EmailJS Form */}
-          <form ref={formRef} style={{ display: "none" }}>
-            <input type="hidden" name="to_name" />
-            <input type="hidden" name="to_email" />
-            <input type="hidden" name="from_name" />
-            <input type="hidden" name="from_email" />
-            <input type="hidden" name="subject" />
-            <textarea name="message" readOnly />
           </form>
         </>
       )}
