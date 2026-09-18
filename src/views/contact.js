@@ -12,7 +12,8 @@ const Contact = () => {
     from_name: "",
     from_email: "",
     subject: "",
-    message: ""
+    message: "",
+    website: ""
   });
 
   const [loading, setLoading] = useState(false);
@@ -37,7 +38,8 @@ const Contact = () => {
           from_name: formData.from_name,
           from_email: formData.from_email,
           subject: formData.subject,
-          message: formData.message
+          message: formData.message,
+          website: formData.website
         })
       });
 
@@ -51,7 +53,7 @@ const Contact = () => {
         success: true,
         text: "Thank you! We have received your request and will contact you soon."
       });
-      setFormData({ from_name: "", from_email: "", subject: "", message: "" });
+      setFormData({ from_name: "", from_email: "", subject: "", message: "", website: "" });
     } catch (err) {
       console.error(err);
       setStatus({
@@ -255,6 +257,14 @@ const Contact = () => {
           margin-bottom: 18px;
         }
 
+        .honeypot-field {
+          position: absolute;
+          left: -10000px;
+          width: 1px;
+          height: 1px;
+          overflow: hidden;
+        }
+
         .form-label {
           display: block;
           margin-bottom: 6px;
@@ -392,7 +402,7 @@ const Contact = () => {
             </div>
             <div className="info-card-body">
               <h4>Email Inquiry</h4>
-              <p>Send details of your property request. info@zanzihome.com</p>
+              <p>Send details of your property request.</p>
               <span className="action-link" style={{ color: "#4a5568" }}>Send us an email <FiArrowRight /></span>
             </div>
           </a>
@@ -430,6 +440,18 @@ const Contact = () => {
 
 
           <form ref={contactFormRef} onSubmit={handleSubmit}>
+            <div aria-hidden="true" className="honeypot-field">
+              <label htmlFor="contact-website">Website</label>
+              <input
+                id="contact-website"
+                type="text"
+                name="website"
+                tabIndex="-1"
+                autoComplete="off"
+                value={formData.website}
+                onChange={handleChange}
+              />
+            </div>
             <div className="form-group">
               <label className="form-label">Full Name</label>
               <input

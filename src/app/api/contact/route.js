@@ -14,7 +14,11 @@ const escapeHtml = (value = "") =>
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { from_name, from_email, subject, message } = body || {};
+    const { from_name, from_email, subject, message, website } = body || {};
+
+    if (website) {
+      return Response.json({ error: "Unable to send contact message." }, { status: 400 });
+    }
 
     if (!from_name || !from_email || !subject || !message) {
       return Response.json(
