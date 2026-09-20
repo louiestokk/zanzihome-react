@@ -8,13 +8,13 @@ import MatchRequestStepper from "../components/MatchRequestStepper";
 import { coccolagoonProperties } from "../utils/coccolagoonData";
 
 const resortOverviewImages = [
-  "https://invest.coccolagoon.com/images/9ca7ec32-c0b4-435c-a4cf-3c430046cf33.png",
-  "https://invest.coccolagoon.com/images/waves-lux-1c.jpg",
-  "https://invest.coccolagoon.com/images/palm-pool-2.jpg",
-  "https://invest.coccolagoon.com/images/ocean-studio-2c.jpg",
-  "https://invest.coccolagoon.com/images/penthouse-1c.jpg",
-  "https://invest.coccolagoon.com/images/penthouse-3c.jpg",
-  "https://invest.coccolagoon.com/images/penthouse-5c.jpg",
+  "https://invest.coccolagoon.com/images/9ca7ec32-c0b4-435c-a4cf-3c430046cf33.webp",
+  "https://invest.coccolagoon.com/images/waves-lux-1c.webp",
+  "https://invest.coccolagoon.com/images/palm-pool-2.webp",
+  "https://invest.coccolagoon.com/images/ocean-studio-2c.webp",
+  "https://invest.coccolagoon.com/images/penthouse-1c.webp",
+  "https://invest.coccolagoon.com/images/penthouse-3c.webp",
+  "https://invest.coccolagoon.com/images/penthouse-5c.webp",
 ];
 
 const CoccolagoonPartnerPage = () => {
@@ -109,7 +109,7 @@ const CoccolagoonPartnerPage = () => {
           }}
         >
           <img
-            src="https://invest.coccolagoon.com/images/masterplan-v2.png"
+            src="https://invest.coccolagoon.com/images/masterplan-v2.webp"
             alt="Cocco Lagoon Resort and Spa masterplan showing apartments for sale on Pemba, Zanzibar"
             loading="lazy"
             style={{ width: "100%", height: "100%", minHeight: "280px", objectFit: "cover" }}

@@ -19,13 +19,13 @@ export const coccolagoonProperties = [
     Rent: "Sale",
     description:
       "A bright 35 m² studio apartment with sea views, finished turnkey and ready for rental income from day one as part of the Cocco Lagoon Resort & Spa condo-hotel program.",
-    url: IMG_BASE + "studio-wizka-2c.jpg",
+    url: IMG_BASE + "studio-wizka-2c.webp",
     imagesArray: [
-      IMG_BASE + "studio-wizka-2c.jpg",
-      IMG_BASE + "studio-wizka-3c.jpg",
-      IMG_BASE + "studio-wizka-1c.jpg",
-      IMG_BASE + "studio-extra-1c.jpg",
-      IMG_BASE + "studio-extra-2c.jpg",
+      IMG_BASE + "studio-wizka-2c.webp",
+      IMG_BASE + "studio-wizka-3c.webp",
+      IMG_BASE + "studio-wizka-1c.webp",
+      IMG_BASE + "studio-extra-1c.webp",
+      IMG_BASE + "studio-extra-2c.webp",
     ],
   },
   {
@@ -43,12 +43,12 @@ export const coccolagoonProperties = [
     Rent: "Sale",
     description:
       "A compact 33 m² ocean-facing studio, finished turnkey, offering direct sea views and full-service hotel management within the Cocco Lagoon complex.",
-    url: IMG_BASE + "ocean-studio-2c.jpg",
+    url: IMG_BASE + "ocean-studio-2c.webp",
     imagesArray: [
-      IMG_BASE + "ocean-studio-2c.jpg",
-      IMG_BASE + "ocean-studio-3c.jpg",
-      IMG_BASE + "ocean-studio-4c.jpg",
-      IMG_BASE + "ocean-studio-5c.jpg",
+      IMG_BASE + "ocean-studio-2c.webp",
+      IMG_BASE + "ocean-studio-3c.webp",
+      IMG_BASE + "ocean-studio-4c.webp",
+      IMG_BASE + "ocean-studio-5c.webp",
     ],
   },
   {
@@ -66,11 +66,11 @@ export const coccolagoonProperties = [
     Rent: "Sale",
     description:
       "A spacious 54 m² beach-front studio with a private terrace, finished turnkey, offering direct access to Cocco Lagoon's private beach.",
-    url: IMG_BASE + "beach-studio-1c.jpg",
+    url: IMG_BASE + "beach-studio-1c.webp",
     imagesArray: [
-      IMG_BASE + "beach-studio-1c.jpg",
-      IMG_BASE + "beach-studio-2c.jpg",
-      IMG_BASE + "beach-studio-3c.jpg",
+      IMG_BASE + "beach-studio-1c.webp",
+      IMG_BASE + "beach-studio-2c.webp",
+      IMG_BASE + "beach-studio-3c.webp",
     ],
   },
   {
@@ -88,13 +88,13 @@ export const coccolagoonProperties = [
     Rent: "Sale",
     description:
       "Cocco Lagoon's bestselling unit — a 72 m² two-bedroom apartment with a private terrace, finished turnkey and managed by a professional hotel operator.",
-    url: IMG_BASE + "2bedroom-wizka-2c.jpg",
+    url: IMG_BASE + "2bedroom-wizka-2c.webp",
     imagesArray: [
-      IMG_BASE + "2bedroom-wizka-2c.jpg",
-      IMG_BASE + "2bedroom-wizka-1c.jpg",
-      IMG_BASE + "2bedroom-wizka-3c.jpg",
-      IMG_BASE + "2bedroom-extra-1c.jpg",
-      IMG_BASE + "2bedroom-extra-2c.jpg",
+      IMG_BASE + "2bedroom-wizka-2c.webp",
+      IMG_BASE + "2bedroom-wizka-1c.webp",
+      IMG_BASE + "2bedroom-wizka-3c.webp",
+      IMG_BASE + "2bedroom-extra-1c.webp",
+      IMG_BASE + "2bedroom-extra-2c.webp",
     ],
   },
   {
@@ -112,13 +112,13 @@ export const coccolagoonProperties = [
     Rent: "Sale",
     description:
       "An exclusive 110 m² three-bedroom villa with a private pool, part of the Cocco Lagoon Resort & Spa masterplan on Pemba Island.",
-    url: IMG_BASE + "waves-wizka-3c.jpg",
+    url: IMG_BASE + "waves-wizka-3c.webp",
     imagesArray: [
-      IMG_BASE + "waves-wizka-3c.jpg",
-      IMG_BASE + "waves-wizka-2c.jpg",
-      IMG_BASE + "waves-lux-1c.jpg",
-      IMG_BASE + "waves-lux-2c.jpg",
-      IMG_BASE + "waves-lux-3c.jpg",
+      IMG_BASE + "waves-wizka-3c.webp",
+      IMG_BASE + "waves-wizka-2c.webp",
+      IMG_BASE + "waves-lux-1c.webp",
+      IMG_BASE + "waves-lux-2c.webp",
+      IMG_BASE + "waves-lux-3c.webp",
     ],
   },
   {
@@ -136,13 +136,13 @@ export const coccolagoonProperties = [
     Rent: "Sale",
     description:
       "A 150 m² top-floor Sky Suite with a private jacuzzi terrace, offering panoramic ocean views over Cocco Lagoon Resort & Spa.",
-    url: IMG_BASE + "sky-suite-1c.jpg",
+    url: IMG_BASE + "sky-suite-1c.webp",
     imagesArray: [
-      IMG_BASE + "sky-suite-1c.jpg",
-      IMG_BASE + "sky-suite-2c.jpg",
-      IMG_BASE + "sky-suite-3c.jpg",
-      IMG_BASE + "sky-suite-4c.jpg",
-      IMG_BASE + "sky-suite-5c.jpg",
+      IMG_BASE + "sky-suite-1c.webp",
+      IMG_BASE + "sky-suite-2c.webp",
+      IMG_BASE + "sky-suite-3c.webp",
+      IMG_BASE + "sky-suite-4c.webp",
+      IMG_BASE + "sky-suite-5c.webp",
     ],
   },
   {
@@ -160,13 +160,13 @@ export const coccolagoonProperties = [
     Rent: "Sale",
     description:
       "The flagship 230 m² Penthouse at Cocco Lagoon Resort & Spa, with a private jacuzzi terrace and panoramic views over the Indian Ocean.",
-    url: IMG_BASE + "penthouse-1c.jpg",
+    url: IMG_BASE + "penthouse-1c.webp",
     imagesArray: [
-      IMG_BASE + "penthouse-1c.jpg",
-      IMG_BASE + "penthouse-2c.jpg",
-      IMG_BASE + "penthouse-3c.jpg",
-      IMG_BASE + "penthouse-4c.jpg",
-      IMG_BASE + "penthouse-5c.jpg",
+      IMG_BASE + "penthouse-1c.webp",
+      IMG_BASE + "penthouse-2c.webp",
+      IMG_BASE + "penthouse-3c.webp",
+      IMG_BASE + "penthouse-4c.webp",
+      IMG_BASE + "penthouse-5c.webp",
     ],
   },
 ];

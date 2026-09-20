@@ -78,7 +78,7 @@ const CompanyLeadForm = ({ listingTitle, listingId, companyName, companyEmail, i
           padding: 24px;
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
           border: 1px solid rgba(0, 0, 0, 0.05);
-          font-family: 'Poppins', sans-serif;
+          font-family: "Poppins", sans-serif;
           max-width: 100%;
           box-sizing: border-box;
         }
