@@ -1,7 +1,7 @@
 export const faqdata = [
   {
     title: "How much does it cost to list a property?",
-    text: "It costs $20 for a 6-month listing or $30 for a 12-month listing on ZanziHome. We offer a simple and secure payment process. You can choose your preferred plan before starting to fill in your listing details. We accept PayPal, standard Credit/Debit cards, and local mobile money transfers (Tigo Pesa, WorldRemit)."
+    text: "It is completely free to advertise on ZanziHome. Create and publish your property listing instantly to reach thousands of potential clients."
   },
   {
     title: "How does ZanziHome work?",
